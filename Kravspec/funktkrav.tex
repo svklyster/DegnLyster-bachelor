@@ -1,0 +1,26 @@
+\documentclass[kravspec.tex]{subfiles}
+\begin{document}
+\section{Funktionelle krav}
+Skriv lidt forord her \\
+\begin{itemize}
+	\item 
+	Kalibrering: Systemet skal kunne kalibreres således at der kan findes en fornuftig middelværdi for trigger-niveauet. Derudover skal specifikke ukendte variabler kunne kalibreres ved hjælp af interpolation.  
+	\item
+	Output: Der forventes en fil indeholdende de målte XY-koordinater med tilhørende timestamp, for hver triggersignal. Formatet skal bestemmes.
+	\item
+	Brugertilgang: Vil indeholde en række use-cases. Disse vil lægge grundlag for bruger-program-interaktioner.
+\end{itemize}
+
+\subsection{Use-cases}	
+\begin{enumerate}
+	\item Kalibrering: \\Initierer en række kalibreringer før brug. 
+	\item Start måling: \\Igangsætter måling og kreere en tilhørende log-fil.
+	\item Pause måling: \\Giver brugeren mulighed for at pause igangværende måling. Herved vil der ikke blive kreeret en ny log-fil. 
+	\item Slut måling: \\Afslutter måling.
+	\item Gem indstillinger: \\Gemmer en fil med brugerens nuværende indstillinger.
+	\item Indlæs indstillinger: \\Indlæser indstillinger fra gemt fil.
+	\item Vælg kamera-input: \\ Giver brugeren mulighed for at vælge imellem potentielle kamera-inputs.
+
+\end{enumerate}
+	
+\end{document}
