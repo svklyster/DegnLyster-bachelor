@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.16)  26 JAN 2015 12:19
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.16)  26 JAN 2015 12:35
 entering extended mode
 **forside.tex
-(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\forside.tex
+(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\forside.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -1050,10 +1050,9 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \f@ncyO@olf=\skip78
 \f@ncyO@orf=\skip79
 )
-(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\forside.aux
+(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\forside.aux
 No file .aux.
-No file .aux.
-)
+(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\kravspec.aux))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
 LaTeX Font Info:    ... okay on input line 26.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
@@ -1067,7 +1066,8 @@ LaTeX Font Info:    ... okay on input line 26.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
 LaTeX Font Info:    ... okay on input line 26.
 LaTeX Font Info:    Try loading font information for T1+lmr on input line 26.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
@@ -2401,8 +2401,8 @@ Package pdftex.def Info: ASE_logo.png used on input line 38.
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/svl/Documents/Gi
-tHub/DegnLyster-bachelor/ASE_logo.png>]
-(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\forside.toc)
+tHub/DegnLyster-bachelor/Kravspec/ASE_logo.png>]
+(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\forside.toc)
 \tf@toc=\write3
 File: ASE_logo.png Graphic file (type png)
 
@@ -2418,7 +2418,48 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [1
 
-] (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\forside.bbl
+] (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\kravspec.tex
+File: ASE_logo.png Graphic file (type png)
+
+<use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 38.
+(pdftex.def)             Requested size: 143.57603pt x 72.7516pt.
+ [1
+
+]
+(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\forside.toc)
+\tf@toc=\write4
+
+
+! LaTeX Error: \include cannot be nested.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.57 \include{indledning}
+                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\forside.bbl
+
+Package natbib Warning: Empty `thebibliography' environment on input line 3.
+
+))
+File: ASE_logo.png Graphic file (type png)
+ <use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 58.
+(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 19.85004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[1] (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\forside.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
@@ -2436,25 +2477,25 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [2
 
-] (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\forside.aux
+] (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\forside.aux
 No file .aux.
-No file .aux.
-) ) 
+(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\kravspec.aux)) ) 
 Here is how much of TeX's memory you used:
- 16373 strings out of 493921
- 325030 string characters out of 3147288
- 358549 words of memory out of 3000000
- 19341 multiletter control sequences out of 15000+200000
+ 16385 strings out of 493921
+ 325854 string characters out of 3147288
+ 358557 words of memory out of 3000000
+ 19342 multiletter control sequences out of 15000+200000
  57887 words of font info for 54 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  76i,16n,106p,10420b,390s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lm
-r17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb>
-Output written on forside.pdf (3 pages, 132181 bytes).
+{C:
+/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb>
+Output written on forside.pdf (5 pages, 131940 bytes).
 PDF statistics:
- 32 PDF objects out of 1000 (max. 8388607)
+ 38 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

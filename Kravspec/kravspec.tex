@@ -1,0 +1,62 @@
+\documentclass[a4paper,oneside,12pt]{article}
+
+\usepackage{standalone}
+
+\usepackage{setspace}
+\usepackage[numbers]{natbib}
+\usepackage{url}
+\usepackage[utf8]{inputenc} 
+\usepackage[english,danish]{babel} 
+\usepackage{lmodern} % Modern LaTeX font
+\renewcommand{\danishhyphenmins}{22} 
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{gensymb}
+\usepackage[load-configurations=version-1]{siunitx}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage[font=footnotesize]{caption}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+\begin{document}
+\begin{titlepage}
+\centering
+\vfill
+{\LARGE Kravspecifikation}\\
+\vfill
+{\bfseries\large
+	Bachelorprojektet: \\
+	Real-time eye-tracking\\
+	Projektnummer: 15017\\
+}
+\vfill
+\includegraphics{ASE_logo.png}
+\vfill
+{\bfseries\large
+	25/01/2015\\
+	Studerende: Søren Vøgg Krabbe Lyster 10920,\\
+	Martin Degn Kristensen 10441\\
+	Studieretning: Elektro \\
+	Vejleder: Preben Kidmose \\
+	\vfill	
+	\rule{6cm}{1pt}
+}
+\vfill
+
+\end{titlepage}
+\lhead{\includegraphics[scale=0.2]{ASE_logo.png}}
+\chead{Real-time eye-tracking}
+\rhead{\scriptsize 16/01/15 \\
+S. V. K. Lyster, M. D. Kristensen}
+\tableofcontents
+\include{indledning}
+\include{systembeskrivelse}
+\include{funktkrav}
+\include{ikkefunktkrav}
+\bibliography{biblio}
+\bibliographystyle{ieeetr}
+\end{document}
