@@ -1,0 +1,15 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: forside.aux
+I couldn't open auxiliary file .aux
+---line 9 of file forside.aux
+ : \@input{.aux
+ :             }
+I'm skipping whatever remains of this command
+Already encountered file .aux
+---line 10 of file forside.aux
+ : \@input{.aux
+ :             }
+I'm skipping whatever remains of this command
+The style file: ieeetr.bst
+I found no \citation commands---while reading file forside.aux
+Database file #1: biblio.bib
+(There were 3 error messages)
