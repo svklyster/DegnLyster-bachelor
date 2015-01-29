@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.16)  26 JAN 2015 14:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.16)  26 JAN 2015 15:41
 entering extended mode
 **ikkefunktkrav.tex
 (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\ikkefunktkrav.tex
@@ -2457,10 +2457,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\ikkefunktkrav.aux) 
 ) 
 Here is how much of TeX's memory you used:
- 16649 strings out of 493921
- 328955 string characters out of 3147288
+ 16650 strings out of 493921
+ 328971 string characters out of 3147288
  366594 words of memory out of 3000000
- 19602 multiletter control sequences out of 15000+200000
+ 19603 multiletter control sequences out of 15000+200000
  39806 words of font info for 45 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  85i,11n,108p,10466b,502s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2470,7 +2470,7 @@ pe1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr
 12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmro12.pfb><C:/Progra
 m Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on ikkefunktkrav.pdf (1 page, 82767 bytes).
+Output written on ikkefunktkrav.pdf (1 page, 82864 bytes).
 PDF statistics:
  28 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

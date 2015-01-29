@@ -1,17 +1,18 @@
 \documentclass[kravspec.tex]{subfiles}
 \begin{document}
 \section{Funktionelle krav}
-Skriv lidt forord her \\
+Følgende funktionelle krav for systemet er blevet stillet: \\
 \begin{itemize}
 	\item 
 	Kalibrering: Systemet skal kunne kalibreres således at der kan findes en fornuftig middelværdi for trigger-niveauet. Derudover skal specifikke ukendte variabler kunne kalibreres ved hjælp af interpolation.  
 	\item
 	Output: Der forventes en fil indeholdende de målte XY-koordinater med tilhørende timestamp, for hver triggersignal. Formatet skal bestemmes.
 	\item
-	Brugertilgang: Vil indeholde en række use-cases. Disse vil lægge grundlag for bruger-program-interaktioner.
+	Brugertilgang: Ved hjælp af use case teknikken vil en yderlige række krav blive stillet. Disse vil lægge grundlag for bruger-program-interaktioner. Use-case-kravene er opstillet i afsnit \ref{usec}.  
 \end{itemize}
 
 \subsection{Use-cases}	
+\label{usec}
 \begin{enumerate}
 	\item Kalibrering: \\Initierer en række kalibreringer før brug. 
 	\item Start måling: \\Igangsætter måling og kreere en tilhørende log-fil.
