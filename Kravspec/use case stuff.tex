@@ -1,6 +1,6 @@
 \documentclass[a4paper,oneside,12pt]{article}
 
-\usepackage{standalone}
+
 
 \usepackage{vhistory}
 \usepackage{setspace}
@@ -53,6 +53,77 @@
 		\hline Undtagelsesforløb &  \\ 
 		\hline 
 	\end{tabular}
+
+	\subsection{Use case 5: Gem indstillinger}
+	\begin{tabular}{|l|p{7.7cm}|}
+		\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
+		\hline Mål  & System gemmer nuværende indstillinger i brugerdefineret fil \\ 
+		\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
+		\hline Aktører & Aktøren \textit{bruger} \\ 
+		\hline Antal samtidige forekomster & 1 \\ 
+		\hline Startbetingelser & Computerprogrammet skal være opstartet og indstillinger skal være ændret  \\ 
+		\hline Slutresultat – succes & Systemet gemmer nuværende indstillinger i den valgte fil \\ 
+		\hline Slutresultat – undtagelse & Programmet alarmerer bruger at indstillinger ikke kunne gemmes \\ 
+		\hline Normal forløb & Bruger vælger filnavn og placering af den fil hvor indstillinger skal gemmes \\ 
+		\hline Undtagelsesforløb & Bruger bliver returneret til menuen efter alarmering \\ 
+		\hline 
+	\end{tabular}
 	
+	\subsection{Use case 6: Indlæs indstillinger}
+	\begin{tabular}{|l|p{7.7cm}|}
+		\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
+		\hline Mål  & System anvender indstillinger fra fil \\ 
+		\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
+		\hline Aktører & Aktøren \textit{bruger} \\ 
+		\hline Antal samtidige forekomster & 1 \\ 
+		\hline Startbetingelser & Computerprogrammet skal være opstartet og en gyldig indstillings-fil skal findes  \\ 
+		\hline Slutresultat – succes & Systemet anvender indstillinger fra den valgte fil \\ 
+		\hline Slutresultat – undtagelse & Programmet alarmerer bruger at indstillinger ikke kunne indhentes \\ 
+		\hline Normal forløb & Bruger vælger indstillings-fil der skal anvendes \\ 
+		\hline Undtagelsesforløb & Bruger bliver returneret til menuen efter alarmering \\ 
+		\hline 
+	\end{tabular}
+	
+	\subsection{Use case 7: Vælg kamera-input}
+	\begin{tabular}{|l|p{7.7cm}|}
+		\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
+		\hline Mål  & System anvender valgt kamera \\ 
+		\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
+		\hline Aktører & Aktøren \textit{bruger} og aktøren \textit{kamera} \\ 
+		\hline Antal samtidige forekomster & 1 \\ 
+		\hline Startbetingelser & Computerprogrammet skal være opstartet og kameraret skal være tændt  \\ 
+		\hline Slutresultat – succes & Systemet anvender det valgte kamera \\ 
+		\hline Slutresultat – undtagelse & Programmet alarmerer bruger at der ikke er valgt kamera \\ 
+		\hline Normal forløb & \begin{enumerate}
+			\item Bruger klikker på "Camera Input".
+			\item Bruger vælger kamera der skal anvendes fra liste.
+			\item Bruger godkender eller afviser valg af kamera.
+			\begin{enumerate}
+			\item Bruger godkendte kamera. Valgt kamera bliver sat som input, og bruger returneres til main GUI. Use Case afsluttes.
+			\item Bruger afviser valg af kamera. Bruger returneres til liste (Punkt 2).
+			\end{enumerate}
+		\end{enumerate} \\ 
+		\hline Undtagelsesforløb & Bruger bliver returneret til menuen efter alarmering \\ 
+		\hline 
+	\end{tabular}
+	
+	\subsection{Use case 8: Aktiver "Raw" data logging}
+	\begin{tabular}{|l|p{7.7cm}|}
+		\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
+		\hline Mål  & System logger rå video data ved måling (Use Case 2) \\ 
+		\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
+		\hline Aktører & Aktøren \textit{bruger} \\ 
+		\hline Antal samtidige forekomster & 1 \\ 
+		\hline Startbetingelser & Computerprogrammet skal være opstartet \\ 
+		\hline Slutresultat – succes & Programmet viser filnavn, er klar tilrå video data logging, og returnerer til idle. \\ 
+		\hline Slutresultat – undtagelse & Programmet viser \textit{ikke} et filnavn og returnerer til idle. \\ 
+		\hline Normal forløb & \begin{enumerate}
+			\item Bruger klikker på "Raw Data Logging" knappen.
+			\item Bruger vælger sti og filnavn.
+			\item Program viser filnavn, og returnerer til idle. Use case afsluttes.
+		\end{enumerate} \\ 
+		\hline Undtagelsesforløb & Bruger bliver returneret til menuen efter alarmering \\ 
+		\hline 
+	\end{tabular}
 	
 \end{document}}
