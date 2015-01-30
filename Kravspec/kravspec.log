@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.16)  30 JAN 2015 11:23
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.16)  30 JAN 2015 11:39
 entering extended mode
 **kravspec.tex
 (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\kravspec.tex
@@ -1101,6 +1101,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\indledning.aux)
 (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\systembeskrivelse.a
 ux) (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\funktkrav.aux)
+(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\usecase.aux)
 (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\ikkefunktkrav.aux))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
 LaTeX Font Info:    ... okay on input line 26.
@@ -2460,7 +2461,7 @@ tHub/DegnLyster-bachelor/Kravspec/ASE_logo.png>]
 File: ASE_logo.png Graphic file (type png)
 
 <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 63.
+Package pdftex.def Info: ASE_logo.png used on input line 64.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2472,7 +2473,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [1] (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\indledning.tex)
 File: ASE_logo.png Graphic file (type png)
 <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 63.
+Package pdftex.def Info: ASE_logo.png used on input line 64.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2531,7 +2532,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 File: ASE_logo.png Graphic file (type png)
 
 <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 64.
+Package pdftex.def Info: ASE_logo.png used on input line 65.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2600,7 +2601,7 @@ le kamera-inputs.
 )
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 65.
+Package pdftex.def Info: ASE_logo.png used on input line 66.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2610,15 +2611,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [7 <C:/Users/svl/Documents/GitHub/DegnLyster-bachelor/Trigger-threshold.png>]
-(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\ikkefunktkrav.tex
-Underfull \hbox (badness 10000) in paragraph at lines 5--6
+(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\usecase.tex
+Underfull \hbox (badness 10000) in paragraph at lines 4--18
 
  []
 
-)
+
+Underfull \hbox (badness 2809) in paragraph at lines 22--23
+[]|\T1/lmr/m/n/12 Programmet på-be-gyn-der real-time eye-
+ []
+
 File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 66.
+<use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 49.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2630,14 +2635,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [8
 
 
-] (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\kravspec.bbl
+]
+Underfull \hbox (badness 1127) in paragraph at lines 57--58
+[]|\T1/lmr/m/n/12 Systemet an-ven-der indstil-lin-ger fra den
+ []
 
-Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
-)
+Underfull \hbox (badness 1360) in paragraph at lines 80--81
+[]\T1/lmr/m/n/12 Bruger af-vi-ser valg af ka-me-
+ []
+
 File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 69.
+<use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 87.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2646,19 +2656,81 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9
+[9])
+File: ASE_logo.png Graphic file (type png)
+ <use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 67.
+(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 19.85004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10]
+File: ASE_logo.png Graphic file (type png)
+ <use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 67.
+(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 19.85004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11]
+(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\ikkefunktkrav.tex
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+
+ []
+
+)
+File: ASE_logo.png Graphic file (type png)
+ <use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 68.
+(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 19.85004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12
+
+
+] (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\kravspec.bbl
+
+Package natbib Warning: Empty `thebibliography' environment on input line 3.
+
+)
+File: ASE_logo.png Graphic file (type png)
+ <use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 71.
+(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 19.85004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[13
 
 ] (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\kravspec.aux
 (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\indledning.aux)
 (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\systembeskrivelse.a
 ux) (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\funktkrav.aux)
+(C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\usecase.aux)
 (C:\Users\svl\Documents\GitHub\DegnLyster-bachelor\Kravspec\ikkefunktkrav.aux))
  ) 
 Here is how much of TeX's memory you used:
- 16778 strings out of 493921
- 332938 string characters out of 3147288
- 366950 words of memory out of 3000000
- 19678 multiletter control sequences out of 15000+200000
+ 16794 strings out of 493921
+ 333480 string characters out of 3147288
+ 371950 words of memory out of 3000000
+ 19687 multiletter control sequences out of 15000+200000
  68138 words of font info for 57 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  76i,16n,106p,10421b,713s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2670,9 +2742,9 @@ m Files/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C
 :/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on kravspec.pdf (10 pages, 307659 bytes).
+Output written on kravspec.pdf (14 pages, 317003 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
+ 90 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

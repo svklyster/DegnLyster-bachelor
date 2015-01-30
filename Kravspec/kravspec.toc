@@ -9,4 +9,10 @@
 \contentsline {subsection}{\numberline {3.1}Kalibrering}{6}
 \contentsline {subsection}{\numberline {3.2}Output}{7}
 \contentsline {subsection}{\numberline {3.3}Use-cases}{7}
-\contentsline {section}{\numberline {4}Ikke funktionelle krav}{8}
+\contentsline {subsubsection}{\numberline {3.3.1}Use case 1: Kalibrering}{8}
+\contentsline {subsubsection}{\numberline {3.3.2}Use case 2: Start m\IeC {\r a}ling}{8}
+\contentsline {subsubsection}{\numberline {3.3.3}Use case 5: Gem indstillinger}{9}
+\contentsline {subsubsection}{\numberline {3.3.4}Use case 6: Indl\IeC {\ae }s indstillinger}{9}
+\contentsline {subsubsection}{\numberline {3.3.5}Use case 7: V\IeC {\ae }lg kamera-input}{10}
+\contentsline {subsubsection}{\numberline {3.3.6}Use case 8: Aktiver "Raw" data logging}{11}
+\contentsline {section}{\numberline {4}Ikke funktionelle krav}{12}
