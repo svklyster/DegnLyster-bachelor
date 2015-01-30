@@ -4,6 +4,9 @@
 \contentsline {section}{\numberline {2}Generel beskrivelse}{3}
 \contentsline {subsection}{\numberline {2.1}Systembeskrivelse}{3}
 \contentsline {subsection}{\numberline {2.2}Akt\IeC {\o }rer}{4}
-\contentsline {section}{\numberline {3}Funktionelle krav}{5}
-\contentsline {subsection}{\numberline {3.1}Use-cases}{5}
-\contentsline {section}{\numberline {4}Ikke funktionelle krav}{6}
+\contentsline {subsection}{\numberline {2.3}Systemets begr\IeC {\ae }nsninger}{4}
+\contentsline {section}{\numberline {3}Funktionelle krav}{6}
+\contentsline {subsection}{\numberline {3.1}Kalibrering}{6}
+\contentsline {subsection}{\numberline {3.2}Output}{7}
+\contentsline {subsection}{\numberline {3.3}Use-cases}{7}
+\contentsline {section}{\numberline {4}Ikke funktionelle krav}{8}
