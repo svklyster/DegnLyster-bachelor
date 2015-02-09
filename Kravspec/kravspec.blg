@@ -1,5 +1,9 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: kravspec.aux
 A level-1 auxiliary file: indledning.aux
+A level-1 auxiliary file: systembeskrivelse.aux
+A level-1 auxiliary file: funktkrav.aux
+A level-1 auxiliary file: usecase.aux
+A level-1 auxiliary file: ikkefunktkrav.aux
 The style file: ieeetr.bst
 I found no \citation commands---while reading file kravspec.aux
 Database file #1: biblio.bib
