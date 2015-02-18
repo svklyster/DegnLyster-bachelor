@@ -1,7 +1,7 @@
 \documentclass[kravspec.tex]{subfiles}
 \begin{document}
 \section{Generel beskrivelse}
-Dette afsnit i kravspecifikationen vil give et overodnet billede af de krav der er blevet opstillet for udviklingen af systemet.
+Dette afsnit i kravspecifikationen vil give et overordnet billede af de krav der er blevet opstillet for udviklingen af systemet.
 	
 \subsection{Systembeskrivelse}
 \begin{figure}[h]
@@ -17,13 +17,13 @@ ser på.
 \\
 \indent
 Før dataopsamling skal en indledende kalibrering af systemet gennemføres. Dette gøres ved at et gitter med
-specifikke punkter indlæses på forsøgspersonsskærmen. Derefter bedes forsøgspersonen se på specifikke punkter
+specifikke punkter indlæses på forsøgspersonsskærmen. Derefter bedes forsøgspersonen fiksere på specifikke punkter
 på skærmen, og sammenhængen imellem de målte punkter og de kendte punkter kan anvendes til at finde en
 homografisk mapning. Efter denne kalibrering kan systemet anvendes.
 \\
 \indent
-Systemet udvikles med henblik på en standard anvendelsesmåde, med mulighed for brugerdefinerede anvendelses-
-måder. Standardanvendelsen omhandler at vælge en sti og et filnavn, hvorefter dataopsamling umiddelbart begynder.
+Systemet udvikles med henblik på en standard anvendelsesmåde, med mulighed for brugerdefinerede anvendelsesmåder. 
+Standardanvendelsen omhandler at vælge en sti og et filnavn, hvorefter dataopsamling umiddelbart begynder.
 Under dataopsamlingen vil gazevectoren løbende blive præsenteret for brugeren på brugerskærmen. Når brugeren er 
 færdig kan opsamlingen stoppes, og dataopsamlingen gemmes i den tidligere valgte fil. Bemærk at den algoritme
 der anvendes til behandling af data her er forudbestemt.
@@ -64,10 +64,10 @@ En række af de kommende funktionelle krav vil blive opstillet som use-cases. F�
 \begin{enumerate}
 	\item Systemet kan ikke forventes at køre realtime (100 fps) udenfor standard anvendelse.
 \item 
-Systemet kan ikke håndtere briller på forsøgspersonen.
+Systemet er ikke garanteret at fungere korrekt når testpersonen har briller på.
 \item 
 Systemet kan ikke anvendes uden indledende kalibrering.
 \item 
-Systemet kan ikke håndtere hovedbevægelser uden for X / X / X.
+Systemet kan ikke håndtere hovedbevægelser uden for $\pm10$ cm i forhold til kalibreringspositionen.
 \end{enumerate}
 \end{document}

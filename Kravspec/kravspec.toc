@@ -9,12 +9,11 @@
 \contentsline {subsection}{\numberline {3.1}Kalibrering}{6}
 \contentsline {subsection}{\numberline {3.2}Output}{7}
 \contentsline {subsection}{\numberline {3.3}Use-cases}{7}
-\contentsline {subsubsection}{\numberline {3.3.1}Use case 1: Kalibrering}{9}
-\contentsline {subsubsection}{\numberline {3.3.2}Use case 2: Start m\IeC {\r a}ling}{10}
-\contentsline {subsubsection}{\numberline {3.3.3}Use case 3: Pause m\IeC {\r a}ling}{11}
+\contentsline {subsubsection}{\numberline {3.3.1}Use case 1: Opret session}{8}
+\contentsline {subsubsection}{\numberline {3.3.2}Use case 2: Kalibrering}{9}
+\contentsline {subsubsection}{\numberline {3.3.3}Use case 3: Start m\IeC {\r a}ling}{10}
 \contentsline {subsubsection}{\numberline {3.3.4}Use case 4: Stop m\IeC {\r a}ling}{11}
-\contentsline {subsubsection}{\numberline {3.3.5}Use case 5: Gem indstillinger}{12}
+\contentsline {subsubsection}{\numberline {3.3.5}Use case 5: Gem indstillinger}{11}
 \contentsline {subsubsection}{\numberline {3.3.6}Use case 6: Indl\IeC {\ae }s indstillinger}{12}
-\contentsline {subsubsection}{\numberline {3.3.7}Use case 7: V\IeC {\ae }lg kamera-input}{13}
-\contentsline {subsubsection}{\numberline {3.3.8}Use case 8: Aktiver "Raw" data logging}{14}
-\contentsline {section}{\numberline {4}Ikke funktionelle krav}{15}
+\contentsline {subsubsection}{\numberline {3.3.7}Use case 7: Indl\IeC {\ae }s r\IeC {\r a} data}{13}
+\contentsline {section}{\numberline {4}Ikke funktionelle krav}{14}

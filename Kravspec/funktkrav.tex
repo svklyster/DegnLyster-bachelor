@@ -4,11 +4,13 @@
 Følgende funktionelle krav for systemet er blevet stillet: \\
 \begin{enumerate}
 	\item 
-	Kalibrering: Før måling skal programmet kunne kalibreres.
+	\textbf{Real-time eye-tracking}: Systemet skal kunne foretage real-time eye-tracking.
+	\item 
+	\textbf{Kalibrering}: Før måling skal programmet kunne kalibreres.
 	\item
-	Output: Resultater af måling skal ende i en log-fil tilgængelig til brugeren.
+	\textbf{Output}: Resultater af måling skal ende i en log-fil tilgængelig til brugeren.
 	\item
-	Brugertilgang: Ved hjælp af use case teknikken vil en yderlige række krav blive stillet. Disse vil lægge grundlag for bruger-program-interaktioner. Use-case-kravene er opstillet i afsnit \ref{usec}.  
+	\textbf{Brugertilgang}: Ved hjælp af use case teknikken vil en yderlige række krav blive stillet. Disse vil lægge grundlag for bruger-program-interaktioner. Use-case-kravene er opstillet i afsnit \ref{usec}.  
 \end{enumerate}
 
 \subsection{Kalibrering}
@@ -33,10 +35,9 @@ Derudover skal programmet kunne kalibreres således at der kan findes tærskler 
 
 
 \subsection{Output}
-For hver igangsat session skal programmet generere en (eller flere) log-fil med følgende data:
+For hver igangsat session skal programmet generere en log-fil med følgende data:
 \indent \begin{itemize}
-	\item Nuværende program-konfiguration
-	\item Noter fra bruger
+
 	\item 	Kommasepareret målingsdata med følgende format: \\
 	\textit{X-koordinat, Y-koordinat, Samplenummer, Trigger-niveau (0 for lav, 1 for høj)} 
 \end{itemize}
@@ -44,14 +45,13 @@ For hver igangsat session skal programmet generere en (eller flere) log-fil med 
 \subsection{Use-cases}	
 \label{usec}
 \begin{enumerate}
+	\item Opret session: \\Opretter en session i en fil-sti med nødvendige data-filer. 
 	\item Kalibrering: \\Initierer en række kalibreringer før brug. 
-	\item Start måling: \\Igangsætter måling og kreere en tilhørende log-fil.
-	\item Pause måling: \\Giver brugeren mulighed for at pause igangværende måling. Herved vil der ikke blive kreeret en ny log-fil. 
-	\item Slut måling: \\Afslutter måling.
+	\item Start måling: \\Igangsætter måling.
+	\item Stop måling: \\Afslutter måling.
 	\item Gem indstillinger: \\Gemmer en fil med brugerens nuværende indstillinger.
 	\item Indlæs indstillinger: \\Indlæser indstillinger fra gemt fil.
-	\item Vælg kamera-input: \\ Giver brugeren mulighed for at vælge imellem potentielle kamera-inputs.
-	\item Aktiver "Raw"data logging: \\ Giver brugeren mulighed for at gemme al videodata fra kamera.
+	\item Indlæs rå data: \\Indlæser rå data fra tidligere session. 
 \end{enumerate}
 
 

@@ -1,13 +1,39 @@
 \documentclass[kravspec.tex]{subfiles}
 \begin{document}
-	\subsubsection{Use case 1: Kalibrering}
+		\subsubsection{Use case 1: Opret session}
+		\begin{tabular}{|l|p{7.7cm}|}
+			\hline \textbf{Sektion} & \textbf{Kommentar} \\ 
+			\hline Mål & At oprette en ny session til real-time eye-tracking \\ 
+			\hline Initiering & Initieres af aktøren \textit{bruger} \\ 
+			\hline Aktører & Aktøren \textit{bruger} og aktøren \textit{kamera}\\ 
+			\hline Antal samtidige forekomster & 1 \\ 
+			\hline Startbetingelser & Computerprogrammet skal være opstartet, kameraret skal være tændt og tilsluttet \\ 	
+			\hline Slutresultat - succes & En ny session til real-time eye-tracking er blevet oprettet. \\ 
+			\hline Slutresultat - undtagelse &  Ny session er ikke blevet oprettet. \\ 
+			\hline Normal forløb & \begin{enumerate}
+				\item \textit{Bruger} klikker på ”Create session”
+				\item Programmet beder \textit{bruger} angive en fil-sti hvor sessiones filer skal oprettes.
+				\item Programmet beder \textit{bruger} vælge imellem tilgængelige kamera-input.
+				\item Programmet beder \textit{bruger} vælge om den rå data fra \textit{kamera} skal gemmes.
+				
+				
+				\item Programmet giver \textit{bruger} mulighed for at skrive eventuelle noter til sessionen i et tekst-felt. 
+				\item Programmet opretter en data-fil og en opsætnings-fil.
+				\item \textit{Bruger} bliver returneret til menu med beskeden ”Session created”.
+				
+			\end{enumerate} \\ 
+			\hline Undtagelsesforløb & Programmet kan ikke oprette de ønskede filer i den angivne fil-sti. Programmet returnere \textit{bruger} til menu med fejlmeddelelse fra systemet.  \\ 
+			\hline 
+		\end{tabular} \\ \\
+		
+	\subsubsection{Use case 2: Kalibrering}
 	\begin{tabular}{|l|p{7.7cm}|}
 		\hline \textbf{Sektion} & \textbf{Kommentar} \\ 
-		\hline Mål & At kalibrere af systemet \\ 
+		\hline Mål & At kalibrere systemet \\ 
 		\hline Initiering & Initieres af aktøren \textit{bruger} \\ 
 		\hline Aktører & Aktøren \textit{bruger} og aktøren \textit{kamera} \\ 
 		\hline Antal samtidige forekomster & 1 \\ 
-		\hline Startbetingelser & Computerprogrammet skal være opstartet, kameraret skal være tændt og tilsluttet \\ 	
+		\hline Startbetingelser & Computerprogrammet skal være opstartet, kameraret skal være tændt og tilsluttet, gyldig session skal være oprettet. \\ 	
 		\hline Slutresultat - succes & Computerprogrammet har modtaget data til kalibrering. \\ 
 		\hline Slutresultat - undtagelse &  Kalibrering annulleret af bruger. \\ 
 		\hline Normal forløb & \begin{enumerate}
@@ -20,7 +46,7 @@
 				\item \textit{Bruger} klikker på ”Continue”. 
 				Use case fortsættes i punkt 3.
 			\end{enumerate}
-			\item \textit{Bruger} bliver bedt om at gennemføre kalibreringsrutinen.  \textbf{(Denne rutine er endnu ikke specificeret) }
+			\item \textit{Bruger} bliver bedt om at gennemføre kalibreringsrutine.
 			\item \textit{Bruger} bliver returneret til menu med beskeden ”Calibration complete”.
 
 		\end{enumerate} \\ 
@@ -28,63 +54,45 @@
 		\hline 
 	\end{tabular} \\ \\
 	
-	\subsubsection{Use case 2: Start måling}
+	\subsubsection{Use case 3: Start måling}
 	\begin{tabular}{|l|p{7.7cm}|}
 		\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
 		\hline Mål  & Programmet påbegynder real-time eye-tracking \\ 
 		\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
 		\hline Aktører & Aktøren \textit{bruger} og aktøren \textit{kamera} \\ 
 		\hline Antal samtidige forekomster & 1 \\ 
-		\hline Startbetingelser & Computerprogrammet skal være opstartet, \textit{kamera} skal være tændt, programmet skal være kalibreret. Der må ikke eksistere end nuværende session.  \\ 
-		\hline Slutresultat – succes & Programmet har påbegyndt real-time eye-tracking session\\ 
+		\hline Startbetingelser & Computerprogrammet skal være opstartet, \textit{kamera} skal være tændt, programmet skal være kalibreret. \\ 
+		\hline Slutresultat – succes & Programmet har påbegyndt real-time eye-tracking\\ 
 		\hline Slutresultat – undtagelse & Programmet alarmerer \textit{bruger} at der ikke er foretaget kalibrering \\ 
 		\hline Normal forløb & \begin{enumerate}
-			\item \textit{Bruger} klikker på knappen ”Start session”.
+			\item \textit{Bruger} klikker på knappen ”Start”.
 			\item \textit{Bruger} vælger ønsket sti hvor data-fil tilknyttet sessionen skal oprettes. 
-			\item Programmet starter ny session.
+			\item Programmet starter ny måling.
 			\item Visuel feedback på GUI viser at sessionen er kørende.
 		\end{enumerate} \\  
 		\hline Undtagelsesforløb & \begin{enumerate}
 			\item Programmet kan ikke starte ny session. Programmet melder:
 			\begin{enumerate}
 				\item at kalibrering ikke er foretaget.
-				\item at en session allerede er igang. 
+				\item at en måling allerede er igang. 
 			\end{enumerate}
 		\end{enumerate} \\ 
 		\hline 
 	\end{tabular}
-	
-	\subsubsection{Use case 3: Pause måling}
-	\begin{tabular}{|l|p{7.7cm}|}
-		\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
-		\hline Mål  & Programmet pauser real-time eye-tracking \\ 
-		\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
-		\hline Aktører & Aktøren \textit{bruger} og aktøren \textit{kamera} \\ 
-		\hline Antal samtidige forekomster & 1 \\ 
-		\hline Startbetingelser & En real-time eye-tracking session skal være i gang.   \\ 
-		\hline Slutresultat – succes & Programmet har påbegyndt real-time eye-tracking \\ 
-		\hline Slutresultat – undtagelse & Ingen undtagelse. \\ 
-		\hline Normal forløb & \begin{enumerate}
-			\item \textit{Bruger} klikker på knappen ”Pause”.
-			\item Visuel feedback på GUI viser at sessionen er pauset.
-		\end{enumerate} \\ 
-		\hline Undtagelsesforløb & Intet undtagelsesforløb \\ 
-		\hline 
-	\end{tabular}
-	
+
 	\subsubsection{Use case 4: Stop måling}
 		\begin{tabular}{|l|p{7.7cm}|}
 			\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
-			\hline Mål  & Programmet stopper real-time eye-tracking \\ 
+			\hline Mål  & Progammet stopper real-time eye-tracking \\ 
 			\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
 			\hline Aktører & Aktøren \textit{bruger} og aktøren \textit{kamera} \\ 
 			\hline Antal samtidige forekomster & 1 \\ 
 			\hline Startbetingelser & En real-time eye-tracking session skal eksistere.   \\ 
-			\hline Slutresultat – succes & Programmet stopper nuværende real-time eye-tracking session.\\ 
+			\hline Slutresultat – succes & Programmet stopper nuværende real-time eye-tracking.\\ 
 			\hline Slutresultat – undtagelse & Ingen undtagelse. \\ 
 			\hline Normal forløb & \begin{enumerate}
 				\item \textit{Bruger} klikker på knappen ”Stop”.
-				\item Visuel feedback på GUI viser at sessionen er stoppet. Sessionen bliver afsluttet. 
+				\item Visuel feedback på GUI viser at målingen er stoppet. Målingen bliver afsluttet. 
 			\end{enumerate} \\ 
 			\hline Undtagelsesforløb & Intet undtagelsesforløb \\ 
 			\hline 
@@ -120,44 +128,22 @@
 		\hline 
 	\end{tabular}
 	
-	\subsubsection{Use case 7: Vælg kamera-input}
+	\subsubsection{Use case 7: Indlæs rå data}
 	\begin{tabular}{|l|p{7.7cm}|}
 		\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
-		\hline Mål  & System anvender valgt kamera \\ 
-		\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
-		\hline Aktører & Aktøren \textit{bruger} og aktøren \textit{kamera} \\ 
-		\hline Antal samtidige forekomster & 1 \\ 
-		\hline Startbetingelser & Computerprogrammet skal være opstartet og \textit{kamera} skal være tændt  \\ 
-		\hline Slutresultat – succes & Systemet anvender det valgte kamera \\ 
-		\hline Slutresultat – undtagelse & Programmet alarmerer \textit{bruger} at der ikke er valgt kamera \\ 
-		\hline Normal forløb & \begin{enumerate}
-			\item \textit{Bruger} klikker på "Camera Input".
-			\item \textit{Bruger} vælger kamera der skal anvendes fra liste.
-			\item \textit{Bruger} godkender eller afviser valg af kamera.
-			\begin{enumerate}
-			\item \textit{Bruger} godkendte kamera. Valgt kamera bliver sat som input, og \textit{bruger} returneres til main GUI. Use Case afsluttes.
-			\item \textit{Bruger} afviser valg af kamera. \textit{Bruger} returneres til liste (Punkt 2).
-			\end{enumerate}
-		\end{enumerate} \\ 
-		\hline Undtagelsesforløb & \textit{Bruger} bliver returneret til menuen efter alarmering \\ 
-		\hline 
-	\end{tabular}
-	
-	\subsubsection{Use case 8: Aktiver "Raw" data logging}
-	\begin{tabular}{|l|p{7.7cm}|}
-		\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
-		\hline Mål  & System logger rå video data ved måling (Use Case 2) \\ 
+		\hline Mål  & System indlæser rå data fra tidligere session \\ 
 		\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
 		\hline Aktører & Aktøren \textit{bruger} \\ 
 		\hline Antal samtidige forekomster & 1 \\ 
-		\hline Startbetingelser & Computerprogrammet skal være opstartet \\ 
-		\hline Slutresultat – succes & Programmet viser filnavn, er klar tilrå video data logging, og returnerer til idle. \\ 
-		\hline Slutresultat – undtagelse & Programmet viser \textit{ikke} et filnavn og returnerer til idle. \\ 
+		\hline Startbetingelser & Computerprogrammet skal være opstartet og en gyldig fil-sti med data fra en session skal findes  \\ 
+		\hline Slutresultat – succes & Systemet indlæser rå data fra korrekte data-filer i tidligere session \\ 
+		\hline Slutresultat – undtagelse & Programmet alarmerer \textit{bruger} at de korrekte data-filer ikke kunne indhændtes \\ 
 		\hline Normal forløb & \begin{enumerate}
-			\item \textit{Bruger} klikker på "Raw Data Logging" knappen.
-			\item \textit{Bruger} vælger sti og filnavn.
-			\item Program viser filnavn, og returnerer til idle. Use case afsluttes.
-		\end{enumerate} \\ 
+			\item \textit{Bruger} klikker på knappen "Get raw data"
+			\item \textit{Bruger} vælger fil-sti til tidligere session hvor data-filer med rå data findes
+			\item Programmet indlæser valgt data
+			\item \textit{Bruger} bliver returneret til menu
+			\end{enumerate} \\
 		\hline Undtagelsesforløb & \textit{Bruger} bliver returneret til menuen efter alarmering \\ 
 		\hline 
 	\end{tabular}
