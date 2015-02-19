@@ -35,14 +35,14 @@
 		\hline Antal samtidige forekomster & 1 \\ 
 		\hline Startbetingelser & Computerprogrammet skal være opstartet, kameraret skal være tændt og tilsluttet, gyldig session skal være oprettet. \\ 	
 		\hline Slutresultat - succes & Computerprogrammet har modtaget data til kalibrering. \\ 
-		\hline Slutresultat - undtagelse &  Kalibrering annulleret af bruger. \\ 
+		\hline Slutresultat - undtagelse &  Kalibrering annulleret. \\ 
 		\hline Normal forløb & \begin{enumerate}
 			\item \textit{Bruger} klikker på ”Calibration”
 			\item Programmet spørger om bruger ønsker at foretage kalibrering.
 			\begin{enumerate}
 				\item \textit{Bruger} klikker på ”Cancel”.
 				Use case afbrydes.
-				Se undtagelsesforløb for denne use case.
+				Se undtagelsesforløb punkt 2 for denne use case.
 				\item \textit{Bruger} klikker på ”Continue”. 
 				Use case fortsættes i punkt 3.
 			\end{enumerate}
@@ -50,7 +50,10 @@
 			\item \textit{Bruger} bliver returneret til menu med beskeden ”Calibration complete”.
 
 		\end{enumerate} \\ 
-		\hline Undtagelsesforløb & \textit{Bruger} bliver returneret til menu.  \\ 
+		\hline Undtagelsesforløb & \begin{enumerate}
+			\item Hvis der ikke er oprettet en session informeres \textit{Bruger} om dette.
+			\item \textit{Bruger} bliver returneret til menu.
+		\end{enumerate}  \\ 
 		\hline 
 	\end{tabular} \\ \\
 	
@@ -66,17 +69,11 @@
 		\hline Slutresultat – undtagelse & Programmet alarmerer \textit{bruger} at der ikke er foretaget kalibrering \\ 
 		\hline Normal forløb & \begin{enumerate}
 			\item \textit{Bruger} klikker på knappen ”Start”.
-			\item \textit{Bruger} vælger ønsket sti hvor data-fil tilknyttet sessionen skal oprettes. 
 			\item Programmet starter ny måling.
-			\item Visuel feedback på GUI viser at sessionen er kørende.
+			\item Visuel feedback på GUI viser at måling er i gang.
 		\end{enumerate} \\  
-		\hline Undtagelsesforløb & \begin{enumerate}
-			\item Programmet kan ikke starte ny session. Programmet melder:
-			\begin{enumerate}
-				\item at kalibrering ikke er foretaget.
-				\item at en måling allerede er igang. 
-			\end{enumerate}
-		\end{enumerate} \\ 
+		\hline Undtagelsesforløb & Programmet kan ikke starte ny måling. Programmet melder
+			at kalibrering ikke er foretaget.\\
 		\hline 
 	\end{tabular}
 
@@ -87,7 +84,7 @@
 			\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
 			\hline Aktører & Aktøren \textit{bruger} og aktøren \textit{kamera} \\ 
 			\hline Antal samtidige forekomster & 1 \\ 
-			\hline Startbetingelser & En real-time eye-tracking session skal eksistere.   \\ 
+			\hline Startbetingelser & En real-time eye-tracking måling  skal køre.   \\ 
 			\hline Slutresultat – succes & Programmet stopper nuværende real-time eye-tracking.\\ 
 			\hline Slutresultat – undtagelse & Ingen undtagelse. \\ 
 			\hline Normal forløb & \begin{enumerate}
@@ -105,10 +102,13 @@
 		\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
 		\hline Aktører & Aktøren \textit{bruger} \\ 
 		\hline Antal samtidige forekomster & 1 \\ 
-		\hline Startbetingelser & Computerprogrammet skal være opstartet og indstillinger skal være ændret  \\ 
+		\hline Startbetingelser & Computerprogrammet skal være opstartet \\ 
 		\hline Slutresultat – succes & Systemet gemmer nuværende indstillinger i den valgte fil \\ 
 		\hline Slutresultat – undtagelse & Programmet alarmerer \textit{bruger} at indstillinger ikke kunne gemmes \\ 
-		\hline Normal forløb & \textit{Bruger} vælger filnavn og placering af den fil hvor indstillinger skal gemmes \\ 
+		\hline Normal forløb & \begin{enumerate}
+			\item \textit{Bruger} klikker på "Save preferences"
+			\item \textit{Bruger} vælger filnavn og placering af den fil hvor indstillinger skal gemmes
+		\end{enumerate} \\ 
 		\hline Undtagelsesforløb & \textit{Bruger} bliver returneret til menuen efter alarmering \\ 
 		\hline 
 	\end{tabular}
@@ -123,7 +123,10 @@
 		\hline Startbetingelser & Computerprogrammet skal være opstartet og en gyldig indstillings-fil skal findes  \\ 
 		\hline Slutresultat – succes & Systemet anvender indstillinger fra den valgte fil \\ 
 		\hline Slutresultat – undtagelse & Programmet alarmerer \textit{bruger} at indstillinger ikke kunne indhentes \\ 
-		\hline Normal forløb & \textit{Bruger} vælger indstillings-fil der skal anvendes \\ 
+		\hline Normal forløb & \begin{enumerate}
+			\item \textit{Bruger} klikker på "Load preferences"
+			\item \textit{Bruger} vælger indstillings-fil der skal anvendes
+		\end{enumerate} \\ 
 		\hline Undtagelsesforløb & \textit{Bruger} bliver returneret til menuen efter alarmering \\ 
 		\hline 
 	\end{tabular}
