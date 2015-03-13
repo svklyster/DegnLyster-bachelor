@@ -1,0 +1,30 @@
+\documentclass[accepttest.tex]{subfiles}
+\begin{document}
+\section{Ikke funktionelle krav}
+
+\subsection{Fejlmargin}
+\begin{table}[H]
+	\small
+	\begin{tabular}{|p{3.5cm}|p{3.5cm}|p{3.5cm}|l|}
+	\hline Forberedelse & Aktion & Forventet resultat & Accepteret \\ 
+	\hline Kalibrering foretages med testperson og udstyr angivet kravspecifikation punkt 4. & Tal-testen \ref{taltest} foretages. &Resultatet af tal-testen har  maksimalt en afvigelse på 2grader.   & \\
+	
+	\hline 
+\end{tabular} 
+\end{table}
+	
+\subsection{Real-time}
+\begin{table}[H]
+	\small
+	\begin{tabular}{|p{3.5cm}|p{3.5cm}|p{3.5cm}|l|}
+		\hline Forberedelse & Aktion & Forventet resultat & Accepteret \\ 
+		\hline Systemet tilsluttes et kamera med en frame-rate på under 100Hz.  Session oprettes.& Ny måling igangsættes. Efter ca. 10 sekunder stoppes testen. Den reelle tid af målingen kan aflæses i GUI. & Antal XY koordinater i log-filen skal stemme overens med tid af måling i sekunder $ \times $ framerate. & \\
+		
+		\hline 
+	\end{tabular} 
+\end{table}
+	
+\subsection{Kamera}
+Er godkendt hvis overstående test-case er godkendt. 
+	
+\end{document}

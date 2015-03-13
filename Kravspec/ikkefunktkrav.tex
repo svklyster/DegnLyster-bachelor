@@ -5,10 +5,18 @@
 Real-time eye-tracking systemet skal leve op til en række ikke funktionelle krav. Disse krav skal garantere et robust system, der med en hvis præcision skal kunne levere de ønskede data.\\
 \begin{itemize}
 	\item 
-	Fejlmargin: Systemet skal kunne angive XY-koordinater for øjets fokuspunkt. Disse koordinater må have en afvigelse på <2\degree. [Reference mangler].
+	\textbf{Fejlmargin}: Systemet skal kunne angive XY-koordinater for øjets fokuspunkt. Disse koordinater må have en afvigelse på <2\degree \cite{FairchildInSiboska}.
 	\item 
-	Real-time: Systemet skal kunne angive XY-koordinater med en frekvens bestemt af kameraets frame-rate. 
+	\textbf{Real-time}: Systemet skal kunne angive XY-koordinater med en frekvens bestemt af kameraets frame-rate. 
+	\item
+	\textbf{Kamera}: Skal kunne levere video-data real-time til en computer. Systemet bliver udviklet til kamera af typen Basler
+	ACA640-100gc GigE med opløsningen 658 x 492 pixels og maksimum framerate på 100Hz.
+	\item Følgende krav er ikke krav til systemet, men krav til testpersonens fysiske forhold til kameraet. Dette er relevant når der foretages eye-tracking. \\
+	\textbf{Afstand og skærm}: Systemet bliver udviklet med en afstand fra kamera til testperson på 60m. 
+	På samme afstand fra testpersonen er der placeret en skærm. Denne skærm har størrelsen 26 tommer.
 \end{itemize}
+
+Typen af kamera og afstand til testperson kommer fra tidligere forsøg \cite{Siboska}.
 
 
 \end{document}	

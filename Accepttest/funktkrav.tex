@@ -1,0 +1,123 @@
+\documentclass[accepttest.tex]{subfiles}
+\begin{document}
+	\section{Funktionelle krav}
+Systemet testes med kamera, afstand og skærm som angivet i kravspecifikation punkt 4.
+\subsection{Real-time eye-tracking}
+\begin{table}[H]
+	\small
+\begin{tabular}{|p{3.5cm}|p{3.5cm}|p{3.5cm}|l|}
+	\hline Forberedelse & Aktion & Forventet resultat & Accepteret \\ 
+	\hline Computerprogrammet startes. Kameraet tilsluttes og tændes. Session oprettes. & Ny måling igangsættes. Efter ca. 10 sekunder stoppes testen. Den reelle tid af målingen kan aflæses i GUI. & Antal XY koordinater i log-filen skal stemme overens med tid af måling i sekunder $ \times $ 100 (framerate). &  \\ 
+	\hline 
+\end{tabular} 
+\end{table}
+
+\begin{table}[H]
+	\small
+\subsection{Kalibrering}
+\begin{tabular}{|p{3.5cm}|p{3.5cm}|p{3.5cm}|l|}
+	\hline Forberedelse & Aktion & Forventet resultat & Accepteret \\ 
+	\hline Computerprogrammet startes. Kameraet tændes. Session oprettes. Et test-sæt af kalibreringsdata med høj afvigelse findes. En testperson skal bruges til kalibrering.  & 
+	Tal-testen \ref{taltest} foretages med test-sættet af kalibreringsdata. Afvigelsen noteres. Ny kalibrering foretages. Tal-testen foretages igen. Afvigelsen noteres. & 
+	Afvigelsen ved ny kalibrering er mindre end ved brug af test-sættet.  &  \\ 
+	\hline 
+\end{tabular} 
+\end{table}
+
+\subsection{Output}
+\begin{table}[H]
+	\small
+\begin{tabular}{|p{3.5cm}|p{3.5cm}|p{3.5cm}|l|}
+	\hline Forberedelse & Aktion & Forventet resultat & Accepteret \\ 
+	\hline Måling foretages. & Efter måling tilgår brugeren log-filen. & Log-filen åbnes. Log-filen overholder protokollen. &  \\ 
+	\hline 
+\end{tabular} 
+\end{table}
+
+\subsection{Brugertilgang}
+\subsubsection{Use case 1: Opret session}
+
+\begin{table}[H]
+	\small
+\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{3cm}|l|}
+	\hline Test case & Forberedelse & Aktion & Forventet resultat & Accept \\ 
+	\hline Normal forløb & Computer-programmet startes.  Kameraet tilsluttes og tændes.  & Bruger klikker på ”Create session” og følger programmets anmodninger. & Bruger bliver returneret til menuen med beskeden ”Session created”. Der findes data- og opsætnings-fil i den angivne fil-sti. &  \\ 
+	\hline 
+\end{tabular} 
+\end{table}
+
+\subsubsection{Use case 2: Kalibrering}
+\begin{table}[H]
+	\small
+\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{3cm}|l|}
+	\hline Test case & Forberedelse & Aktion & Forventet resultat & Accept \\ 
+	\hline Normal forløb & Computer-programmet er startet. Kameraet er tilsluttet og tændt. 
+	Gyldig session oprettes. & Bruger klikker på ”Calibration”, derefter ”Continue” og følger så programmets anmodninger. & Bruger bliver returneret til menuen med beskeden ”Calibration complete”. Der findes data- og opsætnings-fil i den angivne fil-sti. & \\
+	
+	\hline Undtagelses-forløb 1 & Computer-programmet er startet. Kameraet er tilsluttet og tændt. Der er ikke oprettet en session. & Bruger klikker på ”Calibration”. & Bruger bliver informeret om at der ikke findes en gyldig session. Bruger bliver returneret til menu. &\\
+	\hline Undtagelses-forløb 2 & Computer-programmet er startet. Kameraet er tilsluttet og tændt. 
+	Gyldig session oprettes. & Bruger klikker på ”Calibration”, derefter ”Cancel”. & Bruger bliver returneret til menu. & \\
+		\hline 
+\end{tabular}
+\end{table}
+
+\subsubsection{Use case 3: Start måling}
+\begin{table}[H]
+	\small
+	\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{3cm}|l|}
+		\hline Test case & Forberedelse & Aktion & Forventet resultat & Accept \\ 
+		\hline Normal forløb & Gyldig session er oprettet. Kalibrering er udført.  & Bruger klikker på ”Start”.   & Programmet starter en måling. Programmet viser at en måling er i gang. & \\
+		
+		\hline Undtagelses-forløb 1 & Gyldig session er oprettet. Kalibrering er ikke udført. & Bruger klikker på ”Start” & Programmet informerer bruger at kalibrering ikke er foretaget.  &\\
+		\hline 
+	\end{tabular}
+\end{table}
+
+\subsubsection{Use case 4: Stop måling}
+\begin{table}[H]
+	\small
+	\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{3cm}|l|}
+		\hline Test case & Forberedelse & Aktion & Forventet resultat & Accept \\ 
+		\hline Normal forløb & Real-time eye-tracking måling igangsættes. & Bruger klikker på ”Stop” & Programmet stopper måling. Programmet viser at målingen er stoppet.  & \\
+		\hline 
+	\end{tabular}
+\end{table}
+
+\subsubsection{Use case 5: Gem indstillinger}
+\begin{table}[H]
+	\small
+	\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{3cm}|l|}
+		\hline Test case & Forberedelse & Aktion & Forventet resultat & Accept \\ 
+		\hline Normal forløb & Programmet startes. & Bruger klikker på ”Save preferences”. Derefter vælges der filnavn og placering af fil. & Fil er oprettet i den valgte fil-sti. Fil indeholder de korrekte indstillinger. & \\
+		
+		\hline Undtagelses-forløb 1 & Programmet startes. & Bruger klikker på ”Save preferences”. Derefter vælges der ugyldig filnavn og fil-sti. & Programmet alarmerer at filen ikke kunne oprettes. Bruger bliver returneret til menuen. &\\
+		\hline 
+	\end{tabular}
+\end{table}
+
+\subsubsection{Use case 6: Indlæs indstillinger}
+\begin{table}[H]
+	\small
+	\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{3cm}|l|}
+		\hline Test case & Forberedelse & Aktion & Forventet resultat & Accept \\ 
+		\hline Normal forløb & Programmet startes. En gyldig fil med indstillinger oprettes.  & Bruger klikker på ”Load preferences”. Derefter vælges gyldig fil med  indstillinger. & Programmet har samme indstillinger som angivet i filen.  & \\
+		
+		\hline Undtagelses-forløb 1 & Programmet startes. Ugyldig fil med indstillinger oprettes.  & Bruger klikker på ”Load preferences”. Derefter vælges den ugyldige fil.  & Programmet alarmerer at indstillinger ikke kunne hentes grundet ugyldig fil. Bruger returneres til menuen. &\\
+		\hline 
+	\end{tabular}
+\end{table}
+
+\subsubsection{Use case 7: Indlæs rå data}
+\begin{table}[H]
+	\small
+	\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{3cm}|l|}
+		\hline Test case & Forberedelse & Aktion & Forventet resultat & Accept \\ 
+		\hline Normal forløb & Computer-programmet opstartes. Der findes en gyldig fil-sti med data fra tidligere session. & Bruger klikker på ”Get raw data”. Den gyldige fil-sti vælges.  & Bruger bliver returneret til menu. Valgte data kan nu ses indlæst. & \\
+		
+		\hline Undtagelses-forløb 1 & Computer-programmet opstartes. Der findes en ugyldig fil-sti med data fra tidligere session. & Bruger klikker på ”Get raw data”. Den ugyldige fil-sti vælges.  & Programmet alarmerer at der ikke kunne indhændtes korrekt data.
+		Bruger returneres til menu. &\\
+		\hline 
+	\end{tabular}
+\end{table}
+
+\end{document} 

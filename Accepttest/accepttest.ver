@@ -1,0 +1,14 @@
+\begin {longtable}{@{}ll>{\hsize =\vhAuthorColWidth }X>{\hsize =\vhChangeColWidth }X@{}}
+\textbf {\vhversionname }
+ & \textbf {\vhdatename }
+ & \textbf {\vhauthorname }
+ & \textbf {\vhchangename }\\[1ex]
+1.0
+ & 20.02.15
+ & \listset {SVL,MDK}
+ & Oprettet\\
+1.1
+ & 04.03.15
+ & \listset {SVL,MDK}
+ & Performance-evaluering tilføjet. Andre rettelser\\
+\end {longtable}
