@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.1.29)  15 APR 2015 09:36
 entering extended mode
 **kravspec.tex
@@ -3446,6 +3447,8 @@ Here is how much of TeX's memory you used:
 
 !  ==> Fatal error occurred, no output PDF file produced!
 =======
+=======
+>>>>>>> parent of 0b466df... Analyse
 This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  2 MAR 2015 15:31
 entering extended mode
 **kravspec.tex
@@ -6852,4 +6855,7 @@ Here is how much of TeX's memory you used:
  111i,16n,106p,10396b,713s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 !  ==> Fatal error occurred, no output PDF file produced!
+<<<<<<< HEAD
+>>>>>>> parent of 0b466df... Analyse
+=======
 >>>>>>> parent of 0b466df... Analyse
