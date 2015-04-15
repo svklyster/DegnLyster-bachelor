@@ -4,19 +4,7 @@
  & \textbf {\vhauthorname }
  & \textbf {\vhchangename }\\[1ex]
 1.0
- & 26.01.15
+ & 18.03.15
  & \listset {SVL,MDK}
  & Oprettet\\
-1.1
- & 30.01.15
- & \listset {SVL,MDK}
- & Opdateret m. use cases\\
-1.2
- & 06.02.15
- & \listset {SVL,MDK}
- & Opdaterede use cases, ordforklaring\\
-2.0
- & 10.02.15
- & \listset {SVL,MDK}
- & Review\\
 \end {longtable}
