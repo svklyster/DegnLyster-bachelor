@@ -1,0 +1,20 @@
+\documentclass[softwarearkitektur.tex]{subfiles}
+\begin{document}
+\section{Klasser}
+\subsection{UserInterface}
+Denne klasse foretager al kommunikation med aktøren \textit{bruger} igennem et grafisk user interface (GUI). For at have en konstant opdatering af interfacet, forventes denne klasse at blive afviklet i egen tråd. 
+
+\subsection{LogHandler}
+Denne klasse håndterer eye-tracking-programmets log-fil. Data fra eye-tracking bliver her pakket og gemt i en log-fil. Kommunikation af målings-relevant data til UserInterface-klassen foretages af denne klasse.
+
+\subsection{SessionHandler}
+Her håndteres al data tilknyttet opsætning af eye-tracking-session. 
+
+\subsection{EyeTracking}
+Denne klasse håndterer kommunikation og instantiering af klassen ETAlgorithm. 
+
+\subsection{ETAlgorithm}
+Denne klasse er kernen af eye-tracking-systemet. Her foretages alle udregninger med henblik på eye-tracking. Denne klasse ønskes isoleret så meget som muligt fra resten af systemet, således at der altid kan foretages ændringer i klassens interne kode, uden at det påvirker resten af systemet. Konsistente grænseflader for denne klasse er derfor essentielt. 
+ETAlgorithm bliver håndteret af klassen EyeTracking, modtager et videosignal, og returnerer XY-koordinat samt trigger-niveau. 
+
+\end{document}

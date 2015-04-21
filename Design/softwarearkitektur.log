@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  27 MAR 2015 19:50
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  20 APR 2015 15:48
 entering extended mode
-**accepttest
+**softwarearkitektur.tex
 
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\accept
-test.tex"
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\softwarear
+kitektur.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -212,10 +212,10 @@ Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 Package: sets 
 \c@s@tlength=\count98
 )
-Reading file accepttest.hst...
+Reading file softwarearkitektur.hst...
 
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\accept
-test.hst")
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\softwarear
+kitektur.hst")
 \vh@verfile=\write3
 )
 ("C:\Users\SÃ¸ren Lyster\AppData\Roaming\MiKTeX\2.9\tex\latex\setspace\setspace
@@ -1062,16 +1062,15 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \f@ncyO@olf=\skip82
 \f@ncyO@orf=\skip83
 )
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\accept
-test.aux"
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\indled
-ning.aux")
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\funktk
-rav.aux")
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\ikkefu
-nktkrav.aux")
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\perfor
-manceeval.aux"))
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\softwarear
+kitektur.aux"
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\indledning
+.aux")
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\klasser.au
+x")
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\miljoe.aux
+") ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\gui.aux
+"))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
 LaTeX Font Info:    ... okay on input line 27.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
@@ -2419,22 +2418,21 @@ Package pdftex.def Info: ASE_logo.png used on input line 39.
  [1
 
 {C:/Users/SÃ¸ren Lyster/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/
-Users/SÃ¸ren Lyster/Documents/GitHub/DegnLyster-bachelor/Accepttest/ASE_logo.pn
-g>]
+Users/SÃ¸ren Lyster/Documents/GitHub/DegnLyster-bachelor/Design/ASE_logo.png>]
 \vh@hstfile=\write4
 
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\accept
-test.ver")
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\accept
-test.ver")
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\accept
-test.ver")
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\accept
-test.toc")
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\softwarear
+kitektur.ver")
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\softwarear
+kitektur.ver")
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\softwarear
+kitektur.ver")
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\softwarear
+kitektur.toc")
 \tf@toc=\write5
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 65.
+Package pdftex.def Info: ASE_logo.png used on input line 64.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2444,11 +2442,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [1]
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\indled
-ning.tex"
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\indledning
+.tex")
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 28.
+Package pdftex.def Info: ASE_logo.png used on input line 64.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2460,32 +2458,16 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [2
 
 ]
-File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 30.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\klasser.te
+x"
+Overfull \hbox (6.76163pt too wide) in paragraph at lines 8--9
+\T1/lmr/m/n/12 Denne klas-se hånd-te-rer eye-tracking-programmets log-fil. Da-t
+a fra eye-tracking
+ []
 
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[3] <Tal-test.png, id=22, 207.77625pt x 162.6075pt>
-File: Tal-test.png Graphic file (type png)
- <use Tal-test.png>
-Package pdftex.def Info: Tal-test.png used on input line 36.
-(pdftex.def)             Requested size: 195.0pt x 152.61536pt.
-
-<DynamiskTest.png, id=23, 153.57375pt x 117.43875pt>
-File: DynamiskTest.png Graphic file (type png)
- <use DynamiskTest.png>
-Package pdftex.def Info: DynamiskTest.png used on input line 52.
-(pdftex.def)             Requested size: 155.99762pt x 119.3003pt.
 )
 File: ASE_logo.png Graphic file (type png)
-
-<use ASE_logo.png>
+ <use ASE_logo.png>
 Package pdftex.def Info: ASE_logo.png used on input line 65.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
@@ -2495,627 +2477,15 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4 <C:/Users/SÃ¸ren Lyster/Documents/GitHub/DegnLyster-bachelor/Accepttest/Tal-
-test.png> <C:/Users/SÃ¸ren Lyster/Documents/GitHub/DegnLyster-bachelor/Acceptte
-st/DynamiskTest.png>]
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\funktk
-rav.tex"
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 8.
-
-Overfull \hbox (6.96361pt too wide) in paragraph at lines 10--10
-[]|\T1/lmr/m/n/10.95 Computerprogrammet
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 10--10
-\T1/lmr/m/n/10.95 star-tes. Ka-me-ra-et
- []
-
-
-Underfull \hbox (badness 2452) in paragraph at lines 10--10
-\T1/lmr/m/n/10.95 kun-der stop-pes te-
- []
-
-
-Underfull \hbox (badness 2418) in paragraph at lines 10--10
-\T1/lmr/m/n/10.95 ter i log-filen skal
- []
-
-
-Overfull \hbox (9.88477pt too wide) in paragraph at lines 8--13
-[][] 
- []
-
-
-Overfull \hbox (6.96361pt too wide) in paragraph at lines 20--20
-[]|\T1/lmr/m/n/10.95 Computerprogrammet
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 20--20
-\T1/lmr/m/n/10.95 star-tes. Ka-me-ra-et
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 20--20
-\T1/lmr/m/n/10.95 tæn-des. Ses-sion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 20--20
-\T1/lmr/m/n/10.95 af ka-li-bre-rings-da-ta
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 20--20
-\T1/lmr/m/n/10.95 med høj af-vi-gel-se
- []
-
-
-Underfull \hbox (badness 2990) in paragraph at lines 20--20
-\T1/lmr/m/n/10.95 fin-des. En test-per-
- []
-
-
-Underfull \hbox (badness 1242) in paragraph at lines 20--20
-\T1/lmr/m/n/10.95 son skal bru-ges til
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-[]|\T1/lmr/m/n/10.95 Tal-testen 1.6.1[]
- []
-
-
-Underfull \hbox (badness 1253) in paragraph at lines 21--21
-\T1/lmr/m/n/10.95 fo-re-ta-ges med test-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\T1/lmr/m/n/10.95 sættet af ka-li-bre-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\T1/lmr/m/n/10.95 ring fo-re-ta-ges.
- []
-
-
-Underfull \hbox (badness 3118) in paragraph at lines 21--21
-\T1/lmr/m/n/10.95 Tal-testen fo-re-ta-ges
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\T1/lmr/m/n/10.95 igen. Af-vi-gel-sen
- []
-
-
-Underfull \hbox (badness 1721) in paragraph at lines 22--22
-\T1/lmr/m/n/10.95 li-bre-ring er min-dre
- []
-
-
-Overfull \hbox (9.88477pt too wide) in paragraph at lines 18--25
-[] 
- []
-
-
-Underfull \hbox (badness 2213) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/10.95 Efter må-ling til-går
- []
-
-
-Overfull \hbox (9.88477pt too wide) in paragraph at lines 30--35
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--44
-[]|\T1/lmr/m/n/10.95 Computer-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--44
-\T1/lmr/m/n/10.95 programmet
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--44
-\T1/lmr/m/n/10.95 star-tes. Ka-me-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--44
-[]|\T1/lmr/m/n/10.95 Bruger klik-ker
- []
-
-
-Underfull \hbox (badness 4024) in paragraph at lines 44--44
-\T1/lmr/m/n/10.95 på Cre-a-te ses-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--44
-\T1/lmr/m/n/10.95 sion og føl-ger
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--44
-\T1/lmr/m/n/10.95 pro-gram-mets
- []
-
-
-Underfull \hbox (badness 1117) in paragraph at lines 44--44
-\T1/lmr/m/n/10.95 Der fin-des data-
- []
-
-
-Underfull \hbox (badness 1975) in paragraph at lines 44--44
-\T1/lmr/m/n/10.95 og opsætnings-fil
- []
-
-
-Overfull \hbox (18.23047pt too wide) in paragraph at lines 42--47
-[][] 
- []
-
-File: ASE_logo.png Graphic file (type png)
-<use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 48.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[5
+[3
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 54--55
-[]|\T1/lmr/m/n/10.95 Computer-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 54--55
-\T1/lmr/m/n/10.95 programmet
- []
-
-
-Underfull \hbox (badness 1297) in paragraph at lines 54--55
-\T1/lmr/m/n/10.95 ra-et er til-slut-tet
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 55--55
-[]|\T1/lmr/m/n/10.95 Bruger klik-ker
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 55--55
-\T1/lmr/m/n/10.95 der-ef-ter Con-
- []
-
-
-Underfull \hbox (badness 3058) in paragraph at lines 55--55
-\T1/lmr/m/n/10.95 ti-nue og føl-ger
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 55--55
-\T1/lmr/m/n/10.95 så pro-gram-mets
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 55--55
-[]|\T1/lmr/m/n/10.95 Bruger bli-ver
- []
-
-
-Underfull \hbox (badness 2495) in paragraph at lines 55--55
-\T1/lmr/m/n/10.95 den Ca-li-bra-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 55--55
-\T1/lmr/m/n/10.95 com-ple-te. Der
- []
-
-
-Underfull \hbox (badness 6559) in paragraph at lines 55--55
-\T1/lmr/m/n/10.95 fin-des data- og
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 55--55
-\T1/lmr/m/n/10.95 opsætnings-fil
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 55--55
-\T1/lmr/m/n/10.95 i den an-giv-ne
- []
-
-
-Overfull \hbox (3.74545pt too wide) in paragraph at lines 57--57
-[]|\T1/lmr/m/n/10.95 Undtagelses-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 57--57
-[]|\T1/lmr/m/n/10.95 Computer-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 57--57
-\T1/lmr/m/n/10.95 programmet
- []
-
-
-Underfull \hbox (badness 1297) in paragraph at lines 57--57
-\T1/lmr/m/n/10.95 ra-et er til-slut-tet
- []
-
-
-Underfull \hbox (badness 1810) in paragraph at lines 57--57
-\T1/lmr/m/n/10.95 ik-ke op-ret-tet en
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 57--57
-[]|\T1/lmr/m/n/10.95 Bruger bli-ver
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 57--57
-\T1/lmr/m/n/10.95 der ik-ke fin-des
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 57--57
-\T1/lmr/m/n/10.95 Bru-ger bli-ver
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 57--57
-\T1/lmr/m/n/10.95 re-tur-ne-ret til
- []
-
-
-Overfull \hbox (3.74545pt too wide) in paragraph at lines 58--58
-[]|\T1/lmr/m/n/10.95 Undtagelses-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
-[]|\T1/lmr/m/n/10.95 Computer-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
-\T1/lmr/m/n/10.95 programmet
- []
-
-
-Underfull \hbox (badness 1297) in paragraph at lines 58--59
-\T1/lmr/m/n/10.95 ra-et er til-slut-tet
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 59--59
-[]|\T1/lmr/m/n/10.95 Bruger klik-ker
- []
-
-
-Overfull \hbox (18.23047pt too wide) in paragraph at lines 52--62
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--69
-\T1/lmr/m/n/10.95 ter en må-ling.
- []
-
-
-Overfull \hbox (3.74545pt too wide) in paragraph at lines 71--71
-[]|\T1/lmr/m/n/10.95 Undtagelses-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
-[]|\T1/lmr/m/n/10.95 Programmet in-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
-\T1/lmr/m/n/10.95 for-me-rer bru-ger
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
-\T1/lmr/m/n/10.95 at ka-li-bre-ring
- []
-
-
-Overfull \hbox (18.23047pt too wide) in paragraph at lines 67--74
-[][] 
- []
-
-File: ASE_logo.png Graphic file (type png)
-<use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 75.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 81--81
-[]|\T1/lmr/m/n/10.95 Real-time eye-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 81--81
-\T1/lmr/m/n/10.95 tracking må-ling
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 81--81
-[]|\T1/lmr/m/n/10.95 Programmet
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 81--81
-\T1/lmr/m/n/10.95 stop-per må-ling.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 81--81
-\T1/lmr/m/n/10.95 at må-lin-gen er
- []
-
-
-Overfull \hbox (18.23047pt too wide) in paragraph at lines 79--84
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 91--91
-[]|\T1/lmr/m/n/10.95 Bruger klik-ker
- []
-
-
-Underfull \hbox (badness 4144) in paragraph at lines 91--91
-\T1/lmr/m/n/10.95 på Sa-ve pre-fe-
- []
-
-
-Underfull \hbox (badness 4595) in paragraph at lines 91--91
-\T1/lmr/m/n/10.95 ren-ces. Der-ef-ter
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 91--91
-[]|\T1/lmr/m/n/10.95 Fil er op-ret-tet
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 91--91
-\T1/lmr/m/n/10.95 i den valg-te
- []
-
-
-Underfull \hbox (badness 4072) in paragraph at lines 91--91
-\T1/lmr/m/n/10.95 der de kor-rek-te
- []
-
-
-Overfull \hbox (3.74545pt too wide) in paragraph at lines 93--93
-[]|\T1/lmr/m/n/10.95 Undtagelses-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 93--93
-[]|\T1/lmr/m/n/10.95 Bruger klik-ker
- []
-
-
-Underfull \hbox (badness 4144) in paragraph at lines 93--93
-\T1/lmr/m/n/10.95 på Sa-ve pre-fe-
- []
-
-
-Underfull \hbox (badness 4595) in paragraph at lines 93--93
-\T1/lmr/m/n/10.95 ren-ces. Der-ef-ter
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 93--93
-\T1/lmr/m/n/10.95 dig fil-navn og
- []
-
-
-Underfull \hbox (badness 2173) in paragraph at lines 93--93
-\T1/lmr/m/n/10.95 ke kun-ne op-ret-
- []
-
-
-Overfull \hbox (18.23047pt too wide) in paragraph at lines 89--96
-[][] 
- []
-
-
-Underfull \hbox (badness 2012) in paragraph at lines 103--103
-\T1/lmr/m/n/10.95 med indstil-lin-ger
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 103--103
-[]|\T1/lmr/m/n/10.95 Bruger klik-ker
- []
-
-
-Underfull \hbox (badness 2277) in paragraph at lines 103--103
-\T1/lmr/m/n/10.95 på Lo-ad pre-fe-
- []
-
-
-Underfull \hbox (badness 4595) in paragraph at lines 103--103
-\T1/lmr/m/n/10.95 ren-ces. Der-ef-ter
- []
-
-
-Underfull \hbox (badness 1472) in paragraph at lines 103--103
-\T1/lmr/m/n/10.95 væl-ges gyl-dig fil
- []
-
-
-Underfull \hbox (badness 3601) in paragraph at lines 103--103
-[]|\T1/lmr/m/n/10.95 Programmet har
- []
-
-
-Overfull \hbox (3.74545pt too wide) in paragraph at lines 105--105
-[]|\T1/lmr/m/n/10.95 Undtagelses-
- []
-
-
-Underfull \hbox (badness 7344) in paragraph at lines 105--105
-\T1/lmr/m/n/10.95 tes. Ugyl-dig fil
- []
-
-
-Underfull \hbox (badness 2012) in paragraph at lines 105--105
-\T1/lmr/m/n/10.95 med indstil-lin-ger
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 105--105
-[]|\T1/lmr/m/n/10.95 Bruger klik-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 105--105
-\T1/lmr/m/n/10.95 ker på Lo-ad
- []
-
-
-Underfull \hbox (badness 1178) in paragraph at lines 105--105
-\T1/lmr/m/n/10.95 ef-ter væl-ges den
- []
-
-
-Underfull \hbox (badness 2376) in paragraph at lines 105--105
-\T1/lmr/m/n/10.95 lin-ger ik-ke kun-
- []
-
-
-Overfull \hbox (18.23047pt too wide) in paragraph at lines 101--108
-[][] 
- []
-
-File: ASE_logo.png Graphic file (type png)
-<use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 109.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 115--115
-[]|\T1/lmr/m/n/10.95 Computer-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 115--115
-\T1/lmr/m/n/10.95 programmet
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 115--115
-\T1/lmr/m/n/10.95 op-star-tes. Der
- []
-
-
-Underfull \hbox (badness 2564) in paragraph at lines 115--115
-\T1/lmr/m/n/10.95 fin-des en gyl-dig
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 115--115
-\T1/lmr/m/n/10.95 fil-sti med da-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 115--115
-\T1/lmr/m/n/10.95 ta fra tid-li-ge-re
- []
-
-
-Underfull \hbox (badness 1946) in paragraph at lines 115--115
-\T1/lmr/m/n/10.95 Get raw da-ta.
- []
-
-
-Underfull \hbox (badness 1502) in paragraph at lines 115--115
-\T1/lmr/m/n/10.95 Valg-te da-ta kan
- []
-
-
-Overfull \hbox (3.74545pt too wide) in paragraph at lines 117--117
-[]|\T1/lmr/m/n/10.95 Undtagelses-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--117
-[]|\T1/lmr/m/n/10.95 Computer-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--117
-\T1/lmr/m/n/10.95 programmet
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--117
-\T1/lmr/m/n/10.95 op-star-tes. Der
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--117
-\T1/lmr/m/n/10.95 fil-sti med da-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--117
-\T1/lmr/m/n/10.95 ta fra tid-li-ge-re
- []
-
-
-Underfull \hbox (badness 1946) in paragraph at lines 117--117
-\T1/lmr/m/n/10.95 Get raw da-ta.
- []
-
-
-Underfull \hbox (badness 7777) in paragraph at lines 117--118
-\T1/lmr/m/n/10.95 kun-ne ind-hænd-
- []
-
-
-Overfull \hbox (18.23047pt too wide) in paragraph at lines 113--121
-[][] 
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\miljoe.tex
+"
+Overfull \hbox (11.68983pt too wide) in paragraph at lines 20--22
+\T1/lmr/m/n/12 OpenCV er en ræk-ke "open sour-ce"biblioteker med kraft-ful-de b
+illedbehandlings-
  []
 
 )
@@ -3130,64 +2500,39 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8]
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\ikkefu
-nktkrav.tex"
-Underfull \hbox (badness 3668) in paragraph at lines 10--10
-\T1/lmr/m/n/10.95 med test-per-son og
- []
+[4
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 10--10
-\T1/lmr/m/n/10.95 spe-ci-fi-ka-tion punkt
- []
+] ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\gui.tex"
+ <GUIudkast.png, id=25, 543.53062pt x 346.29375pt>
+File: GUIudkast.png Graphic file (type png)
+ <use GUIudkast.png>
+Package pdftex.def Info: GUIudkast.png used on input line 8.
+(pdftex.def)             Requested size: 272.99881pt x 173.93904pt.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 10--10
-[]|\T1/lmr/m/n/10.95 Resultatet af tal-
- []
-
-
-Overfull \hbox (9.88477pt too wide) in paragraph at lines 8--14
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-[]|\T1/lmr/m/n/10.95 Systemet til-slut-tes
- []
-
-
-Underfull \hbox (badness 1484) in paragraph at lines 21--21
-\T1/lmr/m/n/10.95 et ka-me-ra med en
- []
-
-
-Underfull \hbox (badness 7308) in paragraph at lines 21--21
-\T1/lmr/m/n/10.95 frame-rate på un-
- []
-
-
-Underfull \hbox (badness 2229) in paragraph at lines 21--21
-\T1/lmr/m/n/10.95 der 100Hz. Ses-sion
- []
-
-
-Underfull \hbox (badness 2452) in paragraph at lines 21--21
-\T1/lmr/m/n/10.95 kun-der stop-pes te-
- []
-
-
-Underfull \hbox (badness 2418) in paragraph at lines 21--21
-\T1/lmr/m/n/10.95 ter i log-filen skal
- []
-
-
-Overfull \hbox (9.88477pt too wide) in paragraph at lines 19--25
-[][] 
- []
-
+<Undermenuer.png, id=26, 543.53062pt x 526.96875pt>
+File: Undermenuer.png Graphic file (type png)
+ <use Undermenuer.png>
+Package pdftex.def Info: Undermenuer.png used on input line 15.
+(pdftex.def)             Requested size: 272.99881pt x 264.68985pt.
 )
+File: ASE_logo.png Graphic file (type png)
+
+<use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 67.
+(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 19.85004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[5
+
+
+ <C:/Users/SÃ¸ren Lyster/Documents/GitHub/DegnLyster-bachelor/Design/GUIudkast.
+png (PNG copy)>]
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
 Package pdftex.def Info: ASE_logo.png used on input line 67.
@@ -3199,15 +2544,18 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9
-
-
-]
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\perfor
-manceeval.tex")
+[6 <C:/Users/SÃ¸ren Lyster/Documents/GitHub/DegnLyster-bachelor/Design/Undermen
+uer.png (PNG copy)>]
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\softwarear
+kitektur.bbl"
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 4.
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+))
 File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 68.
+
+<use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 70.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -3216,42 +2564,36 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10
-
+[7
 
 ]
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\accept
-test.aux"
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\indled
-ning.aux")
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\funktk
-rav.aux")
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\ikkefu
-nktkrav.aux")
-("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\perfor
-manceeval.aux")) ) 
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\softwarear
+kitektur.aux"
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\indledning
+.aux")
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\klasser.au
+x")
+("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\miljoe.aux
+") ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\gui.aux
+")) ) 
 Here is how much of TeX's memory you used:
- 17038 strings out of 493921
- 339716 string characters out of 3144852
- 389746 words of memory out of 3000000
- 19998 multiletter control sequences out of 15000+200000
- 81777 words of font info for 68 fonts, out of 3000000 for 9000
+ 17069 strings out of 493921
+ 340178 string characters out of 3144852
+ 383770 words of memory out of 3000000
+ 20027 multiletter control sequences out of 15000+200000
+ 68456 words of font info for 58 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 76i,17n,106p,10394b,712s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-math
-sy.enc}{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/
-Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files (
-x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files (x86)/MiKTeX 2.9
-/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
-1/public/lm/lmmi12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm
-/lmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><
-C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Program F
-iles (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files (x86)/Mi
-KTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
-nts/type1/public/lm/lmsy10.pfb>
-Output written on accepttest.pdf (11 pages, 219015 bytes).
+ 76i,16n,106p,10406b,702s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x8
+6)/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files (x86)/MiKTeX 2.
+9/fonts/type1/public/lm/lmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
+1/public/lm/lmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/
+lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C
+:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
+Output written on softwarearkitektur.pdf (8 pages, 246157 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
+ 63 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

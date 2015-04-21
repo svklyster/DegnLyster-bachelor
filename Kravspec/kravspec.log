@@ -1,8 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  2 MAR 2015 15:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  27 MAR 2015 19:24
 entering extended mode
-**kravspec.tex
+**C:/Users/Søren*Lyster/Documents/GitHub/DegnLyster-bachelor/Kravspec/kravspec
+.tex
 
-("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Kravspec\kravspec
+("C:/Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Kravspec/kravspec
 .tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
@@ -2411,16 +2412,6 @@ LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 26.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd"
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<ASE_logo.png, id=1, 143.5764pt x 72.7518pt>
-File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 38.
-(pdftex.def)             Requested size: 143.57603pt x 72.7516pt.
- [1
-
-{C:/Users/Søren Lyster/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/
-Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Kravspec/ASE_logo.png>
-]
 \vh@hstfile=\write4
 
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Kravspec\kravspec
@@ -2432,6 +2423,7 @@ Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Kravspec/ASE_logo.png>
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Kravspec\kravspec
 .toc")
 \tf@toc=\write5
+ <ASE_logo.png, id=1, 143.5764pt x 72.7518pt>
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
 Package pdftex.def Info: ASE_logo.png used on input line 66.
@@ -2443,7 +2435,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[1]
+[1{C:/Users/Søren Lyster/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+ <C:/Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Kravspec/ASE_logo
+.png>]
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Kravspec\indledni
 ng.tex"
 LaTeX Font Info:    Try loading font information for OMS+lmr on input line 11.
@@ -2469,7 +2464,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 ]
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Kravspec\systembe
-skrivelse.tex" <../Systemdiagram.png, id=19, 548.80031pt x 353.06906pt>
+skrivelse.tex" <../Systemdiagram.png, id=15, 548.80031pt x 353.06906pt>
 File: ../Systemdiagram.png Graphic file (type png)
 
 <use ../Systemdiagram.png>
@@ -2490,7 +2485,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 
  <C:/Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Systemdiagram.png
->] <../Actors.png, id=25, 318.9516pt x 206.9331pt>
+>] <../Actors.png, id=21, 318.9516pt x 206.9331pt>
 File: ../Actors.png Graphic file (type png)
  <use ../Actors.png>
 Package pdftex.def Info: ../Actors.png used on input line 42.
@@ -2537,7 +2532,7 @@ Overfull \hbox (19.65678pt too wide) in paragraph at lines 13--14
 gram-interaktioner.
  []
 
-<../Kamera-testperson.png, id=34, 402.0621pt x 207.8967pt>
+<../Kamera-testperson.png, id=30, 402.0621pt x 207.8967pt>
 File: ../Kamera-testperson.png Graphic file (type png)
 
 <use ../Kamera-testperson.png>
@@ -2549,7 +2544,7 @@ Overfull \hbox (1.04716pt too wide) in paragraph at lines 26--27
 �r trigger-niveauet
  []
 
-<../Trigger-threshold.png, id=35, 446.3877pt x 147.6717pt>
+<../Trigger-threshold.png, id=31, 446.3877pt x 147.6717pt>
 File: ../Trigger-threshold.png Graphic file (type png)
 
 <use ../Trigger-threshold.png>
@@ -3395,12 +3390,12 @@ l.27 		\end{}
               \\ \\
 (That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
- 17036 strings out of 493921
- 339060 string characters out of 3144852
+ 17035 strings out of 493921
+ 339044 string characters out of 3144852
  383740 words of memory out of 3000000
- 20005 multiletter control sequences out of 15000+200000
- 68138 words of font info for 57 fonts, out of 3000000 for 9000
+ 20004 multiletter control sequences out of 15000+200000
+ 65123 words of font info for 56 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 111i,16n,106p,10396b,713s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 111i,16n,106p,10465b,713s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 !  ==> Fatal error occurred, no output PDF file produced!

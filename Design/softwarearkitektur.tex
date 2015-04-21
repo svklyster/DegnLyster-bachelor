@@ -20,54 +20,51 @@
 \usepackage{setspace}
 \usepackage[font=footnotesize]{caption}
 \usepackage{fancyhdr}
+\usepackage{svg}
 \pagestyle{fancy}
 
 
 \begin{document}
-%\begin{titlepage}
-%\centering
-%\vfill
-%{\LARGE Kravspecifikation}\\
-%\vfill
-%{\bfseries\large
-%	Bachelorprojektet: \\
-%	Real-time eye-tracking\\
-%	Projektnummer: 15017\\
-%}
-%\vfill
-%\includegraphics{ASE_logo.png}
-%\vfill
-%{\bfseries\large
-%	Version 2.0\
-%	10/02/2015\\
-%	Studerende: Søren Vøgg Krabbe Lyster (SVL) 10920,\\
-%	Martin Degn Kristensen (MDK) 10441\\ 
-%	Studieretning: Elektro \\
-%	Vejleder: Preben Kidmose \\
-%	\vfill	
-%	\rule{6cm}{1pt}
-%}
-%
-%
-%
-%
-%\end{titlepage}
+\begin{titlepage}
+\centering
+\vfill
+{\LARGE Software arkitektur}\\
+\vfill
+{\bfseries\large
+	Bachelorprojektet: \\
+	Real-time eye-tracking\\
+	Projektnummer: 15017\\
+}
+\vfill
+\includegraphics{ASE_logo.png}
+\vfill
+{\bfseries\large
+	Version 1.0\
+	20/04/2015\\
+	Studerende: Søren Vøgg Krabbe Lyster (SVL) 10920,\\
+	Martin Degn Kristensen (MDK) 10441\\ 
+	Studieretning: Elektro \\
+	Vejleder: Preben Kidmose \\
+	\vfill	
+	\rule{6cm}{1pt}
+}
+
+
+
+
+\end{titlepage}
 \lhead{\includegraphics[scale=0.2]{ASE_logo.png}}
 \chead{Real-time eye-tracking}
-\rhead{\scriptsize 30/01/15 \\
+\rhead{\scriptsize 20/04/15 \\
 S. V. K. Lyster, M. D. Kristensen}
 \begin{versionhistory}
-	\vhEntry{1.0}{26.01.15}{SVL,MDK}{Oprettet}
-	\vhEntry{1.1}{30.01.15}{SVL,MDK}{Opdateret m. use cases}
-	\vhEntry{1.2}{06.02.15}{SVL,MDK}{Opdaterede use cases, ordforklaring}
-	\vhEntry{2.0}{10.02.15}{SVL,MDK}{Review}
+	\vhEntry{1.0}{20.04.15}{SVL,MDK}{Oprettet}
 \end{versionhistory}
 \tableofcontents
 \include{indledning}
-\include{systembeskrivelse}
-\include{funktkrav}
-\include{usecase}	
-\include{ikkefunktkrav}
+\include{klasser}
+\include{miljoe}
+\include{gui}
 \bibliography{biblio}
 \bibliographystyle{ieeetr}
 \end{document}
