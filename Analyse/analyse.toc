@@ -1,0 +1,7 @@
+\select@language {danish}
+\contentsline {section}{\numberline {1}Form\IeC {\r a}l}{2}
+\contentsline {subsection}{\numberline {1.1}Ordforklaring}{2}
+\contentsline {section}{\numberline {2}Generel beskrivelse}{3}
+\contentsline {subsection}{\numberline {2.1}Systembeskrivelse}{3}
+\contentsline {subsection}{\numberline {2.2}Akt\IeC {\o }rer}{4}
+\contentsline {subsection}{\numberline {2.3}Systemets begr\IeC {\ae }nsninger}{4}
