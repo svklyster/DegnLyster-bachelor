@@ -4,30 +4,11 @@ import cv2
 import tkFileDialog
 import codecs
 import os
-
-class SessionData:
-    def __init__(self,pathname):
-        self.pathname = pathname
-        self.livecam = True
-        self.camnr = 0
-        self.videopath = None
-        self.notes = None
-
-    def SaveToPath(self):
-        completeName = os.path.abspath(self.pathname + "/session")
-        file = codecs.open(completeName, "w", "utf-8")
-        sessionStr = "SESSIONPATH " + self.pathname + '\n'
-        sessionStr += "USINGCAM " + str(self.livecam) + '\n'
-        sessionStr += "CAMNR " + str(self.camnr) + '\n'
-        if self.videopath is None:
-            sessionStr += "VIDEOPATH None" + '\n'
-        else:
-            sessionStr +=  "VIDEOPATH " + self.videopath + '\n'
-        sessionStr += "NOTES " + self.notes + '\n'
-        file.write(sessionStr)
-        print file
-
-
+import tkMessageBox
+import SessionHandler as sh
+import VideoCapture as vc
+import LogHandler as lh
+import EyeTracking as et
 
 root = tk.Tk()
 root.title("RealTime EyeTracking")
@@ -35,51 +16,24 @@ root.title("RealTime EyeTracking")
 videoRunning = False
 cap = None
 
-def CountCameras():
-    maxTested = 10
-    for i in range(0,maxTested):
-        tempCam = cv2.VideoCapture(i)
-        if tempCam.isOpened() is False:
-            return i
-    return maxTested
 
-def updateVideo():
-    global cap
-    ret, frame = cap.read()
-    cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
-    cv2.imshow('Video source', frame)
-    root.after(10, updateVideo)
-
-def OpenVideo(videopath):
-    global cap
-    abspath = os.path.normpath(videopath).encode('utf-8')
-    cap = cv2.VideoCapture(abspath)
-    global running
-    running = True
-    updateVideo()
-
-def OpenCam(nr):
-    global cap
-    cap = cv2.VideoCapture(nr)
-    global running
-    running = True
-    updateVideo()
 
 def UpdateWithSessionData(sessionData):
     if sessionData.livecam is True:
-        cbVideo.select()
+        varVid = True
         vVideo2.set("Camera index")
-        #lVideo2.text = "Camera index"
         eVideo.delete(0,tk.END)
         eVideo.insert(0, str(sessionData.camnr))
     else:
-        cbVideo.deselect()
+        varVid = False
         vVideo2.set("Video source")
-        #lVideo2.text = "Video source"
         eVideo.delete(0,tk.END)
         eVideo.insert(0, sessionData.videopath)
     
+    notes.delete("1.0", tk.END)
     notes.insert("1.0", sessionData.notes)
+    tNotePathname.delete("1.0", tk.END)
+    tNotePathname.insert("1.0", sessionData.pathname)
 
 def CreateSession():
     "Opening session wizard"
@@ -93,12 +47,15 @@ def CreateSession():
         def CloseSessionWizard():
             notes = tNotes.get("1.0", tk.END)
             sessionData.notes = notes
-            #print sessionData.printPacked()
-            sessionData.SaveToPath()
-            if sessionData.livecam is True:
-                OpenCam(sessionData.camnr)
+            result = sessionData.UpdateSessionFile()
+            if result is "fileUpdated":
+                 tkMessageBox.showinfo("Succes", "Session created")
             else:
-                OpenVideo(sessionData.videopath)
+                tkMessageBox.showerror("Exception", "Error: %s" % result)
+            #if sessionData.livecam is True:
+            #    OpenCam(sessionData.camnr)
+            #else:
+            #    OpenVideo(sessionData.videopath)
             wNotes.destroy()
             UpdateWithSessionData(sessionData)
             return
@@ -107,8 +64,10 @@ def CreateSession():
         wNotes.grab_set()
     #Creating new window
     pathname = tkFileDialog.askdirectory()
-    sessionData = SessionData(pathname)
-    print pathname
+    sessionData = sh.SessionData(pathname)
+    result = sessionData.CreateSessionFile()
+    if result is not "fileCreated":
+        tkMessageBox.showerror("Exception", "Error: %s" % result)
     wSession = tk.Toplevel()
     wSession.title("Create new session")
     fLeft = tk.Frame(wSession)
@@ -118,7 +77,7 @@ def CreateSession():
     #Camera tab
     fCamera = tk.Frame(nSession)
     lCamera = tk.Label(fCamera, text = "Choose camera").pack(side=tk.TOP)
-    cameraCount = CountCameras()
+    cameraCount = vc.GetCameraInputs()
     oList = []
     for i in range(0, cameraCount):
         oList.append(i)
@@ -141,8 +100,6 @@ def CreateSession():
         sessionData.videopath = tkFileDialog.askopenfilename()
         wSession.focus_set()
         wSession.grab_set()
-        #eVideo.delete(0, tk.END)
-        #eVideo.insert(0, videopath)
         return
     bVideoFind = tk.Button(fVideo, text = "Browse", command = GetVideoPath).pack(side=tk.TOP)
     def ChooseVideo():
@@ -185,13 +142,33 @@ def StopEyeTracking():
 
 def SavePreferences():
     "Saving preferences"
-    #Code here...
-    print "saving preferences \n"
+    #Save preferences from preferences pane
+    newPrefData = sh.SessionData(tNotePathname.get("1.0", 'end-1c'))
+    newPrefData.livecam = varVid.get()
+    if newPrefData.livecam is True:
+        newPrefData.camnr = eVideo.get()
+        newPrefData.videopath = None
+    else:
+        newPrefData.camnr = None
+        newPrefData.videopath = eVideo.get()
+    newPrefData.notes = notes.get("1.0", tk.END)
+    newPrefData.filepath = os.path.abspath(tkFileDialog.asksaveasfilename())
+    result = newPrefData.SavePreferences()
+    if result is "fileCreated":
+        tkMessageBox.showinfo("Succes", "Preference file saved")
+    else:
+        tkMessageBox.showerror("Exception", "Error: %s" % result)
     return
 
 def LoadPreferences():
     "Loading preferences"
-    #Code here...
+    loadPrefFilepath = os.path.abspath(tkFileDialog.askopenfilename())
+    fileVerified = sh.LoadPreferences(loadPrefFilepath)
+    if fileVerified is "fileVerified":
+       UpdateWithSessionData(sh.LoadPreferencesFromFile(loadPrefFilepath))
+       tkMessageBox.showinfo("Succes", "Preference file loaded")
+    else:
+       tkMessageBox.showerror("Exception", "Error: %s" % fileVerified)
     print "loading preferences \n"
     return
 
@@ -226,23 +203,28 @@ bLoad = tk.Button(fPrefBut, text = "Load preferences", command = LoadPreferences
 notePref = ttk.Notebook(preff)
 nFrameNotes = tk.Frame(notePref)
 NoteL1 = tk.Label(nFrameNotes, text ="Notes")
-notes = tk.Text(NoteL1, width = 20, height = 10)
+NoteL1.grid(row=0, column=0)
+notes = tk.Text(NoteL1, width = 40, height = 10)
+notes.grid(row=0, column=1)
 NoteL2 = tk.Label(nFrameNotes, text ="etc")
-screenWidth = tk.Entry(NoteL2)
+NoteL2.grid(row=1, column=0)
+tNotePathname = tk.Text(NoteL2, width = 40, height = 1)
+tNotePathname.grid(row=1, column=1)
+
 #Video
 nFrameVideo = tk.Frame(notePref)
-lVideo1 = tk.Label(nFrameVideo, text ="Using camera")
-#lVideo1.pack(side=tk.LEFT)
-lVideo1.grid(row=0, column=0)
-cbVideo = tk.Checkbutton(nFrameVideo)
-#cbVideo.pack(side=tk.RIGHT)
+#lVideo1 = tk.Label(nFrameVideo, text ="Using camera")
+#lVideo1.grid(row=0, column=0)
+#   - Checkbutton with variable
+varVid = tk.BooleanVar(nFrameVideo)
+cbVideo = tk.Checkbutton(nFrameVideo, text = "Using camera source", variable = varVid, onvalue = True, offvalue = False)
 cbVideo.grid(row=0, column=1)
 vVideo2 = tk.StringVar()
 vVideo2.set("Source")
 lVideo2 = tk.Label(nFrameVideo, textvariable = vVideo2)
 #lVideo2.pack(side=tk.LEFT)
 lVideo2.grid(row=1, column=0)
-eVideo = tk.Entry(nFrameVideo)
+eVideo = tk.Entry(nFrameVideo, width = 40)
 #eVideo.pack(side=tk.RIGHT)
 eVideo.grid(row=1, column=1)
 
@@ -259,12 +241,7 @@ cMain.pack()
 bSave.pack(side=tk.LEFT)
 bLoad.pack(side=tk.LEFT)
 fPrefBut.pack(side=tk.BOTTOM)
-    #Notebook
-notes.pack(side=tk.RIGHT)
-screenWidth.pack(side=tk.RIGHT)
-NoteL1.pack(side=tk.TOP)
-NoteL2.pack(side=tk.TOP)
-
+#   - Notebook
 notePref.add(nFrameNotes, text = "Notes")
 notePref.add(nFrameVideo, text = "Video")
 notePref.pack(side=tk.TOP)

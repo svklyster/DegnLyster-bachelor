@@ -1,6 +1,7 @@
 SESSIONPATH C:/Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Implementation/RealTime EyeTracking/RealTime_EyeTracking/RealTime_EyeTracking
-USINGCAM True
+USINGCAM False
 CAMNR 0
-VIDEOPATH None
-NOTES hello grabber how adsdsadsad
+VIDEOPATH C:/Users/Søren Lyster/Desktop/clipcanvas_14348_offline.mp4
+NOTES these are some dank notes
+
 
