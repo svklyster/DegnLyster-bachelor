@@ -565,7 +565,7 @@ for x in range(0, len(ec)):
     ecx[x] = ec[x][0]
     ecy[x] = ec[x][1]
 ellipse, inliers, ransac_iter = fit_ellipse_ransac(ecx, ecy, 5000, 10, 1.5)
-if ellipse is 0 or ransac_iter >= 10000:
+if len(ellipse) is 0 or ransac_iter >= 10000:
     print("No ellipse found")
 
 c = ellipse_direct_fit(np.array([np.transpose(ecx[inliers]), ecy[inliers]]))
