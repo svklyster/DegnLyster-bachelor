@@ -3,14 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>a9e36ecc-ee74-4212-afa9-996662f419fb</ProjectGuid>
+    <ProjectGuid>57b7393b-dd1e-401a-a568-b5b6eff4a54f</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>RealTime_EyeTracking.py</StartupFile>
-    <SearchPath>..\..\..\..\..\..\..\..\..\Python27\Lib\lib-tk\</SearchPath>
+    <StartupFile>ETAlgorithm.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>RealTime_EyeTracking</Name>
-    <RootNamespace>RealTime_EyeTracking</RootNamespace>
+    <Name>ETAlgorithm</Name>
+    <RootNamespace>ETAlgorithm</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,13 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Calibration.py" />
-    <Compile Include="ETalgorithm.py" />
-    <Compile Include="EyeTracking.py" />
-    <Compile Include="LogHandler.py" />
-    <Compile Include="RealTime_EyeTracking.py" />
-    <Compile Include="SessionHandler.py" />
-    <Compile Include="VideoCapture.py" />
+    <Compile Include="ETAlgorithm.py" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

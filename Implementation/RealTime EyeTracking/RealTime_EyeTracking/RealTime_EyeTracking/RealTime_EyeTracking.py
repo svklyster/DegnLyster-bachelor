@@ -9,14 +9,22 @@ import SessionHandler as sh
 import VideoCapture as vc
 import LogHandler as lh
 import EyeTracking as et
+import Calibration as cal
+import thread
+import time
+import sys
 
 root = tk.Tk()
 root.title("RealTime EyeTracking")
 
-videoRunning = False
-cap = None
+trackingRunning = False
 
+#widget bindings (tab, focus, etc...)
+def focus_next_window(event):
+    event.widget.tk_focusNext().focus()
+    return("break")
 
+root.bind_class("<Tab>", focus_next_window)
 
 def UpdateWithSessionData(sessionData):
     if sessionData.livecam is True:
@@ -30,10 +38,18 @@ def UpdateWithSessionData(sessionData):
         eVideo.delete(0,tk.END)
         eVideo.insert(0, sessionData.videopath)
     
-    notes.delete("1.0", tk.END)
-    notes.insert("1.0", sessionData.notes)
+    tNotes.delete("1.0", tk.END)
+    tNotes.insert("1.0", sessionData.notes)
+    tResolution.delete("1.0", tk.END)
+    tResolution.insert("1.0", sessionData.resolution)
+    tCaltype.delete("1.0", tk.END)
+    tCaltype.insert("1.0", sessionData.caltype)
+    tLogfn.delete("1.0", tk.END)
+    tLogfn.insert("1.0", sessionData.logfilename)
+    tCalfn.delete("1.0", tk.END)
+    tCalfn.insert("1.0", sessionData.calfilename)
     tNotePathname.delete("1.0", tk.END)
-    tNotePathname.insert("1.0", sessionData.pathname)
+    tNotePathname.insert("1.0", sessionData.calfilename)
 
 def CreateSession():
     "Opening session wizard"
@@ -42,20 +58,35 @@ def CreateSession():
         wNotes = tk.Toplevel()
         wNotes.title("Create new session")
         lNotes = tk.Label(wNotes, text = "Session notes").pack(side=tk.TOP)
-        tNotes = tk.Text(wNotes, width=50, height=30)
-        tNotes.pack(side=tk.TOP)
+        Notes = tk.Text(wNotes, width=50, height=10)
+        Notes.pack(side=tk.TOP)
+        lResolution = tk.Label(wNotes, text = "Screen 2 resolution").pack(side=tk.TOP)
+        Resolution = tk.Text(wNotes, width=50, height = 1)
+        Resolution.pack(side=tk.TOP)
+        lCaltype = tk.Label(wNotes, text = "Calibration type").pack(side=tk.TOP)
+        Caltype = tk.Text(wNotes, width=50, height=1)
+        Caltype.pack(side=tk.TOP)
+        lOptional = tk.Label(wNotes, text = "Optional:").pack(side=tk.TOP)
+        lLogfilename = tk.Label(wNotes, text = "Log filename").pack(side=tk.TOP)
+        Logfilename = tk.Text(wNotes, width=50, height = 1)
+        Logfilename.pack(side=tk.TOP)
+        lCalfilename = tk.Label(wNotes, text = "Calibration log filename").pack(side=tk.TOP)
+        Calfilename = tk.Text(wNotes, width=50, height = 1)
+        Calfilename.pack(side=tk.TOP)
+
         def CloseSessionWizard():
-            notes = tNotes.get("1.0", tk.END)
+            notes = Notes.get("1.0", tk.END)
             sessionData.notes = notes
+            sessionData.resolution = Resolution.get("1.0", tk.END)
+            sessionData.caltype = Caltype.get("1.0", tk.END)
+            sessionData.logfilename = Logfilename.get("1.0", tk.END)
+            sessionData.calfilename = Calfilename.get("1.0", tk.END)
             result = sessionData.UpdateSessionFile()
             if result is "fileUpdated":
                  tkMessageBox.showinfo("Succes", "Session created")
             else:
                 tkMessageBox.showerror("Exception", "Error: %s" % result)
-            #if sessionData.livecam is True:
-            #    OpenCam(sessionData.camnr)
-            #else:
-            #    OpenVideo(sessionData.videopath)
+            bCalib.config(state = tk.NORMAL)
             wNotes.destroy()
             UpdateWithSessionData(sessionData)
             return
@@ -118,25 +149,43 @@ def CreateSession():
 
     wSession.focus_set()
     wSession.grab_set()
-
     print "new session \n"
     return
 
 def StartCalibration():
     "Starting calibration routine"
-    #Code here...
+   
+    if tkMessageBox.askokcancel("Calibration", "Start new calibration?") is True:
+        LoadCalibrationData() 
+    else:
+        return
+    bStart.config(state = tk.NORMAL)
     print "starting calibration \n"
     return
 
 def StartEyeTracking():
-    "Starting eyetracking"
-    #Code here...
-    print "starting eyetracking \n"
-    return
 
+    "Starting eyetracking"
+    try:
+        sessionData = UpdateSessionWithPreferences()
+        global trackingRunning
+        trackingRunning = lh.StartNewTracking(sessionData)
+        if trackingRunning is True:
+            bStart.config(state = tk.DISABLED)
+            bStop.config(state = tk.NORMAL)
+            print "starting eyetracking \n"
+        return
+    except:
+        e = sys.exc_info()[0]
+        tkMessageBox.showerror("Exception", "Error: %s" % e)
+    
 def StopEyeTracking():
     "Stopping eyetracking"
-    #Code here...
+    global trackingRunning
+    trackingRunning = lh.StopTracking()
+    #if trackingRunning is False:
+    bStart.config(state = tk.NORMAL)
+    bStop.config(state = tk.DISABLED)
     print "stopping eyetracking \n"
     return
 
@@ -151,8 +200,12 @@ def SavePreferences():
     else:
         newPrefData.camnr = None
         newPrefData.videopath = eVideo.get()
-    newPrefData.notes = notes.get("1.0", tk.END)
-    newPrefData.filepath = os.path.abspath(tkFileDialog.asksaveasfilename())
+    newPrefData.notes = tNotes.get("1.0", tk.END)
+    newPrefData.resolution = tResolution.get("1.0", tk.END)
+    newPrefData.caltype = tCaltype.get("1.0", tk.END)
+    newPrefData.logfilename = tLogfn.get("1.0", tk.END)
+    newPrefData.calfilename = tCalfn.get("1.0", tk.END)
+    newPrefData.filepath = os.path.abspath(tkFileDialog.asksaveasfilename(defaultextension = "pref"))
     result = newPrefData.SavePreferences()
     if result is "fileCreated":
         tkMessageBox.showinfo("Succes", "Preference file saved")
@@ -162,7 +215,7 @@ def SavePreferences():
 
 def LoadPreferences():
     "Loading preferences"
-    loadPrefFilepath = os.path.abspath(tkFileDialog.askopenfilename())
+    loadPrefFilepath = os.path.abspath(tkFileDialog.askopenfilename(filetypes = [('preference files','.pref')]))
     fileVerified = sh.LoadPreferences(loadPrefFilepath)
     if fileVerified is "fileVerified":
        UpdateWithSessionData(sh.LoadPreferencesFromFile(loadPrefFilepath))
@@ -172,6 +225,27 @@ def LoadPreferences():
     print "loading preferences \n"
     return
 
+def UpdateSessionWithPreferences():
+    sessionData = sh.SessionData(tNotePathname.get("1.0", 'end-1c'))
+    sessionData.livecam = varVid.get()
+    if sessionData.livecam is True or 1:
+        sessionData.livecam = True
+        sessionData.camnr = eVideo.get()
+        sessionData.videopath = None
+    else:
+        sessionData.livecam = False
+        sessionData.camnr = None 
+        sessionData.videopath = eVideo.get()
+    sessionData.notes = tNotes.get("1.0", tk.END)
+    return sessionData
+    
+def LoadCalibrationData():
+    calData = cal.Calibration(tNotePathname.get("1.0", 'end-1c'),"numbers")
+    #StartEyeTracking()
+    et.GetPoint(UpdateSessionWithPreferences())
+
+def CreateCalibrationLog():
+    return
 
 #Frames 
 leftf = tk.Frame(root) 
@@ -181,9 +255,9 @@ midf = tk.Frame(root)
 ###Setup
 #Buttons
 bSession = tk.Button(leftf, text = "Create session", command = CreateSession)
-bCalib = tk.Button(leftf, text = "Start calibration", command = StartCalibration)
-bStart = tk.Button(leftf, text = "Start eyetracking", command = StartEyeTracking)
-bStop = tk.Button(leftf, text = "Stop eyetracking", command = StopEyeTracking)
+bCalib = tk.Button(leftf, text = "Start calibration", command = StartCalibration, state=tk.DISABLED)
+bStart = tk.Button(leftf, text = "Start eyetracking", command = StartEyeTracking, state=tk.NORMAL)      ###DISABLED
+bStop = tk.Button(leftf, text = "Stop eyetracking", command = StopEyeTracking, state=tk.DISABLED)
 
 ###MainDisplay
 #Canvas
@@ -202,14 +276,30 @@ bLoad = tk.Button(fPrefBut, text = "Load preferences", command = LoadPreferences
 #Notes
 notePref = ttk.Notebook(preff)
 nFrameNotes = tk.Frame(notePref)
-NoteL1 = tk.Label(nFrameNotes, text ="Notes")
-NoteL1.grid(row=0, column=0)
-notes = tk.Text(NoteL1, width = 40, height = 10)
-notes.grid(row=0, column=1)
-NoteL2 = tk.Label(nFrameNotes, text ="etc")
-NoteL2.grid(row=1, column=0)
-tNotePathname = tk.Text(NoteL2, width = 40, height = 1)
-tNotePathname.grid(row=1, column=1)
+lNotes = tk.Label(nFrameNotes, text ="Notes")
+lNotes.pack(side=tk.TOP)
+tNotes = tk.Text(nFrameNotes, width = 40, height = 10)
+tNotes.pack(side=tk.TOP)
+lResolution = tk.Label(nFrameNotes, text ="Screen 2 resolution")
+lResolution.pack(side=tk.TOP)
+tResolution = tk.Text(nFrameNotes, width = 40, height = 1)
+tResolution.pack(side=tk.TOP)
+lCaltype = tk.Label(nFrameNotes, text ="Calibration type")
+lCaltype.pack(side=tk.TOP)
+tCaltype = tk.Text(nFrameNotes, width = 40, height = 1)
+tCaltype.pack(side=tk.TOP)
+lLogfn = tk.Label(nFrameNotes, text ="Log filename")
+lLogfn.pack(side=tk.TOP)
+tLogfn = tk.Text(nFrameNotes, width = 40, height = 1)
+tLogfn.pack(side=tk.TOP)
+lCalfn = tk.Label(nFrameNotes, text ="Calibration log filename")
+lCalfn.pack(side=tk.TOP)
+tCalfn = tk.Text(nFrameNotes, width = 40, height = 1)
+tCalfn.pack(side=tk.TOP)
+lPathname = tk.Label(nFrameNotes, text = "Session path")
+lPathname.pack(side=tk.TOP)
+tNotePathname = tk.Text(nFrameNotes, width = 40, height = 1)
+tNotePathname.pack(side=tk.TOP)
 
 #Video
 nFrameVideo = tk.Frame(notePref)
@@ -217,17 +307,27 @@ nFrameVideo = tk.Frame(notePref)
 #lVideo1.grid(row=0, column=0)
 #   - Checkbutton with variable
 varVid = tk.BooleanVar(nFrameVideo)
-cbVideo = tk.Checkbutton(nFrameVideo, text = "Using camera source", variable = varVid, onvalue = True, offvalue = False)
-cbVideo.grid(row=0, column=1)
+lVideo1 = tk.Label(nFrameVideo,  text = "Using camera source?")
+lVideo1.pack(side=tk.TOP)
+cbVideo = tk.Checkbutton(nFrameVideo, variable = varVid, onvalue = True, offvalue = False)
+cbVideo.pack(side = tk.TOP)
 vVideo2 = tk.StringVar()
 vVideo2.set("Source")
 lVideo2 = tk.Label(nFrameVideo, textvariable = vVideo2)
-#lVideo2.pack(side=tk.LEFT)
-lVideo2.grid(row=1, column=0)
+lVideo2.pack(side=tk.TOP)
+#lVideo2.grid(row=1, column=0)
 eVideo = tk.Entry(nFrameVideo, width = 40)
-#eVideo.pack(side=tk.RIGHT)
-eVideo.grid(row=1, column=1)
-
+eVideo.pack(side=tk.TOP)
+#eVideo.grid(row=1, column=1)
+lRecord = tk.Label(nFrameVideo, text = "Recording video?")
+lRecord.pack(side=tk.TOP)
+varRec = tk.BooleanVar(nFrameVideo)
+cbRecord = tk.Checkbutton(nFrameVideo, variable = varRec, onvalue = True, offvalue = False)
+cbRecord.pack(side=tk.TOP)
+lRawPath = tk.Label(nFrameVideo, text = "Filepath for recorded data")
+lRawPath.pack(side=tk.TOP)
+eRawPath = tk.Entry(nFrameVideo, width = 40)
+eRawPath.pack(side=tk.TOP)
 ###Packing tkinter objects
 bSession.pack()
 bCalib.pack()

@@ -1,19 +1,29 @@
 import codecs
-import Tkinter as tk
+import _tkinter as tk
 import os
 
 paraNames = ["SESSIONPATH","USINGCAM","CAMNR",
-                 "VIDEOPATH","NOTES"]
+                 "VIDEOPATH","NOTES","RESOLUTION",
+                 "CALTYPE","LOGFILENAME","CALFILENAME",
+                 "RECORDVIDEO", "RAWDATAPATH"]
 
 class SessionData:
 
     def __init__(self, pathname):
         self.pathname = pathname
-        self.filepath = os.path.abspath(self.pathname + "/" + "session")
+        self.filepath = os.path.abspath(self.pathname + "/" + "session.pref")
         self.livecam = True
         self.camnr = 0
         self.videopath = None
         self.notes = None
+        self.resolution = None
+        self.caltype = None
+        self.logfilename = None
+        self.calfilename = None
+        self.recordvideo = False
+        self.rawdatapath = None
+        
+
     
     def CreateSessionFile(self):
         file = codecs.open(self.filepath, "w", "utf-8")
@@ -34,8 +44,14 @@ class SessionData:
         else:
             sessionStr +=  "VIDEOPATH " + self.videopath + '\n'
         sessionStr += "NOTES " + self.notes + '\n'
+        sessionStr += "RESOLUTION " + self.resolution + '\n'
+        sessionStr += "CALTYPE " + self.caltype + '\n'
+        sessionStr += "LOGFILENAME " + self.logfilename + '\n'
+        sessionStr += "CALFILENAME " + self.calfilename + '\n'
+        sessionStr += "RECORDVIDEO " + str(self.recordvideo) + '\n'
+        sessionStr += "RAWDATAPATH " + str(self.rawdatapath) + '\n'
         try:
-            file.write(sessionStr)
+            file.write(sessionStr)    
             return "fileUpdated"
             #tkMessageBox.showinfo("Succes", "Session created")
         except: 
@@ -52,6 +68,12 @@ class SessionData:
         else:
             sessionStr +=  "VIDEOPATH " + self.videopath + '\n'
         sessionStr += "NOTES " + self.notes + '\n'
+        sessionStr += "RESOLUTION " + self.resolution + '\n'
+        sessionStr += "CALTYPE " + self.caltype + '\n'
+        sessionStr += "LOGFILENAME " + self.logfilename + '\n'
+        sessionStr += "CALFILENAME " + self.calfilename + '\n'
+        sessionStr += "RECORDVIDEO " + self.recordvideo + '\n'
+        sessionStr += "RAWDATAPATH " + self.rawdatapath + '\n'
         try:
             file.write(sessionStr)
             return "fileCreated"
@@ -85,5 +107,10 @@ def LoadPreferencesFromFile(filepath):
     else:
         newPrefData.videopath = tempVidpath
     newPrefData.notes = file.readline()[6: ]
-
+    newPrefData.resolution = file.readline()[11: ]
+    newPrefData.caltype = file.readline()[8: ]
+    newPrefData.logfilename = file.readline()[12: ]
+    newPrefData.calfilename = file.readline()[12: ]
+    newPrefData.recordvideo = file.readline()[12: ]
+    newPrefData.rawdatapath = file.readline()[12: ]
     return newPrefData

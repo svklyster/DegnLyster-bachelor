@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  20 APR 2015 15:48
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  22 APR 2015 15:07
 entering extended mode
 **softwarearkitektur.tex
 
@@ -2483,9 +2483,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\miljoe.tex
 "
-Overfull \hbox (11.68983pt too wide) in paragraph at lines 20--22
-\T1/lmr/m/n/12 OpenCV er en ræk-ke "open sour-ce"biblioteker med kraft-ful-de b
-illedbehandlings-
+Overfull \hbox (26.70387pt too wide) in paragraph at lines 21--23
+\T1/lmr/m/n/12 OpenCV [[]] er en ræk-ke "open sour-ce"biblioteker med kraft-ful
+-de billedbehandlings-
  []
 
 )
@@ -2577,10 +2577,10 @@ x")
 ") ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\gui.aux
 ")) ) 
 Here is how much of TeX's memory you used:
- 17069 strings out of 493921
- 340178 string characters out of 3144852
+ 17075 strings out of 493921
+ 340274 string characters out of 3144852
  383770 words of memory out of 3000000
- 20027 multiletter control sequences out of 15000+200000
+ 20033 multiletter control sequences out of 15000+200000
  68456 words of font info for 58 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  76i,16n,106p,10406b,702s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2591,7 +2591,7 @@ m Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x8
 1/public/lm/lmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/
 lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on softwarearkitektur.pdf (8 pages, 246157 bytes).
+Output written on softwarearkitektur.pdf (8 pages, 254218 bytes).
 PDF statistics:
  63 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
