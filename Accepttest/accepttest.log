@@ -1,6 +1,6 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  9 MAR 2015 15:18
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  27 MAR 2015 19:50
 entering extended mode
-**accepttest.tex
+**accepttest
 
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\accept
 test.tex"
@@ -3237,7 +3237,7 @@ Here is how much of TeX's memory you used:
  19998 multiletter control sequences out of 15000+200000
  81777 words of font info for 68 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 76i,17n,106p,10398b,712s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 76i,17n,106p,10394b,712s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-math
 sy.enc}{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/
 Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files (

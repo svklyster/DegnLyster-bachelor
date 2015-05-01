@@ -1,0 +1,14 @@
+\begin{thebibliography}{1}
+
+\bibitem{UMLurl}
+O.~M. Group, ``{Unified Modelling Language}.'' \url{http://www.uml.org/}, 2015.
+\newblock [Online; sidst tilgået 20-04-2015].
+
+\bibitem{Matplotlib}
+J.~D. Hunter, ``Matplotlib: A 2d graphics environment,'' {\em Computing In
+  Science \& Engineering}, vol.~9, no.~3, pp.~90--95, 2007.
+
+\bibitem{openCV}
+G.~Bradski {\em Dr. Dobb's Journal of Software Tools}.
+
+\end{thebibliography}
