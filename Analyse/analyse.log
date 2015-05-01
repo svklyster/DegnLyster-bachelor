@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.1.29)  15 APR 2015 09:55
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.1.29)  27 APR 2015 15:55
 entering extended mode
 **analyse.tex
 
@@ -1106,7 +1106,11 @@ elor\Analyse\analyse.aux"
 ("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
 elor\Analyse\formaal.aux")
 ("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
-elor\Analyse\systemoversigt.aux"))
+elor\Analyse\systemoversigt.aux")
+("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
+elor\Analyse\starburstanalyse.aux")
+("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
+elor\Analyse\overvejelser.aux"))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
 LaTeX Font Info:    ... okay on input line 26.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
@@ -2481,12 +2485,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [1]
 ("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
 elor\Analyse\formaal.tex"
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 11.
- ("D:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
-File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 11.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 5.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 5.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 5.
 )
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
@@ -2504,15 +2508,29 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 ("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
 elor\Analyse\systemoversigt.tex"
-<../Systemdiagram.png, id=19, 548.80031pt x 353.06906pt>
-File: ../Systemdiagram.png Graphic file (type png)
 
-<use ../Systemdiagram.png>
-Package pdftex.def Info: ../Systemdiagram.png used on input line 9.
-(pdftex.def)             Requested size: 272.99881pt x 175.6344pt.
+LaTeX Warning: File `../Algoritmediagram.png' not found on input line 11.
+
+
+! Package pdftex.def Error: File `../Algoritmediagram.png' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11 ...th=0.7\linewidth]{../Algoritmediagram.png}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 11.
+("D:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 37.
+Package pdftex.def Info: ASE_logo.png used on input line 24.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2524,21 +2542,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [3
 
 
- <C:/Users/DGen/Documents/Skole/Semester7/Bachelor Projekt 2015/DegnLyster-bach
-elor/Systemdiagram.png>] <../Actors.png, id=25, 318.9516pt x 206.9331pt>
-File: ../Actors.png Graphic file (type png)
-
-<use ../Actors.png>
-Package pdftex.def Info: ../Actors.png used on input line 42.
-(pdftex.def)             Requested size: 272.99881pt x 177.1254pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 47--62
-
- []
-
+]
 File: ASE_logo.png Graphic file (type png)
-<use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 69.
+ <use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 47.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2547,8 +2554,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4 <C:/Users/DGen/Documents/Skole/Semester7/Bachelor Projekt 2015/DegnLyster-ba
-chelor/Actors.png>])
+[4])
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
 Package pdftex.def Info: ASE_logo.png used on input line 64.
@@ -2562,14 +2568,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [5]
 ("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
-elor\Analyse\analyse.bbl"
-
-Package natbib Warning: Empty `thebibliography' environment on input line 3.
-
-)
+elor\Analyse\starburstanalyse.tex")
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 67.
+Package pdftex.def Info: ASE_logo.png used on input line 65.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2580,33 +2582,77 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [6
 
+
+]
+("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
+elor\Analyse\overvejelser.tex")
+File: ASE_logo.png Graphic file (type png)
+ <use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 66.
+(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 19.85004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[7
+
+
+]
+("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
+elor\Analyse\analyse.bbl"
+
+Package natbib Warning: Empty `thebibliography' environment on input line 3.
+
+)
+File: ASE_logo.png Graphic file (type png)
+ <use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 69.
+(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 19.85004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[8
+
 ]
 ("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
 elor\Analyse\analyse.aux"
 ("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
 elor\Analyse\formaal.aux")
 ("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
-elor\Analyse\systemoversigt.aux")) ) 
+elor\Analyse\systemoversigt.aux")
+("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
+elor\Analyse\starburstanalyse.aux")
+("C:\Users\DGen\Documents\Skole\Semester7\Bachelor Projekt 2015\DegnLyster-bach
+elor\Analyse\overvejelser.aux"))
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 16748 strings out of 493921
- 332563 string characters out of 3147285
- 366947 words of memory out of 3000000
- 19664 multiletter control sequences out of 15000+200000
- 68138 words of font info for 57 fonts, out of 3000000 for 9000
+ 16822 strings out of 493921
+ 334555 string characters out of 3147285
+ 369947 words of memory out of 3000000
+ 19707 multiletter control sequences out of 15000+200000
+ 99103 words of font info for 88 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 76i,16n,106p,10420b,705s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/Program Files/MiKTeX 2.9/fonts/enc/dvip
-s/lm/lm-rm.enc}{D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{D:/Pr
-ogram Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}<D:/Program Files/MiKTe
-X 2.9/fonts/type1/public/lm/lmbx12.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1
-/public/lm/lmr10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12.p
-fb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><D:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><D:/Program Files/MiKTeX 2.9/fonts
-/type1/public/lm/lmri12.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
-lmsy10.pfb>
-Output written on analyse.pdf (7 pages, 248361 bytes).
+ 76i,16n,106p,10420b,704s stack positions out of 5000i,500n,10000p,200000b,50000s
+{D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<D:/Program Files/M
+iKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><D:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/lm/lmr10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr
+12.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><D:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/lm/lmr7.pfb><D:/Program Files/MiKTeX 2.9/f
+onts/type1/public/lm/lmr8.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/l
+m/lmtt12.pfb>
+Output written on analyse.pdf (9 pages, 220564 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
+ 64 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -2,16 +2,5 @@
 \begin{document}
 	
 \section{Formål}
-Dette dokument har med formål at definere de forskellige krav til systemet Real-time eye-tracking. 
-Systemet består af et computerprogram, der ved hjælp af input fra et kamera, skal kunne detektere hvor på en skærm en testperson kigger. Resultaterne af denne måling skal resultere i et XY-koordinat med timestamp for hver måling med ønsket frekvens.
-Computerprogrammet skal være let tilgængeligt. Det skal indeholde en række muligheder for tilpasning til brugerens ønsker. Dette indbefatter mulighed for ændring af algoritme, kamerainput m.m. 
-
-\subsection{Ordforklaring}
-\begin{itemize}
-	\item \textbf{Session}: Dette term bliver brugt om en real-time eye-tracking måling foretaget af i programmet. Sessionen beskriver det enkelte målingsforløb fra start til slut (inklusiv pauser). Til hver session vil der være tilknyttet en seperat data-fil. 
-	\item \textbf{Data-fil}: Dette er den fil der vil blive tilknyttet til hver session. Filen vil forventes at indeholde al relevant data i forbindelse med real-time eye-tracking måling. Filen vil blive kreeret af programmet og vil være tilgængelig til brugeren. 
-	\item \textbf{Testperson}: Det er denne person der foretages real-time eye-tracking på. Personen er sammen med brugeren en del af kalibreringsrutinen. Denne person ses ikke som aktør i systemet. 
-	\item \textbf{Trigger}: For at kunne holde en synkronisering imellem real-time eye-tracking softwaren og andre målinger (EEG), er der givet et trigger-signal. Dette signal består af en ændring af lys-intensitet. 
-\end{itemize} 
-
+Det følgende afsnit beskriver analyseprocessen i projektforløbet. Formålet med denne analyse er at skabe et teoretisk fundament som kan anvendes i design og implementeringsfaserne af projektet. Fundamentet bygger på en kombination af gennemgang og simulering af det kode som projektet tager udgangspunkt i, og derudover en undersøgelse af eksisterende metoder til eyetracking og sammenligning af performance\footnote{Performance med henblik på processeringstid, eventuelt også præcision+nøjagtighed}. Sidst men ikke mindst undersøges også om en Python-baseret platform er en fornuftig løsning, og i så fald hvorfor. (Tilføjelser?).
 \end{document}

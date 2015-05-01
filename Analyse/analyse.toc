@@ -1,7 +1,29 @@
 \select@language {danish}
 \contentsline {section}{\numberline {1}Form\IeC {\r a}l}{2}
-\contentsline {subsection}{\numberline {1.1}Ordforklaring}{2}
-\contentsline {section}{\numberline {2}Generel beskrivelse}{3}
-\contentsline {subsection}{\numberline {2.1}Systembeskrivelse}{3}
-\contentsline {subsection}{\numberline {2.2}Akt\IeC {\o }rer}{4}
-\contentsline {subsection}{\numberline {2.3}Systemets begr\IeC {\ae }nsninger}{4}
+\contentsline {section}{\numberline {2}Systemoversigt}{3}
+\contentsline {subsection}{\numberline {2.1}Algoritme Oversigt}{3}
+\contentsline {subsubsection}{\numberline {2.1.1}Calculate pupil and gaze}{3}
+\contentsline {subsubsection}{\numberline {2.1.2}Locate corneal reflection}{4}
+\contentsline {subsubsection}{\numberline {2.1.3}Starburst pupil contour detection}{4}
+\contentsline {subsubsection}{\numberline {2.1.4}Locate Edge Points}{4}
+\contentsline {subsubsection}{\numberline {2.1.5}Fit ellipse ransac}{4}
+\contentsline {subsection}{\numberline {2.2}Fokuspunkter}{4}
+\contentsline {subsubsection}{\numberline {2.2.1}Kantdetektion}{4}
+\contentsline {subsubsection}{\numberline {2.2.2}Ellipse Tilpasning}{4}
+\contentsline {subsubsection}{\numberline {2.2.3}Kegleparametre til Ellipseparametre}{5}
+\contentsline {subsubsection}{\numberline {2.2.4}Kamera Input}{5}
+\contentsline {section}{\numberline {3}Starburst Analyse}{6}
+\contentsline {subsection}{\numberline {3.1}Simulering}{6}
+\contentsline {subsubsection}{\numberline {3.1.1}Extract gaze vector from video}{6}
+\contentsline {subsubsection}{\numberline {3.1.2}Variabel \IeC {\AE }ndringer}{6}
+\contentsline {subsubsection}{\numberline {3.1.3}Resultater}{6}
+\contentsline {section}{\numberline {4}Overvejelser ang\IeC {\r a}ende systemkrav}{7}
+\contentsline {subsection}{\numberline {4.1}Funktionelle krav}{7}
+\contentsline {subsubsection}{\numberline {4.1.1}Real-time eye-tracking}{7}
+\contentsline {subsubsection}{\numberline {4.1.2}Kalibrering}{7}
+\contentsline {subsubsection}{\numberline {4.1.3}Output}{7}
+\contentsline {subsubsection}{\numberline {4.1.4}Brugertilgang}{7}
+\contentsline {subsection}{\numberline {4.2}Ikke-funktionelle krav}{7}
+\contentsline {subsubsection}{\numberline {4.2.1}Fejlmargin}{7}
+\contentsline {subsubsection}{\numberline {4.2.2}Real-time}{7}
+\contentsline {subsection}{\numberline {4.3}Overvejelser ang\IeC {\r a}ende kodesprog}{7}
