@@ -21,28 +21,29 @@ def convert_conic_parameters_to_ellipse_parameters(c):
     val = np.dot(np.dot(np.transpose(t),T),t)
     scale_inv = val-c[5]
 
-    a = np.sqrt(scale_inv/(ap))
+    a = np.sqrt(scale_inv/(ap+0.J))
     #bs = np.array([scale_inv/(cp+0.J)])
-    b = np.sqrt(scale_inv/(cp))
-    print(a)
-    print(b)
+    b = np.sqrt(scale_inv/(cp+0.J))
+    #print(a)
+    #print(b)
 
     e = np.array([a, b, cx, cy, theta])
     #if all(np.isreal(e[i]) is not True for i in e):
     #if np.isreal(e).all() is not True:
-    if np.isrealobj(e) is not True:
+    if np.all(np.isreal(e)):
+        return e
+    else:
         e = np.array([0,0,0,0,0])
-     
-    return e
+        return e
 
 def denormalize_ellipse_parameters(ne,Hn):
     e = np.empty_like(ne)
     #print(e)
-    e[0] = [ne[0]/Hn[0,0]]
-    e[1] = [ne[1]/Hn[1,1]]
-    e[2] = [(ne[2] -Hn[0,2])/Hn[0,0]]
-    e[3] = [(ne[3] -Hn[1,2])/Hn[2,2]]
-    e[4] = [ne[4]]
+    e[0] = ne[0]/Hn[0,0]
+    e[1] = ne[1]/Hn[1,1]
+    e[2] = (ne[2] -Hn[0,2])/Hn[0,0]
+    e[3] = (ne[3] -Hn[1,2])/Hn[2,2]
+    e[4] = ne[4]
     
     return e 
 
@@ -55,8 +56,8 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
     N = float('inf')
     ransac_iter = 0
 
-    if x.all() and y.all() is not True:
-        return
+    #if x.all() and y.all() is not True:
+    #    return
 
     ep_num = len(x)
     if ep_num < 5:
@@ -76,16 +77,17 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
     random_or_adaptive = 0
 
     ep = np.transpose(np.array([[nx],[ny],[np.ones(nx.size)]]))
-    print(ep)
     while (N > ransac_iter):
         if random_or_adaptive is 0:
-            needed = 5
-            available = ep_num
+            needed = np.float(5)
+            available = np.float(ep_num)
             random_indices = np.zeros((needed, 1),dtype = np.int)
 
-            while (needed is not 0):
-                if np.random.random(1) < needed / available:
-                    random_indices[needed-1] = available
+            while needed > 0:
+                rand = np.random.random(1)
+                #print(str(rand) + " < " + str(needed) + " / " + str(available) + " = " + str(needed/available))
+                if rand < (needed / available):
+                    random_indices[needed-1] = available-1
                     needed -= 1
                 available -= 1
             
@@ -116,14 +118,14 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
 
         random_or_adaptive = 0
         if ninliers > max_inliers:
-            nellipse_par = convert_conic_parameters_to_ellipse_parameters(nconic_par)
+            nellipse_par = convert_conic_parameters_to_ellipse_parameters(nconic_par).real
             if nellipse_par[0].all() > 0 and nellipse_par[1].all() > 0:
                 ellipse_par = denormalize_ellipse_parameters(nellipse_par,H)
                 er = np.divide(ellipse_par[0],ellipse_par[1])
               
 
                 if target_ellipse_radius and diviation is not 0:
-                    if (er.all() > 0.75 and er.all() < 1.34 and np.divide(ellipse_par[0],target_ellipse_radius).all() < diviation
+                    if (er > 0.75 and er < 4 and np.divide(ellipse_par[0],target_ellipse_radius).all() < diviation
                         and np.divide(ellipse_par[0],target_ellipse_radius).all() > 1/diviation 
                         and np.divide(ellipse_par[1],target_ellipse_radius).all() < diviation
                         and np.divide(ellipse_par[1],target_ellipse_radius).all() > 1/diviation):
@@ -132,7 +134,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
                         max_ellipse = ellipse_par
                         N = np.log(1-0.99)/np.log(1-np.power((ninliers/ep_num),5)+np.spacing(1))
                         random_or_adaptive = 1
-                    elif er.all() > 0.75 and er < 1.34.all():
+                    elif er > 0.75 and er < 4:
                         max_inliers = ninliers
                         max_inlier_indices = inliers_index
                         max_ellipse = ellipse_par
@@ -159,6 +161,117 @@ edge_point = []
 edge_intensity_diff = []
 p = [0, 0]
 edge = [0, 0]
+
+def startbust_pupil_contour_detection_siboska (I, cx, cy, pupil_edge_thresh, N, minimum_candidate_features):
+    height = np.size(I,0)
+    width = np.size(I,1)
+    dis = 1
+    angle_spread = 180*np.pi/180
+
+    loop_count = 0
+    tcx[loop_count+1] = np.array(cx)
+    tcy[loop_count+1] = np.array(cy)
+    edge_thresh = pupil_edge_thresh
+    angle_step = 2*np.pi/N
+    minEdgeThresh = 5
+
+    while edge_thresh > minEdgeThresh and loop_count <= 20:
+        epx = []
+        epy = []
+        while len(epx) < minimum_candidate_features and edge_thresh > minEdgeThresh:
+            epx, epy, epd = locate_edge_points_siboska(I, cx, cy, dis, angle_step, 0, 2*np.pi, edge_thresh, Reflections)
+            tepx1, tepy1, tepd1 = locate_edge_points_siboska(I, Reflections[0,0], Reflections[1,0], dis, angle_step, 0, 2*np.pi, edge_thresh, Reflections)
+            tepx2, tepy2, tepd2 = locate_edge_points_siboska(I, Reflections[0,1], Reflections[1,1], dis, angle_step, 0, 2*np.pi, edge_thresh, Reflections)
+            epx = [epx, tepx1, tepx2]
+            epy = [epy, tepy1, tepy2]
+            epd = [epd, tepd1, tepd2]
+            if len(epx) < minimum_candidate_features:
+                edge_thresh = edge_thresh - 1
+            if edge_thresh <= minEdgeThresh:
+                break
+        for i in range(1, len(epx)):
+            texp, tepy, tepd = locate_edge_points_siboska( I, epx[i], epy[i], dis, angle_step*(edge_thresh/epd[i]), angle_normal[i], angle_spread, edge_thresh, Reflections)
+            epx = np.array([epx, tepx])
+            epy = np.array([epy, tepy])
+
+        loop_count = loop_count + 1
+        tcx[loop_count +1] = np.mean(epx)
+        tcy[loop_count +1] = np.mean(epy)
+        if np.abs(tcx[loop_count+1]-cx) + np.abs(tcy[loop_count+1]-cy) < 10:
+            break
+        cx = tcx[loop_count+1]
+        cy = tcy[loop_count+1]
+
+    if loop_count > 20:
+        print("wolololololo")
+
+    if edge_thresh <= minEdgeThresh:
+        print("ohohohoooh oho ooohoo")
+
+def locate_edge_points_siboska(I, cx, cy, dis, angle_step, angle_normal, angle_spread, edge_thresh, Reflections):
+    height = np.size(I,0)
+    width = np.size(I,1)
+    epx = []
+    epy = []
+    dir = []
+    ep_num = 0
+    p = np.zeros(4,2)
+
+    reflectionKeepout = 1.5*np.size(Reflections)
+    reflectionX = Reflections[0,:]
+    reflectionY = Reflections[1,:]
+    reflectionXmax = reflectionX + reflectionKeepout
+    reflectionXmin = reflectionX - reflectionKeepout
+    reflectionYmax = reflectionY + reflectionKeepout
+    reflectionYmin = reflectionY - reflectionKeepout
+
+    for angle in range(angle_normal-angle_spred/2+0.0001, angle_normal+angle_spread/2, angle_step):
+        step = 2
+        p[1,:] = [np.round(cx+dis*np.cos(angle)), np.round(cy,dis*np.sin(angle))]
+        if p[1,1] > height or p[1,1] < 1 or p[1,0] > width or p[1,0] < 1:
+            continue
+        while 1:
+            p[0,:] = [np.round(cx+step*dis*np.cos(angle)), np.round(cy+step*dis*np.sin(angle))]
+            if p[0,1] > height or p[0,1] < 1 or p[0,0] > width or p[0,0] < 1:
+                break
+            if ((p[0,0] <= reflectionXmax[0] and  p[0,0] >= reflectionXmin[0] and p[0,1] <= reflectionYmax[0] and p[0,1] >= reflectionYmin[0]) or
+                 (p[0,0] <= reflectionXmax[1] and  p[0,0] >= reflectionXmin[1] and p[0,1] <= reflectionYmax[1] and p[0,1] >= reflectionYmin[1])):
+                if ((p[1,0] > reflectionXmax[0] or p[1,0] < reflectionXmin[0] or p[1,1] > reflectionYmax[0] or p[1,1] < reflectionYmin[0] or 
+                     (p[1,0] > reflectionXmax[1] or p[1,0] < reflectionXmin[1] or p[1,1] > reflectionYmax[1] or p[1,1] < reflectionYmin[1]))):
+                        break
+            else:
+                d = (I[p[0,1], p[0,0]]) - (I[p[1,1],p[1,0]]) * 2 * np.square((255-I[p[1,1],p[1,0]])/255)
+                if p[2,0] is not 0:
+                    d2 = (I[p[0,1], p[0,0]]) - (I[p[2,1],p[2,0]]) * 2 * np.square((255-I[p[2,1],p[2,0]])/255)
+                else:
+                    d2 = 0
+                if p[3,0] is not 0:
+                    d3 = (I[p[0,1], p[0,0]]) - (I[p[3,1],p[3,0]]) * 2 * np.square((255-I[p[3,1],p[3,0]])/255)
+                else: 
+                    d3 = 0
+                if d >= edge_thresh:
+                    ep_num = ep_num+1
+                    epx[ep_num] = (p[0,0] + p[1,0])/2
+                    epy[ep_num] = (p[0,1] + p[1,1])/2
+                    dir[ep_num] = d
+                    break
+                elif d2 >= edge_thresh:
+                    ep_num = ep_num+1
+                    epx[ep_num] = (p[0,0] + p[2,0])/2
+                    epy[ep_num] = (p[0,1] + p[2,1])/2
+                    dir[ep_num] = d2
+                    break
+                elif d3 >= edge_thresh:
+                    ep_num = ep_num+1
+                    epx[ep_num] = (p[0,0] + p[3,0])/2
+                    epy[ep_num] = (p[0,1] + p[3,1])/2
+                    dir[ep_num] = d3
+                    break
+        p[3,:] = p[2,:]
+        p[2,:] = p[1,:]
+        p[1,:] = p[0,:]
+        step = step+1
+    return epx, epy, dir
 
 def starburst_pupil_contour_detection (pupil_image, width, height, edge_thresh, N, minimum_candidate_features):
 
@@ -567,7 +680,7 @@ def ellipse_direct_fit(xy):
     #print(S3)
 
     #T = np.dot(-np.linalg.inv(S3),np.transpose(S2))
-    T = -np.dot(np.linalg.inv(S3),S2.T)
+    T = np.dot(-np.linalg.inv(S3),S2.T)
     M = S1 + np.dot(S2,T)
     Mm = np.array([[M[2,:]/2],[-M[1,:]],[M[0,:]/2]])
     eval, evec = np.linalg.eig(Mm)
@@ -594,8 +707,12 @@ ecy = np.array(np.empty_like(ecx))
 for x in range(0, len(ec)):
     ecx[x] = ec[x][0]
     ecy[x] = ec[x][1]
+    ### test 
+#ecx = np.array([20.5,22.5,23.5,25.5,27,29,32.5,34.5,35.5,43,33,30,27,24.5,22.5,21.5,21,21,22.5,23,30.5,34.5,21,21,23,26.5,27.5,32.5,33.5,25,22,26.5,28,34.5,23,21.5,28,34.5,25,22.5,20.5,32.5,34.5,23.5,21.5,20.5,25,34.5,33.5,23,20.5,20.5,25,24.5,35,34.5,34.5,34,33.5,33.5,22.5,21,20.5,20.5,21.5,25,28.5,28.5,28.5,28.5,28.5,28.5,28.5,35,35,22.5,24.5,30.5,33.5,35,34,33,31,29.5,25.5,21.5,34.5,28.5,28.5,29,29.5,29.5,29.5,42.5,41.5,39.5,39.5,41,42,42.5,43,27.5,31,31,30.5,29.5,29.5,28.5,23.5,24.5,24.5,24.5,24.5,23.5,23,23,21.5,20.5,20.5,20.5,21.5,22,23.5,24.5,24.5,25.5,26,28.5,29,30,31,32,33,33,34,34,35,35,35.5,36,36.5,36.5,36.5,24.5,24,24.5,23,21.5,24.5,29,33,35,36.5,24.5,23.5,24.5,23.5,20.5,21.5,22.5,24.5,27,29.5,32,34.5,34.5,36.5,48,48,23,23.5,22,21.5,23,26,20.5,19.5,20.5,21.5,23.5,26,28.5])
+#ecy = np.array([27,25.5,23.5,22.5,22,22,21.5,24,27,33.5,33,34.5,34,33,31.5,29,25,25,24,24.5,21.5,23,28.5,28.5,24,20.5,21.5,22,26,33.5,29,20.5,21.5,24,31.5,28.5,21.5,23,33.5,29,26.5,22,24,32.5,29.5,27,22.5,24,25.5,30,28.5,26,22.5,21.5,24,24.5,24.5,24.5,24.5,25.5,29.5,28.5,27.5,25.5,24,22.5,21.5,21.5,21.5,21.5,21.5,21,21,25.5,25.5,25,21.5,21.5,22.5,36.5,36.5,34.5,34.5,34.5,35.5,24.5,26.5,25.5,25.5,25,25,25,25,35,35,34.5,34,32.5,32.5,32.5,32,38.5,34.5,34.5,34.5,34.5,34.5,34.5,35.5,34.5,34,33,33,32,31,30.5,29,27.5,26,25.5,24.5,23.5,23.5,23,21.5,20.5,20.5,22,22,21.5,21.5,21.5,22.5,22.5,26.5,26.5,26.5,26.5,27.5,27.5,27.5,28.5,28.5,36.5,35,33,30.5,24.5,21.5,22,22.5,26.5,29,34,33,33,31.5,27.5,26,23.5,21.5,22,21.5,21.5,22.5,26.5,27.5,25.5,30,32.5,32,30,26,24,20.5,29.5,26.5,25.5,23.5,24.5,20.5,22])
+
 ellipse, inliers, ransac_iter = fit_ellipse_ransac(ecx, ecy, 5000, 10, 1.5)
-if len(ellipse) is 0 or ransac_iter >= 10000:
+if len(ellipse) is 0 or ransac_iter >= 5000:
     print("No ellipse found")
 else:
     c = ellipse_direct_fit(np.array([np.transpose(ecx[inliers]),np.transpose(ecy[inliers])]))
