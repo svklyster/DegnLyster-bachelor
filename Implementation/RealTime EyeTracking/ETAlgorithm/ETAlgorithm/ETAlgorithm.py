@@ -7,6 +7,7 @@ from matplotlib import pyplot as plt
 # ransac funtion, go!
 
 def convert_conic_parameters_to_ellipse_parameters(c):
+    print (c) 
     theta = np.arctan2(c[1], c[0]-c[2])/2
     ct = np.cos(theta)
     st = np.sin(theta)
@@ -18,7 +19,8 @@ def convert_conic_parameters_to_ellipse_parameters(c):
     cx = t[0]
     cy = t[1]
 
-    val = np.transpose(t)*T*t
+    #val = np.transpose(t)*T*t
+    val = np.dot(np.dot(t.T,T),t)
     scale_inv = val-c[5]
 
     a = np.sqrt(scale_inv/(ap+0.J))
@@ -45,6 +47,15 @@ def denormalize_ellipse_parameters(ne,Hn):
     return e 
 
 def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, diviation):
+    
+    print ("\n x : \n")
+    print( x)
+    print ("\n y : \n")
+    print (y)
+    #print ("Max : \n" + maximum_ransac_iterations + '\n')
+    #print ("Radius : \n" + target_ellipse_radius + '\n')
+    #print ("Diviation : \n" + diviation + '\n')
+
     max_inliers = 0
     max_inlier_indices = []
     max_ellipse = []
