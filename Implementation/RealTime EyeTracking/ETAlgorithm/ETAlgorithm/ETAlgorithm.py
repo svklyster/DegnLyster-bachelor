@@ -531,14 +531,37 @@ def ellipse_direct_fit(xy):
     #centroid = np.mean(xy)
     
 
-    centroid = np.array([np.mean(xy[0,:]),np.mean(xy[1,:])])
+    #centroid = np.array([np.mean(xy[0,:]),np.mean(xy[1,:])])
+    print ("------- \n")
+    print (xy)
 
-    D1 = np.array([np.square(xy[0,:]-centroid[0]), (xy[0,:]-centroid[0])*(xy[1,:]-centroid[1]),
-                   np.square(xy[1,:]-centroid[1])])
-    D2 = np.array([xy[0,:]-centroid[0], xy[1,:]-centroid[1], np.ones(np.shape(xy))])
-    S1 = np.dot(np.transpose(D1),D1)
-    S2 = np.dot(np.transpose(D1),D2)
-    S3 = np.dot(np.transpose(D2),D2)
+    centroid = np.mean(xy, axis = 0)
+    print (centroid)
+
+
+    print(xy[:,0])
+    print(xy[:,1])
+
+    D1 = np.array([np.square(xy[:,0]-centroid[0]), (xy[:,0]-centroid[0])*(xy[:,1]-centroid[1]),
+                   np.square(xy[:,1]-centroid[1])])
+    D2 = np.array([xy[:,0]-centroid[0], xy[:,1]-centroid[1], np.ones((np.size(xy, axis = 0),1))])
+    #S1 = np.dot(np.transpose(D1),D1)
+    #S2 = np.dot(np.transpose(D1),D2)
+    #S3 = np.dot(np.transpose(D2),D2)
+    #S1 = np.transpose(D1)*D1
+    #S2 = np.transpose(D1)*D2
+    #S3 = np.transpose(D2)*D2
+    print('\n')
+    print(D1)
+    print('\n')
+    print(D1.T)
+    S1 = np.outer(D1.T,D1)
+    S2 = np.outer(D1.T,D2)
+    S3 = np.outer(D2.T,D2)
+
+    #Test med matlab værdier
+
+
     T = np.dot(-np.linalg.inv(S3),np.transpose(S2))
     M = S1 + np.dot(S2,T)
     Mm = np.array([[M[2,:]/2],[-M[1,:]],[M[0,:]/2]])
