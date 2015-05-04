@@ -157,14 +157,14 @@ pupil_edge_thresh = np.int16(6)
 pupil_param = np.zeros(5)
 edge_point = []
 edge_intensity_diff = []
-p = []
-edge = []
+p = [0, 0]
+edge = [0, 0]
 
 def starburst_pupil_contour_detection (pupil_image, width, height, edge_thresh, N, minimum_candidate_features):
 
     global start_point, inliers_num, angle_step, pupil_edge_thresh, pupil_param, edge_point, edge_intensity_diff
     dis = np.int16(7)
-    angle_spread = np.float64(100*3.1415926535897932384626433832795/180)
+    angle_spread = np.float64(180*3.1415926535897932384626433832795/180)
     loop_count = np.int16(0)
     angle_step = np.float64(2*3.1415926535897932384626433832795/N)
     new_angle_step = np.float64(0)
@@ -197,13 +197,13 @@ def starburst_pupil_contour_detection (pupil_image, width, height, edge_thresh, 
         print(edge_intensity_diff)
         first_ep_num = len(edge_point)
         #print(edge_point)
-        for i in range(1, first_ep_num):
+        for i in range(0, first_ep_num):
             edge = edge_point[i]
-            cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
+            cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
             
             angle_normal = np.arctan2(cy-edge[1], cx-edge[0])
             new_angle_step = angle_step*(edge_thresh*1.0/edge_intensity_diff[i])
-            locate_edge_points(pupil_image, width, height, edge[0], edge[1], 2, new_angle_step, angle_normal, angle_spread, edge_thresh)
+            locate_edge_points(pupil_image, width, height, edge[0], edge[1], 4, new_angle_step, angle_normal, angle_spread, edge_thresh)
 
         print(edge_point)
 
@@ -588,7 +588,7 @@ def ellipse_direct_fit(xy):
 
 image = cv2.imread('singletest.png', 0)
 #print(image[66,116])
-ec = starburst_pupil_contour_detection (image, 239, 136, 20, 6, 6)
+ec = starburst_pupil_contour_detection (image, 239, 136, 20, 10, 6)
 ecx = np.array(np.empty(len(ec)))
 ecy = np.array(np.empty_like(ecx))
 for x in range(0, len(ec)):
