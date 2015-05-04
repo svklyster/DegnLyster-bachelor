@@ -543,26 +543,24 @@ def ellipse_direct_fit(xy):
     print(xy[:,1])
 
     D1 = np.array([np.square(xy[:,0]-centroid[0]), (xy[:,0]-centroid[0])*(xy[:,1]-centroid[1]),
-                   np.square(xy[:,1]-centroid[1])])
-    D2 = np.array([xy[:,0]-centroid[0], xy[:,1]-centroid[1], np.ones((np.size(xy, axis = 0),1))])
+                   np.square(xy[:,1]-centroid[1])]).T
+    D2 = np.array([xy[:,0]-centroid[0], xy[:,1]-centroid[1], np.ones((np.size(xy, axis = 0),1))]).T
     #S1 = np.dot(np.transpose(D1),D1)
     #S2 = np.dot(np.transpose(D1),D2)
     #S3 = np.dot(np.transpose(D2),D2)
     #S1 = np.transpose(D1)*D1
     #S2 = np.transpose(D1)*D2
     #S3 = np.transpose(D2)*D2
-    print('\n')
-    print(D1)
-    print('\n')
-    print(D1.T)
-    S1 = np.outer(D1.T,D1)
-    S2 = np.outer(D1.T,D2)
-    S3 = np.outer(D2.T,D2)
+    
+    S1 = np.dot(D1.T,D1)
+    print(S1)
+    S2 = np.dot(D1.T,D2)
+    print(S2)
+    S3 = np.dot(D2.T,D2)
+    print(S3)
 
-    #Test med matlab værdier
-
-
-    T = np.dot(-np.linalg.inv(S3),np.transpose(S2))
+    #T = np.dot(-np.linalg.inv(S3),np.transpose(S2))
+    T = -np.dot(np.linalg.inv(S3),S2.T)
     M = S1 + np.dot(S2,T)
     Mm = np.array([[M[2,:]/2],[-M[1,:]],[M[0,:]/2]])
     eval, evec = np.linalg.eig(Mm)
