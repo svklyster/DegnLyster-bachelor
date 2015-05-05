@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ProfilingTarget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectTarget>
+    <TargetProject>57b7393b-dd1e-401a-a568-b5b6eff4a54f</TargetProject>
+    <FriendlyName>ETAlgorithm</FriendlyName>
+  </ProjectTarget>
+  <Reports>
+    <Report>
+      <Filename>C:\Users\Søren Lyster\AppData\Local\Temp\ETAlgorithm2_20150505.vsp</Filename>
+    </Report>
+  </Reports>
+</ProfilingTarget>

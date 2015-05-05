@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import math
-from matplotlib import pyplot as plt
+#from matplotlib import pyplot as plt
 import sys
 
 
@@ -68,7 +68,9 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
 
 #    if x.all() and y.all() is not True:
 #         return
-   
+    #x = np.array([5,4,3,4,5,4,3,4,5])
+    #y = np.array([4,5,4,3,4,3,4,5,4])
+    
     ep_num = len(x)
     if ep_num < 5:
         print("Too few feature points")
@@ -122,7 +124,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
         #vam = vas[0]
         #van = vas[1]
         vam, van = va.shape 
-        nconic_par = va[:,-1]
+        nconic_par = va[-1,:]
         nconic_matrix = np.array([[nconic_par[0], nconic_par[1]/2, nconic_par[3]/2],
                                  [nconic_par[1]/2, nconic_par[2], nconic_par[4]/2],
                                  [nconic_par[3]/2, nconic_par[4]/2, nconic_par[5]]])
@@ -140,7 +142,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
             if nellipse_par[0].all() > 0 and nellipse_par[1].all() > 0:
                 ellipse_par = denormalize_ellipse_parameters(nellipse_par,H)
                 er = np.divide(ellipse_par[0],ellipse_par[1]).real
-                print(er)
+                #print(er)
                 #er = ellipse_par[0] / ellipse_par[1]
                 #print(ellipse_par[0])
                 #print(ellipse_par[1])
@@ -308,7 +310,7 @@ def fit_circle_radius_to_corneal_reflection (imagePntr, crx, cry, crar, biggest_
     #print(crx)
     #print(cry)
     #print(crar)
-    crar = 8
+    crar = 11
     if (crx == -1 or cry == -1 or crar == -1):
         return -1;
 
@@ -460,7 +462,7 @@ def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, edge_
         destroy_edge_point()
         sys.exit('Error! Adaptive threshold too low')
         return;
-    print(np.size(edge_point))
+    #print(np.size(edge_point))
     ec = edge_point
     #cv2.imshow('circleimage', circleimage)
     #cv2.waitKey(0)
@@ -852,8 +854,8 @@ for (x,y,w,h) in eyes:
     #cv2.circle(roi_gray, (crx, cry), crr, (255,255,255), 1)
     #cv2.line(roi_gray, (crx-5, cry), (crx+5, cry), (255,255,255), 1)
     #cv2.line(roi_gray, (crx, cry-5), (crx, cry+5), (255,255,255), 1)
-    cv2.imshow('image', roi_gray)
-    cv2.waitKey(0)
+    #cv2.imshow('image', roi_gray)
+    #cv2.waitKey(0)
 
 
     ec = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 7, 10, 4)
@@ -872,9 +874,9 @@ for (x,y,w,h) in eyes:
         e_angle = int(ellipse[4]).real*57.2957795 
         e_center = (ellipse[2],ellipse[3])
         e_axes = (ellipse[0],ellipse[1])
-        cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
-        cv2.imshow('Ellipse', roi_gray)
-        cv2.waitKey(0)
+        #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
+        #cv2.imshow('Ellipse', roi_gray)
+        #cv2.waitKey(0)
 #        cv2.rectangle(image,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
 #cv2.imshow('image', image)
 #cv2.waitKey(0)        
