@@ -194,8 +194,8 @@ def starburst_pupil_contour_detection (pupil_image, width, height, edge_thresh, 
     angle_step = np.float64(2*3.1415926535897932384626433832795/N)
     new_angle_step = np.float64(0)
     angle_normal = np.float64(0)
-    cx = np.float64(116)
-    cy = np.float64(66)
+    cx = np.float64(55)
+    cy = np.float64(55)
     first_ep_num = np.int16(0)
     circleimage = cv2.imread('singletest.png',0)
 
@@ -211,7 +211,7 @@ def starburst_pupil_contour_detection (pupil_image, width, height, edge_thresh, 
             #print(edge_intensity_diff)
             #edge_intensity_diff = [(0)]
             #destroy_edge_point()
-            locate_edge_points(pupil_image, width, height, 116, 66, 4, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh)
+            locate_edge_points(pupil_image, width, height, 55, 55, 4, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh)
             #print(edge_point)
             if (len(edge_point) < minimum_candidate_features):
                 print('reduced threshold')
@@ -624,8 +624,12 @@ def ellipse_direct_fit(xy):
 
 
 image = cv2.imread('singletest.png', 0)
+imH = np.size(image, 0)
+print(imH)
+imW = np.size(image, 1)
+print(imW)
 #print(image[66,116])
-ec = starburst_pupil_contour_detection (image, 239, 136, 7, 10, 8)
+ec = starburst_pupil_contour_detection (image, imW, imH, 7, 10, 8)
 print(len(ec))
 ecx = np.array(np.empty(len(ec)))
 ecy = np.array(np.empty_like(ecx))
