@@ -74,10 +74,11 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
     nx = H[0,0]*x+H[0,2]
     ny = H[1,1]*y+H[1,2]
     #return nx, ny
-    dist_thres = np.sqrt(3.84)*H[0]/4
+    dist_thres = np.sqrt(3.84)*H[0,0]/4
     random_or_adaptive = 0
 
-    ep = np.transpose(np.array([[nx],[ny],[np.ones(nx.size)]]))
+    #ep = np.transpose(np.array([[nx],[ny],[np.ones(len(nx))]]))
+    ep = (np.array([nx, ny, np.ones(nx.size)])).T
     #print(ep)
     while (N > ransac_iter):
         if random_or_adaptive is 0:
@@ -116,10 +117,11 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
         nconic_matrix = np.array([[nconic_par[0], nconic_par[1]/2, nconic_par[3]/2],
                                  [nconic_par[1]/2, nconic_par[2], nconic_par[4]/2],
                                  [nconic_par[3]/2, nconic_par[4]/2, nconic_par[5]]])
-        diserr = np.sum((ep*nconic_matrix)*ep, axis=1)
+        #diserr = np.dot(ep,nconic_matrix)
+        diserr = np.sum(np.multiply((np.dot(ep,nconic_matrix)),ep), axis=1)
         #print(diserr)
         #inliers_index = np.transpose(np.flatnonzero(np.abs(diserr) < dist_thres))
-        inliers_index = np.nonzero(np.abs(diserr) < np.transpose(dist_thres))[0]
+        inliers_index = np.nonzero(np.abs(diserr) < np.transpose(dist_thres))
         ninliers = len(inliers_index)
         #print(nconic_par)
         random_or_adaptive = 0
@@ -129,6 +131,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
             if nellipse_par[0].all() > 0 and nellipse_par[1].all() > 0:
                 ellipse_par = denormalize_ellipse_parameters(nellipse_par,H)
                 er = np.divide(ellipse_par[0],ellipse_par[1])
+
                 #er = ellipse_par[0] / ellipse_par[1]
                 #print(ellipse_par[0])
                 #print(ellipse_par[1])
@@ -599,12 +602,8 @@ def ellipse_direct_fit(xy):
     #T = np.dot(-np.linalg.inv(S3),np.transpose(S2))
     T = -np.dot(np.linalg.inv(S3),S2.T)
     M = S1 + np.dot(S2,T)
-<<<<<<< HEAD
     Mm = np.array([M[2,:]/2,-M[1,:],M[0,:]/2])
-=======
-    Mm = np.array([[M[2,:]/2],[-M[1,:]],[M[0,:]/2]])
-    print(Mm)
->>>>>>> origin/master
+
     eval, evec = np.linalg.eig(Mm)
     cond = 4*evec[0,:]*evec[2,:]-np.square(evec[1,:])
     #A1 = evec[:,np.nonzero(cond>0)]
