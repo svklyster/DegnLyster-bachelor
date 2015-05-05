@@ -109,7 +109,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
         vam, van = va.shape 
         nconic_par = va[:,-1]
         nconic_matrix = np.array([[nconic_par[0], nconic_par[1]/2, nconic_par[3]/2],
-                                 [nconic_par[1]/1, nconic_par[2], nconic_par[4]/2],
+                                 [nconic_par[1]/2, nconic_par[2], nconic_par[4]/2],
                                  [nconic_par[3]/2, nconic_par[4]/2, nconic_par[5]]])
         diserr = np.sum((ep*nconic_matrix)*ep, axis=1)
         #inliers_index = np.transpose(np.flatnonzero(np.abs(diserr) < dist_thres))
@@ -682,11 +682,13 @@ def ellipse_direct_fit(xy):
     #T = np.dot(-np.linalg.inv(S3),np.transpose(S2))
     T = np.dot(-np.linalg.inv(S3),S2.T)
     M = S1 + np.dot(S2,T)
-    Mm = np.array([[M[2,:]/2],[-M[1,:]],[M[0,:]/2]])
+    Mm = np.array([M[2,:]/2,-M[1,:],M[0,:]/2])
     eval, evec = np.linalg.eig(Mm)
     cond = 4*evec[0,:]*evec[2,:]-np.square(evec[1,:])
-    A1 = evec[:,np.nonzero(cond>0)]
-    A = np.array([[A1],[T*AI]])
+    #A1 = evec[:,np.nonzero(cond>0)]
+    A1 = evec[:,cond.T>0]
+    #A = np.array([[A1],[np.dot(T,A1)]])
+    A = np.array([A1, np.dot(T,A1)])
     A4 = A[3]-2*A[0]*centroid[0]-A[1]*centroid[1]
     A5 = A[4]-2*A[2]*centroid[1]-A[1]*centroid[0]
     A6 = (A[5]+A[0]*np.square(centroid[0])+A[2]*np.square(centroid[1])
