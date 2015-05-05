@@ -4,7 +4,7 @@ import math
 from matplotlib import pyplot as plt
 import sys
 
-eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+
 # ransac funtion, go!
 
 def convert_conic_parameters_to_ellipse_parameters(c):
@@ -21,7 +21,10 @@ def convert_conic_parameters_to_ellipse_parameters(c):
     #T = np.array([np.transpose([c[0], c[1]/2]),np.transpose([c[1]/2, c[2]])])
     T = np.array((np.transpose([c[0],c[1]/2]), np.transpose([c[1]/2,c[2]])))
     #T.shape = (2,2)
-    t = np.linalg.solve(-(2*T),np.transpose(np.array([c[3],c[4]])))
+    try:
+        t = np.linalg.solve(-(2*T),np.transpose(np.array([c[3],c[4]])))
+    except:
+        pass
     cx = t[0]
     cy = t[1]
 
@@ -614,27 +617,38 @@ def ellipse_direct_fit(xy):
     return A
 
 
-image = cv2.imread('singletest.png', 0)
-imH = np.size(image, 0)
+image = cv2.imread('test.png')
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+  
+eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+eyes = eye_cascade.detectMultiScale(gray, 1.3, 5)
+for (x,y,w,h) in eyes:
+    roi_gray = gray[y:y+h, x:x+w]
+    imH = np.size(roi_gray, 0)
 
-imW = np.size(image, 1)
+    imW = np.size(roi_gray, 1)
 
-ec = starburst_pupil_contour_detection (image, imW, imH, 7, 10, 8)
+    ec = starburst_pupil_contour_detection (roi_gray, imW, imH, 7, 10, 8)
 
-ecx = np.array(np.empty(len(ec)))
-ecy = np.array(np.empty_like(ecx))
-for x in range(0, len(ec)):
-    ecx[x] = ec[x][0]
-    ecy[x] = ec[x][1]
-ellipse, inliers, ransac_iter = fit_ellipse_ransac(ecx, ecy, 1000, 10, 1.5)
-if len(ellipse) is 0 or ransac_iter >= 10000:
-    print("No ellipse found")
-else:
-    c = ellipse_direct_fit(np.array([ecx[inliers], ecy[inliers]]).T)
-    ellipse = convert_conic_parameters_to_ellipse_parameters(c)
-    e_angle = int(ellipse[4]).real*57.2957795 
-    e_center = (ellipse[2],ellipse[3])
-    e_axes = (ellipse[0],ellipse[1])
-    cv2.ellipse(image, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
-    cv2.imshow('circleimage', image)
-    cv2.waitKey(0)
+    ecx = np.array(np.empty(len(ec)))
+    ecy = np.array(np.empty_like(ecx))
+    for x in range(0, len(ec)):
+        ecx[x] = ec[x][0]
+        ecy[x] = ec[x][1]
+    ellipse, inliers, ransac_iter = fit_ellipse_ransac(ecx, ecy, 1000, 10, 1.5)
+    if len(ellipse) is 0 or ransac_iter >= 10000:
+        print("No ellipse found")
+    else:
+        c = ellipse_direct_fit(np.array([ecx[inliers], ecy[inliers]]).T)
+        ellipse = convert_conic_parameters_to_ellipse_parameters(c)
+        e_angle = int(ellipse[4]).real*57.2957795 
+        e_center = (ellipse[2],ellipse[3])
+        e_axes = (ellipse[0],ellipse[1])
+        cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
+        cv2.imshow('circleimage', roi_gray)
+        cv2.waitKey(0)
+#        cv2.rectangle(image,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
+#cv2.imshow('image', image)
+#cv2.waitKey(0)        
+
+
