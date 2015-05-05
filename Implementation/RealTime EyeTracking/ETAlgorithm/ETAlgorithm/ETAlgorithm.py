@@ -2,18 +2,25 @@ import numpy as np
 import cv2
 import math
 from matplotlib import pyplot as plt
+import sys
 
-
+eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 # ransac funtion, go!
 
 def convert_conic_parameters_to_ellipse_parameters(c):
+    try:
+        c.shape = (6,)
+    except:
+        pass
     theta = np.arctan2(c[1], c[0]-c[2])/2
     ct = np.cos(theta)
     st = np.sin(theta)
     ap = c[0]*ct*ct+c[1]*ct*st+c[2]*st*st
     cp = c[0]*st*st-c[1]*ct*st+c[2]*ct*ct
 
-    T = np.array([np.transpose([c[0], c[1]/2]),np.transpose([c[1]/2, c[2]])])
+    #T = np.array([np.transpose([c[0], c[1]/2]),np.transpose([c[1]/2, c[2]])])
+    T = np.array((np.transpose([c[0],c[1]/2]), np.transpose([c[1]/2,c[2]])))
+    #T.shape = (2,2)
     t = np.linalg.solve(-(2*T),np.transpose(np.array([c[3],c[4]])))
     cx = t[0]
     cy = t[1]
@@ -130,7 +137,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
             #print(nellipse_par)
             if nellipse_par[0].all() > 0 and nellipse_par[1].all() > 0:
                 ellipse_par = denormalize_ellipse_parameters(nellipse_par,H)
-                er = np.divide(ellipse_par[0],ellipse_par[1])
+                er = np.divide(ellipse_par[0],ellipse_par[1]).real
 
                 #er = ellipse_par[0] / ellipse_par[1]
                 #print(ellipse_par[0])
@@ -140,9 +147,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
                 if target_ellipse_radius and diviation is not 0:
                     #print('imhere')
                     #print(er)
-                    if (er > 0.75 and er < 1.34):
-                        print('er')
-                        print(er)
+                    #if (er > 0.75 and er < 3.34):
                     #if(np.divide(ellipse_par[0],target_ellipse_radius) < diviation):
                         #print('deviation')
                         #print(np.divide(ellipse_par[0],target_ellipse_radius))
@@ -151,7 +156,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
                         #print(np.divide(ellipse_par[0],target_ellipse_radius))
                     #print(np.divide(ellipse_par[0], target_ellipse_radius))
                     
-                    if (er > 0.75 and er < 1.34 and np.divide(ellipse_par[0],target_ellipse_radius) < diviation
+                    if (er > 0.75 and er < 2 and np.divide(ellipse_par[0],target_ellipse_radius) < diviation
                         and np.divide(ellipse_par[0],target_ellipse_radius) > 1/diviation 
                         and np.divide(ellipse_par[1],target_ellipse_radius) < diviation
                         and np.divide(ellipse_par[1],target_ellipse_radius) > 1/diviation):
@@ -160,7 +165,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
                         max_ellipse = ellipse_par
                         N = np.log(1-0.99)/np.log(1-np.power((ninliers/ep_num),5)+np.spacing(1))
                         random_or_adaptive = 1
-                    elif er > 0.75 and er < 1.34:
+                    elif er > 0.75 and er < 2:
                         max_inliers = ninliers
                         max_inlier_indices = inliers_index
                         max_ellipse = ellipse_par
@@ -237,7 +242,7 @@ def starburst_pupil_contour_detection (pupil_image, width, height, edge_thresh, 
             edge = edge_point[i]
             cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
             
-        print(edge_point)
+        #print(edge_point)
 
         loop_count += 1
         edge_mean = get_edge_mean()
@@ -254,10 +259,10 @@ def starburst_pupil_contour_detection (pupil_image, width, height, edge_thresh, 
         destroy_edge_point()
         print('Error! Adaptive threshold too low')
         return;
-    print(np.size(edge_point))
+    #print(np.size(edge_point))
     ec = edge_point
-    cv2.imshow('circleimage', circleimage)
-    cv2.waitKey(0)
+    #cv2.imshow('circleimage', circleimage)
+    #cv2.waitKey(0)
     return ec
     
     
@@ -568,30 +573,12 @@ def pupil_fitting_inliers(pupil_image, width, height, return_max_inliers_num):
     return max_inliers_index;
 
 def ellipse_direct_fit(xy):
-    #centroid = np.mean(xy)
     
-
-    #centroid = np.array([np.mean(xy[0,:]),np.mean(xy[1,:])])
-    print ("------- \n")
-    print (xy)
-
     centroid = np.mean(xy, axis = 0)
-    print (centroid)
-
-
-    print(xy[:,0])
-    print(xy[:,1])
 
     D1 = np.array([np.square(xy[:,0]-centroid[0]), (xy[:,0]-centroid[0])*(xy[:,1]-centroid[1]),
                    np.square(xy[:,1]-centroid[1])]).T
     D2 = np.array([xy[:,0]-centroid[0], xy[:,1]-centroid[1], np.ones((np.size(xy, axis = 0),1))]).T
-    #S1 = np.dot(np.transpose(D1),D1)
-    #S2 = np.dot(np.transpose(D1),D2)
-    #S3 = np.dot(np.transpose(D2),D2)
-    #S1 = np.transpose(D1)*D1
-    #S2 = np.transpose(D1)*D2
-    #S3 = np.transpose(D2)*D2
-    
     S1 = np.dot(D1.T,D1)
     #print(S1)
     S2 = np.dot(D1.T,D2)
@@ -600,16 +587,21 @@ def ellipse_direct_fit(xy):
     #print(S3)
 
     #T = np.dot(-np.linalg.inv(S3),np.transpose(S2))
-    T = -np.dot(np.linalg.inv(S3),S2.T)
+    try:
+        T = -np.dot(np.linalg.inv(S3),S2.T)
+    except: 
+        sys.exit("Singular value matrix")
     M = S1 + np.dot(S2,T)
     Mm = np.array([M[2,:]/2,-M[1,:],M[0,:]/2])
 
     eval, evec = np.linalg.eig(Mm)
-    cond = 4*evec[0,:]*evec[2,:]-np.square(evec[1,:])
+    cond = np.multiply(4*evec[0,:],evec[2,:])-np.square(evec[1,:])
     #A1 = evec[:,np.nonzero(cond>0)]
     A1 = evec[:,cond.T>0]
     #A = np.array([[A1],[np.dot(T,A1)]])
-    A = np.array([A1, np.dot(T,A1)])
+    #A = np.array([[A1],  [np.dot(T,A1)]])
+    #A = np.concatenate(A1, np.dot(T,A1))
+    A = np.vstack((A1, np.dot(T,A1)))
     A4 = A[3]-2*A[0]*centroid[0]-A[1]*centroid[1]
     A5 = A[4]-2*A[2]*centroid[1]-A[1]*centroid[0]
     A6 = (A[5]+A[0]*np.square(centroid[0])+A[2]*np.square(centroid[1])
@@ -624,12 +616,11 @@ def ellipse_direct_fit(xy):
 
 image = cv2.imread('singletest.png', 0)
 imH = np.size(image, 0)
-print(imH)
+
 imW = np.size(image, 1)
-print(imW)
-#print(image[66,116])
+
 ec = starburst_pupil_contour_detection (image, imW, imH, 7, 10, 8)
-print(len(ec))
+
 ecx = np.array(np.empty(len(ec)))
 ecy = np.array(np.empty_like(ecx))
 for x in range(0, len(ec)):
@@ -639,40 +630,11 @@ ellipse, inliers, ransac_iter = fit_ellipse_ransac(ecx, ecy, 1000, 10, 1.5)
 if len(ellipse) is 0 or ransac_iter >= 10000:
     print("No ellipse found")
 else:
-    c = ellipse_direct_fit(np.array([np.transpose(ecx[inliers]),np.transpose(ecy[inliers])]))
-
-    ellipse = converst_conic_parameters_to_ellipse_parameters(c)
-
-#e_shortAxis = ellipse[0]
-#e_longAxis = ellipse[1]
-#e_centerx = ellipse[2]
-#e_centery = ellipse[3]
-    e_angle = ellipse[4]
-    e_center = np.array([ellipse[2],ellipse[3]])
-    e_axes = np.array([ellipse[0],ellipse[1]])
-
-    image_ellipse = cv2.ellipse(image, e_center, e_axes, e_angel, 0, 360, (0,0,0), 1)
-    cv2.imshow('circleimage', image_ellipse)
+    c = ellipse_direct_fit(np.array([ecx[inliers], ecy[inliers]]).T)
+    ellipse = convert_conic_parameters_to_ellipse_parameters(c)
+    e_angle = int(ellipse[4]).real*57.2957795 
+    e_center = (ellipse[2],ellipse[3])
+    e_axes = (ellipse[0],ellipse[1])
+    cv2.ellipse(image, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
+    cv2.imshow('circleimage', image)
     cv2.waitKey(0)
-                      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
