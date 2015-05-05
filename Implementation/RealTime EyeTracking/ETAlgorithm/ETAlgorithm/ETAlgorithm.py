@@ -8,10 +8,9 @@ import sys
 # ransac funtion, go!
 
 def convert_conic_parameters_to_ellipse_parameters(c):
-    try:
-        c.shape = (6,)
-    except:
-        pass
+    
+    c.shape = (6,)
+   
     theta = np.arctan2(c[1], c[0]-c[2])/2
     ct = np.cos(theta)
     st = np.sin(theta)
@@ -23,7 +22,7 @@ def convert_conic_parameters_to_ellipse_parameters(c):
     #T.shape = (2,2)
     try:
         t = np.linalg.solve(-(2*T),np.transpose(np.array([c[3],c[4]])))
-    except:
+    except np.linalg.linalg.LinAlgError as err:
         pass
     cx = t[0]
     cy = t[1]
@@ -69,7 +68,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
 
 #    if x.all() and y.all() is not True:
 #         return
-
+   
     ep_num = len(x)
     if ep_num < 5:
         print("Too few feature points")
@@ -141,7 +140,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
             if nellipse_par[0].all() > 0 and nellipse_par[1].all() > 0:
                 ellipse_par = denormalize_ellipse_parameters(nellipse_par,H)
                 er = np.divide(ellipse_par[0],ellipse_par[1]).real
-
+                print(er)
                 #er = ellipse_par[0] / ellipse_par[1]
                 #print(ellipse_par[0])
                 #print(ellipse_par[1])
@@ -159,7 +158,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
                         #print(np.divide(ellipse_par[0],target_ellipse_radius))
                     #print(np.divide(ellipse_par[0], target_ellipse_radius))
                     
-                    if (er > 0.75 and er < 2 and np.divide(ellipse_par[0],target_ellipse_radius) < diviation
+                    if (er > 0.75 and er < 1.34 and np.divide(ellipse_par[0],target_ellipse_radius) < diviation
                         and np.divide(ellipse_par[0],target_ellipse_radius) > 1/diviation 
                         and np.divide(ellipse_par[1],target_ellipse_radius) < diviation
                         and np.divide(ellipse_par[1],target_ellipse_radius) > 1/diviation):
@@ -168,7 +167,7 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
                         max_ellipse = ellipse_par
                         N = np.log(1-0.99)/np.log(1-np.power((ninliers/ep_num),5)+np.spacing(1))
                         random_or_adaptive = 1
-                    elif er > 0.75 and er < 2:
+                    elif er > 0.75 and er < 1.34:
                         max_inliers = ninliers
                         max_inlier_indices = inliers_index
                         max_ellipse = ellipse_par
@@ -185,8 +184,6 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
 
 
 # initial variables:
-
-start_point = [-1, -1]
 inliers_num = np.int16(0)
 angle_step = np.int16(20)
 pupil_edge_thresh = np.int16(6)
@@ -196,19 +193,224 @@ edge_intensity_diff = []
 p = [0, 0]
 edge = [0, 0]
 
-def starburst_pupil_contour_detection (pupil_image, width, height, edge_thresh, N, minimum_candidate_features):
 
-    global start_point, inliers_num, angle_step, pupil_edge_thresh, pupil_param, edge_point, edge_intensity_diff
+def remove_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, biggest_crr, crx, cry, crr, imgW, imgH):
+    crar = np.int16(-1)
+    #crx = cry = crar = np.int16(-1)
+
+    angle_delta = np.float32(0.01745329251994329576923690768489)
+
+    angle_num = np.int16(2*3.1415926535897932384626433832795/angle_delta)
+    angle_array = np.zeros(angle_num)
+    sin_array = np.zeros(angle_num)
+    cos_array = np.zeros(angle_num)
+
+    for x in range(angle_num):
+        angle_array[x] = x*angle_delta
+        sin_array[x] = math.sin(angle_array[x])
+        cos_array[x] = math.cos(angle_array[x])
+
+    [crx, cry, crar] = locate_corneal_reflection(imagePntr, threshPntr, sx, sy, windowSize, np.int16(biggest_crr/2.5), crx, cry, crar, imgW, imgH)
+    crr = fit_circle_radius_to_corneal_reflection(imagePntr, crx, cry, crar, np.int16(biggest_crr/2.5), sin_array, cos_array, angle_num, imgW, imgH)
+    #crr = np.int16(2.5*crr)
+    imagePntr = interpolate_corneal_reflection(imagePntr, crx, cry, crr, sin_array, cos_array, angle_num, imgW, imgH)
+    #cv2.imshow('after', imagePntr)
+    #cv2.waitKey(0)
+    return crx, cry, crar
+    # free stuff
+
+def locate_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, biggest_crar, crx, cry, crr, imW, imH):
+
+    r = np.int16((windowSize-1)/2)
+    startx = np.int16(max(sx-r, 0))
+    endx = np.int16(min(sx+r, imW-1))
+    starty = np.int16(max(sy-r, 0))
+    endy = np.int16(min(sy+r, imH-1))
+
+    imageROI = imagePntr
+    threshROI = threshPntr
+    #imageROI= imagePntr[130:230, 400:1000]
+    #imageROI = imagePntr[starty:endy-starty+1, startx:endx-startx+1]
+    #threshROI = threshPntr[130:230, 400:1000]
+    #threshROI = threshPntr[starty:endy-starty+1, startx:endx-startx+1]
+
+    min_value = np.float64(0)
+    max_value = np.float64(0)
+    min_loc = ()
+    max_loc = ()
+    [min_value, max_value, min_loc, max_loc] = cv2.minMaxLoc(imageROI)
+
+    threshold = np.int16(0)
+    i = np.int16(0)
+    #CvSeq contour=null
+    #CvMemStorage storage = cvCreateMemStorage(0)
+    # scores = malloc(sizeof(double)*((int)max_value+1))
+    #memset(scores, 0, sizeof(double)*((int)max_value+1))
+    scores = np.zeros(np.int16(max_value+1))
+    area = np.int16(0)
+    max_area = np.int16(0)
+    sum_area = np.int16(0)
+    for threshold in range(np.int16(max_value), 0, -1):
+        ret, threshROI = cv2.threshold(imageROI, threshold, 255, cv2.THRESH_BINARY)
+        #cv2.imshow('current thresh', threshROI)
+        #cv2.waitKey(0)
+        contour, hierarchy = cv2.findContours(threshROI, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+        #cnt = contour[0]
+        max_area = 0
+        sum_area = 0
+        max_contour = contour
+        for contourCount in range(len(contour)):
+            if (contour != 0):
+                area = len(contour) + np.int16(cv2.contourArea(contour[contourCount]))
+                #print(np.int16(cv2.contourArea(contour[contourCount])))
+                sum_area += area
+                if(area > max_area):
+                    max_area = area
+                    #print(max_area)
+                    max_contour = contour
+        if (sum_area-max_area > 0):
+            scores[threshold-1] = max_area / (sum_area-max_area)
+        else:
+            continue
+        
+        if (scores[threshold-1] - scores[threshold] < 0):
+            #print('this never happens!')
+            #print(max_area)
+            crar = np.int16(math.sqrt(max_area / 3.1415926535897932384626433832795))
+            #print(crar)
+            sum_x = np.int16(0)
+            sum_y = np.int16(0)
+            for i in range(len(max_contour)):
+                point = max_contour[i]
+                #print(point)
+
+                sum_x += point[0,:,0]
+                sum_y += point[0,:,1]
+
+            #print(sum_x)
+            #print(sum_y)
+            #print(len(max_contour))
+            crx = sum_x/len(max_contour)
+            cry = sum_y/len(max_contour)
+            break
+
+    # free stuff
+    #cv2.drawContours(imagePntr, contour, -1, (0,255,0),5)
+    
+    if (crar > biggest_crar):
+        cry = crx = -1
+        crar = -1
+
+    return crx, cry, crar;
+
+def fit_circle_radius_to_corneal_reflection (imagePntr, crx, cry, crar, biggest_crar, sin_array, cos_array, array_len, imW, imH):
+
+    #print(crx)
+    #print(cry)
+    #print(crar)
+    crar = 8
+    if (crx == -1 or cry == -1 or crar == -1):
+        return -1;
+
+    ratio = np.zeros(biggest_crar-crar+1)
+    #print(ratio)
+    i = np.int16(0)
+    r = np.int16(0)
+    r_delta = np.int16(1)
+    x = np.int16(0)
+    y = np.int16(0)
+    x2 = np.int16(0)
+    y2 = np.int16(0)
+    sum1 = np.float64(0)
+    sum2 = np.float64(0)
+
+    for r in range(crar, biggest_crar):
+        sum1 = 0
+        sum2 = 0
+        count = 0
+        for i in range(array_len):
+            x = (int)(crx + (r+r_delta)*cos_array[i])
+            y = (int)(cry + (r+r_delta)*sin_array[i])
+            x2 = (int)(crx + (r-r_delta)*cos_array[i])
+            y2 = (int)(cry + (r+r_delta)*sin_array[i])
+            count += 1
+            if ((x >= 0 and y >= 0 and x < imW and y < imH) and
+                (x2 >= 0 and y2 >= 0 and x2 < imW and y2 < imH)):
+                sum1 += imagePntr[y, x]
+                sum2 += imagePntr[y2, x2]
+        ratio[r-crar] = sum1/sum2
+
+        if (r - crar >= 2):
+            if (ratio[r-crar-2] < ratio[r-crar-1] and ratio[r-crar] < ratio[r-crar-1]):
+                #free(ratio)
+                return r-1;
+
+    #free(ratio)
+    #print stuff
+    return crar;
+
+def interpolate_corneal_reflection (imagePntr, crx, cry, crr, sin_array, cos_array, array_len, imW, imH):
+
+    #print(crx)
+    #print(cry)
+    #print(crr)
+    if (crx == -1 or cry == -1 or crr == -1):
+        return;
+
+    if (crx-crr < 0 or crx + crr >= imW or cry-crr < 0 or cry+crr >= imH):
+        return;
+
+    i = np.int16(0)
+    r  = np.int16(0)
+    r2 = np.int16(0)
+    x  = np.int16(0)
+    y  = np.int16(0)
+    perimeter_pixel = np.zeros(array_len, dtype=np.uint8)
+    sum1 = np.int32(0)
+    pixel_value = np.int16(0)
+    avg = np.float64(0)
+    count = 0
+    
+    for i in range(array_len):
+        x = np.int16(crx + crr * cos_array[i])
+        #print(x)
+        y = np.int16(cry + crr * sin_array[i])
+        #print(y)
+        perimeter_pixel[i] = imagePntr[y,x]
+        sum1 += perimeter_pixel[i]
+
+    avg = sum1/array_len
+    #print(avg)
+    for r in range(crr):
+        r2 = crr-r
+        for i in range(array_len):
+            x = (int)(crx + r*cos_array[i])
+            #print(x)
+            y = (int)(cry + r*sin_array[i])
+            #print(y)
+            #print((r2/crr)*avg + (r/crr)*perimeter_pixel[i])
+            imagePntr[y,x] = np.uint8((r2/crr)*avg + (r/crr)*perimeter_pixel[i])
+            
+            count = count + 1;
+  
+    return imagePntr;
+
+
+
+def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, edge_thresh, N, minimum_candidate_features):
+
+    global inliers_num, angle_step, pupil_edge_thresh, pupil_param, edge_point, edge_intensity_diff
+    
     dis = np.int16(3)
     angle_spread = np.float64(180*3.1415926535897932384626433832795/180)
     loop_count = np.int16(0)
     angle_step = np.float64(2*3.1415926535897932384626433832795/N)
     new_angle_step = np.float64(0)
     angle_normal = np.float64(0)
-    cx = np.float64(55)
-    cy = np.float64(55)
+    cx = np.float64(cx)
+    cy = np.float64(cy)
     first_ep_num = np.int16(0)
-    circleimage = cv2.imread('singletest.png',0)
+    #circleimage = pupil_image
 
     while (edge_thresh > 5 and loop_count <= 20):
         edge_intensity_diff = []
@@ -218,11 +420,7 @@ def starburst_pupil_contour_detection (pupil_image, width, height, edge_thresh, 
 
             edge_intensity_diff = []
             edge_point = []
-            #print('doing edgy stuff')
-            #print(edge_intensity_diff)
-            #edge_intensity_diff = [(0)]
-            #destroy_edge_point()
-            locate_edge_points(pupil_image, width, height, 55, 55, 4, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh)
+            locate_edge_points(pupil_image, width, height, cx, cy, 4, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh)
             #print(edge_point)
             if (len(edge_point) < minimum_candidate_features):
                 print('reduced threshold')
@@ -232,7 +430,7 @@ def starburst_pupil_contour_detection (pupil_image, width, height, edge_thresh, 
         #print('test')
         #print(edge_intensity_diff)
         first_ep_num = len(edge_point)
-        print(edge_point)
+        #print(edge_point)
         for i in range(0, first_ep_num):
             edge = edge_point[i]
             #cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
@@ -243,7 +441,7 @@ def starburst_pupil_contour_detection (pupil_image, width, height, edge_thresh, 
             locate_edge_points(pupil_image, width, height, edge[0], edge[1], 6, new_angle_step, angle_normal, angle_spread, edge_thresh)
         for i in range(0, len(edge_point)):
             edge = edge_point[i]
-            cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
+            #cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
             
         #print(edge_point)
 
@@ -256,13 +454,13 @@ def starburst_pupil_contour_detection (pupil_image, width, height, edge_thresh, 
 
     if (loop_count > 10):
         destroy_edge_point()
-        print('Error! Edge points did not converge')
+        sys.exit('Error! Edge points did not converge')
         return;
     if (edge_thresh <= 5):
         destroy_edge_point()
-        print('Error! Adaptive threshold too low')
+        sys.exit('Error! Adaptive threshold too low')
         return;
-    #print(np.size(edge_point))
+    print(np.size(edge_point))
     ec = edge_point
     #cv2.imshow('circleimage', circleimage)
     #cv2.waitKey(0)
@@ -624,11 +822,41 @@ eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 eyes = eye_cascade.detectMultiScale(gray, 1.3, 5)
 for (x,y,w,h) in eyes:
     roi_gray = gray[y:y+h, x:x+w]
+    roi_gray_thresh = gray[y:y+h, x:x+w]
+
+    #image = cv2.GaussianBlur(image, (5,5), 0)
+
+    #start_point = [-1, -1]
+    inliers_num = np.int16(0)
+    angle_step = np.int16(20)
+    pupil_edge_thresh = np.int16(6)
+    pupil_param = np.zeros(5)
+    edge_point = []
+    edge_intensity_diff = []
+    p = [0, 0]
+    edge = [0, 0]
+
+    #forventet midterpunkt
+    sy = 100
+    sx = 100
+
+    windowSize = 199
+
     imH = np.size(roi_gray, 0)
 
     imW = np.size(roi_gray, 1)
 
-    ec = starburst_pupil_contour_detection (roi_gray, imW, imH, 7, 10, 8)
+    
+    crx, cry, crr = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 100, 2, 2, -2, imW, imH)
+
+    #cv2.circle(roi_gray, (crx, cry), crr, (255,255,255), 1)
+    #cv2.line(roi_gray, (crx-5, cry), (crx+5, cry), (255,255,255), 1)
+    #cv2.line(roi_gray, (crx, cry-5), (crx, cry+5), (255,255,255), 1)
+    cv2.imshow('image', roi_gray)
+    cv2.waitKey(0)
+
+
+    ec = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 7, 10, 4)
 
     ecx = np.array(np.empty(len(ec)))
     ecy = np.array(np.empty_like(ecx))
@@ -637,7 +865,7 @@ for (x,y,w,h) in eyes:
         ecy[x] = ec[x][1]
     ellipse, inliers, ransac_iter = fit_ellipse_ransac(ecx, ecy, 1000, 10, 1.5)
     if len(ellipse) is 0 or ransac_iter >= 10000:
-        print("No ellipse found")
+        sys.exit("No ellipse found")
     else:
         c = ellipse_direct_fit(np.array([ecx[inliers], ecy[inliers]]).T)
         ellipse = convert_conic_parameters_to_ellipse_parameters(c)
@@ -645,7 +873,7 @@ for (x,y,w,h) in eyes:
         e_center = (ellipse[2],ellipse[3])
         e_axes = (ellipse[0],ellipse[1])
         cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
-        cv2.imshow('circleimage', roi_gray)
+        cv2.imshow('Ellipse', roi_gray)
         cv2.waitKey(0)
 #        cv2.rectangle(image,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
 #cv2.imshow('image', image)
