@@ -1,11 +1,7 @@
 import numpy as np
 import cv2
 import math
-#from matplotlib import pyplot as plt
 import sys
-
-
-# ransac funtion, go!
 
 def convert_conic_parameters_to_ellipse_parameters(c):
     
@@ -181,9 +177,6 @@ def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, 
             break
 
     return max_ellipse, max_inlier_indices, ransac_iter
-        
-
-
 
 # initial variables:
 inliers_num = np.int16(0)
@@ -195,33 +188,15 @@ edge_intensity_diff = []
 p = [0, 0]
 edge = [0, 0]
 
-
 def remove_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, biggest_crr, crx, cry, crr, imgW, imgH):
-    crar = np.int16(-1)
-    #crx = cry = crar = np.int16(-1)
 
-    angle_delta = np.float32(0.01745329251994329576923690768489)
+    [crx, cry, contour] = locate_corneal_reflection(imagePntr, threshPntr, sx, sy, windowSize, np.int16(biggest_crr/2.5), crx, cry, imgW, imgH)
 
-    angle_num = np.int16(2*3.1415926535897932384626433832795/angle_delta)
-    angle_array = np.zeros(angle_num)
-    sin_array = np.zeros(angle_num)
-    cos_array = np.zeros(angle_num)
+    imagePntr = interpolate_corneal_reflection(imagePntr, crx, cry, contour, imW, imH)
 
-    for x in range(angle_num):
-        angle_array[x] = x*angle_delta
-        sin_array[x] = math.sin(angle_array[x])
-        cos_array[x] = math.cos(angle_array[x])
+    return crx, cry
 
-    [crx, cry, crar] = locate_corneal_reflection(imagePntr, threshPntr, sx, sy, windowSize, np.int16(biggest_crr/2.5), crx, cry, crar, imgW, imgH)
-    crr = fit_circle_radius_to_corneal_reflection(imagePntr, crx, cry, crar, np.int16(biggest_crr/2.5), sin_array, cos_array, angle_num, imgW, imgH)
-    #crr = np.int16(2.5*crr)
-    imagePntr = interpolate_corneal_reflection(imagePntr, crx, cry, crr, sin_array, cos_array, angle_num, imgW, imgH)
-    #cv2.imshow('after', imagePntr)
-    #cv2.waitKey(0)
-    return crx, cry, crar
-    # free stuff
-
-def locate_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, biggest_crar, crx, cry, crr, imW, imH):
+def locate_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, biggest_crar, crx, cry, imW, imH):
 
     r = np.int16((windowSize-1)/2)
     startx = np.int16(max(sx-r, 0))
@@ -231,10 +206,6 @@ def locate_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, bigges
 
     imageROI = imagePntr
     threshROI = threshPntr
-    #imageROI= imagePntr[130:230, 400:1000]
-    #imageROI = imagePntr[starty:endy-starty+1, startx:endx-startx+1]
-    #threshROI = threshPntr[130:230, 400:1000]
-    #threshROI = threshPntr[starty:endy-starty+1, startx:endx-startx+1]
 
     min_value = np.float64(0)
     max_value = np.float64(0)
@@ -244,31 +215,24 @@ def locate_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, bigges
 
     threshold = np.int16(0)
     i = np.int16(0)
-    #CvSeq contour=null
-    #CvMemStorage storage = cvCreateMemStorage(0)
-    # scores = malloc(sizeof(double)*((int)max_value+1))
-    #memset(scores, 0, sizeof(double)*((int)max_value+1))
     scores = np.zeros(np.int16(max_value+1))
     area = np.int16(0)
     max_area = np.int16(0)
     sum_area = np.int16(0)
     for threshold in range(np.int16(max_value), 0, -1):
         ret, threshROI = cv2.threshold(imageROI, threshold, 255, cv2.THRESH_BINARY)
-        #cv2.imshow('current thresh', threshROI)
-        #cv2.waitKey(0)
+
         contour, hierarchy = cv2.findContours(threshROI, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-        #cnt = contour[0]
+
         max_area = 0
         sum_area = 0
         max_contour = contour
         for contourCount in range(len(contour)):
             if (contour != 0):
                 area = len(contour) + np.int16(cv2.contourArea(contour[contourCount]))
-                #print(np.int16(cv2.contourArea(contour[contourCount])))
                 sum_area += area
                 if(area > max_area):
                     max_area = area
-                    #print(max_area)
                     max_contour = contour
         if (sum_area-max_area > 0):
             scores[threshold-1] = max_area / (sum_area-max_area)
@@ -276,34 +240,20 @@ def locate_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, bigges
             continue
         
         if (scores[threshold-1] - scores[threshold] < 0):
-            #print('this never happens!')
-            #print(max_area)
-            crar = np.int16(math.sqrt(max_area / 3.1415926535897932384626433832795))
-            #print(crar)
             sum_x = np.int16(0)
             sum_y = np.int16(0)
             for i in range(len(max_contour)):
                 point = max_contour[i]
-                #print(point)
 
                 sum_x += point[0,:,0]
                 sum_y += point[0,:,1]
 
-            #print(sum_x)
-            #print(sum_y)
-            #print(len(max_contour))
             crx = sum_x/len(max_contour)
             cry = sum_y/len(max_contour)
             break
 
-    # free stuff
-    #cv2.drawContours(imagePntr, contour, -1, (0,255,0),5)
-    
-    if (crar > biggest_crar):
-        cry = crx = -1
-        crar = -1
 
-    return crx, cry, crar;
+    return crx, cry, max_contour;
 
 def fit_circle_radius_to_corneal_reflection (imagePntr, crx, cry, crar, biggest_crar, sin_array, cos_array, array_len, imW, imH):
 
@@ -351,49 +301,23 @@ def fit_circle_radius_to_corneal_reflection (imagePntr, crx, cry, crar, biggest_
     #print stuff
     return crar;
 
-def interpolate_corneal_reflection (imagePntr, crx, cry, crr, sin_array, cos_array, array_len, imW, imH):
+def interpolate_corneal_reflection (imagePntr, crx, cry, contour, imW, imH):
 
-    #print(crx)
-    #print(cry)
-    #print(crr)
-    if (crx == -1 or cry == -1 or crr == -1):
-        return;
+    #################### BURDE LAVE NOGET FOR AT TJEKKE ANTAL CONTOURS... 
+    if len(contour) > 2:
+        print("should do something else")
 
-    if (crx-crr < 0 or crx + crr >= imW or cry-crr < 0 or cry+crr >= imH):
-        return;
+    rectan = [None]*len(contour)
+    color = [None]*len(contour)
 
-    i = np.int16(0)
-    r  = np.int16(0)
-    r2 = np.int16(0)
-    x  = np.int16(0)
-    y  = np.int16(0)
-    perimeter_pixel = np.zeros(array_len, dtype=np.uint8)
-    sum1 = np.int32(0)
-    pixel_value = np.int16(0)
-    avg = np.float64(0)
-    count = 0
-    
-    for i in range(array_len):
-        x = np.int16(crx + crr * cos_array[i])
-        #print(x)
-        y = np.int16(cry + crr * sin_array[i])
-        #print(y)
-        perimeter_pixel[i] = imagePntr[y,x]
-        sum1 += perimeter_pixel[i]
+    #cv2.imshow('image', imagePntr)
+    #cv2.waitKey(0)
 
-    avg = sum1/array_len
-    #print(avg)
-    for r in range(crr):
-        r2 = crr-r
-        for i in range(array_len):
-            x = (int)(crx + r*cos_array[i])
-            #print(x)
-            y = (int)(cry + r*sin_array[i])
-            #print(y)
-            #print((r2/crr)*avg + (r/crr)*perimeter_pixel[i])
-            imagePntr[y,x] = np.uint8((r2/crr)*avg + (r/crr)*perimeter_pixel[i])
-            
-            count = count + 1;
+    for i in range(0, len(contour)):
+        rectan[i] = cv2.boundingRect(contour[i]) #returnerer x,y(top left corner), widht, height
+        color[i] = np.array([imagePntr[rectan[i][0]-2,rectan[i][1]-2],imagePntr[rectan[i][0]-2,rectan[i][1]+rectan[i][3]+2],imagePntr[rectan[i][0]+rectan[i][2]+2, rectan[i][1]-2], imagePntr[rectan[i][0]+rectan[i][2]+2, rectan[i][1]+rectan[i][3]+2]]) 
+        mean_color = np.mean(color[i])/3
+        cv2.rectangle(imagePntr, (rectan[i][0]-3, rectan[i][1]-3), (rectan[i][0]+3 + rectan[i][2], rectan[i][1]+3 + rectan[i][3]+3), mean_color, -1)
   
     return imagePntr;
 
@@ -412,25 +336,21 @@ def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, edge_
     cx = np.float64(cx)
     cy = np.float64(cy)
     first_ep_num = np.int16(0)
-    #circleimage = pupil_image
 
     while (edge_thresh > 5 and loop_count <= 20):
         edge_intensity_diff = []
         edge_point = []
-        #destroy_edge_point()
         while (len(edge_point) < minimum_candidate_features and edge_thresh > 5):
 
             edge_intensity_diff = []
             edge_point = []
             locate_edge_points(pupil_image, width, height, cx, cy, 4, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh)
-            #print(edge_point)
             if (len(edge_point) < minimum_candidate_features):
                 print('reduced threshold')
                 edge_thresh -= 1
         if (edge_thresh <= 5):
             break;
-        #print('test')
-        #print(edge_intensity_diff)
+
         first_ep_num = len(edge_point)
         #print(edge_point)
         for i in range(0, first_ep_num):
@@ -438,14 +358,11 @@ def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, edge_
             #cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
             angle_normal = np.arctan2(cy-edge[1], cx-edge[0])
             new_angle_step = angle_step*(edge_thresh*1.0/edge_intensity_diff[i])
-            #print(angle_normal)
-            #print(new_angle_step)
             locate_edge_points(pupil_image, width, height, edge[0], edge[1], 6, new_angle_step, angle_normal, angle_spread, edge_thresh)
         for i in range(0, len(edge_point)):
             edge = edge_point[i]
             #cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
-            
-        #print(edge_point)
+
 
         loop_count += 1
         edge_mean = get_edge_mean()
@@ -462,7 +379,6 @@ def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, edge_
         destroy_edge_point()
         sys.exit('Error! Adaptive threshold too low')
         return;
-    #print(np.size(edge_point))
     ec = edge_point
     #cv2.imshow('circleimage', circleimage)
     #cv2.waitKey(0)
@@ -542,239 +458,6 @@ def get_edge_mean():
         edge_mean[1] = -1
     return edge_mean;
 
-def destroy_edge_point():
-
-    #free stuff
-    return;
-
-def get_5_random_num (max_num, rand_num):
-
-    rand_index = np.int16(0)
-    r = np.int16(0)
-    i = np.int16(0)
-    is_new = 1
-
-    if (max_num == 4):
-        for i in range(5):
-            rand_num[i] = i
-        return;
-
-    while (rand_index < 5):
-        is_new = 1
-        r = math.random(0, 5)
-        for i in range(rand_index):
-            if (r == rand_num[i]):
-                is_new = 0
-                break;
-        if (is_new):
-            rand_num[rand_index] = r
-            rand_index += 1
-
-def solve_ellipse (conic_param, ellipse_param):
-
-    a = np.float64(conic_param[0])
-    b = np.float64(conic_param[1])
-    c = np.float64(conic_param[2])
-    d = np.float64(conic_param[3])
-    e = np.float64(conic_param[4])
-    f = np.float64(conic_param[5])
-
-    theta = np.float64(atan2(b, a-c)/2)
-
-    ct = np.float64(cos(theta))
-    st = np.float64(sin(theta))
-    ap = a*ct*ct + b*ct*st + c*st*st
-    cp = a*st*st - b*ct*st + c*ct*ct
-
-    cx = (2*c*d - b*e) / (b*b - 4*a*c)
-    cy = (2*a*e - b*d) / (b*b - 4*a*c)
-
-    val = a*cx*cx + b*cx*cy + c*cy*cy
-    scale_inv = val - f
-
-    if (scale_inv/ap <= 0 or scale_inv/cp <= 0):
-        print('le error, imaginary parameters')
-        return 0;
-
-    ellipse_param[0] = math.sqrt(scale_inv / ap)
-    ellipse_param[1] = math.sqrt(scale_inv / cp)
-    ellipse_param[2] = cx
-    ellipse_param[3] = cy
-    ellipse_param[4] = theta
-    return 1;
-
-def normalize_point_set(point_set, dis_scale, nor_center, num):
-
-  sumx = np.float64(0)
-  sumy = np.float64(0)
-  sumdis = np.float64(0)
-  edge = point_set
-  i = np.int16(0)
-  for i in range(num): 
-    sumx += edge[0,0]
-    sumy += edge[0,1]
-    sumdis += math.sqrt(edge[0,0]*edge[0,0] + edge[0,1]*edge[0,1])
-    edge += 1
-  
-  dis_scale = math.sqrt(2)*num/sumdis
-  nor_center[0,0] = sumx*1.0/num
-  nor_center[0,1] = sumy*1.0/num
-  edge = point_set
-  for i in range(num):
-    edge_point_nor[i,0,0] = (edge[0,0] - nor_center[0,0])*dis_scale
-    edge_point_nor[i,0,1] = (edge[0,1] - nor_center[0,1])*dis_scale
-    edge += 1
-  
-  return edge_point_nor;
-
-
-def normalize_edge_point(dis_scale, nor_center, ep_num):
-
-  sumx = np.float64(0)
-  sumy = np.float64(0)
-  sumdis = np.float64(0)
-  i = np.int16(0)
-  for i in range(ep_num):
-    edge = edge_point[i]
-    sumx += edge[0, 0]
-    sumy += edge[0, 1]
-    sumdis += math.sqrt(edge[0, 0]*edge[0, 0] + edge[0, 1]*edge[0, 1])
-
-  dis_scale = math.sqrt(2)*ep_num/sumdis
-  nor_center[0,0] = sumx*1.0/ep_num
-  nor_center[0,1] = sumy*1.0/ep_num
-  edge_point_nor = np.float64(ep_num)
-  for i in range(ep_num):
-    edge = edge_point[i];
-    edge_point_nor[i, 0, 0] = (edge[0,0] - nor_center[0,0])*dis_scale;
-    edge_point_nor[i, 0, 1] = (edge[0,1] - nor_center[0,1])*dis_scale;
-  
-  return edge_point_nor;
-
-
-def denormalize_ellipse_param(par, normailized_par, dis_scale, nor_center):
-
-    par[0] = normailized_par[0] / dis_scale
-    par[1] = normailized_par[1] / dis_scale
-    par[2] = normailized_par[2] / dis_scale + nor_center[0,0]
-    par[3] = normailized_par[3] / dis_scale + nor_center[0,1]
-
-
-def pupil_fitting_inliers(pupil_image, width, height, return_max_inliers_num):
-
-  i = np.int16(0)
-  ep_num = np.int16(len(edge_point))
-  dis_scale = np.float64(0)
-
-  ellipse_point_num = np.int16(5)
-  if (ep_num < ellipse_point_num):
-    print('Error! 5 points are not enough to fit ellipse')
-    return_max_inliers_num = 0
-    return 0;
-
-  edge_point_nor = normalize_edge_point(dis_scale, nor_center, ep_num)
-
-  inliers_index = np.zeros(ep_num, dtype = int16)
-  max_inliers_index = np.zeros(ep_num, dtype = int16)
-  ninliers = np.int16(0)
-  max_inliers = np.int16(0)
-  sample_num = np.int16(1000)
-  ransac_count = np.int16(0)
-  dis_threshold = np.float64(math.sqrt(3.84)*dis_scale)
-  dis_error = np.float64(0)
-  
-  rand_index = np.zeros(5, dtype = int16)
-  A = np.zeros([6,6], dtype = double)
-  M = np.int16(6)
-  N = np.int16(6)
-  for i in range(N):
-    A[i,5] = 1
-    A[5,i] = 0
-  
-  ppa = np.zeros(M)
-  ppu = np.zeros(M)
-  ppv = np.zeros(N)
-  for i in range(M):
-    ppa[i] = A[i]
-    ppu[i] = np.zeros(N)
-  
-  for i in range(N):
-    ppv[i] = np.zeros(N)
-  
-  pd = np.zeros(6) 
-  min_d_index = np.int16(0)
-  conic_par = np.zeros(6)
-  ellipse_par = np.zeros(5)
-  best_ellipse_par = np.zeros(5)
-  ratio = np.float64(0)
-  while (sample_num > ransac_count):
-    get_5_random_num((ep_num-1), rand_index)
-	
-    for i in range(5):
-      A[i,0] = edge_point_nor[rand_index[i],0,0] * edge_point_nor[rand_index[i],0,0]
-      A[i,1] = edge_point_nor[rand_index[i],0,0] * edge_point_nor[rand_index[i],0,1]
-      A[i,2] = edge_point_nor[rand_index[i],0,1] * edge_point_nor[rand_index[i],0,1]
-      A[i,3] = edge_point_nor[rand_index[i],0,0]
-      A[i,4] = edge_point_nor[rand_index[i],0,1]
-
-    svd(M, N, ppa, ppu, pd, ppv)
-    min_d_index = 0
-    for i in range(1,N):
-      if (pd[i] < pd[min_d_index]):
-        min_d_index = i
-
-    for i in range(N):
-      conic_par[i] = ppv[i,min_d_index] 
-                                       
-    ninliers = 0
-    inliers_index = np.zeros(ep_num, dtype = int16)
-    for i in range(ep_num):
-      dis_error = conic_par[0]*edge_point_nor[i,0,0]*edge_point_nor[i,0,0] + \
-                  conic_par[1]*edge_point_nor[i,0,0]*edge_point_nor[i,0,1] + \
-                  conic_par[2]*edge_point_nor[i,0,1]*edge_point_nor[i,0,1] + \
-                  conic_par[3]*edge_point_nor[i,0,0] + conic_par[4]*edge_point_nor[i,0,1] + conic_par[5]
-      if (math.abs(dis_error) < dis_threshold):
-        inliers_index[ninliers] = i
-        ninliers += 1
-      
-    if (ninliers > max_inliers):
-      if (solve_ellipse(conic_par, ellipse_par)):
-        denormalize_ellipse_param(ellipse_par, ellipse_par, dis_scale, nor_center)
-        ratio = ellipse_par[0] / ellipse_par[1]
-        if (ellipse_par[2] > 0 and ellipse_par[2] <= width-1 and ellipse_par[3] > 0 and ellipse_par[3] <= height-1 and
-            ratio > 0.5 and ratio < 2):
-          #memcpy(max_inliers_index, inliers_index, sizeof(int)*ep_num);
-            for i in range(5):
-                best_ellipse_par[i] = ellipse_par[i]
-            max_inliers = ninliers
-            sample_num = np.int16(math.log(np.float64(1-0.99))/math.log(1.0-math.pow(ninliers*1.0/ep_num, 5)))
-        
-      
-    
-    ransac_count += 1
-    if (ransac_count > 1500):
-      break;
-    if (best_ellipse_par[0] > 0 and best_ellipse_par[1] > 0):
-        for i in range(5):
-            pupil_param[i] = best_ellipse_par[i]
-    else:
-        #memset(pupil_param, 0, sizeof(pupil_param));
-        max_inliers = 0
-        #free(max_inliers_index);
-        max_inliers_index = NULL
-
-    #for i in range(M):
-        #free(ppu[i])
-        #free(ppv[i])
-    #free(ppu);
-    #free(ppv);
-    #free(ppa);
-
-    #free(edge_point_nor);
-    #free(inliers_index);
-    return_max_inliers_num = max_inliers
-    return max_inliers_index;
-
 def ellipse_direct_fit(xy):
     
     centroid = np.mean(xy, axis = 0)
@@ -849,7 +532,7 @@ for (x,y,w,h) in eyes:
     imW = np.size(roi_gray, 1)
 
     
-    crx, cry, crr = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 100, 2, 2, -2, imW, imH)
+    crx, cry = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 100, 2, 2, -2, imW, imH)
 
     #cv2.circle(roi_gray, (crx, cry), crr, (255,255,255), 1)
     #cv2.line(roi_gray, (crx-5, cry), (crx+5, cry), (255,255,255), 1)
@@ -876,9 +559,6 @@ for (x,y,w,h) in eyes:
         e_axes = (ellipse[0],ellipse[1])
         #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
         #cv2.imshow('Ellipse', roi_gray)
-        #cv2.waitKey(0)
-#        cv2.rectangle(image,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
-#cv2.imshow('image', image)
-#cv2.waitKey(0)        
+        #cv2.waitKey(0)  
 
 
