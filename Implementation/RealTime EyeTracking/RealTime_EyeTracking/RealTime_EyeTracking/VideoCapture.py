@@ -1,8 +1,7 @@
 import cv2
 import os
-import thread
-import time
 import ETalgorithm as ET
+
 
 class VideoCapture: 
 
@@ -15,34 +14,42 @@ class VideoCapture:
             self.framerate = cv2.GetCaptureProperty(self.cap, CV_CAP_PROP_FPS)
         except:
             self.framerate = 100
-        self.running = True
-        self.updateVideoThread = thread.start_new_thread(self.updateVideo, (self.framerate, ))
-        if tracking is not True:
-            self.tracking = False
-        else:
-            self.tracking = True
+        #self.running = True
+        #self.updateVideoThread = thread.start_new_thread(self.updateVideo, (self.framerate, ))
+        #if tracking is not True:
+        #    self.tracking = False
+        #else:
+        #    self.tracking = True
         #self.sourceWindow = None
 
     #def __del__(self):
     #    self.StopCapture()
     #    print("Video capture destroyed")
             
-    def updateVideo(self, framerate):
-        while(self.running is True):
-            ret, frame = self.cap.read()
-            if ret is True:
-                if self.tracking is True:
-                    ET.Track(frame)
-                #cv2.imshow('Video source', frame)
-            else:
-                #self.StopCapture()
-                print("Capture returning:" + ret)
-            cv2.waitKey(1)
-            time.sleep(1/framerate)
-            self.updateVideo(framerate)
+    #def updateVideo(self, framerate):
+    #    while(self.running is True):
+    #        ret, frame = self.cap.read()
+    #        if ret is True:
+    #            if self.tracking is True:
+    #                ET.Track(frame)
+    #            #cv2.imshow('Video source', frame)
+    #        else:
+    #            #self.StopCapture()
+    #            print("Capture returning:" + ret)
+    #        cv2.waitKey(1)
+    #        time.sleep(1/framerate)
+    #        self.updateVideo(framerate)
         
-        cv2.destroyWindow('Video source')
-        self.cap.release()
+    #    cv2.destroyWindow('Video source')
+    #    self.cap.release()
+
+    def updateVideo(self):
+        ret, frame = self.cap.read()
+        if ret is True:
+            ET.Track(frame)
+        else:
+            print("Capture returning:" + ret)
+
 
     def StopTracking(self):
         #global cap, running, sourceWindow
