@@ -61,10 +61,8 @@ def GetPoint(sessionData):
         GetPoint(sessionData)
 
 def PackWithTimestamp((crx,cry), e_center, trigger):
-        #mil = int(round(time.time()*1000))
-        #t = time.strftime("%H:%M:%S")+":%d" %mil
         t = datetime.datetime.now().strftime('%H:%M:%S.%f')
-        print("%s - %d, %d - Trigger=%s" %(t,(crx,cry),e_center,trigger))
+        print("%s - %s, %s, %s, %s - Trigger=%s" %(t,crx[0],cry[0],e_center[0].real, e_center[1].real,trigger))
 
 def ReturnError():
     t = datetime.datetime.now().strftime('%H:%M:%S.%f')

@@ -339,9 +339,9 @@ def Track(frame):
 
     def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, edge_thresh, N, minimum_candidate_features):
 
-        global inliers_num, angle_step, pupil_edge_thresh, pupil_param, edge_point, edge_intensity_diff
+        global edge_point, edge_intensity_diff
     
-        dis = np.int16(3)
+        dis = np.int16(2)
         angle_spread = np.float64(180*3.1415926535897932384626433832795/180)
         loop_count = np.int16(0)
         angle_step = np.float64(2*3.1415926535897932384626433832795/N)
@@ -370,7 +370,7 @@ def Track(frame):
             #print(edge_point)
             for i in range(0, first_ep_num):
                 edge = edge_point[i]
-                cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
+                #cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
                 angle_normal = np.arctan2(cy-edge[1], cx-edge[0])
                 new_angle_step = angle_step*(edge_thresh*1.0/edge_intensity_diff[i])
                 locate_edge_points(pupil_image, width, height, edge[0], edge[1], dis, new_angle_step, angle_normal, angle_spread, edge_thresh)
@@ -380,13 +380,14 @@ def Track(frame):
 
 
             loop_count += 1
-            edge_mean = get_edge_mean()
+            edge_mean = np.mean(edge_point,0)
+            #edge_mean = get_edge_mean()
             if(math.fabs(edge_mean[0]-cx) + math.fabs(edge_mean[1]-cy) < 10):
                 break;
             cx = edge_mean[0]
             cy = edge_mean[1]
-        cv2.imshow('circleimage', circleimage)
-        cv2.waitKey(0)
+        #cv2.imshow('circleimage', circleimage)
+        #cv2.waitKey(0)
         if (loop_count > 10):
             #destroy_edge_point()
             print('Error! Edge points did not converge')
@@ -454,24 +455,6 @@ def Track(frame):
                     break;
                 pixel_value1 = pixel_value2
 
-    def get_edge_mean():
-
-        sumx = np.float64(0)
-        sumy = np.float64(0)
-        edge_mean = [0,0]
-
-        for i in range(len(edge_point)):
-            edge = edge_point[i]
-            sumx += edge[0]
-            sumy += edge[1]
-
-        if (len(edge_point) != 0):
-            edge_mean[0] = sumx / len(edge_point)
-            edge_mean[1] = sumy / len(edge_point)
-        else:
-            edge_mean[0] = -1
-            edge_mean[1] = -1
-        return edge_mean;
 
     def ellipse_direct_fit(xy):
     
@@ -528,7 +511,7 @@ def Track(frame):
         #cv2.imshow('image', roi_gray)
         #cv2.waitKey(0)
 
-        #image = cv2.GaussianBlur(image, (5,5), 0)
+        image = cv2.GaussianBlur(image, (5,5), 0)
 
         #start_point = [-1, -1]
         inliers_num = np.int16(0)
@@ -562,9 +545,9 @@ def Track(frame):
         #cv2.line(roi_gray, (crx, cry-5), (crx, cry+5), (255,255,255), 1)
         #cv2.imshow('image', roi_gray)
         #cv2.waitKey(0)
+        #cv2.equalizeHist(roi_gray, roi_gray)
 
-
-        ec = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 7, 10, 4)
+        ec = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 7, 8, 4)
         if ec is None:
             et.ReturnError()
             return
@@ -580,14 +563,15 @@ def Track(frame):
         else:
             c = ellipse_direct_fit(np.array([ecx[inliers], ecy[inliers]]).T)
             ellipse = convert_conic_parameters_to_ellipse_parameters(c)
-            #e_angle = int(ellipse[4]).real*57.2957795 
+            e_angle = int(ellipse[4]).real*57.2957795 
             e_center = (ellipse[2],ellipse[3])
-            #e_axes = (ellipse[0],ellipse[1])
-            #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
-            #cv2.imshow('Ellipse', roi_gray)
-            #cv2.waitKey(0)  
+            e_axes = (ellipse[0],ellipse[1])
+            cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
+            cv2.imshow('Ellipse', roi_gray)
+            cv2.waitKey(0)  
             #return (crx,cry), e_center, ("NoTrigger")
             et.PackWithTimestamp((crx,cry), e_center, ("NoTrigger"))
+
             return
 
 
