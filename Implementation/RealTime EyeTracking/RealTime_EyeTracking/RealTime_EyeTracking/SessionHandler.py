@@ -12,7 +12,7 @@ class SessionData:
     def __init__(self, pathname):
         self.pathname = pathname
         self.filepath = os.path.abspath(self.pathname + "/" + "session.pref")
-        self.livecam = True
+        self.livecam = False
         self.camnr = 0
         self.videopath = None
         self.notes = None
@@ -72,7 +72,7 @@ class SessionData:
         sessionStr += "CALTYPE " + self.caltype + '\n'
         sessionStr += "LOGFILENAME " + self.logfilename + '\n'
         sessionStr += "CALFILENAME " + self.calfilename + '\n'
-        sessionStr += "RECORDVIDEO " + self.recordvideo + '\n'
+        sessionStr += "RECORDVIDEO " + str(self.recordvideo) + '\n'
         sessionStr += "RAWDATAPATH " + self.rawdatapath + '\n'
         try:
             file.write(sessionStr)

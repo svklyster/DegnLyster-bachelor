@@ -14,7 +14,7 @@ class VideoCapture:
         try:
             self.framerate = cv2.GetCaptureProperty(self.cap, CV_CAP_PROP_FPS)
         except:
-            self.framerate = 30
+            self.framerate = 100
         self.running = True
         self.updateVideoThread = thread.start_new_thread(self.updateVideo, (self.framerate, ))
         if tracking is not True:
@@ -33,7 +33,7 @@ class VideoCapture:
             if ret is True:
                 if self.tracking is True:
                     ET.Track(frame)
-                cv2.imshow('Video source', frame)
+                #cv2.imshow('Video source', frame)
             else:
                 #self.StopCapture()
                 print("Capture returning:" + ret)

@@ -10,7 +10,9 @@ capture = None
 def StartVideoCapture(sessionData):
     global running, capture
     try:
-        capture = vc.VideoCapture(sessionData.livecam, sessionData.camnr, sessionData.videopath, True)
+                                    ####### TEST#####
+        #capture = vc.VideoCapture(sessionData.livecam, sessionData.camnr, sessionData.videopath, True)
+        capture = vc.VideoCapture(False, sessionData.camnr, "C:/1min60fps.avi" , True)
         running = True
         return running
     except:
@@ -39,10 +41,12 @@ def GetPoint(sessionData):
         StartVideoCapture(sessionData)
         GetPoint(sessionData)
 
-def PackWithTimestamp(x,y,trigger):
+def PackWithTimestamp((crx,cry), e_center, trigger):
         #mil = int(round(time.time()*1000))
         #t = time.strftime("%H:%M:%S")+":%d" %mil
         t = datetime.datetime.now().strftime('%H:%M:%S.%f')
-        print("%s - %d, %d - Trigger=%s" %(t,x,y,trigger))
+        print("%s - %d, %d - Trigger=%s" %(t,(crx,cry),e_center,trigger))
 
-        
+def ReturnError():
+    t = datetime.datetime.now().strftime('%H:%M:%S.%f')
+    print("%s - %s" %(t,"Error"))
