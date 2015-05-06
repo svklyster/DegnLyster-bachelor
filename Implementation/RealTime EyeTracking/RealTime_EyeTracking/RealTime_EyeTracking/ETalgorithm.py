@@ -237,14 +237,16 @@ def Track(frame):
 
             max_area = 0
             sum_area = 0
+            indx = 0
             max_contour = contour
             for contourCount in range(len(contour)):
-                if (contour != 0):
-                    area = len(contour) + np.int16(cv2.contourArea(contour[contourCount]))
-                    sum_area += area
-                    if(area > max_area):
-                        max_area = area
-                        max_contour = contour
+                #if (contour[contourCount] != 0):
+                area = len(contour[contourCount]) + np.int16(cv2.contourArea(contour[contourCount]))
+                sum_area += area
+                if(area >= max_area):
+                    max_area = area
+                    max_contour[indx] = contour[contourCount]
+                    indx += 1
             if (sum_area-max_area > 0):
                 scores[threshold-1] = max_area / (sum_area-max_area)
             else:
@@ -258,7 +260,8 @@ def Track(frame):
 
                     sum_x += point[0,:,0]
                     sum_y += point[0,:,1]
-
+                
+                
                 crx = sum_x/len(max_contour)
                 cry = sum_y/len(max_contour)
                 break
@@ -313,22 +316,20 @@ def Track(frame):
 
     def interpolate_corneal_reflection (imagePntr, crx, cry, contour, imW, imH):
 
-       
-        #################### BURDE LAVE NOGET FOR AT TJEKKE ANTAL CONTOURS... 
-        if len(contour) > 2:
+        if len(contour) is not 2:
             return None
 
-        rectan = [None]*len(contour)
-        color = [None]*len(contour)
+        rectan = [None]*2
+        color = [None]*2
 
         
 
-        for i in range(0, len(contour)):
+        for i in range(len(contour)):
             rectan[i] = cv2.boundingRect(contour[i]) #returnerer x,y(top left corner), widht, height
             color[i] = np.array([imagePntr[rectan[i][0]-2,rectan[i][1]-2],imagePntr[rectan[i][0]-2,rectan[i][1]+rectan[i][3]+2],imagePntr[rectan[i][0]+rectan[i][2]+2, rectan[i][1]-2], imagePntr[rectan[i][0]+rectan[i][2]+2, rectan[i][1]+rectan[i][3]+2]]) 
             #mean_color = np.mean(color[i])/3
             mean_color = 0
-            cv2.rectangle(imagePntr, (rectan[i][0]-3, rectan[i][1]-3), (rectan[i][0]+3 + rectan[i][2], rectan[i][1]+3 + rectan[i][3]+3), mean_color, -1)
+            cv2.rectangle(imagePntr, (rectan[i][0]-1, rectan[i][1]-1), (rectan[i][0]+1 + rectan[i][2], rectan[i][1]+1 + rectan[i][3]+1), mean_color, -1)
   
         #cv2.imshow('circleimage', imagePntr)
         #cv2.waitKey(0)
