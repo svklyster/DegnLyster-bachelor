@@ -185,7 +185,6 @@ def Track(frame):
 
     # initial variables:
     inliers_num = np.int16(0)
-    angle_step = np.int16(20)
     pupil_edge_thresh = np.int16(6)
     pupil_param = np.zeros(5)
     edge_point = []
@@ -337,123 +336,223 @@ def Track(frame):
 
 
 
-    def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, edge_thresh, N, minimum_candidate_features):
+    def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, pupil_edge_thresh, N, minimum_candidate_features):
 
         global edge_point, edge_intensity_diff
-    
-        dis = np.int16(2)
+        
+        dis = np.int16(4)
         angle_spread = np.float64(180*3.1415926535897932384626433832795/180)
         loop_count = np.int16(0)
-        angle_step = np.float64(2*3.1415926535897932384626433832795/N)
-        new_angle_step = np.float64(0)
-        angle_normal = np.float64(0)
-        cx = np.float64(cx)
-        cy = np.float64(cy)
-        first_ep_num = np.int16(0)
-        circleimage = pupil_image
+        angle_step = np.float64(2*np.pi/N)
+        #new_angle_step = np.float64(0)
+        #angle_normal = np.float64(0)
+        #cx = np.float64(cx)
+        tcx = []
+        tcy = []
+        #cy = np.float64(cy)
+        #tcx[loop_count] = cx
+        #tcy[loop_count] = cy
+        tcx.append(cx)
+        tcy.append(cy)
+        edge_thresh = pupil_edge_thresh
+        #first_ep_num = np.int16(0)
+        #circleimage = pupil_image
+        minEdgeThresh = 5
 
-        while (edge_thresh > 5 and loop_count <= 20):
-            edge_intensity_diff = []
-            edge_point = []
-            while (len(edge_point) < minimum_candidate_features and edge_thresh > 5):
-
-                edge_intensity_diff = []
-                edge_point = []
-                locate_edge_points(pupil_image, width, height, cx, cy, dis, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh)
-                if (len(edge_point) < minimum_candidate_features):
+        while edge_thresh > minEdgeThresh and loop_count <= 20:
+            #edge_intensity_diff = []
+            #edge_point = []
+            epx = []
+            epy = []
+            while len(epx) < minimum_candidate_features and edge_thresh > minEdgeThresh:
+                epx, epy, epd = locate_edge_points(pupil_image, width, height, cx, cy, dis, angle_step, 0, 2*np.pi, edge_thresh)
+                #edge_intensity_diff = []
+                #edge_point = []
+                #locate_edge_points(pupil_image, width, height, cx, cy, dis, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh)
+                if len(epx) < minimum_candidate_features:
                     print('reduced threshold')
                     edge_thresh -= 1
-            if (edge_thresh <= 5):
-                break;
+            #if edge_thresh <= minEdgeThresh:
+            #    edge_thresh = pupil_edge_thresh
+            #    while len(epx) < minimum_candidate_features and edge_thresh > 5:
+            #        epx, epy, epd = locate_edge_points(pupil_image, 
 
-            first_ep_num = len(edge_point)
-            #print(edge_point)
-            for i in range(0, first_ep_num):
-                edge = edge_point[i]
-                #cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
-                angle_normal = np.arctan2(cy-edge[1], cx-edge[0])
-                new_angle_step = angle_step*(edge_thresh*1.0/edge_intensity_diff[i])
-                locate_edge_points(pupil_image, width, height, edge[0], edge[1], dis, new_angle_step, angle_normal, angle_spread, edge_thresh)
-            for i in range(0, len(edge_point)):
-                edge = edge_point[i]
-                #cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
+            angle_normal = np.arctan2(cy-epy, cx-epx)
+            for i in range(len(epx)):
+                tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, epx[i], epy[i], dis, angle_step*(np.float64(edge_thresh)/np.float64(epd[i])), angle_normal[i], angle_spread, edge_thresh)
+                epx = np.hstack([epx, tepx])
+                epy = np.hstack([epy, tepy])
 
+            for i in range(len(epx)):
+
+                cv2.circle(pupil_image, (int(epx[i]), int(epy[i])), 1, (255,255,255), -1)
+            
+            cv2.imshow('circleimage', pupil_image)
+            cv2.waitKey(0)
 
             loop_count += 1
-            edge_mean = np.mean(edge_point,0)
-            #edge_mean = get_edge_mean()
-            if(math.fabs(edge_mean[0]-cx) + math.fabs(edge_mean[1]-cy) < 10):
-                break;
-            cx = edge_mean[0]
-            cy = edge_mean[1]
-        #cv2.imshow('circleimage', circleimage)
-        #cv2.waitKey(0)
-        if (loop_count > 10):
-            #destroy_edge_point()
-            print('Error! Edge points did not converge')
-            return None
-        if (edge_thresh <= 5):
-            #destroy_edge_point()
-            print('Error! Adaptive threshold too low')
-            return None
-        ec = edge_point
+            tcx.append(np.mean(epx))
+            tcy.append(np.mean(epy))
+            if np.abs(tcx[loop_count]-cx) + np.abs(tcy[loop_count]-cy) < 10:
+                break
+            cx = tcx[loop_count]
+            cy = tcy[loop_count]
+
+            
+
+        if loop_count > 20:
+            print("Error: edge points did not converge")
+            return None, None
+
+        if edge_thresh <= minEdgeThresh:
+            print("Error: adaptive threshold is too low")
+            return None, None
+            
+        return epx, epy
+            
+        #    first_ep_num = len(edge_point)
+        #    #print(edge_point)
+        #    for i in range(0, first_ep_num):
+        #        edge = edge_point[i]
+        #        #cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
+        #        angle_normal = np.arctan2(cy-edge[1], cx-edge[0])
+        #        new_angle_step = angle_step*(edge_thresh*1.0/edge_intensity_diff[i])
+        #        locate_edge_points(pupil_image, width, height, edge[0], edge[1], dis, new_angle_step, angle_normal, angle_spread, edge_thresh)
+        #    for i in range(0, len(edge_point)):
+        #        edge = edge_point[i]
+        #        #cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
+
+
+        #    loop_count += 1
+        #    edge_mean = np.mean(edge_point,0)
+        #    #edge_mean = get_edge_mean()
+        #    if(math.fabs(edge_mean[0]-cx) + math.fabs(edge_mean[1]-cy) < 10):
+        #        break;
+        #    cx = edge_mean[0]
+        #    cy = edge_mean[1]
+        ##cv2.imshow('circleimage', circleimage)
+        ##cv2.waitKey(0)
+        #if (loop_count > 10):
+        #    #destroy_edge_point()
+        #    print('Error! Edge points did not converge')
+        #    return None
+        #if (edge_thresh <= 5):
+        #    #destroy_edge_point()
+        #    print('Error! Adaptive threshold too low')
+        #    return None
+        #ec = edge_point
         
-        return ec
+        #return ec
     
     
 
-    def locate_edge_points(image, width, height, cx, cy, dis, angle_step, angle_normal, angle_spread, edge_thresh):
+    def locate_edge_points(image, width, height, cx, cy, dis, angle_step, angle_n, angle_spread, edge_thresh):
 
-        global edge_point, edge_intensity_diff, p, edge
-        p = [0, 0]
-        edge = [0, 0]
-        angle = np.float64(0)
-        dis_cos = np.float64(0)
-        dis_sin = np.float64(0)
-        pixel_value1 = np.int16(0)
-        pixel_value2 = np.int16(0)
-        for angle in np.linspace(angle_normal-angle_spread/2+0.0001, angle_normal+angle_spread/2, ((angle_normal+angle_spread/2)-(angle_normal-angle_spread/2+0.0001))/angle_step):
+        #global edge_point, edge_intensity_diff, p, edge
+        
+        epx = []
+        epy = []
+        dir = []
+        ep_num = 0
+        p = np.zeros([4,2])
+
+        #edge = [0, 0]
+        #angle = np.float64(0)
+        #dis_cos = np.float64(0)
+        #dis_sin = np.float64(0)
+        #pixel_value1 = np.int16(0)
+        #pixel_value2 = np.int16(0)
+        #for angle in np.linspace(angle_n-angle_spread/2+0.0001, angle_n+angle_spread/2, ((angle_n+angle_spread/2)-(angle_n-angle_spread/2+0.0001))/angle_step):
+        for angle in np.arange(angle_n-angle_spread/2+0.0001, angle_n+angle_spread/2, angle_step):
             #print(angle)
             #print(a)
             #print(len(a))
-        
-            dis_cos = dis * np.cos(angle)
-            dis_sin = dis * np.sin(angle)
-            p[0] = math.floor(cx + dis_cos)
-            p[1] = math.floor(cy + dis_sin)
-        
-            pixel_value1 = np.int16(image[p[1]-1, p[0]-1])
-            #print('wat')
-            while (1):
-                p[0] += dis_cos
-                p[1] += dis_sin
-                if (p[0] < 0 or p[0] >= width or p[1] < 0 or p[1] >= height):
-                    break;
-                #print(p[0])
-                #print(p[1])
-                p[0] = math.floor(p[0])
-                p[1] = math.floor(p[1])
-                #print(p[0])
-                #print(p[1])
-                pixel_value2 = np.int16(image[p[1], p[0]])
-                #print(pixel_value2)
-                #print(pixel_value1)
-                #print(pixel_value2 - pixel_value1)
-                if (pixel_value2 - pixel_value1 > edge_thresh):
-                    edge = [0, 0]
-                    #print(p[0])
-                    #print(dis_cos/2)
-                    #raw_input('press enter to continue')
-                    edge[0] = np.int16(p[0] - dis_cos/2)
-                    edge[1] = np.int16(p[1] - dis_sin/2)
-                    edge_point.append(edge)
-                    #print(edge)
-                    edge_intensity_diff.append(pixel_value2 - pixel_value1)
-                    #print(pixel_value2)
-                    #print(pixel_value1)
-                    #print(pixel_value2 - pixel_value1)
-                    break;
-                pixel_value1 = pixel_value2
+            step = 2
+            p[1,:] = [np.round(cx+dis*np.cos(angle)), np.round(cy+dis*np.sin(angle))]
+            if p[1,1] > height or p[1,1] < 1 or p[1,0] > width or p[1,0] < 1:
+                continue
+            while(1):
+                p[0,:] = [np.round(cx+step*dis*np.cos(angle)), np.round(cy+step*dis*np.sin(angle))]
+                if p[0,1] > height or p[0,1] < 1 or p[0,0] > width or p[0,0] < 1:
+                    break
+
+            #dis_cos = dis * np.cos(angle)
+            #dis_sin = dis * np.sin(angle)
+            #p[0] = math.floor(cx + dis_cos)
+            #p[1] = math.floor(cy + dis_sin)
+                else:
+                    d = (image[p[0,1],p[0,0]] - image[p[1,1],p[1,0]])*2*np.square((255-image[p[1,1], p[1,0]])/255)
+                    if p[2,0] > 0.0:
+                        d2 = (image[p[0,1], p[0,0]] - image[p[2,1],p[2,0]])*2*np.square((255-image[p[2,1], p[2,0]])/255)
+                    else:
+                        d2 = 0
+                    if p[3,0] > 0.0:
+                        d3 = (image[p[0,1], p[0,0]] - image[p[3,1],p[3,0]])*2*np.square((255-image[p[3,1], p[3,0]])/255)
+                    else:
+                        d3 = 0
+                    if d >= edge_thresh:
+                        ep_num += 1
+                        #epx[ep_num] = (p[0,0]+p[1,0])/2
+                        #epy[ep_num] = (p[0,1]+p[1,1])/2
+                        #dir[ep_num] = d
+                        epx.append((p[0,0]+p[1,0])/2)
+                        epy.append((p[0,1]+p[1,1])/2)
+                        dir.append(d)
+                        break
+                    elif d2 >= edge_thresh:
+                        ep_num += 1
+                        epx.append((p[0,0]+p[2,0])/2)
+                        epy.append((p[0,1]+p[2,1])/2)
+                        dir.append(d2)
+                        break
+                    elif d3 >= edge_thresh:
+                        ep_num += 1
+                        epx.append((p[0,0]+p[3,0])/2)
+                        epy.append((p[0,1]+p[3,1])/2)
+                        dir.append(d3)
+                        break
+                    else:
+                        break
+        p[3,:] = p[2,:]
+        p[2,:] = p[1,:]
+        p[1,:] = p[0,:]
+        step += 1
+
+        return epx, epy, dir
+
+            
+            #pixel_value1 = np.int16(image[p[1]-1, p[0]-1])
+            ##print('wat')
+            #while (1):
+            #    p[0] += dis_cos
+            #    p[1] += dis_sin
+            #    if (p[0] < 0 or p[0] >= width or p[1] < 0 or p[1] >= height):
+            #        break;
+            #    #print(p[0])
+            #    #print(p[1])
+            #    p[0] = math.floor(p[0])
+            #    p[1] = math.floor(p[1])
+            #    #print(p[0])
+            #    #print(p[1])
+            #    pixel_value2 = np.int16(image[p[1], p[0]])
+            #    #print(pixel_value2)
+            #    #print(pixel_value1)
+            #    #print(pixel_value2 - pixel_value1)
+            #    if (pixel_value2 - pixel_value1 > edge_thresh):
+            #        edge = [0, 0]
+            #        #print(p[0])
+            #        #print(dis_cos/2)
+            #        #raw_input('press enter to continue')
+            #        edge[0] = np.int16(p[0] - dis_cos/2)
+            #        edge[1] = np.int16(p[1] - dis_sin/2)
+            #        edge_point.append(edge)
+            #        #print(edge)
+            #        edge_intensity_diff.append(pixel_value2 - pixel_value1)
+            #        #print(pixel_value2)
+            #        #print(pixel_value1)
+            #        #print(pixel_value2 - pixel_value1)
+            #        break;
+            #    pixel_value1 = pixel_value2
 
 
     def ellipse_direct_fit(xy):
@@ -547,16 +646,16 @@ def Track(frame):
         #cv2.waitKey(0)
         #cv2.equalizeHist(roi_gray, roi_gray)
 
-        ec = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 7, 8, 4)
-        if ec is None:
+        ecx, ecy = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 16, 8, 8)
+        if ecx is None:
             et.ReturnError()
             return
 
-        ecx = np.array(np.empty(len(ec)))
-        ecy = np.array(np.empty_like(ecx))
-        for x in range(0, len(ec)):
-            ecx[x] = ec[x][0]
-            ecy[x] = ec[x][1]
+        #ecx = np.array(np.empty(len(ec)))
+        #ecy = np.array(np.empty_like(ecx))
+        #for x in range(0, len(ec)):
+        #    ecx[x] = ec[x][0]
+        #    ecy[x] = ec[x][1]
         ellipse, inliers, ransac_iter = fit_ellipse_ransac(ecx, ecy, 1000, 10, 1.5)
         if len(ellipse) is 0 or ransac_iter >= 10000:
             sys.exit("No ellipse found")
