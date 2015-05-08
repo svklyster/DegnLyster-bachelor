@@ -282,81 +282,12 @@ def Track(frame):
 
         return crx, cry, max_contour;
 
-    def fit_circle_radius_to_corneal_reflection (imagePntr, crx, cry, crar, biggest_crar, sin_array, cos_array, array_len, imW, imH):
-
-        #print(crx)
-        #print(cry)
-        #print(crar)
-        crar = 11
-        if (crx == -1 or cry == -1 or crar == -1):
-            return -1;
-
-        ratio = np.zeros(biggest_crar-crar+1)
-        #print(ratio)
-        i = np.int16(0)
-        r = np.int16(0)
-        r_delta = np.int16(1)
-        x = np.int16(0)
-        y = np.int16(0)
-        x2 = np.int16(0)
-        y2 = np.int16(0)
-        sum1 = np.float64(0)
-        sum2 = np.float64(0)
-
-        for r in range(crar, biggest_crar):
-            sum1 = 0
-            sum2 = 0
-            count = 0
-            for i in range(array_len):
-                x = (int)(crx + (r+r_delta)*cos_array[i])
-                y = (int)(cry + (r+r_delta)*sin_array[i])
-                x2 = (int)(crx + (r-r_delta)*cos_array[i])
-                y2 = (int)(cry + (r+r_delta)*sin_array[i])
-                count += 1
-                if ((x >= 0 and y >= 0 and x < imW and y < imH) and
-                    (x2 >= 0 and y2 >= 0 and x2 < imW and y2 < imH)):
-                    sum1 += imagePntr[y, x]
-                    sum2 += imagePntr[y2, x2]
-            ratio[r-crar] = sum1/sum2
-
-            if (r - crar >= 2):
-                if (ratio[r-crar-2] < ratio[r-crar-1] and ratio[r-crar] < ratio[r-crar-1]):
-                    #free(ratio)
-                    return r-1;
-
-        #free(ratio)
-        #print stuff
-        return crar;
-
-    def interpolate_corneal_reflection (imagePntr, crx, cry, contour, imW, imH):
-
-        if len(contour) is not 2:
-            return None
-
-        rectan = [None]*2
-        color = [None]*2
-
-        
-
-        for i in range(len(contour)):
-            rectan[i] = cv2.boundingRect(contour[i]) #returnerer x,y(top left corner), widht, height
-            color[i] = np.array([imagePntr[rectan[i][0]-2,rectan[i][1]-2],imagePntr[rectan[i][0]-2,rectan[i][1]+rectan[i][3]+2],imagePntr[rectan[i][0]+rectan[i][2]+2, rectan[i][1]-2], imagePntr[rectan[i][0]+rectan[i][2]+2, rectan[i][1]+rectan[i][3]+2]]) 
-            #mean_color = np.mean(color[i])/3
-            mean_color = 0
-            cv2.rectangle(imagePntr, (rectan[i][0]-1, rectan[i][1]-1), (rectan[i][0]+1 + rectan[i][2], rectan[i][1]+1 + rectan[i][3]+1), mean_color, -1)
-  
-        #cv2.imshow('circleimage', imagePntr)
-        #cv2.waitKey(0)
-        return imagePntr;
-
-
-
     def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, pupil_edge_thresh, N, minimum_candidate_features, Reflections):
 
         global edge_point, edge_intensity_diff
         
         dis = np.int16(2)
-        angle_spread = np.float64(180*3.1415926535897932384626433832795/180)
+        angle_spread = np.float64(180*np.pi/180)
         loop_count = np.int16(0)
         angle_step = np.float64(2*np.pi/N)
         #new_angle_step = np.float64(0)
@@ -385,7 +316,7 @@ def Track(frame):
                 #edge_point = []
                 #locate_edge_points(pupil_image, width, height, cx, cy, dis, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh)
                 if len(epx) < minimum_candidate_features:
-                    print('reduced threshold')
+                    #print('reduced threshold')
                     edge_thresh -= 1
             if edge_thresh <= minEdgeThresh:
                 edge_thresh = pupil_edge_thresh
@@ -413,12 +344,12 @@ def Track(frame):
                 epx = np.hstack([epx, tepx])
                 epy = np.hstack([epy, tepy])
 
-            for i in range(len(epx)):
+            #for i in range(len(epx)):
 
-                cv2.circle(pupil_image, (int(epx[i]), int(epy[i])), 1, (255,255,255), -1)
+                #cv2.circle(pupil_image, (int(epx[i]), int(epy[i])), 1, (255,255,255), -1)
             
-            cv2.imshow('circleimage', pupil_image)
-            cv2.waitKey(0)
+            #cv2.imshow('circleimage', pupil_image)
+            #cv2.waitKey(0)
 
             loop_count += 1
             tcx.append(np.mean(epx))
@@ -507,17 +438,17 @@ def Track(frame):
             #print(len(a))
             step = 2
             p[1,:] = [np.round(cx+dis*np.cos(angle)), np.round(cy+dis*np.sin(angle))]
-            if p[1,1] > height or p[1,1] < 1 or p[1,0] > width or p[1,0] < 1:
+            if p[1,1] >= height or p[1,1] < 0 or p[1,0] >= width or p[1,0] < 0:
                 continue
             while(1):
                 p[0,:] = [np.round(cx+step*dis*np.cos(angle)), np.round(cy+step*dis*np.sin(angle))]
-                if p[0,1] > height or p[0,1] < 1 or p[0,0] > width or p[0,0] < 1:
+                if p[0,1] >= height or p[0,1] < 0 or p[0,0] >= width or p[0,0] < 0:
                     break
                 if ((p[0,0] <= reflectionXmax[0] and p[0,0] >= reflectionXmin[0] and p[0,1] <= reflectionYmax[0] and p[0,1] >= reflectionYmin[0])
                     or (p[0,0] <= reflectionXmax[1] and p[0,0] >= reflectionXmin[1] and p[0,1] <= reflectionYmax[1] and p[0,1] >= reflectionYmin[1])):
-                    if ((p[1,0] <= reflectionXmax[0] and p[1,0] >= reflectionXmin[0] and p[1,1] <= reflectionYmax[0] and p[1,1] >= reflectionYmin[0])
-                        or (p[1,0] <= reflectionXmax[1] and p[1,0] >= reflectionXmin[1] and p[1,1] <= reflectionYmax[1] and p[1,1] >= reflectionYmin[1])):
-                            break
+                    if ((p[1,0] > reflectionXmax[0] and p[1,0] < reflectionXmin[0] and p[1,1] > reflectionYmax[0] and p[1,1] < reflectionYmin[0])
+                        or (p[1,0] > reflectionXmax[1] and p[1,0] < reflectionXmin[1] and p[1,1] > reflectionYmax[1] and p[1,1] < reflectionYmin[1])):
+                        break
             #dis_cos = dis * np.cos(angle)
             #dis_sin = dis * np.sin(angle)
             #p[0] = math.floor(cx + dis_cos)
@@ -553,11 +484,12 @@ def Track(frame):
                         epy.append((p[0,1]+p[3,1])/2)
                         dir.append(d3)
                         break
-                    
-        p[3,:] = p[2,:]
-        p[2,:] = p[1,:]
-        p[1,:] = p[0,:]
-        step += 1
+                    #else:
+                    #    break
+                p[3,:] = p[2,:]
+                p[2,:] = p[1,:]
+                p[1,:] = p[0,:]
+                step += 1
 
         return epx, epy, dir
 
@@ -703,12 +635,12 @@ def Track(frame):
         else:
             c = ellipse_direct_fit(np.array([ecx[inliers], ecy[inliers]]).T)
             ellipse = convert_conic_parameters_to_ellipse_parameters(c)
-            e_angle = int(ellipse[4]).real*57.2957795 
+            #e_angle = int(ellipse[4]).real*57.2957795 
             e_center = (ellipse[2],ellipse[3])
-            e_axes = (ellipse[0],ellipse[1])
-            cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
-            cv2.imshow('Ellipse', roi_gray)
-            cv2.waitKey(0)  
+            #e_axes = (ellipse[0],ellipse[1])
+            #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
+            #cv2.imshow('Ellipse', roi_gray)
+            #cv2.waitKey(0)  
             #return (crx,cry), e_center, ("NoTrigger")
             et.PackWithTimestamp((crx,cry), e_center, ("NoTrigger"))
 
