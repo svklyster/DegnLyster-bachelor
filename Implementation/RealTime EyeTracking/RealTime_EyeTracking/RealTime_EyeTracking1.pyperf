@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ProfilingTarget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectTarget>
+    <TargetProject>a9e36ecc-ee74-4212-afa9-996662f419fb</TargetProject>
+    <FriendlyName>RealTime_EyeTracking</FriendlyName>
+  </ProjectTarget>
+  <Reports>
+    <Report>
+      <Filename>C:\Users\Søren Lyster\AppData\Local\Temp\RealTime_EyeTracking1_20150508.vsp</Filename>
+    </Report>
+  </Reports>
+</ProfilingTarget>
