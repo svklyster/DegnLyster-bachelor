@@ -351,7 +351,7 @@ def Track(frame, e_center, calData):
 
         global edge_point, edge_intensity_diff
     
-        dis = np.int16(4)
+        dis = np.int16(3)
         angle_spread = np.float64(180*3.1415926535897932384626433832795/180)
         loop_count = np.int16(0)
         angle_step = np.float64(2*3.1415926535897932384626433832795/N)
@@ -377,17 +377,20 @@ def Track(frame, e_center, calData):
             first_ep_num = len(epx)
             #print(edge_point)
             for i in range(0, first_ep_num):
-                #edge = edge_point[i]
-                #cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
+                edge = [int(epx[i]),int(epy[i])]
+                cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
                 angle_normal = np.arctan2(cy-epy[i], cx-epx[i])
                 new_angle_step = angle_step*(edge_thresh*1.0/epd[i])
                 tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh)
                 epx = np.hstack([epx, tepx])
                 epy = np.hstack([epy, tepy])
+            cv2.imshow('firstround',circleimage)
+            cv2.waitKey(0)
             for i in range(0, len(epx)):
                 edge = [int(epx[i]),int(epy[i])]
                 cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
-
+            cv2.imshow('secondround',circleimage)
+            cv2.waitKey(0)
 
             loop_count += 1
             tcx = np.mean(epx)
@@ -431,7 +434,7 @@ def Track(frame, e_center, calData):
         pixel_value1 = np.int16(0)
         pixel_value2 = np.int16(0)
 
-        alpha = 0.3
+        alpha = 0.01
 
         for angle in np.arange(angle_normal-angle_spread/2+0.0001, angle_normal+angle_spread/2, angle_step):
             
@@ -440,7 +443,7 @@ def Track(frame, e_center, calData):
             p[0] = math.floor(cx + dis_cos)
             p[1] = math.floor(cy + dis_sin)
             
-            pixel_ema = 0
+            pixel_ema = 0.0
             pixel_sum = 0
             count = 1
             pixel_value1 = np.int16(image[p[1], p[0]])
@@ -464,7 +467,8 @@ def Track(frame, e_center, calData):
                 #if (pixel_value2 - pixel_ema > edge_thresh): 
                     epx.append(np.int16(p[0] - dis_cos/2))
                     epy.append(np.int16(p[1] - dis_sin/2))
-
+                    print(p[0])
+                    print(p[1])
                     dir.append(pixel_value2 - pixel_value1)
 
                     break;
@@ -628,9 +632,8 @@ def Track(frame, e_center, calData):
         #cv2.imshow('image', roi_gray)
         #cv2.waitKey(0)
 
-        image = cv2.GaussianBlur(image, (5,5), 0)
-
-       
+        #roi_gray = cv2.GaussianBlur(roi_gray, (5,5), 0)
+        #roi_gray_thresh = cv2.GaussianBlur(roi_gray_thresh, (5,5), 0)
         #start_point = [-1, -1]
         inliers_num = np.int16(0)
         angle_step = np.int16(20)
@@ -659,7 +662,26 @@ def Track(frame, e_center, calData):
             return
 
         #cv2.equalizeHist(roi_gray, roi_gray)
+        maxIntensity = 255.0
+        x = np.arange(maxIntensity)
+        phi = 1
+        theta = 1
+        roi_gray = (maxIntensity/phi)*(roi_gray/(maxIntensity/theta))**0.5
+        roi_gray = np.array(roi_gray, dtype=np.uint8)
 
+        cv2.imshow('newImage0',roi_gray)
+        cv2.waitKey(0)
+
+        #y = (maxIntensity/phi)*(x/(maxIntensity/theta))**0.5
+
+        # Decrease intensity such that
+        # dark pixels become much darker, 
+        # bright pixels become slightly dark 
+        #newImage1 = (maxIntensity/phi)*(roi_gray/(maxIntensity/theta))**2
+        #newImage1 = np.array(newImage1,dtype=np.uint8)
+
+        #cv2.imshow('newImage1',newImage1)
+        #cv2.waitKey(0)
 
         #cv2.circle(roi_gray, (crx, cry), crr, (255,255,255), 1)
         #cv2.line(roi_gray, (crx-5, cry), (crx+5, cry), (255,255,255), 1)
@@ -668,7 +690,7 @@ def Track(frame, e_center, calData):
         #cv2.waitKey(0)
     
 
-        epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 8, 6, 6)
+        epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 40, 6, 6)
         if epx is None:
             et.ReturnError("Starburst threshold too low")
             return
