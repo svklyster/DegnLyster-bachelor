@@ -14,7 +14,6 @@ import thread
 import time
 import sys
 
-
 root = tk.Tk()
 root.title("RealTime EyeTracking")
 
@@ -52,7 +51,7 @@ def UpdateWithSessionData(sessionData):
     tCalfile.delete("1.0", tk.END)
     tCalfile.insert("1.0", sessionData.calfile)
     tNotePathname.delete("1.0", tk.END)
-    tNotePathname.insert("1.0", sessionData.calfilename)
+    tNotePathname.insert("1.0", sessionData.pathname)
 
 def CreateSession():
     "Opening session wizard"
@@ -172,7 +171,8 @@ def StartEyeTracking():
     try:
         sessionData = UpdateSessionWithPreferences()
         global trackingRunning
-        trackingRunning = lh.StartNewTracking(sessionData)
+        logHandler = lh.LogHandler(sessionData)
+        trackingRunning = logHandler.StartNewTracking()
         if trackingRunning is True:
             bStart.config(state = tk.DISABLED)
             bStop.config(state = tk.NORMAL)

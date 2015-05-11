@@ -5,7 +5,7 @@ import ETalgorithm as ET
 
 class VideoCapture: 
 
-    def __init__(self, livecam, camnr, videopath, tracking=None): 
+    def __init__(self, livecam, camnr, videopath, calData=None, tracking=None): 
         if livecam is True:
             self.cap = cv2.VideoCapture(int(camnr))
         else:
@@ -13,7 +13,8 @@ class VideoCapture:
         try:
             self.framerate = cv2.GetCaptureProperty(self.cap, CV_CAP_PROP_FPS)
         except:
-            self.framerate = 100
+            self.framerate = 60
+        self.calData = calData
         #self.running = True
         #self.updateVideoThread = thread.start_new_thread(self.updateVideo, (self.framerate, ))
         #if tracking is not True:
@@ -43,7 +44,7 @@ class VideoCapture:
     #    cv2.destroyWindow('Video source')
     #    self.cap.release()
 
-    def updateVideo(self):
+    def updateVideo(self, last_center):
         ret, frame = self.cap.read()
         if ret is True:
             ET.Track(frame)

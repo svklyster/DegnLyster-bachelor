@@ -586,7 +586,8 @@ def Track(frame):
         try:
             T = -np.dot(np.linalg.inv(S3),S2.T)
         except: 
-            sys.exit("Singular value matrix")
+          et.ReturnError("Singular value matrix")
+          return 0
         M = S1 + np.dot(S2,T)
         Mm = np.array([M[2,:]/2,-M[1,:],M[0,:]/2])
 
@@ -612,11 +613,13 @@ def Track(frame):
 
     #image = cv2.imread('test.png')
     image = frame
+    #print("Test1")
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
   
     eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
     eyes = eye_cascade.detectMultiScale(gray, 1.3, 5, minSize = (100,100) )
     for (x,y,w,h) in eyes:
+        #print("Test2")
         roi_gray = gray[y:y+h, x:x+w]
         roi_gray_thresh = gray[y:y+h, x:x+w]
 
@@ -650,7 +653,7 @@ def Track(frame):
         crx, cry = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 20, 2, 2, -2, imW, imH)
 
         if crx is None or cry is None:
-            et.ReturnError()
+            et.ReturnError("Error with corneal reflections")
             return
 
         #cv2.equalizeHist(roi_gray, roi_gray)
@@ -665,7 +668,7 @@ def Track(frame):
 
         epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 16, 8, 8)
         if epx is None:
-            et.ReturnError()
+            et.ReturnError("Starburst threshold too low")
             return
 
         #ecx = np.array(np.empty(len(ec)))
@@ -673,19 +676,20 @@ def Track(frame):
         #for x in range(0, len(ec)):
         #    ecx[x] = ec[x][0]
         #    ecy[x] = ec[x][1]
-        ellipse, inliers, ransac_iter = fit_ellipse_ransac(epx, epy, 500, 10, 1.5)
+        ellipse, inliers, ransac_iter = fit_ellipse_ransac(epx, epy, 1000, 10, 1.5)
         if len(ellipse) is 0 or ransac_iter >= 10000:
-            et.ReturnError()
+            et.ReturnError("Maximum ransac iterations exceeded")
         else:
             c = ellipse_direct_fit(np.array([epx[inliers], epy[inliers]]).T)
             ellipse = convert_conic_parameters_to_ellipse_parameters(c)
-            e_angle = int(ellipse[4]).real*57.2957795 
+            #e_angle = int(ellipse[4]).real*57.2957795 
             e_center = (ellipse[2],ellipse[3])
-            e_axes = (ellipse[0],ellipse[1])
+            #e_axes = (ellipse[0],ellipse[1])
             #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
             #cv2.imshow('Ellipse', roi_gray)
             #cv2.waitKey(0)  
             #return (crx,cry), e_center, ("NoTrigger")
+            et.LastCenter(e_center)
             et.PackWithTimestamp((crx,cry), e_center, ("NoTrigger"))
 
             return

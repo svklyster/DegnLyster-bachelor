@@ -4,10 +4,13 @@ import sys
 import time
 import datetime
 import threading
+#import LogHandler as lh
 
 
 running = False
 capture = None
+last_center = None
+logHandler = None
 
 class EyeTrackingThread(threading.Thread):
     def __init__(self, threadID, name, framerate):
@@ -16,14 +19,16 @@ class EyeTrackingThread(threading.Thread):
         self.name = name
         self.framerate = framerate
     def run(self):
-        capture.updateVideo()
+        global last_center
+        capture.updateVideo(last_center)
         time.sleep(1/self.framerate)
         self.run()
         
         
 
-def StartVideoCapture(sessionData):
-    global running, capture
+def StartVideoCapture(sessionData, log_handler):
+    global running, capture, logHandler
+    logHandler = log_handler
     try:
                                     ####### TEST#####
         #capture = vc.VideoCapture(sessionData.livecam, sessionData.camnr, sessionData.videopath, True)
@@ -33,6 +38,7 @@ def StartVideoCapture(sessionData):
         trackingThread = EyeTrackingThread(1, "ETthread1", capture.framerate)
         trackingThread.start()
         running = True
+        #loghandler
         return running
     except:
         e = sys.exc_info()[0]
@@ -61,9 +67,15 @@ def GetPoint(sessionData):
         GetPoint(sessionData)
 
 def PackWithTimestamp((crx,cry), e_center, trigger):
-        t = datetime.datetime.now().strftime('%H:%M:%S.%f')
-        print("%s - %s, %s, %s, %s - Trigger=%s" %(t,crx[0],cry[0],e_center[0].real, e_center[1].real,trigger))
-
-def ReturnError():
+    global logHandler
     t = datetime.datetime.now().strftime('%H:%M:%S.%f')
-    print("%s - %s" %(t,"Error"))
+    logHandler.LogData("%s - %s, %s, %s, %s - Trigger=%s" %(t,crx[0],cry[0],e_center[0].real, e_center[1].real,trigger))
+
+def ReturnError(error):
+    global logHandler
+    t = datetime.datetime.now().strftime('%H:%M:%S.%f')
+    logHandler.LogData("%s - %s" %(t,error))
+
+def LastCenter(eCenter):
+    global last_center
+    last_center = eCenter

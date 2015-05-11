@@ -10,7 +10,7 @@ paraNames = ["SESSIONPATH","USINGCAM","CAMNR",
 class SessionData:
 
     def __init__(self, pathname):
-        self.pathname = pathname
+        self.pathname = pathname.encode("latin-1").rstrip()
         self.filepath = os.path.abspath(self.pathname + "/" + "session.pref")
         self.livecam = False
         self.camnr = 0
@@ -44,12 +44,12 @@ class SessionData:
             sessionStr += "VIDEOPATH None" + '\n'
         else:
             sessionStr +=  "VIDEOPATH " + self.videopath + '\n'
-        sessionStr += "NOTES " + self.notes + '\n'
-        sessionStr += "RESOLUTION " + self.resolution + '\n'
-        sessionStr += "CALTYPE " + self.caltype + '\n'
-        sessionStr += "LOGFILENAME " + self.logfilename + '\n'
-        sessionStr += "CALFILENAME " + self.calfilename + '\n'
-        sessionStr += "LOADEDCALDATA " + self.calfile + '\n'
+        sessionStr += "NOTES " + self.notes
+        sessionStr += "RESOLUTION " + self.resolution
+        sessionStr += "CALTYPE " + self.caltype
+        sessionStr += "LOGFILENAME " + self.logfilename
+        sessionStr += "CALFILENAME " + self.calfilename
+        sessionStr += "LOADEDCALDATA " + str(self.calfile) + '\n'
         sessionStr += "RECORDVIDEO " + str(self.recordvideo) + '\n'
         sessionStr += "RAWDATAPATH " + str(self.rawdatapath) + '\n'
         try:
@@ -69,11 +69,11 @@ class SessionData:
             sessionStr += "VIDEOPATH None" + '\n'
         else:
             sessionStr +=  "VIDEOPATH " + self.videopath + '\n'
-        sessionStr += "NOTES " + self.notes + '\n'
-        sessionStr += "RESOLUTION " + self.resolution + '\n'
-        sessionStr += "CALTYPE " + self.caltype + '\n'
-        sessionStr += "LOGFILENAME " + self.logfilename + '\n'
-        sessionStr += "CALFILENAME " + self.calfilename + '\n'
+        sessionStr += "NOTES " + self.notes
+        sessionStr += "RESOLUTION " + self.resolution
+        sessionStr += "CALTYPE " + self.caltype
+        sessionStr += "LOGFILENAME " + self.logfilename
+        sessionStr += "CALFILENAME " + self.calfilename
         sessionStr += "LOADEDCALDATA " + self.calfile + '\n'
         sessionStr += "RECORDVIDEO " + str(self.recordvideo) + '\n'
         sessionStr += "RAWDATAPATH " + self.rawdatapath + '\n'
