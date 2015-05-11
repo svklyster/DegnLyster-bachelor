@@ -226,6 +226,8 @@ def LoadPreferences():
     else:
        tkMessageBox.showerror("Exception", "Error: %s" % fileVerified)
     print "loading preferences \n"
+    bStart.config(state = tk.NORMAL)
+    bCalib.config(state = tk.NORMAL)
     return
 
 def UpdateSessionWithPreferences():
@@ -268,7 +270,7 @@ midf = tk.Frame(root)
 #Buttons
 bSession = tk.Button(leftf, text = "Create session", command = CreateSession)
 bCalib = tk.Button(leftf, text = "Start calibration", command = StartCalibration, state=tk.DISABLED)
-bStart = tk.Button(leftf, text = "Start eyetracking", command = StartEyeTracking, state=tk.NORMAL)      ###DISABLED
+bStart = tk.Button(leftf, text = "Start eyetracking", command = StartEyeTracking, state=tk.DISABLED)     
 bStop = tk.Button(leftf, text = "Stop eyetracking", command = StopEyeTracking, state=tk.DISABLED)
 
 ###MainDisplay
