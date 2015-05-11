@@ -62,11 +62,11 @@ def Track(frame, e_center, calData):
         return e 
 
     def fit_ellipse_ransac (x, y, maximum_ransac_iterations, target_ellipse_radius, diviation):
-        max_inliers = 0
+        max_inliers = np.float64(0)
         max_inlier_indices = []
         max_ellipse = []
         inliers_index = []
-        ninliers = 0
+        ninliers = np.float64(0)
         N = float('inf')
         ransac_iter = 0
 
@@ -75,7 +75,9 @@ def Track(frame, e_center, calData):
         #x = np.array([5,4,3,4,5,4,3,4,5])
         #y = np.array([4,5,4,3,4,3,4,5,4])
     
-        ep_num = len(x)
+        ep_num = np.float64(len(x))
+        print "ep_num:"
+        print ep_num
         if ep_num < 5:
             print("Too few feature points")
             return
@@ -137,7 +139,7 @@ def Track(frame, e_center, calData):
             #print(diserr)
             #inliers_index = np.transpose(np.flatnonzero(np.abs(diserr) < dist_thres))
             inliers_index = np.nonzero(np.abs(diserr) < np.transpose(dist_thres))
-            ninliers = len(inliers_index)
+            ninliers = len(inliers_index[0])
             #print(nconic_par)
             random_or_adaptive = 0
             if ninliers > max_inliers:
@@ -171,14 +173,14 @@ def Track(frame, e_center, calData):
                             max_inliers = ninliers
                             max_inlier_indices = inliers_index
                             max_ellipse = ellipse_par
-                            N = np.log(1-0.99)/np.log(1-np.power((ninliers/ep_num),5)+np.spacing(1))
+                            N = np.log(1.0-0.99)/np.log(1.0-np.power((ninliers/ep_num),5)+np.spacing(1))
                             random_or_adaptive = 1
-                        elif er > 0.85 and er < 1.15:
-                            max_inliers = ninliers
-                            max_inlier_indices = inliers_index
-                            max_ellipse = ellipse_par
-                            N = np.log(1-0.99)/np.log(1-np.power((ninliers/ep_num),5)+np.spacing(1))
-                            random_or_adaptive = 1
+                        #elif er > 0.85 and er < 1.15:
+                        #    max_inliers = ninliers
+                        #    max_inlier_indices = inliers_index
+                        #    max_ellipse = ellipse_par
+                        #    N = np.log(1-0.99)/np.log(1-np.power((ninliers/ep_num),5)+np.spacing(1))
+                        #    random_or_adaptive = 1
             ransac_iter = ransac_iter + 1
             if ransac_iter > maximum_ransac_iterations:
                 print("Maximum number of ransac iterations exeeded!")
@@ -349,7 +351,7 @@ def Track(frame, e_center, calData):
 
         global edge_point, edge_intensity_diff
     
-        dis = np.int16(2)
+        dis = np.int16(4)
         angle_spread = np.float64(180*3.1415926535897932384626433832795/180)
         loop_count = np.int16(0)
         angle_step = np.float64(2*3.1415926535897932384626433832795/N)
@@ -382,9 +384,9 @@ def Track(frame, e_center, calData):
                 tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh)
                 epx = np.hstack([epx, tepx])
                 epy = np.hstack([epy, tepy])
-            #for i in range(0, len(epx)):
-            #    edge = [int(epx[i]),int(epy[i])]
-            #    cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
+            for i in range(0, len(epx)):
+                edge = [int(epx[i]),int(epy[i])]
+                cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
 
 
             loop_count += 1
@@ -429,7 +431,7 @@ def Track(frame, e_center, calData):
         pixel_value1 = np.int16(0)
         pixel_value2 = np.int16(0)
 
-        alpha = 0.2
+        alpha = 0.3
 
         for angle in np.arange(angle_normal-angle_spread/2+0.0001, angle_normal+angle_spread/2, angle_step):
             
@@ -441,7 +443,7 @@ def Track(frame, e_center, calData):
             pixel_ema = 0
             pixel_sum = 0
             count = 1
-            pixel_value1 = np.int16(image[p[1]-1, p[0]-1])
+            pixel_value1 = np.int16(image[p[1], p[0]])
             
             while (1):
                 p[0] += dis_cos
@@ -459,7 +461,7 @@ def Track(frame, e_center, calData):
                 pixel_ema = alpha*pixel_value2 + (1-alpha)*pixel_ema
 
                 if (pixel_value2 - pixel_value1 > edge_thresh or pixel_value2 - pixel_ema > edge_thresh):
-
+                #if (pixel_value2 - pixel_ema > edge_thresh): 
                     epx.append(np.int16(p[0] - dis_cos/2))
                     epy.append(np.int16(p[1] - dis_sin/2))
 
@@ -666,7 +668,7 @@ def Track(frame, e_center, calData):
         #cv2.waitKey(0)
     
 
-        epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 16, 8, 8)
+        epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 8, 6, 6)
         if epx is None:
             et.ReturnError("Starburst threshold too low")
             return
@@ -677,17 +679,19 @@ def Track(frame, e_center, calData):
         #    ecx[x] = ec[x][0]
         #    ecy[x] = ec[x][1]
         ellipse, inliers, ransac_iter = fit_ellipse_ransac(epx, epy, 1000, 10, 1.5)
+        print "ransac_iter:"
+        print ransac_iter
         if len(ellipse) is 0 or ransac_iter >= 10000:
             et.ReturnError("Maximum ransac iterations exceeded")
         else:
             c = ellipse_direct_fit(np.array([epx[inliers], epy[inliers]]).T)
             ellipse = convert_conic_parameters_to_ellipse_parameters(c)
-            #e_angle = int(ellipse[4]).real*57.2957795 
-            e_center = (ellipse[2].real,ellipse[3].real)
-            #e_axes = (ellipse[0],ellipse[1])
-            #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
-            #cv2.imshow('Ellipse', roi_gray)
-            #cv2.waitKey(0)  
+            e_angle = int(ellipse[4]).real*57.2957795 
+            e_center = (ellipse[2],ellipse[3])
+            e_axes = (ellipse[0],ellipse[1])
+            cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
+            cv2.imshow('Ellipse', roi_gray)
+            cv2.waitKey(0)  
             #return (crx,cry), e_center, ("NoTrigger")
             
             gaze_vector = ((e_center[0]-crx).real, (e_center[1]-cry).real)
