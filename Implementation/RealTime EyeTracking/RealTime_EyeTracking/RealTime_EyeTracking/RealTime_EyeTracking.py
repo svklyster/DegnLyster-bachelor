@@ -171,7 +171,7 @@ def StartEyeTracking():
     "Starting eyetracking"
     try:
         sessionData = UpdateSessionWithPreferences()
-        global trackingRunning
+        global trackingRunning, logHandler
         logHandler = lh.LogHandler(sessionData)
         trackingRunning = logHandler.StartNewTracking()
         if trackingRunning is True:
@@ -185,8 +185,8 @@ def StartEyeTracking():
     
 def StopEyeTracking():
     "Stopping eyetracking"
-    global trackingRunning
-    trackingRunning = lh.StopTracking()
+    global trackingRunning, logHandler
+    trackingRunning = logHandler.StopTracking()
     #if trackingRunning is False:
     bStart.config(state = tk.NORMAL)
     bStop.config(state = tk.DISABLED)

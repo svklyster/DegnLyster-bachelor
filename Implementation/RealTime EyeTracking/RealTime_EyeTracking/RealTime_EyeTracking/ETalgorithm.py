@@ -6,7 +6,7 @@ import sys
 import EyeTracking as et
 import cv2.cv as cv
 
-def Track(frame):
+def Track(frame, e_center, calData):
 
     def convert_conic_parameters_to_ellipse_parameters(c):
         #c = c.real
@@ -683,14 +683,27 @@ def Track(frame):
             c = ellipse_direct_fit(np.array([epx[inliers], epy[inliers]]).T)
             ellipse = convert_conic_parameters_to_ellipse_parameters(c)
             #e_angle = int(ellipse[4]).real*57.2957795 
-            e_center = (ellipse[2],ellipse[3])
+            e_center = (ellipse[2].real,ellipse[3].real)
             #e_axes = (ellipse[0],ellipse[1])
             #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
             #cv2.imshow('Ellipse', roi_gray)
             #cv2.waitKey(0)  
             #return (crx,cry), e_center, ("NoTrigger")
+            
+            gaze_vector = ((e_center[0]-crx).real, (e_center[1]-cry).real)
+
+            #####CALIBRATION#####
+            if calData is not None:
+
+                coef_vector = (np.square(gaze_vector[1]), np.square(gaze_vector[0]))
+                screen_pos = (coef_vector*calData.x, coef_vector*calData.y)+calData.offset
+            
+            
+            
             et.LastCenter(e_center)
-            et.PackWithTimestamp((crx,cry), e_center, ("NoTrigger"))
+            
+            et.PackWithTimestamp(e_center, gaze_vector, ("NoTrigger"))
+
 
             return
 

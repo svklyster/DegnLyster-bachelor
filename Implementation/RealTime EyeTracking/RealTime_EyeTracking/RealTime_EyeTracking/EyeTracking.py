@@ -11,6 +11,7 @@ running = False
 capture = None
 last_center = None
 logHandler = None
+calData = None
 
 class EyeTrackingThread(threading.Thread):
     def __init__(self, threadID, name, framerate):
@@ -19,10 +20,11 @@ class EyeTrackingThread(threading.Thread):
         self.name = name
         self.framerate = framerate
     def run(self):
-        global last_center
-        capture.updateVideo(last_center)
+        global last_center, running
+        capture.updateVideo(last_center, calData)
         time.sleep(1/self.framerate)
-        self.run()
+        if running is True:
+            self.run()
         
         
 
@@ -49,7 +51,7 @@ def StartVideoCapture(sessionData, log_handler):
 def StopVideoCapture():
     global running, capture
     if capture is not None:
-        capture.StopTracking()
+        running = capture.StopTracking()
         #del capture
     else:
         tkMessageBox.showerror("Error", "No running video capture")
@@ -66,15 +68,15 @@ def GetPoint(sessionData):
         StartVideoCapture(sessionData)
         GetPoint(sessionData)
 
-def PackWithTimestamp((crx,cry), e_center, trigger):
+def PackWithTimestamp(e_center, gaze_vector, trigger):
     global logHandler
     t = datetime.datetime.now().strftime('%H:%M:%S.%f')
-    logHandler.LogData("%s - %s, %s, %s, %s - Trigger=%s" %(t,crx[0],cry[0],e_center[0].real, e_center[1].real,trigger))
+    logHandler.LogData("%s, %s, %s, %s, %s" %(t,e_center,gaze_vector[0], gaze_vector[1],trigger))
 
 def ReturnError(error):
     global logHandler
     t = datetime.datetime.now().strftime('%H:%M:%S.%f')
-    logHandler.LogData("%s - %s" %(t,error))
+    logHandler.LogData("%s, %s" %(t,error))
 
 def LastCenter(eCenter):
     global last_center
