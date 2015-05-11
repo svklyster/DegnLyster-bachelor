@@ -4,6 +4,7 @@ import cv2
 import math
 import sys
 import EyeTracking as et
+import cv2.cv as cv
 
 def Track(frame):
 
@@ -316,12 +317,12 @@ def Track(frame):
 
     def interpolate_corneal_reflection (imagePntr, crx, cry, contour, imW, imH):
 
-        if len(contour) is not 2:
-            return None
+        #if len(contour) is not 2:
+        #    return None
 
-        rect = [None]*2
-        fittedRect = [None]*2
-        color = [None]*2
+        rect = [None]*len(contour)
+        fittedRect = [None]*len(contour)
+        color = [None]*len(contour)
 
         
 
@@ -376,9 +377,9 @@ def Track(frame):
                 tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh)
                 epx = np.hstack([epx, tepx])
                 epy = np.hstack([epy, tepy])
-            #for i in range(0, len(epx)):
-            #    edge = [int(epx[i]),int(epy[i])]
-            #    cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
+            for i in range(0, len(epx)):
+                edge = [int(epx[i]),int(epy[i])]
+                cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
 
 
             loop_count += 1
@@ -391,8 +392,8 @@ def Track(frame):
                 break;
             cx = tcx
             cy = tcy
-        #cv2.imshow('circleimage', circleimage)
-        #cv2.waitKey(0)
+        cv2.imshow('circleimage', circleimage)
+        cv2.waitKey(0)
         if (loop_count > 10):
             #destroy_edge_point()
             print('Error! Edge points did not converge')
@@ -570,6 +571,7 @@ def Track(frame):
 
         image = cv2.GaussianBlur(image, (5,5), 0)
 
+       
         #start_point = [-1, -1]
         inliers_num = np.int16(0)
         angle_step = np.int16(20)
@@ -597,14 +599,17 @@ def Track(frame):
             et.ReturnError()
             return
 
+        cv2.equalizeHist(roi_gray, roi_gray)
+
+
         #cv2.circle(roi_gray, (crx, cry), crr, (255,255,255), 1)
         #cv2.line(roi_gray, (crx-5, cry), (crx+5, cry), (255,255,255), 1)
         #cv2.line(roi_gray, (crx, cry-5), (crx, cry+5), (255,255,255), 1)
         #cv2.imshow('image', roi_gray)
         #cv2.waitKey(0)
-        #cv2.equalizeHist(roi_gray, roi_gray)
+    
 
-        epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 10, 5, 5)
+        epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 16, 8, 8)
         if epx is None:
             et.ReturnError()
             return
@@ -620,12 +625,12 @@ def Track(frame):
         else:
             c = ellipse_direct_fit(np.array([epx[inliers], epy[inliers]]).T)
             ellipse = convert_conic_parameters_to_ellipse_parameters(c)
-            #e_angle = int(ellipse[4]).real*57.2957795 
+            e_angle = int(ellipse[4]).real*57.2957795 
             e_center = (ellipse[2],ellipse[3])
-            #e_axes = (ellipse[0],ellipse[1])
-            #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
-            #cv2.imshow('Ellipse', roi_gray)
-            #cv2.waitKey(0)  
+            e_axes = (ellipse[0],ellipse[1])
+            cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
+            cv2.imshow('Ellipse', roi_gray)
+            cv2.waitKey(0)  
             #return (crx,cry), e_center, ("NoTrigger")
             et.PackWithTimestamp((crx,cry), e_center, ("NoTrigger"))
 

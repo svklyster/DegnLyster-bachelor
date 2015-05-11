@@ -13,6 +13,7 @@ import Calibration as cal
 import thread
 import time
 import sys
+import matplotlib as mpl
 
 root = tk.Tk()
 root.title("RealTime EyeTracking")
@@ -237,6 +238,10 @@ def UpdateSessionWithPreferences():
         sessionData.camnr = None 
         sessionData.videopath = eVideo.get()
     sessionData.notes = tNotes.get("1.0", tk.END)
+    sessionData.resolution = tResolution.get("1.0", tk.END)
+    sessionData.caltype = tCaltype.get("1.0", tk.END)
+    sessionData.logfilename = tLogfn.get("1.0", tk.END)
+    sessionData.calfilename = tCalfn.get("1.0", tk.END)
     return sessionData
     
 def LoadCalibrationData():
@@ -329,17 +334,17 @@ lRawPath.pack(side=tk.TOP)
 eRawPath = tk.Entry(nFrameVideo, width = 40)
 eRawPath.pack(side=tk.TOP)
 ###Packing tkinter objects
-bSession.pack()
-bCalib.pack()
-bStart.pack()
-bStop.pack()
+bSession.pack(padx=5, pady=5, fill=tk.X)
+bCalib.pack(padx=5, pady=5, fill=tk.X)
+bStart.pack(padx=5, pady=5, fill=tk.X)
+bStop.pack(padx=5, pady=5, fill=tk.X)
 
 #Canvas
-cMain.pack()
+cMain.pack(side = tk.TOP, pady = 10, padx = 10)
 
 #Preferences
-bSave.pack(side=tk.LEFT)
-bLoad.pack(side=tk.LEFT)
+bSave.pack(padx=5, pady=5, side=tk.LEFT)
+bLoad.pack(padx=5, pady=5, side=tk.LEFT)
 fPrefBut.pack(side=tk.BOTTOM)
 #   - Notebook
 notePref.add(nFrameNotes, text = "Notes")
