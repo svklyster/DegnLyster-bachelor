@@ -13,7 +13,7 @@ import Calibration as cal
 import thread
 import time
 import sys
-import matplotlib as mpl
+
 
 root = tk.Tk()
 root.title("RealTime EyeTracking")
@@ -49,6 +49,8 @@ def UpdateWithSessionData(sessionData):
     tLogfn.insert("1.0", sessionData.logfilename)
     tCalfn.delete("1.0", tk.END)
     tCalfn.insert("1.0", sessionData.calfilename)
+    tCalfile.delete("1.0", tk.END)
+    tCalfile.insert("1.0", sessionData.calfile)
     tNotePathname.delete("1.0", tk.END)
     tNotePathname.insert("1.0", sessionData.calfilename)
 
@@ -242,6 +244,7 @@ def UpdateSessionWithPreferences():
     sessionData.caltype = tCaltype.get("1.0", tk.END)
     sessionData.logfilename = tLogfn.get("1.0", tk.END)
     sessionData.calfilename = tCalfn.get("1.0", tk.END)
+    sessionData.calfile = tCalfile.get("1.0", tk.END)
     return sessionData
     
 def LoadCalibrationData():
@@ -252,6 +255,10 @@ def LoadCalibrationData():
 def CreateCalibrationLog():
     return
 
+def LoadCalData():
+        tCalfile.delete("1.0", tk.END)
+        tCalfile.insert("1.0", tkFileDialog.askopenfilename())
+        return
 #Frames 
 leftf = tk.Frame(root) 
 preff = tk.Frame(root) 
@@ -289,18 +296,12 @@ lResolution = tk.Label(nFrameNotes, text ="Screen 2 resolution")
 lResolution.pack(side=tk.TOP)
 tResolution = tk.Text(nFrameNotes, width = 40, height = 1)
 tResolution.pack(side=tk.TOP)
-lCaltype = tk.Label(nFrameNotes, text ="Calibration type")
-lCaltype.pack(side=tk.TOP)
-tCaltype = tk.Text(nFrameNotes, width = 40, height = 1)
-tCaltype.pack(side=tk.TOP)
+
 lLogfn = tk.Label(nFrameNotes, text ="Log filename")
 lLogfn.pack(side=tk.TOP)
 tLogfn = tk.Text(nFrameNotes, width = 40, height = 1)
 tLogfn.pack(side=tk.TOP)
-lCalfn = tk.Label(nFrameNotes, text ="Calibration log filename")
-lCalfn.pack(side=tk.TOP)
-tCalfn = tk.Text(nFrameNotes, width = 40, height = 1)
-tCalfn.pack(side=tk.TOP)
+
 lPathname = tk.Label(nFrameNotes, text = "Session path")
 lPathname.pack(side=tk.TOP)
 tNotePathname = tk.Text(nFrameNotes, width = 40, height = 1)
@@ -339,6 +340,25 @@ bCalib.pack(padx=5, pady=5, fill=tk.X)
 bStart.pack(padx=5, pady=5, fill=tk.X)
 bStop.pack(padx=5, pady=5, fill=tk.X)
 
+#Calibration 
+nFrameCal = tk.Frame(notePref)
+lCaltype = tk.Label(nFrameCal, text ="Calibration type")
+lCaltype.pack(side=tk.TOP)
+tCaltype = tk.Text(nFrameCal, width = 40, height = 1)
+tCaltype.pack(side=tk.TOP)
+lCalfile = tk.Label(nFrameCal, text = "Load calibration file")
+lCalfile.pack(side=tk.TOP)
+fCalfile = tk.Frame(nFrameCal, width = 40)
+tCalfile = tk.Text(fCalfile, width = 28, height = 1)
+tCalfile.pack(side=tk.LEFT)
+bCalfile = tk.Button(fCalfile, width = 10, text = "Choose", command=LoadCalData)
+bCalfile.pack(side=tk.RIGHT, padx = 9)
+fCalfile.pack(side=tk.TOP)
+lCalfn = tk.Label(nFrameCal, text ="New calibration log filename")
+lCalfn.pack(side=tk.TOP)
+tCalfn = tk.Text(nFrameCal, width = 40, height = 1)
+tCalfn.pack(side=tk.TOP)
+
 #Canvas
 cMain.pack(side = tk.TOP, pady = 10, padx = 10)
 
@@ -349,6 +369,7 @@ fPrefBut.pack(side=tk.BOTTOM)
 #   - Notebook
 notePref.add(nFrameNotes, text = "Notes")
 notePref.add(nFrameVideo, text = "Video")
+notePref.add(nFrameCal, text = "Calibration")
 notePref.pack(side=tk.TOP)
 
 leftf.pack(side=tk.LEFT)

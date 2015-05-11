@@ -8,11 +8,13 @@ import cv2.cv as cv
 
 def Track(frame):
 
-
     def convert_conic_parameters_to_ellipse_parameters(c):
-    
+        #c = c.real
+        if c.size is not 6:
+            return np.array([0,0,0,0,0])
+
         c.shape = (6,)
-   
+        
         theta = np.arctan2(c[1], c[0]-c[2])/2
         ct = np.cos(theta)
         st = np.sin(theta)
@@ -44,7 +46,7 @@ def Track(frame):
         if (np.all(np.isreal(e))):
             return e;    
         else:
-            return np.array([0,0,0,0,0]);
+            return np.array([0,0,0,0,0])
 
     def denormalize_ellipse_parameters(ne,Hn):
         e = np.empty_like(ne)
@@ -317,8 +319,8 @@ def Track(frame):
 
     def interpolate_corneal_reflection (imagePntr, crx, cry, contour, imW, imH):
 
-        #if len(contour) is not 2:
-        #    return None
+        if len(contour) is not 2:
+            return None
 
         rect = [None]*len(contour)
         fittedRect = [None]*len(contour)
@@ -330,7 +332,10 @@ def Track(frame):
             rect[i] = cv2.boundingRect(contour[i]) #returnerer x,y(top left corner), widht, height
             fittedRect[i] = [rect[i][0]-2*rect[i][2],rect[i][1]-2*rect[i][3], rect[i][2]*2, rect[i][3]*2]
             k = 1
-            color[i] = np.array([imagePntr[fittedRect[i][1]-k,fittedRect[i][0]-k],imagePntr[fittedRect[i][1]-k,fittedRect[i][0]+fittedRect[i][2]*2+k],imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]-k], imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]+fittedRect[i][2]*2+k]])
+            try:
+                color[i] = np.array([imagePntr[fittedRect[i][1]-k,fittedRect[i][0]-k],imagePntr[fittedRect[i][1]-k,fittedRect[i][0]+fittedRect[i][2]*2+k],imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]-k], imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]+fittedRect[i][2]*2+k]])
+            except:
+                color[i] = (255,255,255)
             mean_color = np.mean(color[i])
             cv2.rectangle(imagePntr, (fittedRect[i][0], fittedRect[i][1]), (fittedRect[i][0] + fittedRect[i][2]*2, fittedRect[i][1] + fittedRect[i][3]*2), mean_color, -1)
   
@@ -377,9 +382,9 @@ def Track(frame):
                 tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh)
                 epx = np.hstack([epx, tepx])
                 epy = np.hstack([epy, tepy])
-            for i in range(0, len(epx)):
-                edge = [int(epx[i]),int(epy[i])]
-                cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
+            #for i in range(0, len(epx)):
+            #    edge = [int(epx[i]),int(epy[i])]
+            #    cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
 
 
             loop_count += 1
@@ -392,8 +397,8 @@ def Track(frame):
                 break;
             cx = tcx
             cy = tcy
-        cv2.imshow('circleimage', circleimage)
-        cv2.waitKey(0)
+        #cv2.imshow('circleimage', circleimage)
+        #cv2.waitKey(0)
         if (loop_count > 10):
             #destroy_edge_point()
             print('Error! Edge points did not converge')
@@ -414,52 +419,101 @@ def Track(frame):
         epy = []
         dir = []
         ep_num = 0
-        p = np.zeros([4,2])
+        #p = np.zeros([4,2])
+        p = [0, 0]
+        #edge = [0, 0]
+        angle = np.float64(0)
+        angle = np.float64(0)
+        dis_cos = np.float64(0)
+        dis_sin = np.float64(0)
+        pixel_value1 = np.int16(0)
+        pixel_value2 = np.int16(0)
+
+        alpha = 0.2
 
         for angle in np.arange(angle_normal-angle_spread/2+0.0001, angle_normal+angle_spread/2, angle_step):
-            step = 2
-            p[1,:] = [np.round(cx+dis*np.cos(angle)),np.round(cy+dis*np.sin(angle))]
-            if p[1,1] >= height or p[1,1] < 0 or p[1,0] >= width or p[1,0] < 0:
-                continue
-            while 1:
-                p[0] = [np.round(cx+step*dis*np.cos(angle)), np.round(cy+step*dis*np.sin(angle))]
-                if p[0,1] >= height or p[0,1] < 0 or p[0,0] >= width or p[0,0] < 0:
-                    break
-                d = (image[p[0,1],p[0,0]]-image[p[1,1],p[1,0]])*2*np.square((255-image[p[1,1], p[1,0]])/255)
-                if d >= edge_thresh:
-                    ep_num += 1
-                    epx.append((p[0,0]+p[1,0])/2)
-                    epy.append((p[0,1]+p[1,1])/2)
-                    dir.append(d)
-                    break
-                if p[2,1] > 0:
-                    d2 = (image[p[0,1],p[0,0]]-image[p[2,1],p[2,0]])*2*np.square((255-image[p[2,1], p[2,0]])/255)
-                    if d2 >= edge_thresh:
-                        ep_num += 1
-                        epx.append((p[0,0]+p[2,0])/2)
-                        epy.append((p[0,1]+p[2,1])/2)
-                        dir.append(d2)
-                        break
-                else:
-                    d2 = 0
+            
+            dis_cos = dis * np.cos(angle)
+            dis_sin = dis * np.sin(angle)
+            p[0] = math.floor(cx + dis_cos)
+            p[1] = math.floor(cy + dis_sin)
+            
+            pixel_ema = 0
+            pixel_sum = 0
+            count = 1
+            pixel_value1 = np.int16(image[p[1]-1, p[0]-1])
+            
+            while (1):
+                p[0] += dis_cos
+                p[1] += dis_sin
+                if (p[0] < 0 or p[0] >= width or p[1] < 0 or p[1] >= height):
+                    break;
 
-                if p[3,1] > 0:
-                    d3 = (image[p[0,1],p[0,0]]-image[p[3,1],p[3,0]])*2*np.square((255-image[p[3,1], p[3,0]])/255)
-                    if d3 >= edge_thresh:
-                        ep_num += 1
-                        epx.append((p[0,0]+p[3,0])/2)
-                        epy.append((p[0,1]+p[3,1])/2)
-                        dir.append(d3)
-                        break
-                else:
-                    d3 = 0
-                
-                p[3,:] = p[2,:]
-                p[2,:] = p[1,:]
-                p[1,:] = p[0,:]
-                step += 1
+                p[0] = math.floor(p[0])
+                p[1] = math.floor(p[1])
 
+                pixel_value2 = np.int16(image[p[1], p[0]])
+                #pixel_sum += pixel_value2
+                #pixel_ema = pixel_sum / count
+
+                pixel_ema = alpha*pixel_value2 + (1-alpha)*pixel_ema
+
+                if (pixel_value2 - pixel_value1 > edge_thresh or pixel_value2 - pixel_ema > edge_thresh):
+
+                    epx.append(np.int16(p[0] - dis_cos/2))
+                    epy.append(np.int16(p[1] - dis_sin/2))
+
+                    dir.append(pixel_value2 - pixel_value1)
+
+                    break;
+                pixel_value1 = pixel_value2
+                count += 1.3
+        
         return epx, epy, dir
+
+            #step = 2
+            #p[1,:] = [np.round(cx+dis*np.cos(angle)),np.round(cy+dis*np.sin(angle))]
+            #if p[1,1] >= height or p[1,1] < 0 or p[1,0] >= width or p[1,0] < 0:
+            #    continue
+            #while 1:
+            #    p[0] = [np.round(cx+step*dis*np.cos(angle)), np.round(cy+step*dis*np.sin(angle))]
+            #    if p[0,1] >= height or p[0,1] < 0 or p[0,0] >= width or p[0,0] < 0:
+            #        break
+            #    d = (image[p[0,1],p[0,0]]-image[p[1,1],p[1,0]])*2*np.square((255-image[p[1,1], p[1,0]])/255)
+            #    if d >= edge_thresh:
+            #        ep_num += 1
+            #        epx.append((p[0,0]+p[1,0])/2)
+            #        epy.append((p[0,1]+p[1,1])/2)
+            #        dir.append(d)
+            #        break
+            #    if p[2,1] > 0:
+            #        d2 = (image[p[0,1],p[0,0]]-image[p[2,1],p[2,0]])*2*np.square((255-image[p[2,1], p[2,0]])/255)
+            #        if d2 >= edge_thresh:
+            #            ep_num += 1
+            #            epx.append((p[0,0]+p[2,0])/2)
+            #            epy.append((p[0,1]+p[2,1])/2)
+            #            dir.append(d2)
+            #            break
+            #    else:
+            #        d2 = 0
+
+            #    if p[3,1] > 0:
+            #        d3 = (image[p[0,1],p[0,0]]-image[p[3,1],p[3,0]])*2*np.square((255-image[p[3,1], p[3,0]])/255)
+            #        if d3 >= edge_thresh:
+            #            ep_num += 1
+            #            epx.append((p[0,0]+p[3,0])/2)
+            #            epy.append((p[0,1]+p[3,1])/2)
+            #            dir.append(d3)
+            #            break
+            #    else:
+            #        d3 = 0
+                
+            #    p[3,:] = p[2,:]
+            #    p[2,:] = p[1,:]
+            #    p[1,:] = p[0,:]
+            #    step += 1
+
+
         #global edge_point, edge_intensity_diff, p, edge
         #p = [0, 0]
         #edge = [0, 0]
@@ -599,7 +653,7 @@ def Track(frame):
             et.ReturnError()
             return
 
-        cv2.equalizeHist(roi_gray, roi_gray)
+        #cv2.equalizeHist(roi_gray, roi_gray)
 
 
         #cv2.circle(roi_gray, (crx, cry), crr, (255,255,255), 1)
@@ -619,18 +673,18 @@ def Track(frame):
         #for x in range(0, len(ec)):
         #    ecx[x] = ec[x][0]
         #    ecy[x] = ec[x][1]
-        ellipse, inliers, ransac_iter = fit_ellipse_ransac(epx, epy, 1000, 10, 1.5)
+        ellipse, inliers, ransac_iter = fit_ellipse_ransac(epx, epy, 500, 10, 1.5)
         if len(ellipse) is 0 or ransac_iter >= 10000:
-            sys.exit("No ellipse found")
+            et.ReturnError()
         else:
             c = ellipse_direct_fit(np.array([epx[inliers], epy[inliers]]).T)
             ellipse = convert_conic_parameters_to_ellipse_parameters(c)
             e_angle = int(ellipse[4]).real*57.2957795 
             e_center = (ellipse[2],ellipse[3])
             e_axes = (ellipse[0],ellipse[1])
-            cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
-            cv2.imshow('Ellipse', roi_gray)
-            cv2.waitKey(0)  
+            #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
+            #cv2.imshow('Ellipse', roi_gray)
+            #cv2.waitKey(0)  
             #return (crx,cry), e_center, ("NoTrigger")
             et.PackWithTimestamp((crx,cry), e_center, ("NoTrigger"))
 

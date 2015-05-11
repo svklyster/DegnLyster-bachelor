@@ -5,7 +5,7 @@ import os
 paraNames = ["SESSIONPATH","USINGCAM","CAMNR",
                  "VIDEOPATH","NOTES","RESOLUTION",
                  "CALTYPE","LOGFILENAME","CALFILENAME",
-                 "RECORDVIDEO", "RAWDATAPATH"]
+                 "LOADEDCALDATA","RECORDVIDEO", "RAWDATAPATH"]
 
 class SessionData:
 
@@ -20,6 +20,7 @@ class SessionData:
         self.caltype = None
         self.logfilename = None
         self.calfilename = None
+        self.calfile = None
         self.recordvideo = False
         self.rawdatapath = None
         
@@ -48,6 +49,7 @@ class SessionData:
         sessionStr += "CALTYPE " + self.caltype + '\n'
         sessionStr += "LOGFILENAME " + self.logfilename + '\n'
         sessionStr += "CALFILENAME " + self.calfilename + '\n'
+        sessionStr += "LOADEDCALDATA " + self.calfile + '\n'
         sessionStr += "RECORDVIDEO " + str(self.recordvideo) + '\n'
         sessionStr += "RAWDATAPATH " + str(self.rawdatapath) + '\n'
         try:
@@ -72,6 +74,7 @@ class SessionData:
         sessionStr += "CALTYPE " + self.caltype + '\n'
         sessionStr += "LOGFILENAME " + self.logfilename + '\n'
         sessionStr += "CALFILENAME " + self.calfilename + '\n'
+        sessionStr += "LOADEDCALDATA " + self.calfile + '\n'
         sessionStr += "RECORDVIDEO " + str(self.recordvideo) + '\n'
         sessionStr += "RAWDATAPATH " + self.rawdatapath + '\n'
         try:
@@ -111,6 +114,7 @@ def LoadPreferencesFromFile(filepath):
     newPrefData.caltype = file.readline()[8: ]
     newPrefData.logfilename = file.readline()[12: ]
     newPrefData.calfilename = file.readline()[12: ]
+    newPrefData.calfile = file.readline()[14: ]
     newPrefData.recordvideo = file.readline()[12: ]
     newPrefData.rawdatapath = file.readline()[12: ]
     return newPrefData
