@@ -89,6 +89,7 @@ def CreateSession():
             else:
                 tkMessageBox.showerror("Exception", "Error: %s" % result)
             bCalib.config(state = tk.NORMAL)
+            bStart.config(state = tk.NORMAL)
             wNotes.destroy()
             UpdateWithSessionData(sessionData)
             return
