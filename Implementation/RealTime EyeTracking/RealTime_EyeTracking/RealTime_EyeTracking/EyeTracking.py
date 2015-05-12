@@ -33,8 +33,8 @@ def StartVideoCapture(sessionData, log_handler):
     logHandler = log_handler
     try:
                                     ####### TEST#####
-        #capture = vc.VideoCapture(sessionData.livecam, sessionData.camnr, sessionData.videopath, True)
-        capture = vc.VideoCapture(False, sessionData.camnr, "C:/1min60fps.avi" , True)
+        capture = vc.VideoCapture(sessionData.livecam, sessionData.camnr, sessionData.videopath, True)
+        #capture = vc.VideoCapture(False, sessionData.camnr, "C:/1min60fps.avi" , True)
         #trackingThread = threading.Thread(None, EyeTrackingThread, capture.framerate, {})
         #trackingThread = thread.start_new_thread(EyeTrackingThread,(vc.framerate))
         trackingThread = EyeTrackingThread(1, "ETthread1", capture.framerate)

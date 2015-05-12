@@ -1,7 +1,7 @@
-SESSIONPATH C:/Users/DGen/Documents/Skole/Semester7/Bachelor Projekt 2015/DegnLyster-bachelor/Implementation/RealTime EyeTracking/RealTime_EyeTracking/RealTime_EyeTracking
-USINGCAM False
+SESSIONPATH C:/Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Implementation/RealTime EyeTracking/RealTime_EyeTracking/RealTime_EyeTracking
+USINGCAM True
 CAMNR 0
-VIDEOPATH C:/1min60fps.avi
+VIDEOPATH None
 NOTES 
 RESOLUTION 
 CALTYPE 

@@ -14,6 +14,9 @@ import thread
 import time
 import sys
 
+reload(sys)  
+sys.setdefaultencoding('latin-1')
+
 root = tk.Tk()
 root.title("RealTime EyeTracking")
 

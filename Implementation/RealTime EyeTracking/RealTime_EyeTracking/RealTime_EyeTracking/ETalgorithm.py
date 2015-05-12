@@ -27,7 +27,7 @@ def Track(frame, e_center, calData):
         try:
             t = np.linalg.solve(-(2*T),np.transpose(np.array([c[3],c[4]])))
         except np.linalg.linalg.LinAlgError as err:
-            pass
+            return np.array([0,0,0,0,0])
         cx = t[0]
         cy = t[1]
 
@@ -76,8 +76,8 @@ def Track(frame, e_center, calData):
         #y = np.array([4,5,4,3,4,3,4,5,4])
     
         ep_num = np.float64(len(x))
-        print "ep_num:"
-        print ep_num
+        #print "ep_num:"
+        #print ep_num
         if ep_num < 5:
             print("Too few feature points")
             return
@@ -384,13 +384,13 @@ def Track(frame, e_center, calData):
                 tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh)
                 epx = np.hstack([epx, tepx])
                 epy = np.hstack([epy, tepy])
-            cv2.imshow('firstround',circleimage)
-            cv2.waitKey(0)
-            for i in range(0, len(epx)):
-                edge = [int(epx[i]),int(epy[i])]
-                cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
-            cv2.imshow('secondround',circleimage)
-            cv2.waitKey(0)
+            #cv2.imshow('firstround',circleimage)
+            #cv2.waitKey(0)
+            #for i in range(0, len(epx)):
+            #    edge = [int(epx[i]),int(epy[i])]
+            #    cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
+            #cv2.imshow('secondround',circleimage)
+            #cv2.waitKey(0)
 
             loop_count += 1
             tcx = np.mean(epx)
@@ -467,8 +467,8 @@ def Track(frame, e_center, calData):
                 #if (pixel_value2 - pixel_ema > edge_thresh): 
                     epx.append(np.int16(p[0] - dis_cos/2))
                     epy.append(np.int16(p[1] - dis_sin/2))
-                    print(p[0])
-                    print(p[1])
+                    #print(p[0])
+                    #print(p[1])
                     dir.append(pixel_value2 - pixel_value1)
 
                     break;
@@ -620,17 +620,30 @@ def Track(frame, e_center, calData):
     #image = cv2.imread('test.png')
     image = frame
     #print("Test1")
+    #cv2.imshow('image', image)
+    #cv2.waitKey(0)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    hist = cv2.calcHist([gray], [0], None, [256], [0,256])
+    #cv2.imshow('image', hist)
+    #cv2.waitKey(0)
   
     eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
     eyes = eye_cascade.detectMultiScale(gray, 1.3, 5, minSize = (100,100) )
+   
+    ## Er oejet hoejre eller venstre (meget grov kode)
+
     for (x,y,w,h) in eyes:
-        #print("Test2")
+        if x > np.size(image, 1)/2+20:
+            #antager at oejet er venstre hvis det ligger i venstre del af billedet
+            e_orientation = "Right"
+        else:
+            e_orientation = "Left"
+        #print(e_orientation)
         roi_gray = gray[y:y+h, x:x+w]
         roi_gray_thresh = gray[y:y+h, x:x+w]
 
-        #cv2.imshow('image', roi_gray)
-        #cv2.waitKey(0)
+        cv2.imshow('image', roi_gray)
+        cv2.waitKey(0)
 
         #roi_gray = cv2.GaussianBlur(roi_gray, (5,5), 0)
         #roi_gray_thresh = cv2.GaussianBlur(roi_gray_thresh, (5,5), 0)
@@ -645,8 +658,12 @@ def Track(frame, e_center, calData):
         edge = [0, 0]
 
         #forventet midterpunkt
-        sy = 100
-        sx = 100
+        if e_center is not None and e_center[0] > 0:
+            sx = e_center[0]
+            sy = e_center[1]
+        else:
+            sy = 100
+            sx = 100
 
         windowSize = 199
 
@@ -669,8 +686,8 @@ def Track(frame, e_center, calData):
         roi_gray = (maxIntensity/phi)*(roi_gray/(maxIntensity/theta))**0.5
         roi_gray = np.array(roi_gray, dtype=np.uint8)
 
-        cv2.imshow('newImage0',roi_gray)
-        cv2.waitKey(0)
+        #cv2.imshow('newImage0',roi_gray)
+        #cv2.waitKey(0)
 
         #y = (maxIntensity/phi)*(x/(maxIntensity/theta))**0.5
 
@@ -701,19 +718,19 @@ def Track(frame, e_center, calData):
         #    ecx[x] = ec[x][0]
         #    ecy[x] = ec[x][1]
         ellipse, inliers, ransac_iter = fit_ellipse_ransac(epx, epy, 1000, 10, 1.5)
-        print "ransac_iter:"
-        print ransac_iter
+        #print "ransac_iter:"
+        #print ransac_iter
         if len(ellipse) is 0 or ransac_iter >= 10000:
             et.ReturnError("Maximum ransac iterations exceeded")
         else:
             c = ellipse_direct_fit(np.array([epx[inliers], epy[inliers]]).T)
             ellipse = convert_conic_parameters_to_ellipse_parameters(c)
-            e_angle = int(ellipse[4]).real*57.2957795 
+            #e_angle = int(ellipse[4]).real*57.2957795 
             e_center = (ellipse[2],ellipse[3])
-            e_axes = (ellipse[0],ellipse[1])
-            cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
-            cv2.imshow('Ellipse', roi_gray)
-            cv2.waitKey(0)  
+            #e_axes = (ellipse[0],ellipse[1])
+            #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
+            #cv2.imshow('Ellipse', roi_gray)
+            #cv2.waitKey(0)  
             #return (crx,cry), e_center, ("NoTrigger")
             
             gaze_vector = ((e_center[0]-crx).real, (e_center[1]-cry).real)
