@@ -31,12 +31,14 @@ root.bind_class("<Tab>", focus_next_window)
 
 def UpdateWithSessionData(sessionData):
     if sessionData.livecam is True:
-        varVid = True
+        eVideo.delete(0,tk.END)
+        eVideo.insert(0, str(True))
         vVideo2.set("Camera index")
         eVideo.delete(0,tk.END)
         eVideo.insert(0, str(sessionData.camnr))
     else:
-        varVid = False
+        eVideo.delete(0,tk.END)
+        eVideo.insert(0, str(False))
         vVideo2.set("Video source")
         eVideo.delete(0,tk.END)
         eVideo.insert(0, sessionData.videopath)
@@ -51,10 +53,10 @@ def UpdateWithSessionData(sessionData):
     tLogfn.insert("1.0", sessionData.logfilename)
     tCalfn.delete("1.0", tk.END)
     tCalfn.insert("1.0", sessionData.calfilename)
-    tCalfile.delete("1.0", tk.END)
-    tCalfile.insert("1.0", sessionData.calfile)
     tNotePathname.delete("1.0", tk.END)
     tNotePathname.insert("1.0", sessionData.pathname)
+    tCalfile.delete("1.0", tk.END)
+    tCalfile.insert("1.0", str(sessionData.calfile))
 
 def CreateSession():
     "Opening session wizard"
@@ -200,7 +202,7 @@ def SavePreferences():
     "Saving preferences"
     #Save preferences from preferences pane
     newPrefData = sh.SessionData(tNotePathname.get("1.0", 'end-1c'))
-    newPrefData.livecam = varVid.get()
+    newPrefData.livecam = eVideo.get("1.0", tk.END)
     if newPrefData.livecam is True:
         newPrefData.camnr = eVideo.get()
         newPrefData.videopath = None
@@ -236,15 +238,16 @@ def LoadPreferences():
 
 def UpdateSessionWithPreferences():
     sessionData = sh.SessionData(tNotePathname.get("1.0", 'end-1c'))
-    sessionData.livecam = varVid.get()
-    if sessionData.livecam is True or 1:
-        sessionData.livecam = True
-        sessionData.camnr = eVideo.get()
-        sessionData.videopath = None
-    else:
-        sessionData.livecam = False
-        sessionData.camnr = None 
-        sessionData.videopath = eVideo.get()
+    #print(str(eVideo.get("1.0", tk.END)))
+    #if eVideo.get("1.0", tk.END) is "True":
+    #    sessionData.livecam = True
+    #    sessionData.camnr = eVideo.get()
+    #    sessionData.videopath = None
+    #else:
+    sessionData.livecam = False
+    sessionData.camnr = None 
+    sessionData.videopath = eVideo.get()
+
     sessionData.notes = tNotes.get("1.0", tk.END)
     sessionData.resolution = tResolution.get("1.0", tk.END)
     sessionData.caltype = tCaltype.get("1.0", tk.END)
@@ -318,11 +321,12 @@ nFrameVideo = tk.Frame(notePref)
 #lVideo1 = tk.Label(nFrameVideo, text ="Using camera")
 #lVideo1.grid(row=0, column=0)
 #   - Checkbutton with variable
-varVid = tk.BooleanVar(nFrameVideo)
+#varVid = tk.BooleanVar(nFrameVideo)
 lVideo1 = tk.Label(nFrameVideo,  text = "Using camera source?")
 lVideo1.pack(side=tk.TOP)
-cbVideo = tk.Checkbutton(nFrameVideo, variable = varVid, onvalue = True, offvalue = False)
-cbVideo.pack(side = tk.TOP)
+#cbVideo = tk.Checkbutton(nFrameVideo, variable = varVid, onvalue = True, offvalue = False)
+eVideo = tk.Text(nFrameVideo, width = 5, height = 1)
+eVideo.pack(side = tk.TOP)
 vVideo2 = tk.StringVar()
 vVideo2.set("Source")
 lVideo2 = tk.Label(nFrameVideo, textvariable = vVideo2)
