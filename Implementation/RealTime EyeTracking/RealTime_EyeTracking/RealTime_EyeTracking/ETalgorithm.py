@@ -198,11 +198,11 @@ def Track(frame, e_center, calData):
     p = [0, 0]
     edge = [0, 0]
 
-    def remove_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, biggest_crr, crx, cry, crr, imgW, imgH):
+    def remove_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, biggest_crr, crx, cry, crr, imgW, imgH, e_center):
 
         [crx, cry, contour] = locate_corneal_reflection(imagePntr, threshPntr, sx, sy, windowSize, np.int16(biggest_crr/2.5), crx, cry, imgW, imgH)
 
-        imagePntr = interpolate_corneal_reflection(imagePntr, crx, cry, contour, imW, imH)
+        imagePntr = interpolate_corneal_reflection(imagePntr, crx, cry, contour, imW, imH, e_center)
 
         if imagePntr is None:
             return None, None
@@ -319,10 +319,16 @@ def Track(frame, e_center, calData):
         #print stuff
         return crar;
 
-    def interpolate_corneal_reflection (imagePntr, crx, cry, contour, imW, imH):
+    def interpolate_corneal_reflection (imagePntr, crx, cry, contour, imW, imH, e_center):
 
-        if len(contour) is not 2:
+        if len(contour) < 2:
             return None
+        elif len(contour) > 2:
+            dist = []*len(contour)
+            for i in len(contour):
+                dist[i] = e_center - np.mean(contour)
+                 
+            
 
         rect = [None]*len(contour)
         fittedRect = [None]*len(contour)
@@ -672,7 +678,7 @@ def Track(frame, e_center, calData):
         imW = np.size(roi_gray, 1)
 
     
-        crx, cry = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 20, 2, 2, -2, imW, imH)
+        crx, cry = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 20, 2, 2, -2, imW, imH, e_center)
 
         if crx is None or cry is None:
             et.ReturnError("Error with corneal reflections")
