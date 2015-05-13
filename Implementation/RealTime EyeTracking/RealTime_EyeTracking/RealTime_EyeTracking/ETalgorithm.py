@@ -333,11 +333,11 @@ def Track(frame, e_center, calData):
         for i in range(len(contour)):
             rect[i] = cv2.boundingRect(contour[i]) #returnerer x,y(top left corner), widht, height
             fittedRect[i] = [rect[i][0]-2*rect[i][2],rect[i][1]-2*rect[i][3], rect[i][2]*2, rect[i][3]*2]
-            k = 1
-            try:
-                color[i] = np.array([imagePntr[fittedRect[i][1]-k,fittedRect[i][0]-k],imagePntr[fittedRect[i][1]-k,fittedRect[i][0]+fittedRect[i][2]*2+k],imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]-k], imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]+fittedRect[i][2]*2+k]])
-            except:
-                color[i] = (255,255,255)
+            k = 10
+            #try:
+            #    color[i] = np.array([imagePntr[fittedRect[i][1]-k,fittedRect[i][0]-k],imagePntr[fittedRect[i][1]-k,fittedRect[i][0]+fittedRect[i][2]*2+k],imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]-k], imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]+fittedRect[i][2]*2+k]])
+            #except:
+            color[i] = (0,0,0)
             mean_color = np.mean(color[i])
             cv2.rectangle(imagePntr, (fittedRect[i][0], fittedRect[i][1]), (fittedRect[i][0] + fittedRect[i][2]*2, fittedRect[i][1] + fittedRect[i][3]*2), mean_color, -1)
   
@@ -386,9 +386,9 @@ def Track(frame, e_center, calData):
                 epy = np.hstack([epy, tepy])
             #cv2.imshow('firstround',circleimage)
             #cv2.waitKey(0)
-            #for i in range(0, len(epx)):
-            #    edge = [int(epx[i]),int(epy[i])]
-            #    cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
+            for i in range(0, len(epx)):
+                edge = [int(epx[i]),int(epy[i])]
+                cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
             #cv2.imshow('secondround',circleimage)
             #cv2.waitKey(0)
 
@@ -631,13 +631,15 @@ def Track(frame, e_center, calData):
     eyes = eye_cascade.detectMultiScale(gray, 1.3, 5, minSize = (100,100) )
    
     ## Er oejet hoejre eller venstre (meget grov kode)
-
+    e_orientation = [-1,-1]
+    if len(eyes) is 0:
+        et.EyesFound(e_orientation)
     for (x,y,w,h) in eyes:
         if x > np.size(image, 1)/2+20:
             #antager at oejet er venstre hvis det ligger i venstre del af billedet
-            e_orientation = "Right"
+            e_orientation[0] = 1
         else:
-            e_orientation = "Left"
+            e_orientation[1] = 1
         #print(e_orientation)
         roi_gray = gray[y:y+h, x:x+w]
         roi_gray_thresh = gray[y:y+h, x:x+w]
@@ -725,12 +727,12 @@ def Track(frame, e_center, calData):
         else:
             c = ellipse_direct_fit(np.array([epx[inliers], epy[inliers]]).T)
             ellipse = convert_conic_parameters_to_ellipse_parameters(c)
-            #e_angle = int(ellipse[4]).real*57.2957795 
+            e_angle = int(ellipse[4]).real*57.2957795 
             e_center = (ellipse[2],ellipse[3])
-            #e_axes = (ellipse[0],ellipse[1])
-            #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
-            #cv2.imshow('Ellipse', roi_gray)
-            #cv2.waitKey(0)  
+            e_axes = (ellipse[0],ellipse[1])
+            cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
+            cv2.imshow('Ellipse', roi_gray)
+            cv2.waitKey(0)  
             #return (crx,cry), e_center, ("NoTrigger")
             
             gaze_vector = ((e_center[0]-crx).real, (e_center[1]-cry).real)
@@ -744,7 +746,7 @@ def Track(frame, e_center, calData):
             
             
             et.LastCenter(e_center)
-            
+            et.EyesFound(e_orientation)
             et.PackWithTimestamp(e_center, gaze_vector, ("NoTrigger"))
 
 

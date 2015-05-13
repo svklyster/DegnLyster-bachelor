@@ -4,7 +4,6 @@ import sys
 import time
 import datetime
 import threading
-import multiprocessing as multi
 #import LogHandler as lh
 
 
@@ -13,6 +12,7 @@ capture = None
 last_center = None
 logHandler = None
 calData = None
+eyesFoundCount = [0,0]
 
 class EyeTrackingThread(threading.Thread):
     def __init__(self, threadID, name, framerate):
@@ -20,20 +20,13 @@ class EyeTrackingThread(threading.Thread):
         self.threadID = threadID
         self.name = name
         self.framerate = framerate
-        self.jobs = []
-       
     def run(self):
         global last_center, running
-        running = True
-        while running is True:
-            thread = multi.Process(target = capture.updateVideo, args = (last_center, calData))
-            self.jobs.append(thread)
-            thread.start()
-            print(len(self.jobs))
-            time.sleep(1/self.framerate)
-
+        capture.updateVideo(last_center, calData)
+        time.sleep(1/self.framerate)
+        if running is True:
+            self.run()
         
-
         
 
 def StartVideoCapture(sessionData, log_handler):
@@ -89,3 +82,15 @@ def ReturnError(error):
 def LastCenter(eCenter):
     global last_center
     last_center = eCenter
+
+def EyesFound(e_orientation):
+    global eyesFoundCount
+    if e_orientation[0] > 0:
+        eyesFoundCount[0] = 0
+    else: 
+        eyesFoundCount[0] += 1
+    if e_orientation[1] > 0:
+        eyesFoundCount[1] = 0
+    else:
+        eyesFoundCount[1] += 1
+
