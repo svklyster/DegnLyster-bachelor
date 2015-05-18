@@ -195,6 +195,7 @@ def StopEyeTracking():
     #if trackingRunning is False:
     bStart.config(state = tk.NORMAL)
     bStop.config(state = tk.DISABLED)
+    cv2.destroyAllWindows()
     print "stopping eyetracking \n"
     return
 
@@ -245,7 +246,11 @@ def UpdateSessionWithPreferences():
     #    sessionData.videopath = None
     #else:
     sessionData.livecam = False
+<<<<<<< HEAD
     sessionData.camnr = None 
+=======
+    #sessionData.camnr = eVideo.get()
+>>>>>>> multiprocessing
     sessionData.videopath = eVideo.get()
 
     sessionData.notes = tNotes.get("1.0", tk.END)
@@ -286,6 +291,13 @@ cMain = tk.Canvas(midf,height=300, width=400)
 testImage = tk.PhotoImage(file = "wink4.gif")
 image = cMain.create_image(100 ,100,image=testImage)
 
+#TrackingStatus
+fEyes = tk.Frame(midf, height = 50, width=200) 
+fRightEye = tk.Frame(fEyes, height=30, width=80, bd=1, relief=tk.SUNKEN, bg = '#0000ff')
+fLeftEye = tk.Frame(fEyes, height=30, width=80, bd=1, relief=tk.SUNKEN, bg = '#0000ff')
+fRightEye.grid(row=0,column=1,padx = 10, pady = 10)
+fLeftEye.grid(row=0,column=0,padx = 10, pady = 10)
+fEyes.pack(side=tk.BOTTOM)
 
 ###Preferences box
 #Buttons
@@ -372,6 +384,8 @@ tCalfn.pack(side=tk.TOP)
 #Canvas
 cMain.pack(side = tk.TOP, pady = 10, padx = 10)
 
+
+
 #Preferences
 bSave.pack(padx=5, pady=5, side=tk.LEFT)
 bLoad.pack(padx=5, pady=5, side=tk.LEFT)
@@ -386,6 +400,24 @@ leftf.pack(side=tk.LEFT)
 preff.pack(side=tk.RIGHT)
 midf.pack()
 
+def checkEyesFound():
+    global trackingRunning
+    if trackingRunning is True:
+        if et.eyesFoundCount[0] > 10:
+            fRightEye.configure(bg = '#ff0000')
+        else:
+            fRightEye.configure(bg = '#00ff00')
+        if et.eyesFoundCount[1] > 10:
+            fLeftEye.configure(bg = '#ff0000')
+        else:
+            fLeftEye.configure(bg = '#00ff00')
+    else:
+        fLeftEye.configure(bg = '#0000ff')
+        fRightEye.configure(bg = '#0000ff')
+    root.after(100, checkEyesFound)
+
+
+root.after(100, checkEyesFound)
 root.mainloop()
 
 
