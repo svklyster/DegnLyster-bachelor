@@ -245,9 +245,9 @@ def UpdateSessionWithPreferences():
     #    sessionData.camnr = eVideo.get()
     #    sessionData.videopath = None
     #else:
-    sessionData.livecam = True
-    sessionData.camnr = eVideo.get()
-    #sessionData.videopath = eVideo.get()
+    sessionData.livecam = False
+    #sessionData.camnr = eVideo.get()
+    sessionData.videopath = eVideo.get()
 
     sessionData.notes = tNotes.get("1.0", tk.END)
     sessionData.resolution = tResolution.get("1.0", tk.END)

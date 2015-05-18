@@ -13,6 +13,8 @@ last_center = None
 logHandler = None
 calData = None
 eyesFoundCount = [0,0]
+vjCount = 0
+last_eyes = None
 
 class EyeTrackingThread(threading.Thread):
     def __init__(self, threadID, name, framerate):
@@ -21,8 +23,15 @@ class EyeTrackingThread(threading.Thread):
         self.name = name
         self.framerate = framerate
     def run(self):
-        global last_center, running
-        capture.updateVideo(last_center, calData)
+        global last_center, last_eyes, running, vjCount, calData
+        if vjCount is 0:
+            runVJ = True
+            vjCount = 10
+        else:
+            runVJ = False
+            vjCount -= 1
+
+        capture.updateVideo(last_center, last_eyes, calData, runVJ)
         time.sleep(1/self.framerate)
         if running is True:
             self.run()
@@ -79,17 +88,18 @@ def ReturnError(error):
     t = datetime.datetime.now().strftime('%H:%M:%S.%f')
     logHandler.LogData("%s, %s" %(t,error))
 
-def LastCenter(eCenter):
-    global last_center
+def LastRunInfo(eCenter, eyes):
+    global last_center, last_eyes
     last_center = eCenter
+    last_eyes = eyes
 
-def EyesFound(e_orientation):
+def EyesFound(e_found):
     global eyesFoundCount
-    if e_orientation[0] > 0:
+    if e_found[0] > 0:
         eyesFoundCount[0] = 0
     else: 
         eyesFoundCount[0] += 1
-    if e_orientation[1] > 0:
+    if e_found[1] > 0:
         eyesFoundCount[1] = 0
     else:
         eyesFoundCount[1] += 1

@@ -44,10 +44,10 @@ class VideoCapture:
     #    cv2.destroyWindow('Video source')
     #    self.cap.release()
 
-    def updateVideo(self, last_center, calData):
+    def updateVideo(self, last_center, last_eyes, calData, runVJ):
         ret, frame = self.cap.read()
         if ret is True:
-            ET.Track(frame, last_center, calData)
+            ET.Track(frame, last_center, last_eyes, calData, runVJ)
         else:
             print("Capture returning:" + str(ret))
 
