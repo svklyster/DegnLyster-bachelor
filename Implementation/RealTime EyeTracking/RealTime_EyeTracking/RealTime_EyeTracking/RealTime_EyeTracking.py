@@ -246,11 +246,9 @@ def UpdateSessionWithPreferences():
     #    sessionData.videopath = None
     #else:
     sessionData.livecam = False
-<<<<<<< HEAD
-    sessionData.camnr = None 
-=======
+
     #sessionData.camnr = eVideo.get()
->>>>>>> multiprocessing
+
     sessionData.videopath = eVideo.get()
 
     sessionData.notes = tNotes.get("1.0", tk.END)

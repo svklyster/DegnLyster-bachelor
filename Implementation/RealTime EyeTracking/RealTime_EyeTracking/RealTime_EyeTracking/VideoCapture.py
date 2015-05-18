@@ -73,11 +73,11 @@ class VideoCapture:
     
 
 def GetCameraInputs():
-        #maxTested = 5 #Assuming no more than 5 camera sources
-        #for i in range(0,maxTested):
-        #    tempCam = cv2.VideoCapture(i)
-        #    if tempCam.isOpened() is False:
-        #        return i
-        #return maxTested
-        return 0
+        maxTested = 5 #Assuming no more than 5 camera sources
+        for i in range(0,maxTested):
+            tempCam = cv2.VideoCapture(i)
+            if tempCam.isOpened() is False:
+                return i
+        return maxTested
+        #return 0
 

@@ -369,6 +369,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             
             min_indx = int(np.argmin(color))
             min_color = color[min_indx]
+            min_color = (0,0,0)
             #for j in range(4):
             #    max_indx = int(np.nanargmax(color))
             #    if color[max_indx] > 30: #antager at for hoje vaerdier er naboliggende reflektioner
@@ -383,8 +384,8 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             #max_color = 0
             #cv2.rectangle(imagePntr, (fittedRect[i][0], fittedRect[i][1]), (fittedRect[i][0] + fittedRect[i][2]*2, fittedRect[i][1] + fittedRect[i][3]*2), max_color, -1)
             cv2.circle(imagePntr, c_center, c_radius, min_color, -1)
-        cv2.imshow('circleimage', imagePntr)
-        cv2.waitKey(0)
+        #cv2.imshow('circleimage', imagePntr)
+        #cv2.waitKey(0)
         return imagePntr;
 
 
@@ -685,16 +686,30 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
             eyes = eye_cascade.detectMultiScale(gray, 1.3, 5, minSize = (100,100) )
     e_found = [0,0]
-
+    new_e_center = [0,0]*2
 
     for (x,y,w,h) in eyes:
         if x > np.size(image, 1)/2+20:
             #antager at oejet er venstre hvis det ligger i venstre del af billedet
             e_orientation = "Right"
             e_found[0] = 1
+            try:
+                if e_center is not None and e_center[0][0] > 0:
+                    eye_center = e_center[0]
+                else:
+                    eye_center = [100,100]
+            except:
+                eye_center = [100,100]
         else:
             e_orientation = "Left"
             e_found[1] = 1
+            try:
+                if e_center is not None and e_center[1][0] > 0:
+                    eye_center = e_center[1]
+                else:
+                    eye_center = [100,100]
+            except:
+                eye_center = [100,100]
         #print(e_orientation)
         roi_gray = gray[y:y+h, x:x+w]
         roi_gray_thresh = gray[y:y+h, x:x+w]
@@ -715,9 +730,9 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         edge = [0, 0]
 
         #forventet midterpunkt
-        if e_center is not None and e_center[0] > 0:
-            sx = e_center[0]
-            sy = e_center[1]
+        if eye_center is not None and eye_center[0] > 0:
+            sx = eye_center[0]
+            sy = eye_center[1]
         else:
             sy = 100
             sx = 100
@@ -729,7 +744,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         imW = np.size(roi_gray, 1)
 
     
-        crx, cry = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 20, 2, 2, -2, imW, imH, e_center)
+        crx, cry = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 20, 2, 2, -2, imW, imH, eye_center)
 
         if crx is None or cry is None:
             et.ReturnError("Error with corneal reflections")
@@ -789,16 +804,19 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                 return
             c = ellipse_direct_fit(np.array([epx[inliers], epy[inliers]]).T)
             ellipse = convert_conic_parameters_to_ellipse_parameters(c)
-            e_angle = int(ellipse[4]).real*57.2957795 
-            e_center = (ellipse[2],ellipse[3])
-            e_axes = (ellipse[0],ellipse[1])
-            cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
-            cv2.imshow('Ellipse', roi_gray)
-            cv2.waitKey(0)  
+            #e_angle = int(ellipse[4]).real*57.2957795 
+            if e_orientation is "Right":
+                new_e_center[0] = (ellipse[2],ellipse[3])
+            else:
+                new_e_center[1] = (ellipse[2],ellipse[3])
+            #e_axes = (ellipse[0],ellipse[1])
+            #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
+            #cv2.imshow('Ellipse', roi_gray)
+            #cv2.waitKey(0)  
             #return (crx,cry), e_center, ("NoTrigger")
             
-            gaze_vector = ((e_center[0]-crx).real, (e_center[1]-cry).real)
-
+            #gaze_vector = ((e_center[0]-crx).real, (e_center[1]-cry).real)
+            gaze_vector = (1,1)
             #####CALIBRATION#####
             if calData is not None:
 
@@ -807,12 +825,12 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             
             
             
-            et.LastRunInfo(e_center, eyes)
+            #et.LastRunInfo(e_center, eyes)
             et.EyesFound(e_found)
             et.PackWithTimestamp(e_center, gaze_vector, ("NoTrigger"))
             
-
-            return
+        et.LastRunInfo(new_e_center, eyes)
+        return
 
 
 

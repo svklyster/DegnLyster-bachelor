@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 SESSIONPATH C:/Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Implementation/RealTime EyeTracking/RealTime_EyeTracking/RealTime_EyeTracking
 USINGCAM False
 CAMNR 0
@@ -12,4 +10,3 @@ CALFILENAME
 LOADEDCALDATA None
 RECORDVIDEO False
 RAWDATAPATH None
->>>>>>> multiprocessing
