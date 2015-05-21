@@ -31,17 +31,17 @@ root.bind_class("<Tab>", focus_next_window)
 
 def UpdateWithSessionData(sessionData):
     if sessionData.livecam is True:
-        eVideo.delete(0,tk.END)
-        eVideo.insert(0, str(True))
+        eVideo1.delete(0,tk.END)
+        eVideo1.insert(0, "True")
         vVideo2.set("Camera index")
-        eVideo.delete(0,tk.END)
-        eVideo.insert(0, str(sessionData.camnr))
+        eVideo2.delete(0,tk.END)
+        eVideo2.insert(0, str(sessionData.camnr))
     else:
-        eVideo.delete(0,tk.END)
-        eVideo.insert(0, str(False))
+        eVideo1.delete(0,tk.END)
+        eVideo1.insert(0, "False")
         vVideo2.set("Video source")
-        eVideo.delete(0,tk.END)
-        eVideo.insert(0, sessionData.videopath)
+        eVideo2.delete(0,tk.END)
+        eVideo2.insert(0, sessionData.videopath)
     
     tNotes.delete("1.0", tk.END)
     tNotes.insert("1.0", sessionData.notes)
@@ -139,8 +139,8 @@ def CreateSession():
     lVideo = tk.Label(fVideo, text = "Choose video file").pack(side=tk.TOP, padx = 20, pady = 10)
     def GetVideoPath():
         sessionData.videopath = tkFileDialog.askopenfilename()
-        wSession.focus_set()
-        wSession.grab_set()
+        #wSession.focus_set()
+        #wSession.grab_set()
         return
     bVideoFind = tk.Button(fVideo, text = "Browse", command = GetVideoPath).pack(side=tk.TOP, padx = 20, pady = 10)
     def ChooseVideo():
@@ -197,21 +197,22 @@ def StopEyeTracking():
     #if trackingRunning is False:
     bStart.config(state = tk.NORMAL)
     bStop.config(state = tk.DISABLED)
+    fLeftEye.configure(bg = '#0000ff')
+    fRightEye.configure(bg = '#0000ff')
     cv2.destroyAllWindows()
-    print "stopping eyetracking \n"
     return
 
 def SavePreferences():
     "Saving preferences"
     #Save preferences from preferences pane
     newPrefData = sh.SessionData(tNotePathname.get("1.0", 'end-1c'))
-    newPrefData.livecam = eVideo.get("1.0", tk.END)
+    newPrefData.livecam = eVideo1.get()
     if newPrefData.livecam is True:
-        newPrefData.camnr = eVideo.get()
+        newPrefData.camnr = eVideo2.get()
         newPrefData.videopath = None
     else:
         newPrefData.camnr = None
-        newPrefData.videopath = eVideo.get()
+        newPrefData.videopath = eVideo2.get()
     newPrefData.notes = tNotes.get("1.0", tk.END)
     newPrefData.resolution = tResolution.get("1.0", tk.END)
     newPrefData.caltype = tCaltype.get("1.0", tk.END)
@@ -241,17 +242,14 @@ def LoadPreferences():
 
 def UpdateSessionWithPreferences():
     sessionData = sh.SessionData(tNotePathname.get("1.0", 'end-1c'))
-    #print(str(eVideo.get("1.0", tk.END)))
-    #if eVideo.get("1.0", tk.END) is "True":
-    #    sessionData.livecam = True
-    #    sessionData.camnr = eVideo.get()
-    #    sessionData.videopath = None
-    #else:
-    sessionData.livecam = False
-
-    #sessionData.camnr = eVideo.get()
-
-    sessionData.videopath = eVideo.get()
+    print(str(eVideo1.get()))
+    if eVideo1.get() is "True":
+        sessionData.livecam = True
+        sessionData.camnr = eVideo2.get()
+        sessionData.videopath = None
+    else:
+        sessionData.livecam = False
+        sessionData.videopath = eVideo2.get()
 
     sessionData.notes = tNotes.get("1.0", tk.END)
     sessionData.resolution = tResolution.get("1.0", tk.END)
@@ -337,15 +335,15 @@ nFrameVideo = tk.Frame(notePref)
 lVideo1 = tk.Label(nFrameVideo,  text = "Using camera source?")
 lVideo1.pack(side=tk.TOP)
 #cbVideo = tk.Checkbutton(nFrameVideo, variable = varVid, onvalue = True, offvalue = False)
-eVideo = tk.Text(nFrameVideo, width = 5, height = 1)
-eVideo.pack(side = tk.TOP)
+eVideo1 = tk.Entry(nFrameVideo, width = 5)
+eVideo1.pack(side = tk.TOP)
 vVideo2 = tk.StringVar()
 vVideo2.set("Source")
 lVideo2 = tk.Label(nFrameVideo, textvariable = vVideo2)
 lVideo2.pack(side=tk.TOP)
 #lVideo2.grid(row=1, column=0)
-eVideo = tk.Entry(nFrameVideo, width = 40)
-eVideo.pack(side=tk.TOP)
+eVideo2 = tk.Entry(nFrameVideo, width = 40)
+eVideo2.pack(side=tk.TOP)
 #eVideo.grid(row=1, column=1)
 lRecord = tk.Label(nFrameVideo, text = "Recording video?")
 lRecord.pack(side=tk.TOP)

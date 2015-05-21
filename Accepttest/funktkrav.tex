@@ -41,7 +41,7 @@ Systemet testes med kamera, afstand og skærm som angivet i kravspecifikation pu
 	\small
 \begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{3cm}|l|}
 	\hline Test case & Forberedelse & Aktion & Forventet resultat & Accept \\ 
-	\hline Normal forløb & Computer-programmet startes.  Kameraet tilsluttes og tændes.  & Bruger klikker på ”Create session” og følger programmets anmodninger. & Bruger bliver returneret til menuen med beskeden ”Session created”. Der findes data- og opsætnings-fil i den angivne fil-sti. &  \\ 
+	\hline Normal forløb & Computer-programmet startes.  Kameraet tilsluttes og tændes.  & Bruger klikker på ”Create session” og følger programmets anmodninger. & Bruger bliver returneret til menuen med beskeden ”Session created”. Der findes data- og opsætnings-fil i den angivne fil-sti. & {\Huge\checkmark} \\ 
 	\hline 
 \end{tabular} 
 \end{table}
@@ -66,9 +66,9 @@ Systemet testes med kamera, afstand og skærm som angivet i kravspecifikation pu
 	\small
 	\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{3cm}|l|}
 		\hline Test case & Forberedelse & Aktion & Forventet resultat & Accept \\ 
-		\hline Normal forløb & Gyldig session er oprettet. Kalibrering er udført.  & Bruger klikker på ”Start”.   & Programmet starter en måling. Programmet viser at en måling er i gang. & \\
+		\hline Normal forløb & Gyldig session er oprettet. Kalibrering er udført.  & Bruger klikker på ”Start eyetracking”.   & Programmet starter en måling. Programmet viser at en måling er i gang. & {\Huge\checkmark}\\
 		
-		\hline Undtagelses-forløb 1 & Gyldig session er oprettet. Kalibrering er ikke udført. & Bruger klikker på ”Start” & Programmet informerer bruger at kalibrering ikke er foretaget.  &\\
+		\hline Undtagelses-forløb 1 & Gyldig session er oprettet. Kalibrering er ikke udført. & Bruger klikker på ”Start eyetracking” & Programmet informerer bruger at kalibrering ikke er foretaget.  & {\Huge\checkmark}\\
 		\hline 
 	\end{tabular}
 \end{table}
@@ -78,7 +78,7 @@ Systemet testes med kamera, afstand og skærm som angivet i kravspecifikation pu
 	\small
 	\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{3cm}|l|}
 		\hline Test case & Forberedelse & Aktion & Forventet resultat & Accept \\ 
-		\hline Normal forløb & Real-time eye-tracking måling igangsættes. & Bruger klikker på ”Stop” & Programmet stopper måling. Programmet viser at målingen er stoppet.  & \\
+		\hline Normal forløb & Real-time eye-tracking måling igangsættes. & Bruger klikker på ”Stop eyetracking” & Programmet stopper måling. Programmet viser at målingen er stoppet.  & {\Huge\checkmark}\\
 		\hline 
 	\end{tabular}
 \end{table}
@@ -112,10 +112,10 @@ Systemet testes med kamera, afstand og skærm som angivet i kravspecifikation pu
 	\small
 	\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{3cm}|l|}
 		\hline Test case & Forberedelse & Aktion & Forventet resultat & Accept \\ 
-		\hline Normal forløb & Computer-programmet opstartes. Der findes en gyldig fil-sti med data fra tidligere session. & Bruger klikker på ”Get raw data”. Den gyldige fil-sti vælges.  & Bruger bliver returneret til menu. Valgte data kan nu ses indlæst. & \\
+		\hline Normal forløb & Computer-programmet opstartes. Der findes en gyldig fil-sti med data fra tidligere session. & Bruger klikker på ”Get raw data”. Den gyldige fil-sti vælges.  & Bruger bliver returneret til menu. Valgte data kan nu ses indlæst. & {\Huge\checkmark}\\
 		
 		\hline Undtagelses-forløb 1 & Computer-programmet opstartes. Der findes en ugyldig fil-sti med data fra tidligere session. & Bruger klikker på ”Get raw data”. Den ugyldige fil-sti vælges.  & Programmet alarmerer at der ikke kunne indhændtes korrekt data.
-		Bruger returneres til menu. &\\
+		Bruger returneres til menu. & {\Huge\checkmark}\\
 		\hline 
 	\end{tabular}
 \end{table}

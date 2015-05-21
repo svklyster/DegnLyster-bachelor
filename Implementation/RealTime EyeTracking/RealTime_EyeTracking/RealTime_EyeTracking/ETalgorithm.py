@@ -298,7 +298,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         #cv2.imshow("Woldsoa", threshROI)
         return crx, cry, nContour;
 
-    def fit_circle_radius_to_corneal_reflection (imagePntr, crx, cry, crar, biggest_crar, sin_array, cos_array, array_len, imW, imH):
+    def fit_circle_radius_to_corneal_reflection (imagePntr, crx, cry, biggest_crar, sin_array, cos_array, array_len, imW, imH):
 
         #print(crx)
         #print(cry)
@@ -358,34 +358,23 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             rect[i] = cv2.boundingRect(nContour[i]) #returnerer x,y(top left corner), widht, height
             #fittedRect[i] = [rect[i][0]-2*rect[i][2],rect[i][1]-2*rect[i][3], rect[i][2]*4, rect[i][3]*4]
             c_center = (int(rect[i][0]+np.ceil(rect[i][2]/2)), int(rect[i][1]+np.ceil(rect[i][3]/2)))
-            c_radius = np.max([rect[i][2]*4,rect[i][3]*4])
-            k = 5
-            try:
-                color = np.array([imagePntr[c_center[0]-c_radius-k, c_center[1]],imagePntr[c_center[0], c_center[1]-c_radius-k],imagePntr[c_center[0]+c_radius+k, c_center[1]], imagePntr[c_center[0], c_center[i]+c_radius+k]],dtype = np.float)
+            c_radius = np.max([rect[i][2]*3,rect[i][3]*3])
+            #k = 5
+            #try:
+            #    color = np.array([imagePntr[c_center[0]-c_radius-k, c_center[1]],imagePntr[c_center[0], c_center[1]-c_radius-k],imagePntr[c_center[0]+c_radius+k, c_center[1]], imagePntr[c_center[0], c_center[i]+c_radius+k]],dtype = np.float)
 
-                #color[i] = np.array([imagePntr[fittedRect[i][1]-k,fittedRect[i][0]-k],imagePntr[fittedRect[i][1]-k,fittedRect[i][0]+fittedRect[i][2]*2+k],imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]-k], imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]+fittedRect[i][2]*2+k]])
-            except:
-                color = (255,255,255)
+            #    #color[i] = np.array([imagePntr[fittedRect[i][1]-k,fittedRect[i][0]-k],imagePntr[fittedRect[i][1]-k,fittedRect[i][0]+fittedRect[i][2]*2+k],imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]-k], imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]+fittedRect[i][2]*2+k]])
+            #except:
+            #    color = (255,255,255)
             
-            min_indx = int(np.argmin(color))
-            min_color = color[min_indx]
-            min_color = (0,0,0)
-            #for j in range(4):
-            #    max_indx = int(np.nanargmax(color))
-            #    if color[max_indx] > 30: #antager at for hoje vaerdier er naboliggende reflektioner
-            #        color[max_indx] = np.nan
-            #    else:
-            #        max_color = np.int(color[max_indx])
-            #        break
-            #if np.all(np.isnan(color)):
-            #    ## for hoj farve?
-            #    max_color = 255
-            #if max_color > 50:
-            #max_color = 0
-            #cv2.rectangle(imagePntr, (fittedRect[i][0], fittedRect[i][1]), (fittedRect[i][0] + fittedRect[i][2]*2, fittedRect[i][1] + fittedRect[i][3]*2), max_color, -1)
+            #min_indx = int(np.argmin(color))
+            #min_color = color[min_indx]
+            #min_color = (0,0,0)
+            min_color = int(np.min(imagePntr))
+            #color = (min_color,min_color,min_color)
             cv2.circle(imagePntr, c_center, c_radius, min_color, -1)
-        #cv2.imshow('circleimage', imagePntr)
-        #cv2.waitKey(0)
+        cv2.imshow('circleimage', imagePntr)
+        cv2.waitKey(0)
         return imagePntr;
 
 
@@ -421,7 +410,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             #print(edge_point)
             for i in range(0, first_ep_num):
                 edge = [int(epx[i]),int(epy[i])]
-                cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
+                #cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
                 angle_normal = np.arctan2(cy-epy[i], cx-epx[i])
                 new_angle_step = angle_step*(edge_thresh*1.0/epd[i])
                 tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh)
@@ -671,7 +660,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
     #cv2.waitKey(0)
     if runVJ is True:
         eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-        eyes = eye_cascade.detectMultiScale(gray, 1.3, 5, minSize = (100,100) )
+        eyes = eye_cascade.detectMultiScale(gray, 1.3, 10, minSize = (100,100) )
    
     else:
         ###TEST###
@@ -684,7 +673,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         ## Er oejet hoejre eller venstre (meget grov kode)
         if eyes is None:
             eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-            eyes = eye_cascade.detectMultiScale(gray, 1.3, 5, minSize = (100,100) )
+            eyes = eye_cascade.detectMultiScale(gray, 1.3, 10, minSize = (100,100) )
     e_found = [0,0]
     new_e_center = [0,0]*2
 
@@ -804,15 +793,19 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                 return
             c = ellipse_direct_fit(np.array([epx[inliers], epy[inliers]]).T)
             ellipse = convert_conic_parameters_to_ellipse_parameters(c)
-            #e_angle = int(ellipse[4]).real*57.2957795 
+            e_angle = int(ellipse[4]).real*57.2957795 
+            e_axes = (ellipse[0],ellipse[1])
             if e_orientation is "Right":
                 new_e_center[0] = (ellipse[2],ellipse[3])
+                cv2.ellipse(roi_gray, new_e_center[0], e_axes, e_angle, 0, 360, (255,255,255), 1)
+                cv2.imshow('Ellipse', roi_gray)
+                cv2.waitKey(0)  
             else:
                 new_e_center[1] = (ellipse[2],ellipse[3])
-            #e_axes = (ellipse[0],ellipse[1])
-            #cv2.ellipse(roi_gray, e_center, e_axes, e_angle, 0, 360, (255,255,255), 1)
-            #cv2.imshow('Ellipse', roi_gray)
-            #cv2.waitKey(0)  
+                cv2.ellipse(roi_gray, new_e_center[1], e_axes, e_angle, 0, 360, (255,255,255), 1)
+                cv2.imshow('Ellipse', roi_gray)
+                cv2.waitKey(0)  
+           
             #return (crx,cry), e_center, ("NoTrigger")
             
             #gaze_vector = ((e_center[0]-crx).real, (e_center[1]-cry).real)

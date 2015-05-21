@@ -20,7 +20,9 @@ class LogHandler:
         #os.chdir(self.pathname)
 
     def StartNewTracking(self):
-           
+        if str(self.sessionData.calfile).strip() == 'None':
+            tkMessageBox.showerror("Exception", "EyeTracking not calibrated!")
+            return False
         if self.trackingRunning is False:
             self.trackingRunning = et.StartVideoCapture(self.sessionData, self)
         else:
@@ -29,7 +31,7 @@ class LogHandler:
 
     def StopTracking(self):
 
-        self.trackRunning = et.StopVideoCapture()
+        self.trackingRunning = et.StopVideoCapture()
         return self.trackingRunning
 
     def LogData(self, log_string):
