@@ -111,18 +111,20 @@ def CreateSession():
     wSession.title("Create new session")
     fLeft = tk.Frame(wSession)
     fRight = tk.Frame(wSession)
-    lSession = tk.Label(fLeft, text = "Choose video input").pack()
+    lSession = tk.Label(fLeft, text = "Choose video input").pack(padx = 20, pady = 20)
     nSession = ttk.Notebook(fRight)
     #Camera tab
     fCamera = tk.Frame(nSession)
-    lCamera = tk.Label(fCamera, text = "Choose camera").pack(side=tk.TOP)
+    lCamera = tk.Label(fCamera, text = "Choose camera").pack(side=tk.TOP, padx = 20, pady = 10)
     cameraCount = vc.GetCameraInputs()
     oList = []
     for i in range(0, cameraCount):
         oList.append(i)
     var1= tk.IntVar(fCamera)
     var1.set(0)
-    oCamera = tk.OptionMenu(fCamera, var1, *oList).pack(side=tk.TOP)
+    oCamera = tk.OptionMenu(fCamera, var1, *oList)
+    oCamera.config(width = 8)
+    oCamera.pack(side=tk.TOP, padx = 20, pady = 10)
     def ChooseCamera(var1):
         print "camera number"
         sessionData.livecam = True
@@ -130,17 +132,17 @@ def CreateSession():
         wSession.destroy()
         CreateNoteWindow()
         return
-    bCamera = tk.Button(fCamera, text = "Use camera", command = lambda: ChooseCamera(var1.get())).pack(side=tk.BOTTOM)
+    bCamera = tk.Button(fCamera, text = "Use camera", command = lambda: ChooseCamera(var1.get())).pack(side=tk.BOTTOM, padx = 20, pady = 10)
     nSession.add(fCamera, text = "Camera")
     #Video tab
     fVideo = tk.Frame(nSession)
-    lVideo = tk.Label(fVideo, text = "Choose video file").pack(side=tk.TOP)
+    lVideo = tk.Label(fVideo, text = "Choose video file").pack(side=tk.TOP, padx = 20, pady = 10)
     def GetVideoPath():
         sessionData.videopath = tkFileDialog.askopenfilename()
         wSession.focus_set()
         wSession.grab_set()
         return
-    bVideoFind = tk.Button(fVideo, text = "Browse", command = GetVideoPath).pack(side=tk.TOP)
+    bVideoFind = tk.Button(fVideo, text = "Browse", command = GetVideoPath).pack(side=tk.TOP, padx = 20, pady = 10)
     def ChooseVideo():
         print "camera path"
         print sessionData.videopath
@@ -148,7 +150,7 @@ def CreateSession():
         wSession.destroy()
         CreateNoteWindow()
         return
-    bVideoConfirm = tk.Button(fVideo, text = "Confirm", command = ChooseVideo).pack(side=tk.BOTTOM)
+    bVideoConfirm = tk.Button(fVideo, text = "Confirm", command = ChooseVideo).pack(side=tk.BOTTOM, padx = 20, pady = 10)
     nSession.add(fVideo, text = "Video")
 
     nSession.pack()

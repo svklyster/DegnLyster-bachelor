@@ -10,11 +10,13 @@ class VideoCapture:
             self.cap = cv2.VideoCapture(int(camnr))
         else:
             self.cap = cv2.VideoCapture(os.path.normpath(videopath).encode('utf-8'))
-        try:
-            self.framerate = cv2.GetCaptureProperty(self.cap, CV_CAP_PROP_FPS)
-        except:
-            self.framerate = 60
+
+        self.framerate = self.cap.get(cv2.cv.CV_CAP_PROP_FPS)
+        if self.framerate <= 0:
+            self.framerate = 30
         self.calData = calData
+        self.frameW = self.cap.get(cv2.cv.CV_CAP_PROP_FRAME_WIDTH)
+        self.frameH = self.cap.get(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT)
         #self.running = True
         #self.updateVideoThread = thread.start_new_thread(self.updateVideo, (self.framerate, ))
         #if tracking is not True:
