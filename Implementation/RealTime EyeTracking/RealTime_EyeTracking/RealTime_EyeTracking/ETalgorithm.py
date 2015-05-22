@@ -206,26 +206,26 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         contourCenter, contourRadius = cv2.minEnclosingCircle(np.concatenate((contour[0], contour[1]), axis=0))
         #crr = fit_circle_radius_to_corneal_reflection(imagePntr, crx, cry, crar, np.int16(biggest_crr/2.5), imW, imH) 
         #crr = int(2.5*crr)
-        cv2.equalizeHist(imagePntr, imagePntr)
         maxIntensity = 255.0
         x = np.arange(maxIntensity)
         phi = 1
         theta = 1
-        roi_gray = (maxIntensity/phi)*(imagePntr/(maxIntensity/theta))**0.5
-        roi_gray = np.array(imagePntr, dtype=np.uint8)
+        imagePntr = (maxIntensity/phi)*(imagePntr/(maxIntensity/theta))**0.5
+        imagePntr = np.array(imagePntr, dtype=np.uint8)
+        #contourRect = cv2.boundingRect(np.concatenate((contour[0], contour[1]), axis=0))
         
         imagePntr = interpolate_corneal_reflection(imagePntr, int(contourCenter[0]), int(contourCenter[1]), contourRadius*3, contour, imW, imH, e_center)
 
+        #cv2.equalizeHist(imagePntr, imagePntr)
         
-        #contourRect = cv2.boundingRect(np.concatenate((contour[0], contour[1]), axis=0))
 
         if imagePntr is None:
-            return None, None
+            return None, None, None, None, None
 
         #cv2.imshow('image', imagePntr)
         #cv2.waitKey(0)
 
-        return crx, cry
+        return crx, cry, imagePntr, contourCenter, contourRadius
 
     def locate_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, biggest_crar, crx, cry, imW, imH, e_center):
 
@@ -378,7 +378,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             perimeter_pixel.append(imagePntr[x,y])
             sum += perimeter_pixel[i]
 
-        havg = sum/angles/10
+        havg = sum/angles/2
 
      
 
@@ -415,7 +415,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
 
 
 
-    def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, pupil_edge_thresh, N, minimum_candidate_features):
+    def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, pupil_edge_thresh, N, minimum_candidate_features, ccen, crar):
 
         global edge_point, edge_intensity_diff
     
@@ -435,21 +435,25 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             epx = []
             epy = []
             while (len(epx) < minimum_candidate_features and edge_thresh > 5):
-                epx, epy, epd = locate_edge_points(pupil_image, width, height, cx, cy, dis, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh)
+                epx, epy, epd = locate_edge_points(pupil_image, width, height, cx, cy, dis, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh, ccen, crar)
                 if (len(epx) < minimum_candidate_features):
                     #print('reduced threshold')
                     edge_thresh -= 1
-            
-            #if (edge_thresh <= 5):
-            #    edge_thresh = pupil_edge_thresh
-            #    while (len(epx) < minimum_candidate_features and edge_thresh > 5):
-            #        epx, epy, epd = locate_edge_points(pupil_image, width, height, cx, cy, dis, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh, contour)
-            #        #tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, contour[0]+contour[2]/2, contour[1]+contour[3]/2, dis, angle_step, 0, 2*np.pi, edge_thresh, contour)
-            #        #epx = np.hstack((epx, tepx))
-            #        #epy = np.hstack((epy, tepy))
-            #        #epd = np.hstack((epd, tepd))
-            #        if len(epx) < minimum_candidate_features:
-            #            edge_thresh -= 1
+            if (edge_thresh <= 5):
+                #break;
+                ## NY KODE HER ##
+                edge_thresh = pupil_edge_thresh
+                while len(epx) < minimum_candidate_features and edge_thresh > 5:
+                    epx, epy, epd = locate_edge_points(pupil_image, width, height, cx, cy, dis, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh, ccen, crar)
+                    tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, ccen[0], ccen[1], dis, angle_step, 0, 2*np.pi, edge_thresh, ccen, crar)
+                    epx = np.hstack((epx, tepx))
+                    epy = np.hstack((epy, tepy))
+                    epd = np.hstack((epd, tepd))
+                    if len(epx) < minimum_candidate_features:
+                        edge_thresh -= 1
+                if edge_thresh <= 5:
+                    break
+                ## TIL HER JA! ##
             first_ep_num = len(epx)
             #print(edge_point)
             for i in range(0, first_ep_num):
@@ -457,7 +461,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                 cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
                 angle_normal = np.arctan2(cy-epy[i], cx-epx[i])
                 new_angle_step = angle_step*(edge_thresh*1.0/epd[i])
-                tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh)
+                tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh, ccen, crar)
                 epx = np.hstack([epx, tepx])
                 epy = np.hstack([epy, tepy])
             cv2.imshow('firstround',circleimage)
@@ -494,7 +498,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
     
     
 
-    def locate_edge_points(image, width, height, cx, cy, dis, angle_step, angle_normal, angle_spread, edge_thresh):
+    def locate_edge_points(image, width, height, cx, cy, dis, angle_step, angle_normal, angle_spread, edge_thresh, ccen, crar):
 
         epx = []
         epy = []
@@ -504,15 +508,14 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         p = [0, 0]
         #edge = [0, 0]
 
-        #reflectionKeepoutX = 1.5*contour[2]
-        #reflectionKeepoutY = 1.5*contour[3]
-        #reflectionX = contour[0]+contour[2]/2
-        #reflectionY = contour[1]+contour[3]/2
+        reflectionKeepout = 1.5*crar
+        reflectionX = ccen[0]
+        reflectionY = ccen[1]
 
-        #reflectionXmax = reflectionX + reflectionKeepoutX
-        #reflectionXmin = reflectionX - reflectionKeepoutX
-        #reflectionYmax = reflectionY + reflectionKeepoutY
-        #reflectionYmin = reflectionY - reflectionKeepoutY
+        reflectionXmax = reflectionX + reflectionKeepout
+        reflectionXmin = reflectionX - reflectionKeepout
+        reflectionYmax = reflectionY + reflectionKeepout
+        reflectionYmin = reflectionY - reflectionKeepout
 
         angle = np.float64(0)
         angle = np.float64(0)
@@ -541,32 +544,32 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                 if (p[0] < 0 or p[0] >= width or p[1] < 0 or p[1] >= height):
                     break
 
-                #if (p[0] <= reflectionXmax and p[0] >= reflectionXmin and p[1] <= reflectionYmax
-                #    and p[1] >= reflectionYmin):
-                #    break
+                if (p[0] <= reflectionXmax and p[0] >= reflectionXmin and p[1] <= reflectionYmax
+                    and p[1] >= reflectionYmin):
+                    break
 
-                #else:
+                else:
 
-                p[0] = math.floor(p[0])
-                p[1] = math.floor(p[1])
+                    p[0] = math.floor(p[0])
+                    p[1] = math.floor(p[1])
 
-                pixel_value2 = np.int16(image[p[1], p[0]])
-                #pixel_sum += pixel_value2
-                #pixel_ema = pixel_sum / count
+                    pixel_value2 = np.int16(image[p[1], p[0]])
+                    #pixel_sum += pixel_value2
+                    #pixel_ema = pixel_sum / count
 
-                pixel_ema = alpha*pixel_value2 + (1-alpha)*pixel_ema
+                    pixel_ema = alpha*pixel_value2 + (1-alpha)*pixel_ema
 
-                if (pixel_value2 - pixel_value1 > edge_thresh or pixel_value2 - pixel_ema > edge_thresh):
-                #if (pixel_value2 - pixel_ema > edge_thresh): 
-                    epx.append(np.int16(p[0] - dis_cos/2))
-                    epy.append(np.int16(p[1] - dis_sin/2))
-                    #print(p[0])
-                    #print(p[1])
-                    dir.append(pixel_value2 - pixel_value1)
+                    if (pixel_value2 - pixel_value1 > edge_thresh or pixel_value2 - pixel_ema > edge_thresh):
+                    #if (pixel_value2 - pixel_ema > edge_thresh): 
+                        epx.append(np.int16(p[0] - dis_cos/2))
+                        epy.append(np.int16(p[1] - dis_sin/2))
+                        #print(p[0])
+                        #print(p[1])
+                        dir.append(pixel_value2 - pixel_value1)
 
-                    break;
-                pixel_value1 = pixel_value2
-                count += 1.3
+                        break;
+                    pixel_value1 = pixel_value2
+                    count += 1.3
         
         return epx, epy, dir
 
@@ -795,7 +798,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
 
         
     
-        crx, cry, = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 20, 2, 2, -2, imW, imH, eye_center)
+        crx, cry, roi_gray, ccen, crar = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 20, 2, 2, -2, imW, imH, eye_center)
 
         if crx is None or cry is None:
             et.ReturnError("Error with corneal reflections")
@@ -824,7 +827,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         #cv2.waitKey(0)
     
 
-        epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 40, 6, 6)
+        epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 40, 6, 6, ccen, crar)
         if epx is None:
             et.ReturnError("Starburst threshold too low")
             return
