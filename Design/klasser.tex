@@ -1,8 +1,9 @@
 \documentclass[softwarearkitektur.tex]{subfiles}
 \begin{document}
 \section{Klasser}
+
 \subsection{UserInterface}
-Denne klasse foretager al kommunikation med aktøren \textit{bruger} igennem et grafisk user interface (GUI). For at have en konstant opdatering af interfacet, forventes denne klasse at blive afviklet i egen tråd. 
+Denne klasse foretager al kommunikation med aktøren \textit{bruger} igennem et grafisk bruger-interface (GUI). For at have en konstant opdatering af interfacet, forventes denne klasse at blive afviklet i egen tråd. 
 
 \subsection{LogHandler}
 Denne klasse håndterer eye-tracking-programmets log-fil. Data fra eye-tracking bliver her pakket og gemt i en log-fil. Kommunikation af målings-relevant data til UserInterface-klassen foretages af denne klasse.

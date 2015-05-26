@@ -1,0 +1,59 @@
+\select@language {danish}
+\contentsline {section}{\numberline {1}Prolog}{3}
+\contentsline {subsection}{\numberline {1.1}Indledning}{3}
+\contentsline {subsection}{\numberline {1.2}Ordforklaring}{3}
+\contentsline {subsection}{\numberline {1.3}Projektformulering}{3}
+\contentsline {subsection}{\numberline {1.4}OpenEyes og Siboska}{3}
+\contentsline {section}{\numberline {2}Metode}{4}
+\contentsline {subsection}{\numberline {2.1}Metoder}{4}
+\contentsline {subsection}{\numberline {2.2}Planl\IeC {\ae }gning}{4}
+\contentsline {subsection}{\numberline {2.3}Diskussion}{4}
+\contentsline {section}{\numberline {3}V\IeC {\ae }rkt\IeC {\o }jer}{5}
+\contentsline {subsection}{\numberline {3.1}Udviklingsmilj\IeC {\o }}{5}
+\contentsline {subsection}{\numberline {3.2}OpenCV}{5}
+\contentsline {subsection}{\numberline {3.3}Python}{5}
+\contentsline {subsection}{\numberline {3.4}Diskussion}{5}
+\contentsline {section}{\numberline {4}Kravspecifikation}{6}
+\contentsline {subsection}{\numberline {4.1}Problemstillinger}{6}
+\contentsline {subsection}{\numberline {4.2}Funktionelle krav}{6}
+\contentsline {subsection}{\numberline {4.3}Kalibrering}{7}
+\contentsline {subsection}{\numberline {4.4}Output}{7}
+\contentsline {subsection}{\numberline {4.5}Use-cases}{8}
+\contentsline {subsection}{\numberline {4.6}Ikke funktionelle krav}{8}
+\contentsline {subsection}{\numberline {4.7}Performance-evaluering}{9}
+\contentsline {subsection}{\numberline {4.8}Diskussion}{9}
+\contentsline {section}{\numberline {5}Analyse}{10}
+\contentsline {subsection}{\numberline {5.1}Indledning}{10}
+\contentsline {subsection}{\numberline {5.2}Systemoversigt}{10}
+\contentsline {subsection}{\numberline {5.3}Overvejelser}{10}
+\contentsline {subsubsection}{\numberline {5.3.1}Krav}{10}
+\contentsline {subsubsection}{\numberline {5.3.2}Kodesprog}{10}
+\contentsline {subsection}{\numberline {5.4}Starburst-algoritmen}{10}
+\contentsline {subsection}{\numberline {5.5}OpenEyes og Siboska}{10}
+\contentsline {subsection}{\numberline {5.6}Diskussion}{10}
+\contentsline {section}{\numberline {6}Design}{11}
+\contentsline {subsection}{\numberline {6.1}Indledning}{11}
+\contentsline {subsection}{\numberline {6.2}Modularisering}{11}
+\contentsline {subsection}{\numberline {6.3}Applikationsarkitektur}{11}
+\contentsline {subsubsection}{\numberline {6.3.1}UserInterface}{11}
+\contentsline {subsubsection}{\numberline {6.3.2}SessionHandler}{11}
+\contentsline {subsubsection}{\numberline {6.3.3}LogHandler}{12}
+\contentsline {subsubsection}{\numberline {6.3.4}VideoCapture}{12}
+\contentsline {subsubsection}{\numberline {6.3.5}EyeTrackingHandler}{12}
+\contentsline {subsection}{\numberline {6.4}Algoritme-arkitektur}{12}
+\contentsline {subsection}{\numberline {6.5}Bruger-interface}{12}
+\contentsline {subsection}{\numberline {6.6}Diskussion}{12}
+\contentsline {section}{\numberline {7}Implementering}{13}
+\contentsline {subsection}{\numberline {7.1}Indledning}{13}
+\contentsline {subsection}{\numberline {7.2}Bruger-interface og applikation}{13}
+\contentsline {subsection}{\numberline {7.3}Starburst-algoritmen}{13}
+\contentsline {subsection}{\numberline {7.4}Optimering}{13}
+\contentsline {subsection}{\numberline {7.5}Deltest}{13}
+\contentsline {subsection}{\numberline {7.6}Diskussion}{13}
+\contentsline {section}{\numberline {8}Test}{14}
+\contentsline {subsection}{\numberline {8.1}Indledning}{14}
+\contentsline {subsection}{\numberline {8.2}Accepttest}{14}
+\contentsline {subsection}{\numberline {8.3}Performance-evaluering}{14}
+\contentsline {subsection}{\numberline {8.4}Diskussion af testresultater}{14}
+\contentsline {section}{\numberline {9}Konklusion}{15}
+\contentsline {section}{\numberline {10}Appendiks}{16}

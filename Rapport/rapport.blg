@@ -1,0 +1,23 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: rapport.aux
+A level-1 auxiliary file: prolog.aux
+A level-1 auxiliary file: metode.aux
+A level-1 auxiliary file: vaerktoejer.aux
+A level-1 auxiliary file: kravspecifikation.aux
+A level-1 auxiliary file: analyse.aux
+A level-1 auxiliary file: design.aux
+A level-1 auxiliary file: implementering.aux
+A level-1 auxiliary file: test.aux
+A level-1 auxiliary file: konklusion.aux
+A level-1 auxiliary file: appendiks.aux
+The style file: ieeetr.bst
+Database file #1: biblio.bib
+You're missing a field part---line 22 of file biblio.bib
+ :  title = 
+ :          ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "UMLurl"
+Warning--empty title in opencv
+Warning--empty year in opencv
+Warning--empty publisher in FairchildInSiboska
+Warning--empty year in FairchildInSiboska
+(There was 1 error message)

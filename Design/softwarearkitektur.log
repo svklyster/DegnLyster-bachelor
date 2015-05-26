@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  21 MAY 2015 12:48
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  24 MAY 2015 17:14
 entering extended mode
 **softwarearkitektur.tex
 
@@ -2432,7 +2432,7 @@ kitektur.toc")
 \tf@toc=\write5
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 64.
+Package pdftex.def Info: ASE_logo.png used on input line 65.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2446,7 +2446,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 .tex")
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 64.
+Package pdftex.def Info: ASE_logo.png used on input line 65.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2468,7 +2468,7 @@ a fra eye-tracking
 )
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 65.
+Package pdftex.def Info: ASE_logo.png used on input line 66.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2491,7 +2491,7 @@ Overfull \hbox (26.70387pt too wide) in paragraph at lines 21--23
 )
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 66.
+Package pdftex.def Info: ASE_logo.png used on input line 67.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2519,7 +2519,7 @@ Package pdftex.def Info: Undermenuer.png used on input line 15.
 File: ASE_logo.png Graphic file (type png)
 
 <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 67.
+Package pdftex.def Info: ASE_logo.png used on input line 68.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2535,7 +2535,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 png (PNG copy)>]
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 67.
+Package pdftex.def Info: ASE_logo.png used on input line 68.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2555,7 +2555,7 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 File: ASE_logo.png Graphic file (type png)
 
 <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 70.
+Package pdftex.def Info: ASE_logo.png used on input line 71.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2577,10 +2577,10 @@ x")
 ") ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\gui.aux
 ")) ) 
 Here is how much of TeX's memory you used:
- 17074 strings out of 493921
- 340265 string characters out of 3144852
+ 17075 strings out of 493921
+ 340274 string characters out of 3144852
  383770 words of memory out of 3000000
- 20032 multiletter control sequences out of 15000+200000
+ 20033 multiletter control sequences out of 15000+200000
  68456 words of font info for 58 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  76i,16n,106p,10406b,702s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2591,7 +2591,7 @@ m Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x8
 1/public/lm/lmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/
 lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on softwarearkitektur.pdf (8 pages, 254218 bytes).
+Output written on softwarearkitektur.pdf (8 pages, 254431 bytes).
 PDF statistics:
  63 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

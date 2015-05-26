@@ -1,0 +1,14 @@
+\begin{thebibliography}{1}
+
+\bibitem{opencv}
+G.~Bradski {\em Dr. Dobb's Journal of Software Tools}.
+
+\bibitem{FairchildInSiboska}
+M.~Fairchild, {\em Color Appearance Models}.
+\newblock cited in D. Siboska, H. Karstoft and H. Pedersen, p.5.
+
+\bibitem{Siboska}
+D.~Siboska, H.~Karstoft, and H.~Pedersen, ``Synchronization of
+  electroencephalography and eye tracking using global illumination changes.''
+
+\end{thebibliography}
