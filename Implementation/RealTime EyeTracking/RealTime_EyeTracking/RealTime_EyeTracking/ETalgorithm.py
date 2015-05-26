@@ -217,7 +217,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         imagePntr = interpolate_corneal_reflection(imagePntr, int(contourCenter[0]), int(contourCenter[1]), contourRadius*3, contour, imW, imH, e_center)
 
         #cv2.equalizeHist(imagePntr, imagePntr)
-        
+      
 
         if imagePntr is None:
             return None, None, None, None, None
