@@ -22,38 +22,46 @@
 \contentsline {subsection}{\numberline {4.6}Ikke funktionelle krav}{9}
 \contentsline {subsection}{\numberline {4.7}Performance-evaluering}{10}
 \contentsline {subsection}{\numberline {4.8}Diskussion}{10}
-\contentsline {section}{\numberline {5}Analyse}{11}
-\contentsline {subsection}{\numberline {5.1}Indledning}{11}
-\contentsline {subsection}{\numberline {5.2}Systemoversigt}{11}
-\contentsline {subsection}{\numberline {5.3}Overvejelser}{11}
-\contentsline {subsubsection}{\numberline {5.3.1}Krav}{11}
-\contentsline {subsubsection}{\numberline {5.3.2}Kodesprog}{11}
-\contentsline {subsection}{\numberline {5.4}Starburst-algoritmen}{11}
-\contentsline {subsection}{\numberline {5.5}OpenEyes og Siboska}{11}
-\contentsline {subsection}{\numberline {5.6}Diskussion}{11}
-\contentsline {section}{\numberline {6}Design}{12}
-\contentsline {subsection}{\numberline {6.1}Indledning}{12}
-\contentsline {subsection}{\numberline {6.2}Modularisering}{12}
-\contentsline {subsection}{\numberline {6.3}Applikationsarkitektur}{12}
-\contentsline {subsubsection}{\numberline {6.3.1}UserInterface}{12}
-\contentsline {subsubsection}{\numberline {6.3.2}SessionHandler}{12}
-\contentsline {subsubsection}{\numberline {6.3.3}LogHandler}{13}
-\contentsline {subsubsection}{\numberline {6.3.4}VideoCapture}{13}
-\contentsline {subsubsection}{\numberline {6.3.5}EyeTrackingHandler}{13}
-\contentsline {subsection}{\numberline {6.4}Algoritme-arkitektur}{13}
-\contentsline {subsection}{\numberline {6.5}Bruger-interface}{13}
-\contentsline {subsection}{\numberline {6.6}Diskussion}{13}
-\contentsline {section}{\numberline {7}Implementering}{14}
-\contentsline {subsection}{\numberline {7.1}Indledning}{14}
-\contentsline {subsection}{\numberline {7.2}Bruger-interface og applikation}{14}
-\contentsline {subsection}{\numberline {7.3}Starburst-algoritmen}{14}
-\contentsline {subsection}{\numberline {7.4}Optimering}{14}
-\contentsline {subsection}{\numberline {7.5}Deltest}{14}
-\contentsline {subsection}{\numberline {7.6}Diskussion}{14}
-\contentsline {section}{\numberline {8}Test}{15}
-\contentsline {subsection}{\numberline {8.1}Indledning}{15}
-\contentsline {subsection}{\numberline {8.2}Accepttest}{15}
-\contentsline {subsection}{\numberline {8.3}Performance-evaluering}{15}
-\contentsline {subsection}{\numberline {8.4}Diskussion af testresultater}{15}
-\contentsline {section}{\numberline {9}Konklusion}{16}
-\contentsline {section}{\numberline {10}Appendiks}{17}
+\contentsline {section}{\numberline {5}Analyse}{12}
+\contentsline {subsection}{\numberline {5.1}Indledning}{12}
+\contentsline {subsection}{\numberline {5.2}Systemoversigt}{12}
+\contentsline {subsection}{\numberline {5.3}Funktionalitetskrav}{12}
+\contentsline {subsubsection}{\numberline {5.3.1}Use case 1}{12}
+\contentsline {subsubsection}{\numberline {5.3.2}Use case 2}{13}
+\contentsline {subsubsection}{\numberline {5.3.3}Use case 3}{14}
+\contentsline {subsubsection}{\numberline {5.3.4}Use case 4}{15}
+\contentsline {subsubsection}{\numberline {5.3.5}Use case 5}{15}
+\contentsline {subsubsection}{\numberline {5.3.6}Use case 6}{16}
+\contentsline {subsubsection}{\numberline {5.3.7}Use case 7}{16}
+\contentsline {subsection}{\numberline {5.4}Overvejelser}{16}
+\contentsline {subsubsection}{\numberline {5.4.1}Krav}{16}
+\contentsline {subsubsection}{\numberline {5.4.2}Kodesprog}{16}
+\contentsline {subsection}{\numberline {5.5}Starburst-algoritmen}{16}
+\contentsline {subsection}{\numberline {5.6}OpenEyes og Siboska}{16}
+\contentsline {subsection}{\numberline {5.7}Diskussion}{16}
+\contentsline {section}{\numberline {6}Design}{17}
+\contentsline {subsection}{\numberline {6.1}Indledning}{17}
+\contentsline {subsection}{\numberline {6.2}Modularisering}{17}
+\contentsline {subsection}{\numberline {6.3}Applikationsarkitektur}{17}
+\contentsline {subsubsection}{\numberline {6.3.1}UserInterface}{17}
+\contentsline {subsubsection}{\numberline {6.3.2}SessionHandler}{17}
+\contentsline {subsubsection}{\numberline {6.3.3}LogHandler}{18}
+\contentsline {subsubsection}{\numberline {6.3.4}VideoCapture}{18}
+\contentsline {subsubsection}{\numberline {6.3.5}EyeTrackingHandler}{18}
+\contentsline {subsection}{\numberline {6.4}Algoritme-arkitektur}{18}
+\contentsline {subsection}{\numberline {6.5}Bruger-interface}{18}
+\contentsline {subsection}{\numberline {6.6}Diskussion}{18}
+\contentsline {section}{\numberline {7}Implementering}{19}
+\contentsline {subsection}{\numberline {7.1}Indledning}{19}
+\contentsline {subsection}{\numberline {7.2}Bruger-interface og applikation}{19}
+\contentsline {subsection}{\numberline {7.3}Starburst-algoritmen}{19}
+\contentsline {subsection}{\numberline {7.4}Optimering}{19}
+\contentsline {subsection}{\numberline {7.5}Deltest}{19}
+\contentsline {subsection}{\numberline {7.6}Diskussion}{19}
+\contentsline {section}{\numberline {8}Test}{20}
+\contentsline {subsection}{\numberline {8.1}Indledning}{20}
+\contentsline {subsection}{\numberline {8.2}Accepttest}{20}
+\contentsline {subsection}{\numberline {8.3}Performance-evaluering}{20}
+\contentsline {subsection}{\numberline {8.4}Diskussion af testresultater}{20}
+\contentsline {section}{\numberline {9}Konklusion}{21}
+\contentsline {section}{\numberline {10}Appendiks}{22}
