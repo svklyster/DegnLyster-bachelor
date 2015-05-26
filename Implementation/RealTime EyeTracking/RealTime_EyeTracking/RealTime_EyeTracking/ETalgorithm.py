@@ -200,17 +200,32 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
 
     def remove_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, biggest_crr, crx, cry, crr, imgW, imgH, e_center):
 
-        [crx, cry, contour] = locate_corneal_reflection(imagePntr, threshPntr, sx, sy, windowSize, np.int16(biggest_crr/2.5), crx, cry, imgW, imgH, e_center)
 
-        imagePntr = interpolate_corneal_reflection(imagePntr, crx, cry, contour, imW, imH, e_center)
+        [crx, cry, contour] = locate_corneal_reflection(imagePntr, threshPntr, sx, sy, windowSize, np.int16(biggest_crr/2.5), crx, cry, imgW, imgH, e_center)
+        
+        contourCenter, contourRadius = cv2.minEnclosingCircle(np.concatenate((contour[0], contour[1]), axis=0))
+        #crr = fit_circle_radius_to_corneal_reflection(imagePntr, crx, cry, crar, np.int16(biggest_crr/2.5), imW, imH) 
+        #crr = int(2.5*crr)
+        maxIntensity = 255.0
+        x = np.arange(maxIntensity)
+        phi = 1
+        theta = 1
+        imagePntr = (maxIntensity/phi)*(imagePntr/(maxIntensity/theta))**0.5
+        imagePntr = np.array(imagePntr, dtype=np.uint8)
+        #contourRect = cv2.boundingRect(np.concatenate((contour[0], contour[1]), axis=0))
+        
+        imagePntr = interpolate_corneal_reflection(imagePntr, int(contourCenter[0]), int(contourCenter[1]), contourRadius*3, contour, imW, imH, e_center)
+
+        #cv2.equalizeHist(imagePntr, imagePntr)
+      
 
         if imagePntr is None:
-            return None, None
+            return None, None, None, None, None
 
         #cv2.imshow('image', imagePntr)
         #cv2.waitKey(0)
 
-        return crx, cry
+        return crx, cry, imagePntr, contourCenter, contourRadius
 
     def locate_corneal_reflection (imagePntr, threshPntr, sx, sy, windowSize, biggest_crar, crx, cry, imW, imH, e_center):
 
@@ -262,6 +277,8 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                 continue
         
             if (scores[threshold-1] - scores[threshold] < 0):
+                #crar = int(np.sqrt(max_area / np.pi))
+
                 sum_x = np.int16(0)
                 sum_y = np.int16(0)
 
@@ -298,12 +315,11 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         #cv2.imshow("Woldsoa", threshROI)
         return crx, cry, nContour;
 
-    def fit_circle_radius_to_corneal_reflection (imagePntr, crx, cry, biggest_crar, sin_array, cos_array, array_len, imW, imH):
+    def fit_circle_radius_to_corneal_reflection (imagePntr, crx, cry, crar, biggest_crar, imW, imH):
 
         #print(crx)
         #print(cry)
         #print(crar)
-        crar = 11
         if (crx == -1 or cry == -1 or crar == -1):
             return -1;
 
@@ -319,15 +335,17 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         sum1 = np.float64(0)
         sum2 = np.float64(0)
 
+        angles = int(2*np.pi/(np.pi/180));
+
         for r in range(crar, biggest_crar):
             sum1 = 0
             sum2 = 0
             count = 0
-            for i in range(array_len):
-                x = (int)(crx + (r+r_delta)*cos_array[i])
-                y = (int)(cry + (r+r_delta)*sin_array[i])
-                x2 = (int)(crx + (r-r_delta)*cos_array[i])
-                y2 = (int)(cry + (r+r_delta)*sin_array[i])
+            for i in range(angles):
+                x = int(crx + (r+r_delta)*np.cos(i))
+                y = int(cry + (r+r_delta)*np.sin(i))
+                x2 = int(crx + (r-r_delta)*np.cos(i))
+                y2 = int(cry + (r+r_delta)*np.sin(i))
                 count += 1
                 if ((x >= 0 and y >= 0 and x < imW and y < imH) and
                     (x2 >= 0 and y2 >= 0 and x2 < imW and y2 < imH)):
@@ -337,49 +355,67 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
 
             if (r - crar >= 2):
                 if (ratio[r-crar-2] < ratio[r-crar-1] and ratio[r-crar] < ratio[r-crar-1]):
-                    #free(ratio)
                     return r-1;
 
-        #free(ratio)
-        #print stuff
         return crar;
 
 
-    def interpolate_corneal_reflection (imagePntr, crx, cry, nContour, imW, imH, e_center):
+    def interpolate_corneal_reflection (imagePntr, crx, cry, crr, nContour, imW, imH, e_center):
 
-        rect = [None]*len(nContour)
-        fittedRect = [None]*len(nContour)
-        #color = [None]*len(nContour)
-        #cv2.imshow('circleimage', imagePntr)
-        #cv2.waitKey(0)
+        if crx-crr < 0 or crx+crr >= imW or cry-crr < 0 or cry+crr >= imH:
+            return None
 
+        perimeter_pixel = []
+        angles = int(2*np.pi/(np.pi/180));
+        sum = 0
 
-        for i in range(len(nContour)):
-            rect[i] = cv2.boundingRect(nContour[i]) #returnerer x,y(top left corner), widht, height
-            #fittedRect[i] = [rect[i][0]-2*rect[i][2],rect[i][1]-2*rect[i][3], rect[i][2]*4, rect[i][3]*4]
-            c_center = (int(rect[i][0]+np.ceil(rect[i][2]/2)), int(rect[i][1]+np.ceil(rect[i][3]/2)))
-            c_radius = np.max([rect[i][2]*3,rect[i][3]*3])
-            #k = 5
-            #try:
-            #    color = np.array([imagePntr[c_center[0]-c_radius-k, c_center[1]],imagePntr[c_center[0], c_center[1]-c_radius-k],imagePntr[c_center[0]+c_radius+k, c_center[1]], imagePntr[c_center[0], c_center[i]+c_radius+k]],dtype = np.float)
+        cv2.imshow('circleimage', imagePntr)
+        cv2.waitKey(0)
 
-            #    #color[i] = np.array([imagePntr[fittedRect[i][1]-k,fittedRect[i][0]-k],imagePntr[fittedRect[i][1]-k,fittedRect[i][0]+fittedRect[i][2]*2+k],imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]-k], imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]+fittedRect[i][2]*2+k]])
-            #except:
-            #    color = (255,255,255)
+        for i in range(angles):
+            x = int(crx+crr*np.cos(i))
+            y = int(cry+crr*np.sin(i))
+            perimeter_pixel.append(imagePntr[x,y])
+            sum += perimeter_pixel[i]
+
+        havg = sum/angles/2
+
+     
+
+        cv2.circle(imagePntr, (crx,cry), int(crr), int(havg), -1)
+
+        #for r in range(crr):
+        #    r2 = crr-r+1
+        #    for i in range(angles):
+        #        x = int(crx + r*np.cos(i))
+        #        y = int(crx + r*np.sin(i))
+        #        imagePntr[x,y] = np.int((np.float(r2)/np.float(crr))*avg + (np.float(r)/np.float(crr))*perimeter_pixel[i])
+        ##for i in range(len(nContour)):
+        #    rect[i] = cv2.boundingRect(nContour[i]) #returnerer x,y(top left corner), widht, height
+        #    #fittedRect[i] = [rect[i][0]-2*rect[i][2],rect[i][1]-2*rect[i][3], rect[i][2]*4, rect[i][3]*4]
+        #    c_center = (int(rect[i][0]+np.ceil(rect[i][2]/2)), int(rect[i][1]+np.ceil(rect[i][3]/2)))
+        #    c_radius = np.max([rect[i][2]*3,rect[i][3]*3])
+        #    #k = 5
+        #    #try:
+        #    #    color = np.array([imagePntr[c_center[0]-c_radius-k, c_center[1]],imagePntr[c_center[0], c_center[1]-c_radius-k],imagePntr[c_center[0]+c_radius+k, c_center[1]], imagePntr[c_center[0], c_center[i]+c_radius+k]],dtype = np.float)
+
+        #    #    #color[i] = np.array([imagePntr[fittedRect[i][1]-k,fittedRect[i][0]-k],imagePntr[fittedRect[i][1]-k,fittedRect[i][0]+fittedRect[i][2]*2+k],imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]-k], imagePntr[fittedRect[i][1]+fittedRect[i][3]*2+k, fittedRect[i][0]+fittedRect[i][2]*2+k]])
+        #    #except:
+        #    #    color = (255,255,255)
             
-            #min_indx = int(np.argmin(color))
-            #min_color = color[min_indx]
-            #min_color = (0,0,0)
-            min_color = int(np.min(imagePntr))
-            #color = (min_color,min_color,min_color)
-            cv2.circle(imagePntr, c_center, c_radius, min_color, -1)
+        #    #min_indx = int(np.argmin(color))
+        #    #min_color = color[min_indx]
+        #    #min_color = (0,0,0)
+        #    min_color = int(np.min(imagePntr))
+        #    #color = (min_color,min_color,min_color)
+        #    cv2.circle(imagePntr, c_center, c_radius, min_color, -1)
         cv2.imshow('circleimage', imagePntr)
         cv2.waitKey(0)
         return imagePntr;
 
 
 
-    def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, pupil_edge_thresh, N, minimum_candidate_features):
+    def starburst_pupil_contour_detection (pupil_image, width, height, cx, cy, pupil_edge_thresh, N, minimum_candidate_features, ccen, crar):
 
         global edge_point, edge_intensity_diff
     
@@ -399,30 +435,42 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             epx = []
             epy = []
             while (len(epx) < minimum_candidate_features and edge_thresh > 5):
-                epx, epy, epd = locate_edge_points(pupil_image, width, height, cx, cy, dis, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh)
+                epx, epy, epd = locate_edge_points(pupil_image, width, height, cx, cy, dis, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh, ccen, crar)
                 if (len(epx) < minimum_candidate_features):
                     #print('reduced threshold')
                     edge_thresh -= 1
             if (edge_thresh <= 5):
-                break;
-
+                #break;
+                ## NY KODE HER ##
+                edge_thresh = pupil_edge_thresh
+                while len(epx) < minimum_candidate_features and edge_thresh > 5:
+                    epx, epy, epd = locate_edge_points(pupil_image, width, height, cx, cy, dis, angle_step, 0, 2*3.1415926535897932384626433832795, edge_thresh, ccen, crar)
+                    tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, ccen[0], ccen[1], dis, angle_step, 0, 2*np.pi, edge_thresh, ccen, crar)
+                    epx = np.hstack((epx, tepx))
+                    epy = np.hstack((epy, tepy))
+                    epd = np.hstack((epd, tepd))
+                    if len(epx) < minimum_candidate_features:
+                        edge_thresh -= 1
+                if edge_thresh <= 5:
+                    break
+                ## TIL HER JA! ##
             first_ep_num = len(epx)
             #print(edge_point)
             for i in range(0, first_ep_num):
                 edge = [int(epx[i]),int(epy[i])]
-                #cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
+                cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
                 angle_normal = np.arctan2(cy-epy[i], cx-epx[i])
                 new_angle_step = angle_step*(edge_thresh*1.0/epd[i])
-                tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh)
+                tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh, ccen, crar)
                 epx = np.hstack([epx, tepx])
                 epy = np.hstack([epy, tepy])
-            #cv2.imshow('firstround',circleimage)
-            #cv2.waitKey(0)
-            #for i in range(0, len(epx)):
-            #    edge = [int(epx[i]),int(epy[i])]
-            #    cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
-            #cv2.imshow('secondround',circleimage)
-            #cv2.waitKey(0)
+            cv2.imshow('firstround',circleimage)
+            cv2.waitKey(0)
+            for i in range(0, len(epx)):
+                edge = [int(epx[i]),int(epy[i])]
+                cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
+            cv2.imshow('secondround',circleimage)
+            cv2.waitKey(0)
 
             loop_count += 1
             tcx = np.mean(epx)
@@ -450,7 +498,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
     
     
 
-    def locate_edge_points(image, width, height, cx, cy, dis, angle_step, angle_normal, angle_spread, edge_thresh):
+    def locate_edge_points(image, width, height, cx, cy, dis, angle_step, angle_normal, angle_spread, edge_thresh, ccen, crar):
 
         epx = []
         epy = []
@@ -459,6 +507,16 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         #p = np.zeros([4,2])
         p = [0, 0]
         #edge = [0, 0]
+
+        reflectionKeepout = 1.5*crar
+        reflectionX = ccen[0]
+        reflectionY = ccen[1]
+
+        reflectionXmax = reflectionX + reflectionKeepout
+        reflectionXmin = reflectionX - reflectionKeepout
+        reflectionYmax = reflectionY + reflectionKeepout
+        reflectionYmin = reflectionY - reflectionKeepout
+
         angle = np.float64(0)
         angle = np.float64(0)
         dis_cos = np.float64(0)
@@ -484,28 +542,34 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                 p[0] += dis_cos
                 p[1] += dis_sin
                 if (p[0] < 0 or p[0] >= width or p[1] < 0 or p[1] >= height):
-                    break;
+                    break
 
-                p[0] = math.floor(p[0])
-                p[1] = math.floor(p[1])
+                if (p[0] <= reflectionXmax and p[0] >= reflectionXmin and p[1] <= reflectionYmax
+                    and p[1] >= reflectionYmin):
+                    break
 
-                pixel_value2 = np.int16(image[p[1], p[0]])
-                #pixel_sum += pixel_value2
-                #pixel_ema = pixel_sum / count
+                else:
 
-                pixel_ema = alpha*pixel_value2 + (1-alpha)*pixel_ema
+                    p[0] = math.floor(p[0])
+                    p[1] = math.floor(p[1])
 
-                if (pixel_value2 - pixel_value1 > edge_thresh or pixel_value2 - pixel_ema > edge_thresh):
-                #if (pixel_value2 - pixel_ema > edge_thresh): 
-                    epx.append(np.int16(p[0] - dis_cos/2))
-                    epy.append(np.int16(p[1] - dis_sin/2))
-                    #print(p[0])
-                    #print(p[1])
-                    dir.append(pixel_value2 - pixel_value1)
+                    pixel_value2 = np.int16(image[p[1], p[0]])
+                    #pixel_sum += pixel_value2
+                    #pixel_ema = pixel_sum / count
 
-                    break;
-                pixel_value1 = pixel_value2
-                count += 1.3
+                    pixel_ema = alpha*pixel_value2 + (1-alpha)*pixel_ema
+
+                    if (pixel_value2 - pixel_value1 > edge_thresh or pixel_value2 - pixel_ema > edge_thresh):
+                    #if (pixel_value2 - pixel_ema > edge_thresh): 
+                        epx.append(np.int16(p[0] - dis_cos/2))
+                        epy.append(np.int16(p[1] - dis_sin/2))
+                        #print(p[0])
+                        #print(p[1])
+                        dir.append(pixel_value2 - pixel_value1)
+
+                        break;
+                    pixel_value1 = pixel_value2
+                    count += 1.3
         
         return epx, epy, dir
 
@@ -732,20 +796,15 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
 
         imW = np.size(roi_gray, 1)
 
+        
     
-        crx, cry = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 20, 2, 2, -2, imW, imH, eye_center)
+        crx, cry, roi_gray, ccen, crar = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 20, 2, 2, -2, imW, imH, eye_center)
 
         if crx is None or cry is None:
             et.ReturnError("Error with corneal reflections")
             return
 
-        #cv2.equalizeHist(roi_gray, roi_gray)
-        maxIntensity = 255.0
-        x = np.arange(maxIntensity)
-        phi = 1
-        theta = 1
-        roi_gray = (maxIntensity/phi)*(roi_gray/(maxIntensity/theta))**0.5
-        roi_gray = np.array(roi_gray, dtype=np.uint8)
+       
 
         #cv2.imshow('newImage0',roi_gray)
         #cv2.waitKey(0)
@@ -768,7 +827,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         #cv2.waitKey(0)
     
 
-        epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 40, 6, 6)
+        epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, crx, cry, 40, 6, 6, ccen, crar)
         if epx is None:
             et.ReturnError("Starburst threshold too low")
             return

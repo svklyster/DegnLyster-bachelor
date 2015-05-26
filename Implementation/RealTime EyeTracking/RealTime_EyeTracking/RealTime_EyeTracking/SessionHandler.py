@@ -37,21 +37,21 @@ class SessionData:
 
     def UpdateSessionFile(self):
         file = codecs.open(self.filepath, "w", "utf-8")
-        sessionStr = "SESSIONPATH " + self.pathname + '\n'
-        sessionStr += "USINGCAM " + str(self.livecam) + '\n'
-        sessionStr += "CAMNR " + str(self.camnr) + '\n'
+        sessionStr = "SESSIONPATH " + self.pathname + os.linesep
+        sessionStr += "USINGCAM " + str(self.livecam) + os.linesep
+        sessionStr += "CAMNR " + str(self.camnr) + os.linesep
         if self.videopath is None:
-            sessionStr += "VIDEOPATH None" + '\n'
+            sessionStr += "VIDEOPATH None" + os.linesep
         else:
-            sessionStr +=  "VIDEOPATH " + self.videopath + '\n'
+            sessionStr +=  "VIDEOPATH " + self.videopath + os.linesep 
         sessionStr += "NOTES " + self.notes
         sessionStr += "RESOLUTION " + self.resolution
         sessionStr += "CALTYPE " + self.caltype
         sessionStr += "LOGFILENAME " + self.logfilename
         sessionStr += "CALFILENAME " + self.calfilename
-        sessionStr += "LOADEDCALDATA " + str(self.calfile) + '\n'
-        sessionStr += "RECORDVIDEO " + str(self.recordvideo) + '\n'
-        sessionStr += "RAWDATAPATH " + str(self.rawdatapath) + '\n'
+        sessionStr += "LOADEDCALDATA " + str(self.calfile) + os.linesep
+        sessionStr += "RECORDVIDEO " + str(self.recordvideo) + os.linesep
+        sessionStr += "RAWDATAPATH " + str(self.rawdatapath)
         try:
             file.write(sessionStr)    
             return "fileUpdated"
@@ -62,21 +62,21 @@ class SessionData:
 
     def SavePreferences(self):
         file = codecs.open(self.filepath, "w", "utf-8")
-        sessionStr = "SESSIONPATH " + self.pathname + '\n'
-        sessionStr += "USINGCAM " + str(self.livecam) + '\n'
-        sessionStr += "CAMNR " + str(self.camnr) + '\n'
+        sessionStr = "SESSIONPATH " + self.pathname + os.linesep
+        sessionStr += "USINGCAM " + str(self.livecam) + os.linesep
+        sessionStr += "CAMNR " + str(self.camnr) + os.linesep
         if self.videopath is None:
-            sessionStr += "VIDEOPATH None" + '\n'
+            sessionStr += "VIDEOPATH None" + os.linesep
         else:
-            sessionStr +=  "VIDEOPATH " + str(self.videopath) + '\n'
+            sessionStr +=  "VIDEOPATH " + str(self.videopath) + os.linesep
         sessionStr += "NOTES " + str(self.notes)
         sessionStr += "RESOLUTION " + str(self.resolution)
         sessionStr += "CALTYPE " + str(self.caltype)
         sessionStr += "LOGFILENAME " + str(self.logfilename)
         sessionStr += "CALFILENAME " + str(self.calfilename)
-        sessionStr += "LOADEDCALDATA " + str(self.calfile) + '\n'
-        sessionStr += "RECORDVIDEO " + str(self.recordvideo) + '\n'
-        sessionStr += "RAWDATAPATH " + str(self.rawdatapath) + '\n'
+        sessionStr += "LOADEDCALDATA " + str(self.calfile) + os.linesep
+        sessionStr += "RECORDVIDEO " + str(self.recordvideo) + os.linesep
+        sessionStr += "RAWDATAPATH " + str(self.rawdatapath)
         try:
             file.write(sessionStr)
             return "fileCreated"
