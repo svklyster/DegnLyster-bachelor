@@ -820,7 +820,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             
             #et.LastRunInfo(e_center, eyes)
             et.EyesFound(e_found)
-            et.PackWithTimestamp(e_center, gaze_vector, ("NoTrigger"))
+            et.PackWithTimestamp(e_center, gaze_vector, ("NoTrigger"), True)
             
         et.LastRunInfo(new_e_center, eyes)
         return

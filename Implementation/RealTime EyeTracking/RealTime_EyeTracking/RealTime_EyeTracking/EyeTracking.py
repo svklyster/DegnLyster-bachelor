@@ -4,7 +4,8 @@ import sys
 import time
 import datetime
 import threading
-#import LogHandler as lh
+import LogHandler as lh
+import Calibration as cb
 
 
 running = False
@@ -15,6 +16,26 @@ calData = None
 eyesFoundCount = [0,0]
 vjCount = 0
 last_eyes = None
+saveRaw = False
+
+# CALIBRATION STUFF #####
+
+calNum = 40
+calNumCount = 0
+calTotal = 9
+calTotalCount = 0
+
+retVectors = []
+#Get positions FIX IT NAOW - or not
+posList = [[9, 9], [992, 9], [9, 592], [992, 592], [500, 9], [500, 592], [9, 300], [992, 300], [500, 300]]
+posValues = []
+idx = 0
+posCount = 0
+posNo = []
+result = []
+
+########################
+
 
 class EyeTrackingThread(threading.Thread):
     def __init__(self, threadID, name, framerate):
@@ -43,7 +64,7 @@ def StartVideoCapture(sessionData, log_handler):
     logHandler = log_handler
     try:
                                     ####### TEST#####
-        capture = vc.VideoCapture(sessionData.livecam, sessionData.camnr, sessionData.videopath, True)
+        capture = vc.VideoCapture(sessionData.livecam, sessionData.camnr, sessionData.videopath, True, saveRaw)
         #capture = vc.VideoCapture(False, sessionData.camnr, "C:/1min60fps.avi" , True)
         #trackingThread = threading.Thread(None, EyeTrackingThread, capture.framerate, {})
         #trackingThread = thread.start_new_thread(EyeTrackingThread,(vc.framerate))
@@ -78,10 +99,20 @@ def GetPoint(sessionData):
         StartVideoCapture(sessionData)
         GetPoint(sessionData)
 
-def PackWithTimestamp(e_center, gaze_vector, trigger):
+def PackWithTimestamp(e_center, gaze_vector, trigger, calibration):
     global logHandler
     t = datetime.datetime.now().strftime('%H:%M:%S.%f')
-    logHandler.LogData("%s, %s, %s, %s, %s" %(t,e_center,gaze_vector[0], gaze_vector[1],trigger))
+    if calibration is False:
+        logHandler.LogData("%s, %s, %s, %s, %s" %(t,e_center,gaze_vector[0], gaze_vector[1],trigger))
+    else:
+        retVectors.append(gaze_vector)
+        posValues.append(posList[idx])
+        posNo.append(idx)
+        posCount += 1
+        if posCount >= calNum:
+            idx += 1
+            posCount = 0
+
 
 def ReturnError(error):
     global logHandler

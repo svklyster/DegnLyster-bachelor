@@ -5,11 +5,24 @@ import ETalgorithm as ET
 
 class VideoCapture: 
 
-    def __init__(self, livecam, camnr, videopath, calData=None, tracking=None): 
+    def __init__(self, livecam, camnr, videopath, calData=None, tracking=None, saveRaw=True): 
         if livecam is True:
             self.cap = cv2.VideoCapture(int(camnr))
         else:
             self.cap = cv2.VideoCapture(os.path.normpath(videopath).encode('utf-8'))
+        if saveRaw is True:
+            #Save video:
+            capture = cv2.VideoCapture('test.avi')
+            ret, frame = capture.read()
+            print('halp')
+            if ret:
+                width = np.size(frame,1)
+                height = np.size(frame,0)
+            else:
+                width = 0
+                height = 0
+            fourcc = cv2.cv.CV_FOURCC(*'XVID')
+            video_writer = cv2.VideoWriter('videopath' + '.avi', -1, 30, (width, height))
 
         self.framerate = self.cap.get(cv2.cv.CV_CAP_PROP_FPS)
         if self.framerate <= 0:
