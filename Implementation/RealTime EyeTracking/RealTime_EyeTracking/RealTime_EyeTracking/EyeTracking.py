@@ -102,16 +102,16 @@ def GetPoint(sessionData):
 def PackWithTimestamp(e_center, gaze_vector, trigger, calibration):
     global logHandler
     t = datetime.datetime.now().strftime('%H:%M:%S.%f')
-    if calibration is False:
+    if calibration is True:
         logHandler.LogData("%s, %s, %s, %s, %s" %(t,e_center,gaze_vector[0], gaze_vector[1],trigger))
-    else:
-        retVectors.append(gaze_vector)
-        posValues.append(posList[idx])
-        posNo.append(idx)
-        posCount += 1
-        if posCount >= calNum:
-            idx += 1
-            posCount = 0
+    #else:
+    #    retVectors.append(gaze_vector)
+    #    posValues.append(posList[idx])
+    #    posNo.append(idx)
+    #    posCount += 1
+    #    if posCount >= calNum:
+    #        idx += 1
+    #        posCount = 0
 
 
 def ReturnError(error):

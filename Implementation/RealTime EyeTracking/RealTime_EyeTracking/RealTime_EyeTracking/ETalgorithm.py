@@ -203,7 +203,9 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
 
         [crx, cry, contour] = locate_corneal_reflection(imagePntr, threshPntr, sx, sy, windowSize, np.int16(biggest_crr/2.5), crx, cry, imgW, imgH, e_center)
         
-        contourCenter, contourRadius = cv2.minEnclosingCircle(np.concatenate((contour[0], contour[1]), axis=0))
+        contourCenter1, contourRadius1 = cv2.minEnclosingCircle(contour[0])
+        contourCenter2, contourRadius2 = cv2.minEnclosingCircle(contour[1])
+        
         #crr = fit_circle_radius_to_corneal_reflection(imagePntr, crx, cry, crar, np.int16(biggest_crr/2.5), imW, imH) 
         #crr = int(2.5*crr)
         maxIntensity = 255.0
@@ -214,7 +216,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         imagePntr = np.array(imagePntr, dtype=np.uint8)
         #contourRect = cv2.boundingRect(np.concatenate((contour[0], contour[1]), axis=0))
         
-        imagePntr = interpolate_corneal_reflection(imagePntr, int(contourCenter[0]), int(contourCenter[1]), contourRadius*2, contour, imW, imH, e_center)
+        imagePntr = interpolate_corneal_reflection(imagePntr, int(contourCenter1[0]), int(contourCenter1[1]),  int(contourCenter2[0]), int(contourCenter2[1]), contourRadius1*3, contourRadius2*3, contour, imW, imH, e_center)
 
         #cv2.equalizeHist(imagePntr, imagePntr)
       
@@ -222,9 +224,12 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         if imagePntr is None:
             return None, None, None, None, None
 
+        contourCenter, contourRadius = cv2.minEnclosingCircle(np.concatenate((contour[0], contour[1]), axis=0))
+        
+
         #cv2.imshow('image', imagePntr)
         #cv2.waitKey(0)
-
+        
         return crx, cry, imagePntr, contourCenter, contourRadius
 
     def pupil_center_approx (imagePntr, threshPntr):
@@ -411,9 +416,9 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         return crar;
 
 
-    def interpolate_corneal_reflection (imagePntr, crx, cry, crr, nContour, imW, imH, e_center):
+    def interpolate_corneal_reflection (imagePntr, crx1, cry1, crx2, cry2, crr1, crr2, nContour, imW, imH, e_center):
 
-        if crx-crr < 0 or crx+crr >= imW or cry-crr < 0 or cry+crr >= imH:
+        if crx1-crr1 < 0 or crx1+crr1 >= imW or cry1-crr1 < 0 or cry1+crr1 >= imH:
             return None
 
         perimeter_pixel = []
@@ -424,10 +429,28 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
 
         cv2.imshow('circleimage', imagePntr)
         cv2.waitKey(0)
+
         idx = 0
         for i in np.arange(-anglespread, anglespread, angles):
-            x = int(crx+1*np.cos(i))
-            y = int(cry+1*np.sin(i))
+            x = int(crx1+crr1*np.cos(i))
+            y = int(cry1+crr1*np.sin(i))
+            perimeter_pixel.append(imagePntr[x,y])
+            sumd += perimeter_pixel[idx]
+            idx += 1
+
+        print(perimeter_pixel)
+        havg = sumd/idx
+
+        cv2.circle(imagePntr, (crx1,cry1), int(crr1), int(havg), -1)
+
+        perimeter_pixel = []
+        sumd = 0
+        havg = 0
+        
+        idx = 0
+        for i in np.arange(-anglespread, anglespread, angles):
+            x = int(crx2+crr2*np.cos(i))
+            y = int(cry2+crr2*np.sin(i))
             perimeter_pixel.append(imagePntr[x,y])
             sumd += perimeter_pixel[idx]
             idx += 1
@@ -437,7 +460,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
 
      
 
-        cv2.circle(imagePntr, (crx,cry), int(crr), int(havg), -1)
+        cv2.circle(imagePntr, (crx2,cry2), int(crr2), int(havg), -1)
 
         #for r in range(crr):
         #    r2 = crr-r+1
