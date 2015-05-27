@@ -5,7 +5,17 @@
 \section{Prolog}
 	\subsection{Indledning}
 	\subsection{Ordforklaring}
+		\item \textbf{Session}: Dette term bliver brugt om en real-time eye-tracking måling foretaget af i programmet. Sessionen beskriver det enkelte målingsforløb fra start til slut (inklusiv pauser). Til hver session vil der være tilknyttet en seperat data-fil. 
+		\item \textbf{Data-fil}: Dette er den fil der vil blive tilknyttet til hver session. Filen vil forventes at indeholde al relevant data i forbindelse med real-time eye-tracking måling. Filen vil blive kreeret af programmet og vil være tilgængelig til brugeren. 
+		\item \textbf{Testperson}: Det er denne person der foretages real-time eye-tracking på. Personen er sammen med brugeren en del af kalibreringsrutinen. Denne person ses ikke som aktør i systemet. 
+		\item \textbf{Trigger}: For at kunne holde en synkronisering imellem real-time eye-tracking softwaren og andre målinger (EEG), er der givet et trigger-signal. Dette signal består af en ændring af lys-intensitet. 
 	\subsection{Projektformulering}
+	Fra projektoplægget er føljende beskrivelse givet:\\
+	\\
+\textit{	Eye-tracking is widely used in different research areas as for example in psychology, in analysis of man-computer interactions, and in behavioural studies. Eye-tracking is also used in computer gaming. At ASE eye-tracking is used for research both in the biomedical lab and in the vision lab. The system as it is now is based on off-line Matlab processing of camera data. The purpose of this project is to design and implement a software system for real-time acquisition of the eye-movements. The basic principle of the eye-tracking system is based on reflection from two IR-LED’s from the eyes. By identifying the reflections, and doing some geometrical computations, it is possible to determine the users gaze vector. 
+	The project will build on an existing hardware setup comprising a camera, IR-sources and a computer screen. The primary objective of the project is to design and build a flexible software system that can process the camera data in real-time, and output the gaze vector. The image processing will build on an existing Matlab implementation. The system must be designed such that there is a flexible interface to the image processing part in order to facilitate new image processing algorithms to be tested in the system. For students with particular interest in image processing, a secondary objective could be to further develop on the image processing algorithms.} 
+	\\
+	
 	\subsection{OpenEyes og Siboska}
 	Kort beskrivelse af de to algoritme-implementeringer projektet har taget udgangspunkt i.	
 	
