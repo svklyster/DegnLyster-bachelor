@@ -5,62 +5,8 @@
 	\subsection{Indledning}
 	\subsection{Systemoversigt}
 	\subsection{Funktionalitetskrav}
-		\subsubsection{Use case 1}
-		\begin{tabular}{|l|p{7.7cm}|}
-			\hline \textbf{Sektion} & \textbf{Kommentar} \\ 
-			\hline Mål & At oprette en ny session til real-time eye-tracking \\ 
-			\hline Initiering & Initieres af aktøren \textit{bruger} \\ 
-			\hline Aktører & Aktøren \textit{bruger} og aktøren \textit{kamera}\\ 
-			\hline Antal samtidige forekomster & 1 \\ 
-			\hline Startbetingelser & Computerprogrammet skal være opstartet, kameraret skal være tændt og tilsluttet \\ 	
-			\hline Slutresultat - succes & En ny session til real-time eye-tracking er blevet oprettet. \\ 
-			\hline Slutresultat - undtagelse &  Ny session er ikke blevet oprettet. \\ 
-			\hline Normal forløb & \begin{enumerate}
-				\item \textit{Bruger} klikker på ”Create session”
-				\item Programmet beder \textit{bruger} angive en fil-sti hvor sessiones filer skal oprettes.
-				\item Programmet beder \textit{bruger} vælge imellem tilgængelige kamera-input.
-				\item Programmet beder \textit{bruger} vælge om den rå data fra \textit{kamera} skal gemmes.
-				
-				
-				\item Programmet giver \textit{bruger} mulighed for at skrive eventuelle noter til sessionen i et tekst-felt. 
-				\item Programmet opretter en data-fil og en opsætnings-fil.
-				\item \textit{Bruger} bliver returneret til menu med beskeden ”Session created”.
-				
-			\end{enumerate} \\ 
-			\hline Undtagelsesforløb & Programmet kan ikke oprette de ønskede filer i den angivne fil-sti. Programmet returnere \textit{bruger} til menu med fejlmeddelelse fra systemet.  \\ 
-			\hline 
-		\end{tabular} \\ \\
-		\subsubsection{Use case 2}
-		\begin{tabular}{|l|p{7.7cm}|}
-			\hline \textbf{Sektion} & \textbf{Kommentar} \\ 
-			\hline Mål & At kalibrere systemet \\ 
-			\hline Initiering & Initieres af aktøren \textit{bruger} \\ 
-			\hline Aktører & Aktøren \textit{bruger} og aktøren \textit{kamera} \\ 
-			\hline Antal samtidige forekomster & 1 \\ 
-			\hline Startbetingelser & Computerprogrammet skal være opstartet, kameraret skal være tændt og tilsluttet, gyldig session skal være oprettet. \\ 	
-			\hline Slutresultat - succes & Computerprogrammet har modtaget data til kalibrering. \\ 
-			\hline Slutresultat - undtagelse &  Kalibrering annulleret. \\ 
-			\hline Normal forløb & \begin{enumerate}
-				\item \textit{Bruger} klikker på ”Calibration”
-				\item Programmet spørger om bruger ønsker at foretage kalibrering.
-				\begin{enumerate}
-					\item \textit{Bruger} klikker på ”Cancel”.
-					Use case afbrydes.
-					Se undtagelsesforløb punkt 2 for denne use case.
-					\item \textit{Bruger} klikker på ”Continue”. 
-					Use case fortsættes i punkt 3.
-				\end{enumerate}
-				\item \textit{Bruger} bliver bedt om at gennemføre kalibreringsrutine.
-				\item \textit{Bruger} bliver returneret til menu med beskeden ”Calibration complete”.
-				
-			\end{enumerate} \\ 
-			\hline Undtagelsesforløb & \begin{enumerate}
-				\item Hvis der ikke er oprettet en session informeres \textit{Bruger} om dette.
-				\item \textit{Bruger} bliver returneret til menu.
-			\end{enumerate}  \\ 
-			\hline 
-		\end{tabular} \\ \\
-		\subsubsection{Use case 3}
+	
+		\subsubsection{Use case eksempel - Start måling}
 		\begin{tabular}{|l|p{7.7cm}|}
 			\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
 			\hline Mål  & Programmet påbegynder real-time eye-tracking \\ 
@@ -79,59 +25,8 @@
 			at kalibrering ikke er foretaget.\\
 			\hline 
 		\end{tabular}
-		\subsubsection{Use case 4}
-			\begin{tabular}{|l|p{7.7cm}|}
-				\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
-				\hline Mål  & Progammet stopper real-time eye-tracking \\ 
-				\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
-				\hline Aktører & Aktøren \textit{bruger} og aktøren \textit{kamera} \\ 
-				\hline Antal samtidige forekomster & 1 \\ 
-				\hline Startbetingelser & En real-time eye-tracking måling  skal køre.   \\ 
-				\hline Slutresultat – succes & Programmet stopper nuværende real-time eye-tracking.\\ 
-				\hline Slutresultat – undtagelse & Ingen undtagelse. \\ 
-				\hline Normal forløb & \begin{enumerate}
-					\item \textit{Bruger} klikker på knappen ”Stop”.
-					\item Visuel feedback på GUI viser at målingen er stoppet. Målingen bliver afsluttet. 
-				\end{enumerate} \\ 
-				\hline Undtagelsesforløb & Intet undtagelsesforløb \\ 
-				\hline 
-			\end{tabular}
-		\subsubsection{Use case 5}
-		\begin{tabular}{|l|p{7.7cm}|}
-			\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
-			\hline Mål  & System gemmer nuværende indstillinger i brugerdefineret fil \\ 
-			\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
-			\hline Aktører & Aktøren \textit{bruger} \\ 
-			\hline Antal samtidige forekomster & 1 \\ 
-			\hline Startbetingelser & Computerprogrammet skal være opstartet \\ 
-			\hline Slutresultat – succes & Systemet gemmer nuværende indstillinger i den valgte fil \\ 
-			\hline Slutresultat – undtagelse & Programmet alarmerer \textit{bruger} at indstillinger ikke kunne gemmes \\ 
-			\hline Normal forløb & \begin{enumerate}
-				\item \textit{Bruger} klikker på "Save preferences"
-				\item \textit{Bruger} vælger filnavn og placering af den fil hvor indstillinger skal gemmes
-			\end{enumerate} \\ 
-			\hline Undtagelsesforløb & \textit{Bruger} bliver returneret til menuen efter alarmering \\ 
-			\hline 
-		\end{tabular}
-			
-		\subsubsection{Use case 6}
-		\begin{tabular}{|l|p{7.7cm}|}
-			\hline \textbf{Sektion} 	& \textbf{Kommentar} \\ 
-			\hline Mål  & System anvender indstillinger fra fil \\ 
-			\hline Initiering  & Initieres af aktøren \textit{bruger} \\ 
-			\hline Aktører & Aktøren \textit{bruger} \\ 
-			\hline Antal samtidige forekomster & 1 \\ 
-			\hline Startbetingelser & Computerprogrammet skal være opstartet og en gyldig indstillings-fil skal findes  \\ 
-			\hline Slutresultat – succes & Systemet anvender indstillinger fra den valgte fil \\ 
-			\hline Slutresultat – undtagelse & Programmet alarmerer \textit{bruger} at indstillinger ikke kunne indhentes \\ 
-			\hline Normal forløb & \begin{enumerate}
-				\item \textit{Bruger} klikker på "Load preferences"
-				\item \textit{Bruger} vælger indstillings-fil der skal anvendes
-			\end{enumerate} \\ 
-			\hline Undtagelsesforløb & \textit{Bruger} bliver returneret til menuen efter alarmering \\ 
-			\hline 
-		\end{tabular}
-		\subsubsection{Use case 7}
+		
+		
 	\subsection{Overvejelser}
 		\subsubsection{Krav}
 		\subsubsection{Kodesprog}

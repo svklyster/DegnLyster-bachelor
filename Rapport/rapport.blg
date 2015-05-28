@@ -1,25 +1,19 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: rapport.aux
-A level-1 auxiliary file: prolog.aux
-A level-1 auxiliary file: metode.aux
-A level-1 auxiliary file: vaerktoejer.aux
-A level-1 auxiliary file: kravspecifikation.aux
-A level-1 auxiliary file: analyse.aux
-A level-1 auxiliary file: design.aux
-A level-1 auxiliary file: implementering.aux
-A level-1 auxiliary file: test.aux
-A level-1 auxiliary file: konklusion.aux
-A level-1 auxiliary file: appendiks.aux
-The style file: ieeetr.bst
-Database file #1: biblio.bib
-You're missing a field part---line 22 of file biblio.bib
- :  title = 
- :          ,
-I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "Vmodel"
-Warning--I didn't find a database entry for "UML"
-Warning--I didn't find a database entry for "UMLurl"
-Warning--empty title in opencv
-Warning--empty year in opencv
-Warning--empty publisher in FairchildInSiboska
-Warning--empty year in FairchildInSiboska
-(There was 1 error message)
+[0] Config.pm:318> INFO - This is Biber 1.8
+[1] Config.pm:321> INFO - Logfile is 'rapport.blg'
+[166] biber-MSWIN:272> INFO - === %a %b %e, %Y, %H:%M:%S
+[167] Biber.pm:333> INFO - Reading 'rapport.bcf'
+[287] Utils.pm:169> WARN - Warning: Found biblatex control file version 2.7, expected version 2.5
+[288] Biber.pm:630> INFO - Found 5 citekeys in bib section 0
+[403] Biber.pm:3053> INFO - Processing section 0
+[502] Biber.pm:3190> INFO - Looking for bibtex format file 'biblio.bib' for section 0
+[506] bibtex.pm:937> INFO - Decoding LaTeX character macros into UTF-8
+[508] bibtex.pm:812> INFO - Found BibTeX data source 'biblio.bib'
+[673] Biber.pm:2939> INFO - Overriding locale 'English_United States.1252' default tailoring 'variable = shifted' with 'variable = non-ignorable'
+[673] Biber.pm:2945> INFO - Sorting 'entry' list '' keys
+[673] Biber.pm:2949> INFO - No sort tailoring available for locale 'English_United States.1252'
+[688] Biber.pm:2939> INFO - Overriding locale 'English_United States.1252' default tailoring 'variable = shifted' with 'variable = non-ignorable'
+[688] Biber.pm:2945> INFO - Sorting 'entry' list 'none' keys
+[689] Biber.pm:2949> INFO - No sort tailoring available for locale 'English_United States.1252'
+[704] bbl.pm:482> INFO - Writing 'rapport.bbl' with encoding 'UTF-8'
+[706] bbl.pm:555> INFO - Output to rapport.bbl
+[711] Biber.pm:105> INFO - WARNINGS: 1

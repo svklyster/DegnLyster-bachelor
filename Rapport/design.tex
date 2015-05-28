@@ -2,7 +2,7 @@
 
 \begin{document}
 	\section{Design}
-	For at oprette en software arkitektur der overholder de krav stillet i kravspecifikationen, er der gjort brug af UML (Unified Modelling Language) \cite{UMLurl}. UML tillader en tilnærmelsesvis direkte omskrivning af krav opstillet som use cases, til UML-diagrammer der skitserer en software arkitektur. 
+	For at oprette en software arkitektur der overholder de krav stillet i kravspecifikationen, er der gjort brug af UML (Unified Modelling Language) \cite{UML}. UML tillader en tilnærmelsesvis direkte omskrivning af krav opstillet som use cases, til UML-diagrammer der skitserer en software arkitektur. 
 	Da der i kravspecifikationen er gjort brug af UML til udarbejdelse af de forskellige use cases, har det derfor været muligt af skrive sekvensdiagrammer ud fra hver enkelte use case. 
 	
 	Sideløbende med udviklingen af sekvensdiagrammerne er de forskellige klasser blevet forfattet. Følgende afsnit beskriver grundlæggende tanker og argumentation for valget af klasser.
@@ -11,6 +11,15 @@
 	\subsection{Modularisering}
 	Programmet er ønsket opbygget, så der af en udestående person, er mulighed for fremtidig ændringer i algoritmen. Programmet er derfor struktureret op omkring at have et fastlagt interface med konsistente input/outputs med en selvstændig algoritme-klasse. 
 	\subsection{Applikationsarkitektur}
+	Forklaring af overgangen fra use case til software arkitektur. Eksempel med uc3
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=1\linewidth]{UC3}
+		\caption{Sekvensdiagram for use case 3 - Start måling}
+		\label{fig:UC3}
+	\end{figure}
+	
 	Overvejelser om opdelingen af klasser. Hver klasse varetager en opgave med henblik på en af systemets grænseflader. GUI er varetaget af en klasse. De tre genererede filer log, session, og kalibrering er håndteret af tre klasser. Kommunikation med eksternt kamera er håndteret af sin egen klasse. Kommunikation med algoritmen har sin egen klasse. 
 		\subsubsection{UserInterface}
 		Denne klasse foretager al kommunikation med aktøren \textit{bruger} igennem et grafisk bruger-interface (GUI). For at have en konstant opdatering af interfacet, forventes denne klasse at blive afviklet i egen tråd. 
@@ -20,12 +29,25 @@
 		Denne klasse håndterer eye-tracking-programmets log-fil. Data fra eye-tracking bliver her pakket og gemt i en log-fil. Kommunikation af målings-relevant data til UserInterface-klassen foretages af denne klasse.
 		\subsubsection{VideoCapture}
 		\subsubsection{EyeTrackingHandler}
-		Denne klasse håndterer kommunikation og instantiering af klassen ETAlgorithm. 
+	 
 		
+		\subsubsection{Interaktion mellem klasser}
+		
+		\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{klasseinteraktion}
+		\caption{}
+		\label{fig:klasseinteraktion}
+		\end{figure}
 	\subsection{Algoritme-arkitektur}
 	Klassen ETAlgorithm er kernen af eye-tracking-systemet. Her foretages alle udregninger med henblik på eye-tracking. Denne klasse ønskes isoleret så meget som muligt fra resten af systemet, således at der altid kan foretages ændringer i klassens interne kode, uden at det påvirker resten af systemet. Konsistente grænseflader for denne klasse er derfor essentielt. 
-	ETAlgorithm bliver håndteret af klassen EyeTracking, modtager et videosignal, og returnerer XY-koordinat samt trigger-niveau. 
+	ETAlgorithm bliver håndteret af klassen EyeTracking, modtager et videosignal og et sæt af variabler, og returnerer XY-koordinat, trigger-niveau, samt et sæt af variabler. 
 	
+	Da program API'en skal kunne understøtte forskellige typer af eye-tracking-algoritmer, har det været nødvendigt at definere inputs og outputs for algoritmeklasse ETAlgorithm. Input-strukturen består af en video-frame i korrekt format givet af OpenCV-arkitekturen, kalibreringsdata, og et sæt af 16 frie variabler. Disse variabler har på forhånd ikke noget format, og giver derfor brugeren mulighed for at videregive en række værdier til algoritmen uanset format. Herved kan enhver algoritme med op til 10 inputvariabler implementeres uden nødvendighed for ændringer i API'en.\\
+	\\
+	 For eksempel benytter dette projekt sig af en række variabler til at angive: koordinater for sidste pupil-center, afgrænsninger af sidste sæt øjne, hvorvidt Viola Jones skal køres, thresholdværdier, og maks antal RANSAC-iterationer.  Disse værdier indeholder både arrays, matricer, enkelt værdier og  booleans.
+	\\
+	De 16 frie inputvariablers startværdier kan indstilles fra GUI, og gemmes i præference-filen. 
 	\subsection{Bruger-interface}
 	Interfacet er designet med henblik på intuitivt brug, så ledes at det ikke er nødvendigt med dybere introduktion til programmet. Forskellige stadier af hvad man kan gøre i interfacet reducerer muligheden for uønskede handlinger. Det er for eksempel ikke muligt at starte eye-tracking før nødvendig opsætning er fuldført. 
 	

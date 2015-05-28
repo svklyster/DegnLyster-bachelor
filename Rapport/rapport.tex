@@ -4,7 +4,7 @@
 
 \usepackage{vhistory}
 \usepackage{setspace}
-\usepackage[numbers]{natbib}
+
 \usepackage{url}
 \usepackage[utf8]{inputenc} 
 \usepackage[english,danish]{babel} 
@@ -20,7 +20,10 @@
 \usepackage{setspace}
 \usepackage[font=footnotesize]{caption}
 \usepackage{fancyhdr}
-\usepackage{svg}
+
+\usepackage[style=ieee]{biblatex}
+\addbibresource{biblio.bib}
+
 \pagestyle{fancy}
 
 
@@ -67,6 +70,6 @@ S. V. K. Lyster, M. D. Kristensen}
 \include{test}
 \include{konklusion}
 \include{appendiks}
-\bibliography{biblio}
-\bibliographystyle{ieeetr}
+\printbibliography
+
 \end{document}
