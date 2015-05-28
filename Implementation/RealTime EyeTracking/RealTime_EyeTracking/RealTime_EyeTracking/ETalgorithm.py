@@ -208,6 +208,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         
         #crr = fit_circle_radius_to_corneal_reflection(imagePntr, crx, cry, crar, np.int16(biggest_crr/2.5), imW, imH) 
         #crr = int(2.5*crr)
+        imagePntr = imagePntr - np.min(imagePntr)
         maxIntensity = 255.0
         x = np.arange(maxIntensity)
         phi = 1
@@ -216,7 +217,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         imagePntr = np.array(imagePntr, dtype=np.uint8)
         #contourRect = cv2.boundingRect(np.concatenate((contour[0], contour[1]), axis=0))
         
-        imagePntr = interpolate_corneal_reflection(imagePntr, int(contourCenter1[0]), int(contourCenter1[1]),  int(contourCenter2[0]), int(contourCenter2[1]), contourRadius1*3, contourRadius2*3, contour, imW, imH, e_center)
+        imagePntr = interpolate_corneal_reflection(imagePntr, int(contourCenter1[0]), int(contourCenter1[1]),  int(contourCenter2[0]), int(contourCenter2[1]), contourRadius1*4, contourRadius2*4, contour, imW, imH, e_center)
 
         #cv2.equalizeHist(imagePntr, imagePntr)
       
@@ -260,22 +261,25 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         sum_area = np.int16(0)
         for threshold in range(np.int16(min_value), np.int16(max_value)):
             ret, threshROI = cv2.threshold(imageROI, threshold, 255, cv2.THRESH_BINARY_INV)
-
+            cv2.imshow('threshing', threshROI)
+            cv2.waitKey(0)
             #Hardcoded break, fix pls
             if (np.count_nonzero(threshROI) > 100):
                 break
 
         pupilArea = np.nonzero(threshROI)
-        min_loc_x = min(np.amin(pupilArea,1))
-        max_loc_x = max(np.amax(pupilArea,1))
-        min_loc_y = min(np.amin(pupilArea,0))
-        max_loc_y = max(np.amax(pupilArea,0))
+        print(pupilArea[0])
+        print(pupilArea[1])
+        min_loc_x = min(pupilArea[1])
+        max_loc_x = max(pupilArea[1])
+        min_loc_y = min(pupilArea[0])
+        max_loc_y = max(pupilArea[0])
         print(min_loc_x)
         print(max_loc_x)
         print(min_loc_y)
         print(max_loc_y)
-        pcx = np.uint8((max_loc_x + min_loc_x)/2)
-        pcy = np.uint8((max_loc_y + min_loc_y)/2)
+        pcx = np.uint16((max_loc_x + min_loc_x)/2)
+        pcy = np.uint16((max_loc_y + min_loc_y)/2)
         
         #cv2.circle(imageROI, (pcx, pcy), 3, (255, 255, 255))
         cv2.imshow('lolol', imageROI)
@@ -434,7 +438,12 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         for i in np.arange(-anglespread, anglespread, angles):
             x = int(crx1+crr1*np.cos(i))
             y = int(cry1+crr1*np.sin(i))
-            perimeter_pixel.append(imagePntr[x,y])
+            #if (imagePntr[y][x] < 200):
+            perimeter_pixel.append(imagePntr[y][x])
+
+            #cv2.circle(imagePntr, (x, y), 2, (255, 255, 255), -1)
+            #cv2.imshow('avg point', imagePntr)
+            #cv2.waitKey(0)
             sumd += perimeter_pixel[idx]
             idx += 1
 
@@ -451,7 +460,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         for i in np.arange(-anglespread, anglespread, angles):
             x = int(crx2+crr2*np.cos(i))
             y = int(cry2+crr2*np.sin(i))
-            perimeter_pixel.append(imagePntr[x,y])
+            perimeter_pixel.append(imagePntr[y,x])
             sumd += perimeter_pixel[idx]
             idx += 1
             
@@ -498,9 +507,9 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         global edge_point, edge_intensity_diff
     
         dis = np.int16(3)
-        angle_spread = np.float64(180*3.1415926535897932384626433832795/180)
+        angle_spread = np.float64(np.pi)
         loop_count = np.int16(0)
-        angle_step = np.float64(2*3.1415926535897932384626433832795/N)
+        angle_step = np.float64(2*np.pi/N)
         new_angle_step = np.float64(0)
         angle_normal = np.float64(0)
         cx = np.float64(cx)
@@ -637,9 +646,13 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                     #pixel_ema = pixel_sum / count
 
                     pixel_ema = alpha*pixel_value2 + (1-alpha)*pixel_ema
-
+                    print(pixel_value2)
+                    print(pixel_value1)
+                    print(pixel_ema)
+                    print('nextset')
                     if (pixel_value2 - pixel_value1 > edge_thresh or pixel_value2 - pixel_ema > edge_thresh):
-                    #if (pixel_value2 - pixel_ema > edge_thresh): 
+                    #if (pixel_value2 - pixel_ema > edge_thresh):
+                        
                         epx.append(np.int16(p[0] - dis_cos/2))
                         epy.append(np.int16(p[1] - dis_sin/2))
                         #print(p[0])
