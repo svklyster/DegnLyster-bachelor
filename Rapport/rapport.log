@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  28 MAY 2015 15:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  28 MAY 2015 16:47
 entering extended mode
 **rapport.tex
 
@@ -1050,6 +1050,34 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \f@ncyO@olf=\skip80
 \f@ncyO@orf=\skip81
 )
+("C:\Users\Søren Lyster\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings
+.sty"
+\lst@mode=\count172
+\lst@gtempboxa=\box59
+\lst@token=\toks28
+\lst@length=\count173
+\lst@currlwidth=\dimen193
+\lst@column=\count174
+\lst@pos=\count175
+\lst@lostspace=\dimen194
+\lst@width=\dimen195
+\lst@newlines=\count176
+\lst@lineno=\count177
+\lst@maxwidth=\dimen196
+
+("C:\Users\Søren Lyster\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.
+sty"
+File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
+\c@lstnumber=\count178
+\lst@skipnumbers=\count179
+\lst@framebox=\box60
+)
+("C:\Users\Søren Lyster\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings
+.cfg"
+File: listings.cfg 2014/09/06 1.5e listings configuration
+))
+Package: listings 2014/09/06 1.5e (Carsten Heinz)
+
 ("C:\Users\Søren Lyster\AppData\Roaming\MiKTeX\2.9\tex\latex\biblatex\biblatex
 .sty"
 Package: biblatex 2015/04/19 v3.0 programmable bibliographies (PK/JW/AB)
@@ -1068,12 +1096,12 @@ B)
 ("C:\Users\Søren Lyster\AppData\Roaming\MiKTeX\2.9\tex\latex\etoolbox\etoolbox
 .sty"
 Package: etoolbox 2015/05/04 v2.2 e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count172
+\etb@tempcnta=\count180
 )
 ("C:\Users\Søren Lyster\AppData\Roaming\MiKTeX\2.9\tex\latex\logreq\logreq.sty
 "
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count173
+\lrq@indent=\count181
 
 ("C:\Users\Søren Lyster\AppData\Roaming\MiKTeX\2.9\tex\latex\logreq\logreq.def
 "
@@ -1081,45 +1109,45 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 )) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\c@tabx@nest=\count174
-\c@listtotal=\count175
-\c@listcount=\count176
-\c@liststart=\count177
-\c@liststop=\count178
-\c@citecount=\count179
-\c@citetotal=\count180
-\c@multicitecount=\count181
-\c@multicitetotal=\count182
-\c@instcount=\count183
-\c@maxnames=\count184
-\c@minnames=\count185
-\c@maxitems=\count186
-\c@minitems=\count187
-\c@citecounter=\count188
-\c@savedcitecounter=\count189
-\c@uniquelist=\count190
-\c@uniquename=\count191
-\c@refsection=\count192
-\c@refsegment=\count193
-\c@maxextratitle=\count194
-\c@maxextratitleyear=\count195
-\c@maxextrayear=\count196
-\c@maxextraalpha=\count197
-\c@abbrvpenalty=\count198
-\c@highnamepenalty=\count199
-\c@lownamepenalty=\count200
-\c@maxparens=\count201
+\c@tabx@nest=\count182
+\c@listtotal=\count183
+\c@listcount=\count184
+\c@liststart=\count185
+\c@liststop=\count186
+\c@citecount=\count187
+\c@citetotal=\count188
+\c@multicitecount=\count189
+\c@multicitetotal=\count190
+\c@instcount=\count191
+\c@maxnames=\count192
+\c@minnames=\count193
+\c@maxitems=\count194
+\c@minitems=\count195
+\c@citecounter=\count196
+\c@savedcitecounter=\count197
+\c@uniquelist=\count198
+\c@uniquename=\count199
+\c@refsection=\count200
+\c@refsegment=\count201
 Normal \count register pool exhausted, switching to extended pool.
-\c@parenlevel=\count277
-\blx@tempcnta=\count278
-\blx@tempcntb=\count279
-\blx@tempcntc=\count280
-\blx@maxsection=\count281
-\blx@maxsegment@0=\count282
-\blx@notetype=\count283
-\blx@parenlevel@text=\count284
-\blx@parenlevel@foot=\count285
-\blx@sectionciteorder@0=\count286
+\c@maxextratitle=\count277
+\c@maxextratitleyear=\count278
+\c@maxextrayear=\count279
+\c@maxextraalpha=\count280
+\c@abbrvpenalty=\count281
+\c@highnamepenalty=\count282
+\c@lownamepenalty=\count283
+\c@maxparens=\count284
+\c@parenlevel=\count285
+\blx@tempcnta=\count286
+\blx@tempcntb=\count287
+\blx@tempcntc=\count288
+\blx@maxsection=\count289
+\blx@maxsegment@0=\count290
+\blx@notetype=\count291
+\blx@parenlevel@text=\count292
+\blx@parenlevel@foot=\count293
+\blx@sectionciteorder@0=\count294
 \labelnumberwidth=\skip82
 \labelalphawidth=\skip83
 \biblabelsep=\skip84
@@ -1130,9 +1158,9 @@ Normal \count register pool exhausted, switching to extended pool.
 \bibhang=\skip89
 \blx@bcfin=\read2
 \blx@bcfout=\write4
-\c@mincomprange=\count287
-\c@maxcomprange=\count288
-\c@mincompwidth=\count289
+\c@mincomprange=\count295
+\c@maxcomprange=\count296
+\c@mincompwidth=\count297
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
@@ -1142,72 +1170,72 @@ Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'ieee.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count290
-\c@savedafterword=\count291
-\c@annotator=\count292
-\c@savedannotator=\count293
-\c@author=\count294
-\c@savedauthor=\count295
-\c@bookauthor=\count296
-\c@savedbookauthor=\count297
-\c@commentator=\count298
-\c@savedcommentator=\count299
-\c@editor=\count300
-\c@savededitor=\count301
-\c@editora=\count302
-\c@savededitora=\count303
-\c@editorb=\count304
-\c@savededitorb=\count305
-\c@editorc=\count306
-\c@savededitorc=\count307
-\c@foreword=\count308
-\c@savedforeword=\count309
-\c@holder=\count310
-\c@savedholder=\count311
-\c@introduction=\count312
-\c@savedintroduction=\count313
-\c@namea=\count314
-\c@savednamea=\count315
-\c@nameb=\count316
-\c@savednameb=\count317
-\c@namec=\count318
-\c@savednamec=\count319
-\c@translator=\count320
-\c@savedtranslator=\count321
-\c@shortauthor=\count322
-\c@savedshortauthor=\count323
-\c@shorteditor=\count324
-\c@savedshorteditor=\count325
-\c@labelname=\count326
-\c@savedlabelname=\count327
-\c@institution=\count328
-\c@savedinstitution=\count329
-\c@lista=\count330
-\c@savedlista=\count331
-\c@listb=\count332
-\c@savedlistb=\count333
-\c@listc=\count334
-\c@savedlistc=\count335
-\c@listd=\count336
-\c@savedlistd=\count337
-\c@liste=\count338
-\c@savedliste=\count339
-\c@listf=\count340
-\c@savedlistf=\count341
-\c@location=\count342
-\c@savedlocation=\count343
-\c@organization=\count344
-\c@savedorganization=\count345
-\c@origlocation=\count346
-\c@savedoriglocation=\count347
-\c@origpublisher=\count348
-\c@savedorigpublisher=\count349
-\c@publisher=\count350
-\c@savedpublisher=\count351
-\c@language=\count352
-\c@savedlanguage=\count353
-\c@pageref=\count354
-\c@savedpageref=\count355
+\c@afterword=\count298
+\c@savedafterword=\count299
+\c@annotator=\count300
+\c@savedannotator=\count301
+\c@author=\count302
+\c@savedauthor=\count303
+\c@bookauthor=\count304
+\c@savedbookauthor=\count305
+\c@commentator=\count306
+\c@savedcommentator=\count307
+\c@editor=\count308
+\c@savededitor=\count309
+\c@editora=\count310
+\c@savededitora=\count311
+\c@editorb=\count312
+\c@savededitorb=\count313
+\c@editorc=\count314
+\c@savededitorc=\count315
+\c@foreword=\count316
+\c@savedforeword=\count317
+\c@holder=\count318
+\c@savedholder=\count319
+\c@introduction=\count320
+\c@savedintroduction=\count321
+\c@namea=\count322
+\c@savednamea=\count323
+\c@nameb=\count324
+\c@savednameb=\count325
+\c@namec=\count326
+\c@savednamec=\count327
+\c@translator=\count328
+\c@savedtranslator=\count329
+\c@shortauthor=\count330
+\c@savedshortauthor=\count331
+\c@shorteditor=\count332
+\c@savedshorteditor=\count333
+\c@labelname=\count334
+\c@savedlabelname=\count335
+\c@institution=\count336
+\c@savedinstitution=\count337
+\c@lista=\count338
+\c@savedlista=\count339
+\c@listb=\count340
+\c@savedlistb=\count341
+\c@listc=\count342
+\c@savedlistc=\count343
+\c@listd=\count344
+\c@savedlistd=\count345
+\c@liste=\count346
+\c@savedliste=\count347
+\c@listf=\count348
+\c@savedlistf=\count349
+\c@location=\count350
+\c@savedlocation=\count351
+\c@organization=\count352
+\c@savedorganization=\count353
+\c@origlocation=\count354
+\c@savedoriglocation=\count355
+\c@origpublisher=\count356
+\c@savedorigpublisher=\count357
+\c@publisher=\count358
+\c@savedpublisher=\count359
+\c@language=\count360
+\c@savedlanguage=\count361
+\c@pageref=\count362
+\c@savedpageref=\count363
 \shorthandwidth=\skip90
 \shortjournalwidth=\skip91
 \shortserieswidth=\skip92
@@ -1227,13 +1255,13 @@ Package biblatex Info: ... file 'biblatex.def' found.
 ("C:\Users\Søren Lyster\AppData\Roaming\MiKTeX\2.9\tex\latex\biblatex\biblatex
 .def"
 File: biblatex.def 
-\c@textcitecount=\count356
-\c@textcitetotal=\count357
-\c@textcitemaxnames=\count358
-\c@biburlnumpenalty=\count359
-\c@biburlucpenalty=\count360
-\c@biburllcpenalty=\count361
-\c@smartand=\count362
+\c@textcitecount=\count364
+\c@textcitetotal=\count365
+\c@textcitemaxnames=\count366
+\c@biburlnumpenalty=\count367
+\c@biburlucpenalty=\count368
+\c@biburllcpenalty=\count369
+\c@smartand=\count370
 )
 Package biblatex Info: Trying to load bibliography style 'ieee'...
 Package biblatex Info: ... file 'ieee.bbx' found.
@@ -1259,8 +1287,8 @@ Package biblatex Info: ... file 'standard.bbx' found.
 ("C:\Users\Søren Lyster\AppData\Roaming\MiKTeX\2.9\tex\latex\biblatex\bbx\stan
 dard.bbx"
 File: standard.bbx 2015/04/19 v3.0 biblatex bibliography style (PK/JW/AB)
-\c@bbx:relatedcount=\count363
-\c@bbx:relatedtotal=\count364
+\c@bbx:relatedcount=\count371
+\c@bbx:relatedtotal=\count372
 ))))
 Package biblatex Info: Trying to load citation style 'ieee'...
 Package biblatex Info: ... file 'ieee.cbx' found.
@@ -1274,8 +1302,8 @@ Package biblatex Info: ... file 'numeric-comp.cbx' found.
 ("C:\Users\Søren Lyster\AppData\Roaming\MiKTeX\2.9\tex\latex\biblatex\cbx\nume
 ric-comp.cbx"
 File: numeric-comp.cbx 2015/04/19 v3.0 biblatex citation style (PK/JW/AB)
-\c@cbx@tempcnta=\count365
-\c@cbx@tempcntb=\count366
+\c@cbx@tempcnta=\count373
+\c@cbx@tempcntb=\count374
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
@@ -1309,8 +1337,8 @@ File: danish.lbx 2015/04/19 v3.0 biblatex localization (PK/JW/AB)
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count367
-\@quotereset=\count368
+\@quotelevel=\count375
+\@quotereset=\count376
 
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Rapport\rapport.a
 ux"
@@ -1352,17 +1380,17 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 (C:\ProgramData\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count369
-\scratchdimen=\dimen193
-\scratchbox=\box59
-\nofMPsegments=\count370
-\nofMParguments=\count371
-\everyMPshowfont=\toks28
-\MPscratchCnt=\count372
-\MPscratchDim=\dimen194
-\MPnumerator=\count373
-\makeMPintoPDFobject=\count374
-\everyMPtoPDFconversion=\toks29
+\scratchcounter=\count377
+\scratchdimen=\dimen197
+\scratchbox=\box61
+\nofMPsegments=\count378
+\nofMParguments=\count379
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count380
+\MPscratchDim=\dimen198
+\MPnumerator=\count381
+\makeMPintoPDFobject=\count382
+\everyMPtoPDFconversion=\toks30
 )
 LaTeX Info: Redefining \celsius on input line 30.
 Package gensymb Info: Faking symbols for \degree and \celsius on input line 30.
@@ -2620,7 +2648,9 @@ File: siunitx-abbreviations.cfg 2015/01/21 v2.6e siunitx: Abbreviated units
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: float package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count383
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
@@ -2636,7 +2666,7 @@ Package biblatex Info: ... file 'rapport.bbl' found.
 bl")
 Package biblatex Info: Reference section=0 on input line 30.
 Package biblatex Info: Reference segment=0 on input line 30.
-\c__siunitx_mathsf_int=\count375
+\c__siunitx_mathsf_int=\count384
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 30.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -2680,7 +2710,7 @@ LaTeX Font Info:    Try loading font information for OT1+lmss on input line 30.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmss.fd"
 File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-\c__siunitx_mathtt_int=\count376
+\c__siunitx_mathtt_int=\count385
 LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 30.
 
 
@@ -3161,7 +3191,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 .tex")
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 72.
+Package pdftex.def Info: ASE_logo.png used on input line 73.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -3174,18 +3204,18 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 73.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 74.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Overfull \hbox (1.2022pt too wide) in paragraph at lines 74--74
+Overfull \hbox (1.2022pt too wide) in paragraph at lines 75--75
 []\T1/lmr/m/n/12 Itseez. (2015). Open-cv, si-de: $\T1/lmtt/m/n/12 http : / / op
 encv . org/$ \T1/lmr/m/n/12 (sidst set 28.06.2015). 
  []
 
 File: ASE_logo.png Graphic file (type png)
 <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 75.
+Package pdftex.def Info: ASE_logo.png used on input line 76.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -3222,10 +3252,10 @@ n.aux")
 Package logreq Info: Writing requests to 'rapport.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
- 22134 strings out of 493921
- 435877 string characters out of 3144852
- 812790 words of memory out of 3000000
- 24996 multiletter control sequences out of 15000+200000
+ 23717 strings out of 493921
+ 456766 string characters out of 3144852
+ 835193 words of memory out of 3000000
+ 26567 multiletter control sequences out of 15000+200000
  68456 words of font info for 58 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  76i,17n,106p,10395b,1768s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -3239,7 +3269,7 @@ rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program File
 s (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files (x86)/MiK
 TeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
 s/type1/public/lm/lmtt12.pfb>
-Output written on rapport.pdf (23 pages, 341904 bytes).
+Output written on rapport.pdf (23 pages, 343131 bytes).
 PDF statistics:
  123 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
