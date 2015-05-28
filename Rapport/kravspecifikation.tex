@@ -43,7 +43,7 @@
 		\textbf{Brugertilgang}: Ved hjælp af use case teknikken vil en yderlige række krav blive stillet. Disse vil lægge grundlag for bruger-program-interaktioner. Use-case-kravene er opstillet i afsnit \ref{usec}.  
 	\end{enumerate}
 	
-	\subsection{Kalibrering}
+	\subsubsection{Kalibrering}
 	Kalibrering: Specifikke ukendte variabler skal kunne kalibreres ved hjælp af interpolation. Herved skal programmet kunne tilpasses testpersonens fysiske forhold til kameraet. 
 	\begin{figure}[h]
 		\centering
@@ -64,7 +64,7 @@
 	
 	
 	
-	\subsection{Output}
+	\subsubsection{Output}
 	For hver igangsat session skal programmet generere en log-fil med følgende data:
 	\indent \begin{itemize}
 		
@@ -72,7 +72,7 @@
 		\textit{X-koordinat, Y-koordinat, Samplenummer, Trigger-niveau (0 for lav, 1 for høj)} 
 	\end{itemize}
 	
-	\subsection{Use-cases}	
+	\subsubsection{Use-cases}	
 	\label{usec}
 	\begin{enumerate}
 		\item Opret session: \\Opretter en session i en fil-sti med nødvendige data-filer. 
@@ -94,7 +94,7 @@
 		\textbf{Kamera}: Skal kunne levere video-data real-time til en computer. Systemet bliver udviklet til kamera af typen Basler
 		ACA640-100gc GigE med opløsningen 658 x 492 pixels og maksimum framerate på 100Hz.
 		\item Følgende krav er ikke krav til systemet, men krav til testpersonens fysiske forhold til kameraet. Dette er relevant når der foretages eye-tracking. \\
-		\textbf{Afstand og skærm}: Systemet bliver udviklet med en afstand fra kamera til testperson på 60m. 
+		\textbf{Afstand og skærm}: Systemet bliver udviklet med en afstand fra kamera til testperson på 60cm. 
 		På samme afstand fra testpersonen er der placeret en skærm. Denne skærm har størrelsen 26 tommer.
 	\end{itemize}
 	
