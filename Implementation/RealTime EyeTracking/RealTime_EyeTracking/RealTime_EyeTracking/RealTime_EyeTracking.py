@@ -208,11 +208,16 @@ def StartCalibration():
    
     if tkMessageBox.askokcancel("Calibration", "Start new calibration?") is True:
         #LoadCalibrationData()
-        cal.runCal()        
+        cal.calScreen()
+        sessionData = UpdateSessionWithPreferences()
+        cal.runCal(sessionData)   
+        #9 punkter
+        for i in range(9):
+            tkMessageBox.showinfo("Calibration", "Next calibration point")
+            cal.snapFrames()     
     else:
         return
     bStart.config(state = tk.NORMAL)
-    print "starting calibration \n"
     return
 
 def StartEyeTracking():

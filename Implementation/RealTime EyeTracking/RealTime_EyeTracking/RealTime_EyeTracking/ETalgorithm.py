@@ -841,7 +841,8 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
     #cv2.waitKey(0)
     if runVJ is True:   
         eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-        eyes = eye_cascade.detectMultiScale(gray, 1.3, 10, minSize = (60,60) )
+        #eyes = eye_cascade.detectMultiScale(gray, 1.3, 10, minSize = (60,60) )
+        eyes = eye_cascade.detectMultiScale(gray)
     
     else:
         ###TEST###
@@ -864,7 +865,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         
         #if x > 300:
             
-        if x > np.size(image, 1)/2+20:
+        if x > np.size(image, 1)/2:
             #antager at oejet er venstre hvis det ligger i venstre del af billedet
             e_orientation = "Right"
             e_found[0] = 1

@@ -35,17 +35,17 @@ class Calibration:
     
 
 
-def motion(event):
-    global xinterval, yinterval
-    x, y = event.x, event.y
-    a = [x, y]
-    if(a[0]%xinterval <= 0.6*xinterval and a[0]%xinterval >= 0.4*xinterval and a[1]%yinterval <= 0.6*yinterval and a[1]%yinterval >= 0.4*yinterval):
-        widget.itemconfig(lineindexX[(a[0]/xinterval+(a[1]/yinterval*3))], fill="green")
-        widget.itemconfig(lineindexY[((a[1]/yinterval*3)+a[0]/xinterval)], fill="green")
-    else:
-        for i in range(len(lineindexX)):
-            widget.itemconfig(lineindexX[i], fill="red")
-            widget.itemconfig(lineindexY[i], fill="red")
+#def motion(event):
+#    #global xinterval, yinterval
+#    #x, y = event.x, event.y
+#    #a = [x, y]
+#    #if(a[0]%xinterval <= 0.6*xinterval and a[0]%xinterval >= 0.4*xinterval and a[1]%yinterval <= 0.6*yinterval and a[1]%yinterval >= 0.4*yinterval):
+#    #    widget.itemconfig(lineindexX[(a[0]/xinterval+(a[1]/yinterval*3))], fill="green")
+#    #    widget.itemconfig(lineindexY[((a[1]/yinterval*3)+a[0]/xinterval)], fill="green")
+#    #else:
+#    #    for i in range(len(lineindexX)):
+#    #        widget.itemconfig(lineindexX[i], fill="red")
+#    #        widget.itemconfig(lineindexY[i], fill="red")
 
 def parsegeometry(geometry):
     m = re.match("(\d+)x(\d+)([-+]\d+)([-+]\d+)", geometry)
@@ -60,10 +60,10 @@ def calScreen():
     l = False
     p = True
 
-    root = tk.Tk()
+    root = tk.Toplevel()
     root.title("RealTime EyeTracking")
 
-    root.bind('<Motion>', motion)
+    #root.bind('<Motion>', motion)
 
     w, h = root.winfo_screenwidth(), root.winfo_screenheight()
     root.overrideredirect(1)
@@ -84,7 +84,7 @@ def calScreen():
 
     xinterval = w/3
     yinterval = h/3
-    areas = [],[]
+    areas = []
 
 
     lineindexX = []
@@ -94,12 +94,12 @@ def calScreen():
         for x in range(0,3):
             lineindexX.append(widget.create_line(0.4*xinterval + x*xinterval, 0.5*yinterval + y*yinterval, 0.6*xinterval + x*xinterval, 0.5*yinterval + y*yinterval, fill = "red"))
             lineindexY.append(widget.create_line(0.5*xinterval + x*xinterval, 0.4*yinterval + y*yinterval, 0.5*xinterval + x*xinterval, 0.6*yinterval + y*yinterval, fill = "red"))
-            areas[0].append(0.5*xinterval + x*xinterval)
-            areas[1].append(0.5*yinterval + y*yinterval)
+            areas.append([0.5*xinterval + x*xinterval,0.5*yinterval + y*yinterval])
+            #areas[1].append(0.5*yinterval + y*yinterval)
 
-
-
-
+    calExt.areas = areas
+    
+    
     #label = tk.Label(root, text="Message")
     #label.pack()
     if (l):
@@ -114,8 +114,13 @@ def calScreen():
 
     #print(parsegeometry(root.geometry()))
 
-    root.mainloop()
+    #root.mainloop()
 
-def runCal():
+def runCal(sessionData):
 
-    calExt.runCalib()
+    calExt.runCalib(sessionData)
+
+def snapFrames():
+
+    calExt.snapFrames()
+    
