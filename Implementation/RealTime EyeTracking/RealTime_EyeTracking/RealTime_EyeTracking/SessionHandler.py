@@ -84,6 +84,11 @@ class SessionData:
         sessionStr += "RAWDATAPATH " + str(self.rawdatapath) + os.linesep 
         sessionStr += "VARIABLENAMES " + str(self.variablenames) + os.linesep 
         sessionStr += "VARIABLEVALUES " + str(self.variablevalues) + os.linesep 
+        #sessionStr += "VARIABLEVALUES " + "["
+        #for i in range(10):
+        #    sessionStr += self.variablevalues[i] + ","
+        
+       
         try:
             file.write(sessionStr)
             return "fileCreated"
