@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  29 MAY 2015 13:34
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  29 MAY 2015 15:08
 entering extended mode
 **rapport.tex
 
@@ -2939,19 +2939,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Rapport\kravspeci
 fikation.tex"
-Underfull \hbox (badness 10000) in paragraph at lines 34--35
+Underfull \hbox (badness 10000) in paragraph at lines 35--36
 
  []
 
 
-Overfull \hbox (19.65678pt too wide) in paragraph at lines 43--44
+Overfull \hbox (19.65678pt too wide) in paragraph at lines 44--45
 \T1/lmr/m/n/12 krav bli-ve stil-let. Dis-se vil læg-ge grund-lag for bruger-pro
 gram-interaktioner.
  []
 
 File: ASE_logo.png Graphic file (type png)
 <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 44.
+Package pdftex.def Info: ASE_logo.png used on input line 45.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2967,10 +2967,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 File: ../Kamera-testperson.png Graphic file (type png)
 
 <use ../Kamera-testperson.png>
-Package pdftex.def Info: ../Kamera-testperson.png used on input line 50.
+Package pdftex.def Info: ../Kamera-testperson.png used on input line 51.
 (pdftex.def)             Requested size: 272.99881pt x 141.17119pt.
 
-Overfull \hbox (1.04716pt too wide) in paragraph at lines 56--57
+Overfull \hbox (1.04716pt too wide) in paragraph at lines 57--58
 \T1/lmr/m/n/12 tær-s-k-ler (threshold-values) for trigger-niveauet: En vær-di n
 år trigger-niveauet
  []
@@ -2979,11 +2979,11 @@ Overfull \hbox (1.04716pt too wide) in paragraph at lines 56--57
 File: ../Trigger-threshold.png Graphic file (type png)
 
 <use ../Trigger-threshold.png>
-Package pdftex.def Info: ../Trigger-threshold.png used on input line 60.
+Package pdftex.def Info: ../Trigger-threshold.png used on input line 61.
 (pdftex.def)             Requested size: 272.99881pt x 90.31395pt.
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 75.
+Package pdftex.def Info: ASE_logo.png used on input line 76.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2995,13 +2995,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [9 <C:/Users/SÃ¸ren Lyster/Documents/GitHub/DegnLyster-bachelor/Kamera-testpers
 on.png> <C:/Users/SÃ¸ren Lyster/Documents/GitHub/DegnLyster-bachelor/Trigger-th
 reshold.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 87--88
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
  []
 
 File: ASE_logo.png Graphic file (type png)
 <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 102.
+Package pdftex.def Info: ASE_logo.png used on input line 103.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -3141,13 +3141,18 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [17]
 ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Rapport\implement
 ering.tex"
-Underfull \hbox (badness 10000) in paragraph at lines 17--19
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--21
 
  []
 
 File: ASE_logo.png Graphic file (type png)
 <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 37.
+Package pdftex.def Info: ASE_logo.png used on input line 33.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -3172,9 +3177,21 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [19]
+File: ASE_logo.png Graphic file (type png)
+ <use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 89.
+(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 19.85004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[20]
 ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Rapport\test.tex"
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--8
+Underfull \hbox (badness 10000) in paragraph at lines 7--9
 
  []
 
@@ -3190,7 +3207,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[20
+[21
 
 
 ]
@@ -3207,7 +3224,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[21
+[22
 
 
 ]
@@ -3224,7 +3241,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[22
+[23
 
 
 ]
@@ -3248,7 +3265,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[23
+[24
 
 ]
 ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Rapport\rapport.a
@@ -3276,13 +3293,13 @@ n.aux")
 Package logreq Info: Writing requests to 'rapport.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
- 23933 strings out of 493921
- 459351 string characters out of 3144852
- 842562 words of memory out of 3000000
- 26778 multiletter control sequences out of 15000+200000
+ 23934 strings out of 493921
+ 459365 string characters out of 3144852
+ 838570 words of memory out of 3000000
+ 26779 multiletter control sequences out of 15000+200000
  71444 words of font info for 59 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 76i,17n,106p,10395b,1768s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 76i,17n,106p,10395b,2043s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program F
 iles (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/Program Files (x86)/
 MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/
@@ -3294,9 +3311,9 @@ rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files
 X 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 /type1/public/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmtt12.pfb>
-Output written on rapport.pdf (24 pages, 376281 bytes).
+Output written on rapport.pdf (25 pages, 377677 bytes).
 PDF statistics:
- 130 PDF objects out of 1000 (max. 8388607)
+ 134 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
