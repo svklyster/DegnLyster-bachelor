@@ -5,6 +5,7 @@ import math
 import sys
 import EyeTracking as et
 import cv2.cv as cv
+import CalExtract as calExt
 
 def Track(frame, e_center, last_eyes, calData, runVJ):
 
@@ -166,7 +167,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                             #print(np.divide(ellipse_par[0],target_ellipse_radius))
                         #print(np.divide(ellipse_par[0], target_ellipse_radius))
                     
-                        if (er > 0.85 and er < 1.15 and np.divide(ellipse_par[0],target_ellipse_radius) < diviation
+                        if (er > 0.75 and er < 1.25 and np.divide(ellipse_par[0],target_ellipse_radius) < diviation
                             and np.divide(ellipse_par[0],target_ellipse_radius) > 1/diviation 
                             and np.divide(ellipse_par[1],target_ellipse_radius) < diviation
                             and np.divide(ellipse_par[1],target_ellipse_radius) > 1/diviation):
@@ -217,7 +218,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         imagePntr = np.array(imagePntr, dtype=np.uint8)
         #contourRect = cv2.boundingRect(np.concatenate((contour[0], contour[1]), axis=0))
         
-        imagePntr = interpolate_corneal_reflection(imagePntr, int(contourCenter1[0]), int(contourCenter1[1]),  int(contourCenter2[0]), int(contourCenter2[1]), contourRadius1*4, contourRadius2*4, contour, imW, imH, e_center)
+        imagePntr = interpolate_corneal_reflection(imagePntr, int(contourCenter1[0]), int(contourCenter1[1]),  int(contourCenter2[0]), int(contourCenter2[1]), contourRadius1*2, contourRadius2*2, contour, imW, imH, e_center)
 
         #cv2.equalizeHist(imagePntr, imagePntr)
       
@@ -261,29 +262,29 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         sum_area = np.int16(0)
         for threshold in range(np.int16(min_value), np.int16(max_value)):
             ret, threshROI = cv2.threshold(imageROI, threshold, 255, cv2.THRESH_BINARY_INV)
-            cv2.imshow('threshing', threshROI)
-            cv2.waitKey(0)
+            #cv2.imshow('threshing', threshROI)
+            #cv2.waitKey(0)
             #Hardcoded break, fix pls
             if (np.count_nonzero(threshROI) > 100):
                 break
 
         pupilArea = np.nonzero(threshROI)
-        print(pupilArea[0])
-        print(pupilArea[1])
+        #print(pupilArea[0])
+        #print(pupilArea[1])
         min_loc_x = min(pupilArea[1])
         max_loc_x = max(pupilArea[1])
         min_loc_y = min(pupilArea[0])
         max_loc_y = max(pupilArea[0])
-        print(min_loc_x)
-        print(max_loc_x)
-        print(min_loc_y)
-        print(max_loc_y)
+        #print(min_loc_x)
+        #print(max_loc_x)
+        #print(min_loc_y)
+        #print(max_loc_y)
         pcx = np.uint16((max_loc_x + min_loc_x)/2)
         pcy = np.uint16((max_loc_y + min_loc_y)/2)
         
         #cv2.circle(imageROI, (pcx, pcy), 3, (255, 255, 255))
-        cv2.imshow('lolol', imageROI)
-        cv2.waitKey(0)
+        #cv2.imshow('lolol', imageROI)
+        #cv2.waitKey(0)
         #cv2.imshow("Woldsoa", threshROI)
         return pcx, pcy;
 
@@ -324,6 +325,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             max_contour = contour
 
             for contourCount in range(len(contour)):
+                
                 #if (contour[contourCount] != 0):
                 area = len(contour[contourCount]) + np.int16(cv2.contourArea(contour[contourCount]))
                 sum_area += area
@@ -371,8 +373,11 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                 
                 crx = sum_x/len(nContour)
                 cry = sum_y/len(nContour)
+                #print(crx)
+                #print(cry)
                 break
         #cv2.imshow("Woldsoa", threshROI)
+        #cv2.waitKey(0)
         return crx, cry, nContour;
 
     def fit_circle_radius_to_corneal_reflection (imagePntr, crx, cry, crar, biggest_crar, imW, imH):
@@ -431,14 +436,24 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         anglespread = np.pi
         sumd = 0
 
-        cv2.imshow('circleimage', imagePntr)
-        cv2.waitKey(0)
+        #cv2.imshow('circleimage', imagePntr)
+        #cv2.waitKey(0)
 
         idx = 0
         for i in np.arange(-anglespread, anglespread, angles):
             x = int(crx1+crr1*np.cos(i))
             y = int(cry1+crr1*np.sin(i))
-            #if (imagePntr[y][x] < 200):
+            if x >= imW:
+                x = imW - 1
+            if x < 0:
+                x = 0
+            if y >= imH:
+                y = imH - 1
+            if y < 0:
+                y = 0
+            #print('firstcircle')
+            #print(x)
+            #print(y)
             perimeter_pixel.append(imagePntr[y][x])
 
             #cv2.circle(imagePntr, (x, y), 2, (255, 255, 255), -1)
@@ -447,7 +462,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             sumd += perimeter_pixel[idx]
             idx += 1
 
-        print(perimeter_pixel)
+        #print(perimeter_pixel)
         havg = sumd/idx
 
         cv2.circle(imagePntr, (crx1,cry1), int(crr1), int(havg), -1)
@@ -460,11 +475,22 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         for i in np.arange(-anglespread, anglespread, angles):
             x = int(crx2+crr2*np.cos(i))
             y = int(cry2+crr2*np.sin(i))
-            perimeter_pixel.append(imagePntr[y,x])
+            if x >= imW:
+                x = imW - 1
+            if x < 0:
+                x = 0
+            if y >= imH:
+                y = imH - 1
+            if y < 0:
+                y = 0
+            #print('secondcircle')
+            #print(x)
+            #print(y)
+            perimeter_pixel.append(imagePntr[y][x])
             sumd += perimeter_pixel[idx]
             idx += 1
             
-        print(perimeter_pixel)
+        #print(perimeter_pixel)
         havg = sumd/idx
 
      
@@ -496,8 +522,8 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         #    min_color = int(np.min(imagePntr))
         #    #color = (min_color,min_color,min_color)
         #    cv2.circle(imagePntr, c_center, c_radius, min_color, -1)
-        cv2.imshow('circleimage', imagePntr)
-        cv2.waitKey(0)
+        #cv2.imshow('circleimage', imagePntr)
+        #cv2.waitKey(0)
         return imagePntr;
 
 
@@ -552,13 +578,13 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                 tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh, ccen, crar)
                 epx = np.hstack([epx, tepx])
                 epy = np.hstack([epy, tepy])
-            cv2.imshow('firstround',circleimage)
-            cv2.waitKey(0)
+            #cv2.imshow('firstround',circleimage)
+            #cv2.waitKey(0)
             for i in range(0, len(epx)):
                 edge = [int(epx[i]),int(epy[i])]
                 cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
-            cv2.imshow('secondround',circleimage)
-            cv2.waitKey(0)
+            #cv2.imshow('secondround',circleimage)
+            #cv2.waitKey(0)
 
             loop_count += 1
             tcx = np.mean(epx)
@@ -646,10 +672,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                     #pixel_ema = pixel_sum / count
 
                     pixel_ema = alpha*pixel_value2 + (1-alpha)*pixel_ema
-                    print(pixel_value2)
-                    print(pixel_value1)
-                    print(pixel_ema)
-                    print('nextset')
+
                     if (pixel_value2 - pixel_value1 > edge_thresh or pixel_value2 - pixel_ema > edge_thresh):
                     #if (pixel_value2 - pixel_ema > edge_thresh):
                         
@@ -657,7 +680,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                         epy.append(np.int16(p[1] - dis_sin/2))
                         #print(p[0])
                         #print(p[1])
-                        dir.append(pixel_value2 - pixel_value1)
+                        dir.append(pixel_value2 - pixel_value1 + 0.0)
 
                         break;
                     pixel_value1 = pixel_value2
@@ -779,9 +802,10 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         #T = np.dot(-np.linalg.inv(S3),np.transpose(S2))
         try:
             T = -np.dot(np.linalg.inv(S3),S2.T)
-        except: 
-          et.ReturnError("Singular value matrix")
-          return 0
+        except:
+            if calData is not None:
+                et.ReturnError("Singular value matrix")
+            return 0
         M = S1 + np.dot(S2,T)
         Mm = np.array([M[2,:]/2,-M[1,:],M[0,:]/2])
 
@@ -812,12 +836,13 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
     #cv2.waitKey(0)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     hist = cv2.calcHist([gray], [0], None, [256], [0,256])
+    eyes = ()
     #cv2.imshow('image', hist)
     #cv2.waitKey(0)
-    if runVJ is True:
+    if runVJ is True:   
         eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-        eyes = eye_cascade.detectMultiScale(gray, 1.3, 10, minSize = (100,100) )
-   
+        eyes = eye_cascade.detectMultiScale(gray, 1.3, 10, minSize = (60,60) )
+    
     else:
         ###TEST###
         #lastW = 200
@@ -832,8 +857,13 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             eyes = eye_cascade.detectMultiScale(gray, 1.3, 10, minSize = (100,100) )
     e_found = [0,0]
     new_e_center = [0,0]*2
-
+    #TestBro
+    #eyes = np.array([[150, 135, 135, 135], [400, 135, 145, 145]])
     for (x,y,w,h) in eyes:
+        #tempteststuff
+        
+        #if x > 300:
+            
         if x > np.size(image, 1)/2+20:
             #antager at oejet er venstre hvis det ligger i venstre del af billedet
             e_orientation = "Right"
@@ -887,13 +917,12 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         imH = np.size(roi_gray, 0)
 
         imW = np.size(roi_gray, 1)
-
-        
     
         crx, cry, roi_gray, ccen, crar = remove_corneal_reflection(roi_gray, roi_gray_thresh, sy, sx, windowSize, 20, 2, 2, -2, imW, imH, eye_center)
 
         if crx is None or cry is None:
-            et.ReturnError("Error with corneal reflections")
+            if calData is not None:
+                et.ReturnError("Error with corneal reflections")
             return
 
         pcx, pcy = pupil_center_approx(roi_gray, roi_gray_thresh)
@@ -917,11 +946,11 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         #cv2.line(roi_gray, (crx, cry-5), (crx, cry+5), (255,255,255), 1)
         #cv2.imshow('image', roi_gray)
         #cv2.waitKey(0)
-    
-
-        epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, pcx, pcy, 20, 6, 6, ccen, crar)
+  
+        epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, pcx, pcy, 30, 6, 6, ccen, crar)
         if epx is None:
-            et.ReturnError("Starburst threshold too low")
+            if calData is not None:
+                et.ReturnError("Starburst threshold too low")
             return
 
         #ecx = np.array(np.empty(len(ec)))
@@ -931,7 +960,8 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         #    ecy[x] = ec[x][1]
         ellipse, inliers, ransac_iter = fit_ellipse_ransac(epx, epy, 1000, 10, 1.5)
         if len(ellipse) is 0 or ransac_iter >= 10000:
-            et.ReturnError("Maximum ransac iterations exceeded")
+            if calData is not None:
+                et.ReturnError("Maximum ransac iterations exceeded")
             return
            
         
@@ -940,27 +970,37 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         
         else:
             if (np.float64(inliers[0].size)/np.float64(epx.size)) < 0.3 or inliers[0].size < 20:
-                et.ReturnError("Asuming false positive")
+                if calData is not None:
+                    et.ReturnError("Asuming false positive")
                 return
             c = ellipse_direct_fit(np.array([epx[inliers], epy[inliers]]).T)
             ellipse = convert_conic_parameters_to_ellipse_parameters(c)
             e_angle = int(ellipse[4]).real*57.2957795 
             e_axes = (ellipse[0],ellipse[1])
             if e_orientation is "Right":
+                
                 new_e_center[0] = (ellipse[2],ellipse[3])
-                cv2.ellipse(roi_gray, new_e_center[0], e_axes, e_angle, 0, 360, (255,255,255), 1)
-                cv2.imshow('Ellipse', roi_gray)
-                cv2.waitKey(0)  
+                #cv2.ellipse(roi_gray, new_e_center[0], e_axes, e_angle, 0, 360, (255,255,255), 1)
+                #cv2.imshow('Ellipse', roi_gray)
+                #cv2.waitKey(0)
+                gaze_vector = [(new_e_center[0][0]-crx).real[0], (new_e_center[0][1]-cry).real[0]]
+                if calData is None:
+                    calExt.calData(gaze_vector, False)
+                #continue
             else:
                 new_e_center[1] = (ellipse[2],ellipse[3])
-                cv2.ellipse(roi_gray, new_e_center[1], e_axes, e_angle, 0, 360, (255,255,255), 1)
-                cv2.imshow('Ellipse', roi_gray)
-                cv2.waitKey(0)  
+                #cv2.ellipse(roi_gray, new_e_center[1], e_axes, e_angle, 0, 360, (255,255,255), 1)
+                #cv2.imshow('Ellipse', roi_gray)
+                #cv2.waitKey(0)
+                gaze_vector = [(new_e_center[1][0]-crx).real[0], (new_e_center[1][1]-cry).real[0]]
+                if calData is None:
+                    calExt.calData(gaze_vector, True)
+                #continue
            
             #return (crx,cry), e_center, ("NoTrigger")
             
             #gaze_vector = ((e_center[0]-crx).real, (e_center[1]-cry).real)
-            gaze_vector = (1,1)
+            #gaze_vector = (1,1)
             #####CALIBRATION#####
             if calData is not None:
 
@@ -970,11 +1010,15 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             
             
             #et.LastRunInfo(e_center, eyes)
-            et.EyesFound(e_found)
-            et.PackWithTimestamp(e_center, gaze_vector, ("NoTrigger"), True)
-            
-        et.LastRunInfo(new_e_center, eyes)
+            #et.EyesFound(e_found)
+            #et.PackWithTimestamp(e_center, gaze_vector, ("NoTrigger"), True)
+
+    if calData is None:
+        calExt.lastData(new_e_center, eyes, True)
         return
+            
+    et.LastRunInfo(new_e_center, eyes)
+    return
 
 
 

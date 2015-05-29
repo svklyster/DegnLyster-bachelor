@@ -207,7 +207,8 @@ def StartCalibration():
     "Starting calibration routine"
    
     if tkMessageBox.askokcancel("Calibration", "Start new calibration?") is True:
-        LoadCalibrationData() 
+        #LoadCalibrationData()
+        cal.runCal()        
     else:
         return
     bStart.config(state = tk.NORMAL)
