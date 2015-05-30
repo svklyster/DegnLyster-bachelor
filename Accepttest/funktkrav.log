@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  2 MAR 2015 15:43
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  29 MAY 2015 17:19
 entering extended mode
 **funktkrav.tex
 
@@ -2400,18 +2400,13 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 8.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+Overfull \hbox (6.96361pt too wide) in paragraph at lines 10--10
+[]|\T1/lmr/m/n/10.95 Computerprogrammet
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 10--10
-[]|\T1/lmr/m/n/10.95 Computer-
- []
-
-
-Underfull \hbox (badness 7133) in paragraph at lines 10--10
-\T1/lmr/m/n/10.95 Ka-me-ra-et til-slut-tes
- []
-
-
-Underfull \hbox (badness 2409) in paragraph at lines 10--10
-\T1/lmr/m/n/10.95 og tæn-des. Ses-sion
+\T1/lmr/m/n/10.95 star-tes. Ka-me-ra-et
  []
 
 
@@ -2430,85 +2425,142 @@ Overfull \hbox (9.88477pt too wide) in paragraph at lines 8--13
  []
 
 
-Overfull \hbox (9.88477pt too wide) in paragraph at lines 18--23
+Overfull \hbox (6.96361pt too wide) in paragraph at lines 20--20
+[]|\T1/lmr/m/n/10.95 Computerprogrammet
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+\T1/lmr/m/n/10.95 star-tes. Ka-me-ra-et
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+\T1/lmr/m/n/10.95 tæn-des. Ses-sion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+\T1/lmr/m/n/10.95 af ka-li-bre-rings-da-ta
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+\T1/lmr/m/n/10.95 med høj af-vi-gel-se
+ []
+
+
+Underfull \hbox (badness 2990) in paragraph at lines 20--20
+\T1/lmr/m/n/10.95 fin-des. En test-per-
+ []
+
+
+Underfull \hbox (badness 1242) in paragraph at lines 20--20
+\T1/lmr/m/n/10.95 son skal bru-ges til
+ []
+
+
+LaTeX Warning: Reference `taltest' on page 1 undefined on input line 21.
+
+
+Underfull \hbox (badness 5622) in paragraph at lines 21--21
+\T1/lmr/m/n/10.95 af ka-li-bre-rings-da-ta.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\T1/lmr/m/n/10.95 Af-vi-gel-sen no-te-res.
+ []
+
+
+Underfull \hbox (badness 6078) in paragraph at lines 21--21
+\T1/lmr/m/n/10.95 Ny ka-li-bre-ring fo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\T1/lmr/m/n/10.95 re-ta-ges. Tal-testen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\T1/lmr/m/n/10.95 fo-re-ta-ges igen.
+ []
+
+
+Underfull \hbox (badness 1721) in paragraph at lines 22--22
+\T1/lmr/m/n/10.95 li-bre-ring er min-dre
+ []
+
+
+Overfull \hbox (9.88477pt too wide) in paragraph at lines 18--25
 [] 
  []
 
 
-Underfull \hbox (badness 2213) in paragraph at lines 30--30
+Underfull \hbox (badness 2213) in paragraph at lines 32--32
 []|\T1/lmr/m/n/10.95 Efter må-ling til-går
  []
 
 
-Overfull \hbox (9.88477pt too wide) in paragraph at lines 28--33
+Overfull \hbox (9.88477pt too wide) in paragraph at lines 30--35
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--42
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
 []|\T1/lmr/m/n/10.95 Computer-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--42
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
 \T1/lmr/m/n/10.95 programmet
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--42
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
 \T1/lmr/m/n/10.95 star-tes. Ka-me-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--42
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
 []|\T1/lmr/m/n/10.95 Bruger klik-ker
  []
 
 
-Underfull \hbox (badness 4024) in paragraph at lines 42--42
+Underfull \hbox (badness 4024) in paragraph at lines 44--44
 \T1/lmr/m/n/10.95 på Cre-a-te ses-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--42
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
 \T1/lmr/m/n/10.95 sion og føl-ger
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--42
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
 \T1/lmr/m/n/10.95 pro-gram-mets
  []
 
 
-Underfull \hbox (badness 1117) in paragraph at lines 42--42
+Underfull \hbox (badness 1117) in paragraph at lines 44--44
 \T1/lmr/m/n/10.95 Der fin-des data-
  []
 
 
-Underfull \hbox (badness 1975) in paragraph at lines 42--42
+Underfull \hbox (badness 1975) in paragraph at lines 44--44
 \T1/lmr/m/n/10.95 og opsætnings-fil
  []
 
-
-Overfull \hbox (3.74545pt too wide) in paragraph at lines 43--43
-[]|\T1/lmr/m/n/10.95 Undtagelses-
- []
-
-
-Overfull \hbox (18.23047pt too wide) in paragraph at lines 40--46
-[][] 
- []
-
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 49.
+(Font)              <24.88> on input line 44.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <20.74> on input line 44.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <17.28> on input line 44.
 
-Underfull \hbox (badness 1221) in paragraph at lines 50--50
-[]|\T1/lmr/m/n/12 Forventet re-sul-
- []
-
-
-Overfull \hbox (20.62514pt too wide) in paragraph at lines 49--52
-[] 
+Overfull \hbox (18.23047pt too wide) in paragraph at lines 42--47
+[][] 
  []
 
 
@@ -2520,6 +2572,195 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [1{C:/Users/SÃ¸ren Lyster/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
+[]|\T1/lmr/m/n/10.95 Computer-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
+\T1/lmr/m/n/10.95 programmet
+ []
+
+
+Underfull \hbox (badness 1297) in paragraph at lines 54--55
+\T1/lmr/m/n/10.95 ra-et er til-slut-tet
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+[]|\T1/lmr/m/n/10.95 Bruger klik-ker
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+\T1/lmr/m/n/10.95 der-ef-ter Con-
+ []
+
+
+Underfull \hbox (badness 3058) in paragraph at lines 55--55
+\T1/lmr/m/n/10.95 ti-nue og føl-ger
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+\T1/lmr/m/n/10.95 så pro-gram-mets
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+[]|\T1/lmr/m/n/10.95 Bruger bli-ver
+ []
+
+
+Underfull \hbox (badness 2495) in paragraph at lines 55--55
+\T1/lmr/m/n/10.95 den Ca-li-bra-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+\T1/lmr/m/n/10.95 com-ple-te. Der
+ []
+
+
+Underfull \hbox (badness 6559) in paragraph at lines 55--55
+\T1/lmr/m/n/10.95 fin-des data- og
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+\T1/lmr/m/n/10.95 opsætnings-fil
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+\T1/lmr/m/n/10.95 i den an-giv-ne
+ []
+
+
+Overfull \hbox (3.74545pt too wide) in paragraph at lines 57--57
+[]|\T1/lmr/m/n/10.95 Undtagelses-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+[]|\T1/lmr/m/n/10.95 Computer-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+\T1/lmr/m/n/10.95 programmet
+ []
+
+
+Underfull \hbox (badness 1297) in paragraph at lines 57--57
+\T1/lmr/m/n/10.95 ra-et er til-slut-tet
+ []
+
+
+Underfull \hbox (badness 1810) in paragraph at lines 57--57
+\T1/lmr/m/n/10.95 ik-ke op-ret-tet en
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+[]|\T1/lmr/m/n/10.95 Bruger bli-ver
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+\T1/lmr/m/n/10.95 der ik-ke fin-des
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+\T1/lmr/m/n/10.95 Bru-ger bli-ver
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+\T1/lmr/m/n/10.95 re-tur-ne-ret til
+ []
+
+
+Overfull \hbox (3.74545pt too wide) in paragraph at lines 58--58
+[]|\T1/lmr/m/n/10.95 Undtagelses-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--59
+[]|\T1/lmr/m/n/10.95 Computer-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--59
+\T1/lmr/m/n/10.95 programmet
+ []
+
+
+Underfull \hbox (badness 1297) in paragraph at lines 58--59
+\T1/lmr/m/n/10.95 ra-et er til-slut-tet
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
+[]|\T1/lmr/m/n/10.95 Bruger klik-ker
+ []
+
+
+Overfull \hbox (46.85306pt too wide) in paragraph at lines 52--62
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
+[]|\T1/lmr/m/n/10.95 Bruger klik-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
+\T1/lmr/m/n/10.95 ker på Start
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
+\T1/lmr/m/n/10.95 ter en må-ling.
+ []
+
+
+Overfull \hbox (3.74545pt too wide) in paragraph at lines 71--71
+[]|\T1/lmr/m/n/10.95 Undtagelses-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+[]|\T1/lmr/m/n/10.95 Bruger klik-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+\T1/lmr/m/n/10.95 ker på Start
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+[]|\T1/lmr/m/n/10.95 Programmet in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+\T1/lmr/m/n/10.95 for-me-rer bru-ger
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+\T1/lmr/m/n/10.95 at ka-li-bre-ring
+ []
+
+
+Overfull \hbox (18.23047pt too wide) in paragraph at lines 67--74
+[][] 
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -2527,26 +2768,298 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
+Underfull \hbox (badness 10000) in paragraph at lines 81--81
+[]|\T1/lmr/m/n/10.95 Real-time eye-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--81
+\T1/lmr/m/n/10.95 tracking må-ling
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--81
+\T1/lmr/m/n/10.95 Stop ey-e-tra-ck-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--81
+[]|\T1/lmr/m/n/10.95 Programmet
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--81
+\T1/lmr/m/n/10.95 stop-per må-ling.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--81
+\T1/lmr/m/n/10.95 at må-lin-gen er
+ []
+
+
+Overfull \hbox (18.23047pt too wide) in paragraph at lines 79--84
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--91
+[]|\T1/lmr/m/n/10.95 Bruger klik-ker
+ []
+
+
+Underfull \hbox (badness 4144) in paragraph at lines 91--91
+\T1/lmr/m/n/10.95 på Sa-ve pre-fe-
+ []
+
+
+Underfull \hbox (badness 4595) in paragraph at lines 91--91
+\T1/lmr/m/n/10.95 ren-ces. Der-ef-ter
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--91
+[]|\T1/lmr/m/n/10.95 Fil er op-ret-tet
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--91
+\T1/lmr/m/n/10.95 i den valg-te
+ []
+
+
+Underfull \hbox (badness 4072) in paragraph at lines 91--91
+\T1/lmr/m/n/10.95 der de kor-rek-te
+ []
+
+
+Overfull \hbox (3.74545pt too wide) in paragraph at lines 93--93
+[]|\T1/lmr/m/n/10.95 Undtagelses-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--93
+[]|\T1/lmr/m/n/10.95 Bruger klik-ker
+ []
+
+
+Underfull \hbox (badness 4144) in paragraph at lines 93--93
+\T1/lmr/m/n/10.95 på Sa-ve pre-fe-
+ []
+
+
+Underfull \hbox (badness 4595) in paragraph at lines 93--93
+\T1/lmr/m/n/10.95 ren-ces. Der-ef-ter
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--93
+\T1/lmr/m/n/10.95 dig fil-navn og
+ []
+
+
+Underfull \hbox (badness 2173) in paragraph at lines 93--93
+\T1/lmr/m/n/10.95 ke kun-ne op-ret-
+ []
+
+
+Overfull \hbox (18.23047pt too wide) in paragraph at lines 89--96
+[][] 
+ []
+
+
+Underfull \hbox (badness 2012) in paragraph at lines 103--103
+\T1/lmr/m/n/10.95 med indstil-lin-ger
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--103
+[]|\T1/lmr/m/n/10.95 Bruger klik-ker
+ []
+
+
+Underfull \hbox (badness 2277) in paragraph at lines 103--103
+\T1/lmr/m/n/10.95 på Lo-ad pre-fe-
+ []
+
+
+Underfull \hbox (badness 4595) in paragraph at lines 103--103
+\T1/lmr/m/n/10.95 ren-ces. Der-ef-ter
+ []
+
+
+Underfull \hbox (badness 1472) in paragraph at lines 103--103
+\T1/lmr/m/n/10.95 væl-ges gyl-dig fil
+ []
+
+
+Underfull \hbox (badness 3601) in paragraph at lines 103--103
+[]|\T1/lmr/m/n/10.95 Programmet har
+ []
+
+
+Overfull \hbox (3.74545pt too wide) in paragraph at lines 105--105
+[]|\T1/lmr/m/n/10.95 Undtagelses-
+ []
+
+
+Underfull \hbox (badness 7344) in paragraph at lines 105--105
+\T1/lmr/m/n/10.95 tes. Ugyl-dig fil
+ []
+
+
+Underfull \hbox (badness 2012) in paragraph at lines 105--105
+\T1/lmr/m/n/10.95 med indstil-lin-ger
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--105
+[]|\T1/lmr/m/n/10.95 Bruger klik-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--105
+\T1/lmr/m/n/10.95 ker på Lo-ad
+ []
+
+
+Underfull \hbox (badness 1178) in paragraph at lines 105--105
+\T1/lmr/m/n/10.95 ef-ter væl-ges den
+ []
+
+
+Underfull \hbox (badness 2376) in paragraph at lines 105--105
+\T1/lmr/m/n/10.95 lin-ger ik-ke kun-
+ []
+
+
+Overfull \hbox (18.23047pt too wide) in paragraph at lines 101--108
+[][] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 115--115
+[]|\T1/lmr/m/n/10.95 Computer-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--115
+\T1/lmr/m/n/10.95 programmet
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--115
+\T1/lmr/m/n/10.95 op-star-tes. Der
+ []
+
+
+Underfull \hbox (badness 2564) in paragraph at lines 115--115
+\T1/lmr/m/n/10.95 fin-des en gyl-dig
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--115
+\T1/lmr/m/n/10.95 fil-sti med da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--115
+\T1/lmr/m/n/10.95 ta fra tid-li-ge-re
+ []
+
+
+Underfull \hbox (badness 1946) in paragraph at lines 115--115
+\T1/lmr/m/n/10.95 Get raw da-ta.
+ []
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 115--115
+\T1/lmr/m/n/10.95 Valg-te da-ta kan
+ []
+
+
+Overfull \hbox (3.74545pt too wide) in paragraph at lines 117--117
+[]|\T1/lmr/m/n/10.95 Undtagelses-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--117
+[]|\T1/lmr/m/n/10.95 Computer-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--117
+\T1/lmr/m/n/10.95 programmet
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--117
+\T1/lmr/m/n/10.95 op-star-tes. Der
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--117
+\T1/lmr/m/n/10.95 fil-sti med da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--117
+\T1/lmr/m/n/10.95 ta fra tid-li-ge-re
+ []
+
+
+Underfull \hbox (badness 1946) in paragraph at lines 117--117
+\T1/lmr/m/n/10.95 Get raw da-ta.
+ []
+
+
+Underfull \hbox (badness 7777) in paragraph at lines 117--118
+\T1/lmr/m/n/10.95 kun-ne ind-hænd-
+ []
+
+
+Overfull \hbox (18.23047pt too wide) in paragraph at lines 113--121
+[][] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4]
 ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\funktk
-rav.aux") ) 
+rav.aux")
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 16927 strings out of 493921
- 335852 string characters out of 3144852
- 389429 words of memory out of 3000000
- 19935 multiletter control sequences out of 15000+200000
- 59409 words of font info for 57 fonts, out of 3000000 for 9000
+ 16951 strings out of 493921
+ 336261 string characters out of 3144852
+ 391429 words of memory out of 3000000
+ 19958 multiletter control sequences out of 15000+200000
+ 80708 words of font info for 75 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 85i,11n,108p,10437b,657s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/
-Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x86)/Mi
-KTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
-ts/type1/public/lm/lmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
-lic/lm/lmro12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy
-10.pfb>
-Output written on funktkrav.pdf (2 pages, 118962 bytes).
+ 85i,12n,108p,10437b,653s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/
+fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/public/lm/lmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/l
+mr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmro12.pfb><C
+:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on funktkrav.pdf (4 pages, 155237 bytes).
 PDF statistics:
- 31 PDF objects out of 1000 (max. 8388607)
+ 45 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

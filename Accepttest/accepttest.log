@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  21 MAY 2015 16:20
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  29 MAY 2015 17:19
 entering extended mode
 **accepttest.tex
 
@@ -2818,7 +2818,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--59
  []
 
 
-Overfull \hbox (18.23047pt too wide) in paragraph at lines 52--62
+Overfull \hbox (46.85306pt too wide) in paragraph at lines 52--62
 [][] 
  []
 
@@ -3262,10 +3262,10 @@ nktkrav.aux")
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Accepttest\perfor
 manceeval.aux")) ) 
 Here is how much of TeX's memory you used:
- 17074 strings out of 493921
- 340322 string characters out of 3144852
+ 17073 strings out of 493921
+ 340310 string characters out of 3144852
  390746 words of memory out of 3000000
- 20032 multiletter control sequences out of 15000+200000
+ 20031 multiletter control sequences out of 15000+200000
  116841 words of font info for 99 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  76i,17n,106p,10398b,712s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -3281,7 +3281,7 @@ iles (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files (x86)/Mi
 KTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
 nts/type1/public/lm/lmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/symbols/msam10.pfb>
-Output written on accepttest.pdf (11 pages, 226556 bytes).
+Output written on accepttest.pdf (11 pages, 226629 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
