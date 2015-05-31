@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  30 MAY 2015 21:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  31 MAY 2015 11:58
 entering extended mode
 **rapport.tex
 
@@ -2760,6 +2760,27 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [2]
 ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Rapport\prolog.te
 x"
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 17.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 17.
+
+Overfull \hbox (5.84906pt too wide) in paragraph at lines 23--24
+[]\T1/lmr/m/it/12 Integrere so-ci-a-le, øko-no-mi-ske, mil-jø-mæs-si-ge og ar-b
+ejds-mil-jø-mæs-si-ge kon-
+ []
+
 
 ! LaTeX Error: Lonely \item--perhaps a missing list environment.
 
@@ -2767,14 +2788,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.8 		\item \textbf
-                   {Session}: Dette term bliver brugt om en real-time eye-tr...
+l.27 		\item \textbf
+                    {Session}: Dette term bliver brugt om en real-time eye-t...
 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 8
+Underfull \hbox (badness 10000) detected at line 27
 [][]
  []
 
@@ -2785,14 +2806,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.9 		\item \textbf
-                   {Data-fil}: Dette er den fil der vil blive tilknyttet til...
+l.28 		\item \textbf
+                    {Data-fil}: Dette er den fil der vil blive tilknyttet ti...
 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 9
+Underfull \hbox (badness 10000) detected at line 28
 [][]
  []
 
@@ -2803,48 +2824,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.10 		\item \textbf
+l.29 		\item \textbf
                     {Testperson}: Det er denne person der foretages real-tim...
 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 10
+Underfull \hbox (badness 10000) detected at line 29
 [][]
- []
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.11 		\item \textbf
-                    {Trigger}: For at kunne holde en synkronisering imellem ...
-
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 11
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--18
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--18
-
  []
 
 File: ASE_logo.png Graphic file (type png)
 <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 18.
+Package pdftex.def Info: ASE_logo.png used on input line 30.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2855,7 +2848,36 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [3
 
-])
+]
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.30 		\item \textbf
+                    {Trigger}: For at kunne holde en synkronisering imellem ...
+
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 30
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--37
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--37
+
+ []
+
+)
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
 Package pdftex.def Info: ASE_logo.png used on input line 83.
@@ -2870,13 +2892,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [4]
 ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Rapport\metode.te
 x"
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 9.
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
-File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 9.
-
 Overfull \hbox (1.65706pt too wide) in paragraph at lines 21--22
 []| \T1/lmr/m/n/12 Del-test te-ster den in-di-vi-du-el-le klas-ses funk-tio-na-
 li-tet op imod softwa-
@@ -3163,14 +3178,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
  []
 
+<GUI1.png, id=79, 688.07062pt x 339.51843pt>
+File: GUI1.png Graphic file (type png)
+ <use GUI1.png>
+Package pdftex.def Info: GUI1.png used on input line 20.
+(pdftex.def)             Requested size: 272.99881pt x 134.70667pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 19--21
+Underfull \hbox (badness 10000) in paragraph at lines 26--28
 
  []
 
 File: ASE_logo.png Graphic file (type png)
 <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 33.
+Package pdftex.def Info: ASE_logo.png used on input line 28.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -3182,10 +3202,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [19
 
 
-])
+ <C:/Users/SÃ¸ren Lyster/Documents/GitHub/DegnLyster-bachelor/Rapport/GUI1.png>
+]
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 89.
+Package pdftex.def Info: ASE_logo.png used on input line 61.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -3194,7 +3215,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[20]
+[20])
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
 Package pdftex.def Info: ASE_logo.png used on input line 89.
@@ -3311,13 +3332,13 @@ n.aux")
 Package logreq Info: Writing requests to 'rapport.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
- 23934 strings out of 493921
- 459365 string characters out of 3144852
- 838572 words of memory out of 3000000
- 26779 multiletter control sequences out of 15000+200000
+ 23940 strings out of 493921
+ 459434 string characters out of 3144852
+ 842581 words of memory out of 3000000
+ 26784 multiletter control sequences out of 15000+200000
  71444 words of font info for 59 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 76i,17n,106p,10395b,2043s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 76i,17n,106p,10395b,1768s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program F
 iles (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/Program Files (x86)/
 MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/
@@ -3329,9 +3350,9 @@ rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files
 X 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 /type1/public/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmtt12.pfb>
-Output written on rapport.pdf (26 pages, 379670 bytes).
+Output written on rapport.pdf (26 pages, 454228 bytes).
 PDF statistics:
- 137 PDF objects out of 1000 (max. 8388607)
+ 139 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -15,6 +15,13 @@
 	Interaktion med andre klasser:
 	For hver tilgang til præference-filen bliver der oprettet en ny instans af dataklassen SessionData fra klassen SessionHandler. Ved at aflæse indholdet/værdien af de forskellige Tkiner-objekter og skrive dette data til den instansen af SessionData, der senere bliver skrevet til præference-filen af klassen SessionHandler, vil der altid være konsistens mellem værdierne skrevet i brugerinterfacet, værdierne i præference-filen, og værdierne brugt i eye-tracking-algoritmen. 
 	
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{GUI1}
+	\caption{}
+	\label{fig:GUI1}
+	\end{figure}
+	
 	\subsubsection{SessionHandler}
 	At nævne: Verificering af korrekt præference-fil. Vigtigheden og problemer med at have de forskellige værdier i strings (latin, utf8, ASCII). Bliver brugt som dataklasse
 	Verificering fungerer ved at lede efter korrekt streng i hver linje. \\

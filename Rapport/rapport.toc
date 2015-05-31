@@ -3,9 +3,10 @@
 \select@language {danish}
 \contentsline {section}{\numberline {1}Prolog}{3}
 \contentsline {subsection}{\numberline {1.1}Indledning}{3}
-\contentsline {subsection}{\numberline {1.2}Ordforklaring}{3}
-\contentsline {subsection}{\numberline {1.3}Projektformulering}{3}
-\contentsline {subsection}{\numberline {1.4}OpenEyes og Siboska}{4}
+\contentsline {subsection}{\numberline {1.2}Krav til bachelorprojekt}{3}
+\contentsline {subsection}{\numberline {1.3}Ordforklaring}{3}
+\contentsline {subsection}{\numberline {1.4}Projektformulering}{4}
+\contentsline {subsection}{\numberline {1.5}OpenEyes og Siboska}{4}
 \contentsline {section}{\numberline {2}Metode}{5}
 \contentsline {subsection}{\numberline {2.1}Metoder}{5}
 \contentsline {subsection}{\numberline {2.2}Planl\IeC {\ae }gning}{6}
@@ -52,14 +53,14 @@
 \contentsline {subsection}{\numberline {7.1}Indledning}{19}
 \contentsline {subsection}{\numberline {7.2}Bruger-interface og applikation}{19}
 \contentsline {subsubsection}{\numberline {7.2.1}UserInterface}{19}
-\contentsline {subsubsection}{\numberline {7.2.2}SessionHandler}{19}
+\contentsline {subsubsection}{\numberline {7.2.2}SessionHandler}{20}
 \contentsline {subsubsection}{\numberline {7.2.3}LogHandler}{20}
 \contentsline {subsubsection}{\numberline {7.2.4}CalibrationHandler}{20}
 \contentsline {subsubsection}{\numberline {7.2.5}EyeTrackingHandler}{20}
 \contentsline {subsubsection}{\numberline {7.2.6}VideoCapture}{20}
-\contentsline {subsection}{\numberline {7.3}Starburst-algoritmen}{20}
-\contentsline {subsection}{\numberline {7.4}Optimering}{20}
-\contentsline {subsubsection}{\numberline {7.4.1}Fremtidige optimeringsmuligheder}{20}
+\contentsline {subsection}{\numberline {7.3}Starburst-algoritmen}{21}
+\contentsline {subsection}{\numberline {7.4}Optimering}{21}
+\contentsline {subsubsection}{\numberline {7.4.1}Fremtidige optimeringsmuligheder}{21}
 \contentsline {subsection}{\numberline {7.5}Diskussion}{21}
 \contentsline {section}{\numberline {8}Test}{22}
 \contentsline {subsection}{\numberline {8.1}Indledning}{22}
