@@ -23,11 +23,14 @@
 	Overvejelser om opdelingen af klasser. Hver klasse varetager en opgave med henblik på en af systemets grænseflader. GUI er varetaget af en klasse. De tre genererede filer log, session, og kalibrering er håndteret af tre klasser. Kommunikation med eksternt kamera er håndteret af sin egen klasse. Kommunikation med algoritmen har sin egen klasse. 
 		\subsubsection{UserInterface}
 		Denne klasse foretager al kommunikation med aktøren \textit{bruger} igennem et grafisk bruger-interface (GUI). For at have en konstant opdatering af interfacet, forventes denne klasse at blive afviklet i egen tråd. 
+	
+		
 		\subsubsection{SessionHandler}
 		Her håndteres al data tilknyttet opsætning af eye-tracking-session. 
 		\subsubsection{LogHandler}
 		Denne klasse håndterer eye-tracking-programmets log-fil. Data fra eye-tracking bliver her pakket og gemt i en log-fil. Kommunikation af målings-relevant data til UserInterface-klassen foretages af denne klasse.
 		\subsubsection{VideoCapture}
+		Håndtering af data fra kamera eller video-kilde foregår ved hjælp af OpenCV i denne klasse. 
 		\subsubsection{EyeTrackingHandler}
 	 
 		
@@ -35,8 +38,8 @@
 		
 		\begin{figure}
 		\centering
-		\includegraphics[width=0.8\linewidth]{klasseinteraktion}
-		\caption{}
+		\includegraphics[width=0.9\linewidth]{klasseinteraktion}
+		\caption{Klasseinteraktioner}
 		\label{fig:klasseinteraktion}
 		\end{figure}
 	\subsection{Algoritme-arkitektur}
@@ -47,10 +50,34 @@
 	\\
 	 For eksempel benytter dette projekt sig af en række variabler til at angive: koordinater for sidste pupil-center, afgrænsninger af sidste sæt øjne, hvorvidt Viola Jones skal køres, thresholdværdier, og maks antal RANSAC-iterationer.  Disse værdier indeholder både arrays, matricer, enkelt værdier og  booleans.
 	\\
-	De 16 frie inputvariablers startværdier kan indstilles fra GUI, og gemmes i præference-filen. 
+	De 10 frie inputvariablers startværdier kan indstilles fra GUI, og gemmes i præference-filen. 
 	\subsection{Bruger-interface}
 	Interfacet er designet med henblik på intuitivt brug, så ledes at det ikke er nødvendigt med dybere introduktion til programmet. Forskellige stadier af hvad man kan gøre i interfacet reducerer muligheden for uønskede handlinger. Det er for eksempel ikke muligt at starte eye-tracking før nødvendig opsætning er fuldført. 
 	
-	Følgende figurer beskriver det forventede grafiske bruger interface. Interfaces er designet ud fra use case diagrammerne beskrevet i kravspecifikationen.
+	Figur \ref{fig:FrameworkUdkastSimpel} beskriver det forventede grafiske bruger interface. Interfaces er designet ud fra use case diagrammerne beskrevet i kravspecifikationen.
+	De fire faner til højre i interfacet - notes, video, calibration, algorithm - tillader brugeren at læse og inputte ønskede præferencer. Følgende værdier er tilstede:
+	\begin{itemize}
+		\item Notes: Noter til bruger af systemet. Disse har ingen funktion for programmet.
+		\item Screen 2 resolution: Angiver opløsningen på skærmen brugt i opstillingen (se figur \ref{???}). Opløsningen angives som bredde og højde adskilt af 'x'.
+		\item Log filename: Alternativt navn for log-filen. Er feltet tomt bliver der auto-genereret et navn af formatet YYMMDD-HHMM (år måned dato - time minut). 
+		\item Session path: Peger på fil-stien hvor sessionsfilerne (præferencer, log og kalibrering) bliver oprettet. Bliver selv skrevet ind af programmet når  man opretter en ny session. 
+		\item Using camera source?: Angiver hvorvidt der bliver brugt kamera eller video-fil som input til algoritmen. 
+		\item Source: Hvis der er valgt kamera, peget denne værdi på kamera-kilden. Hvis der er valgt video-fil, fortæller denne filstien. 
+		\item Recording video?: Angiver hvorvidt det brugte input skal gemmes som en ny video-fil. 
+		\item Filepath for recorded data: Angiver hvor den generede video-fil skal gemmes. Hvis intet er angivet gemmes filen i session path. 
+		\item Calibration type: Beskriver hvilken type kalibrering der skal benyttes. Man kan således have flere forskellige kalibreringstyper. 
+		\item Load calibration file: Giver mulighed for at vælge en allerede oprette kalibreringsfil. Når en ny kalibrering er fuldført, vil denne værdi pege på den nye fil.
+		\item New calibration log filename: Angiver navnet på den oprettede kalibreringsfil. Hvis intet er angivet gemmes filen i session path med navnet calibration.clog. 
+		\item V1 til V10: Angiver ti frie variabler til brug i algoritmen. Felterne name bliver ikke benyttet af systemet, og er blot til brugerens nytte. Felterne value kan indeholde alt der opfylder korrekt syntaks for Python og Numpy-biblioteket. 
+	\end{itemize}		
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\linewidth]{FrameworkUdkastSimpel}
+		\caption[Udkast til GUI]{Udkast til det grafiske bruger-interface}
+		\label{fig:FrameworkUdkastSimpel}
+	\end{figure}
+	
+	
+	
 	\subsection{Diskussion}
 \end{document}

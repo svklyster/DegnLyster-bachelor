@@ -9,7 +9,7 @@
 \contentsline {subsection}{\numberline {1.5}OpenEyes og Siboska}{5}
 \contentsline {section}{\numberline {2}Metode}{6}
 \contentsline {subsection}{\numberline {2.1}Metoder}{6}
-\contentsline {subsection}{\numberline {2.2}Planl\IeC {\ae }gning}{7}
+\contentsline {subsection}{\numberline {2.2}Planl\IeC {\ae }gning}{8}
 \contentsline {subsection}{\numberline {2.3}Diskussion}{8}
 \contentsline {section}{\numberline {3}V\IeC {\ae }rkt\IeC {\o }jer}{9}
 \contentsline {subsection}{\numberline {3.1}Udviklingsmilj\IeC {\o }}{9}
@@ -69,27 +69,27 @@
 \contentsline {subsubsection}{\numberline {6.3.6}Interaktion mellem klasser}{23}
 \contentsline {subsection}{\numberline {6.4}Algoritme-arkitektur}{23}
 \contentsline {subsection}{\numberline {6.5}Bruger-interface}{24}
-\contentsline {subsection}{\numberline {6.6}Diskussion}{24}
-\contentsline {section}{\numberline {7}Implementering}{25}
-\contentsline {subsection}{\numberline {7.1}Indledning}{25}
-\contentsline {subsection}{\numberline {7.2}Bruger-interface og applikation}{25}
-\contentsline {subsubsection}{\numberline {7.2.1}UserInterface}{25}
-\contentsline {subsubsection}{\numberline {7.2.2}SessionHandler}{26}
-\contentsline {subsubsection}{\numberline {7.2.3}LogHandler}{26}
-\contentsline {subsubsection}{\numberline {7.2.4}CalibrationHandler}{26}
-\contentsline {subsubsection}{\numberline {7.2.5}EyeTrackingHandler}{27}
-\contentsline {subsubsection}{\numberline {7.2.6}VideoCapture}{27}
-\contentsline {subsection}{\numberline {7.3}ETAlgorithm}{27}
-\contentsline {subsection}{\numberline {7.4}Starburst-algoritmen}{28}
-\contentsline {subsection}{\numberline {7.5}Optimering}{28}
-\contentsline {subsubsection}{\numberline {7.5.1}Fremtidige optimeringsmuligheder}{28}
-\contentsline {subsection}{\numberline {7.6}Diskussion}{28}
-\contentsline {section}{\numberline {8}Test}{29}
-\contentsline {subsection}{\numberline {8.1}Indledning}{29}
-\contentsline {subsection}{\numberline {8.2}Deltest}{29}
-\contentsline {subsection}{\numberline {8.3}Integrationstest}{29}
-\contentsline {subsection}{\numberline {8.4}Accepttest}{29}
-\contentsline {subsection}{\numberline {8.5}Performance-evaluering}{29}
-\contentsline {subsection}{\numberline {8.6}Diskussion af testresultater}{29}
-\contentsline {section}{\numberline {9}Konklusion}{30}
-\contentsline {section}{\numberline {A}Appendiks}{31}
+\contentsline {subsection}{\numberline {6.6}Diskussion}{25}
+\contentsline {section}{\numberline {7}Implementering}{27}
+\contentsline {subsection}{\numberline {7.1}Indledning}{27}
+\contentsline {subsection}{\numberline {7.2}Bruger-interface og applikation}{27}
+\contentsline {subsubsection}{\numberline {7.2.1}UserInterface}{27}
+\contentsline {subsubsection}{\numberline {7.2.2}SessionHandler}{28}
+\contentsline {subsubsection}{\numberline {7.2.3}LogHandler}{29}
+\contentsline {subsubsection}{\numberline {7.2.4}CalibrationHandler}{29}
+\contentsline {subsubsection}{\numberline {7.2.5}EyeTrackingHandler}{29}
+\contentsline {subsubsection}{\numberline {7.2.6}VideoCapture}{29}
+\contentsline {subsection}{\numberline {7.3}ETAlgorithm}{30}
+\contentsline {subsection}{\numberline {7.4}Starburst-algoritmen}{30}
+\contentsline {subsection}{\numberline {7.5}Optimering}{30}
+\contentsline {subsubsection}{\numberline {7.5.1}Fremtidige optimeringsmuligheder}{30}
+\contentsline {subsection}{\numberline {7.6}Diskussion}{30}
+\contentsline {section}{\numberline {8}Test}{31}
+\contentsline {subsection}{\numberline {8.1}Indledning}{31}
+\contentsline {subsection}{\numberline {8.2}Deltest}{31}
+\contentsline {subsection}{\numberline {8.3}Integrationstest}{31}
+\contentsline {subsection}{\numberline {8.4}Accepttest}{31}
+\contentsline {subsection}{\numberline {8.5}Performance-evaluering}{31}
+\contentsline {subsection}{\numberline {8.6}Diskussion af testresultater}{31}
+\contentsline {section}{\numberline {9}Konklusion}{32}
+\contentsline {section}{\numberline {A}Appendiks}{33}
