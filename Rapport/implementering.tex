@@ -8,6 +8,13 @@
 	\subsubsection{UserInterface}
 	Biblioteker værd at nævne: Tkinter, Tkfiledialog\\
 	
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{GUIkommentare}
+	\caption[Implementering af GUI]{Implementeringen af det grafiske user-interface med kommentarer}
+	\label{fig:GUIkommentare}
+	\end{figure}
+	
 	Tkinter objekter er benyttet til at opbygge det grafisk brugerinterface som givet i design. 
 	Hver knap er blevet oprettet med et tilknyttet funktionskald der udfører den ønskede funktion, som givet af de forskellige use cases. 
 	Brugeren ser kun Tkinter objekter. 
@@ -15,17 +22,16 @@
 	Interaktion med andre klasser:
 	For hver tilgang til præference-filen bliver der oprettet en ny instans af dataklassen SessionData fra klassen SessionHandler. Ved at aflæse indholdet/værdien af de forskellige Tkiner-objekter og skrive dette data til den instansen af SessionData, der senere bliver skrevet til præference-filen af klassen SessionHandler, vil der altid være konsistens mellem værdierne skrevet i brugerinterfacet, værdierne i præference-filen, og værdierne brugt i eye-tracking-algoritmen. 
 	
-	\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{GUI1}
-	\caption{}
-	\label{fig:GUI1}
-	\end{figure}
 	
 	\subsubsection{SessionHandler}
-	At nævne: Verificering af korrekt præference-fil. Vigtigheden og problemer med at have de forskellige værdier i strings (latin, utf8, ASCII). Bliver brugt som dataklasse
-	Verificering fungerer ved at lede efter korrekt streng i hver linje. \\
+	SessionHandlers opgave er at stille et data-format til rådighed for kommunikation af sessions-indstillinger de forskellige klasser imellem. Klassens vigtigste opgave er derfor at opretholde et korrekt format. Ved oprettelse eller opdatering af præference-fil, kreerer SessionHandler en streng med henholdsvis navn på variabeltype, variable værdi konverteret til streng (hvis variablen er tom, skrives strengen "None"), efterfulgt af et linebreak. Når strengen er oprettet for alle variabler, skrives strengen til en præference-fil med suffiks .PREF. \\
+	Når en præference-fil indlæses, verificeres den først af SessionHandler ved at lede efter alle variablenavne i den læste fil. Herefter kan hver variabel udtrækkes fra filen. Det er nødvendigt at lave tjek på hver variabel, da konvertering fra python- og numpy-værdi til streng kan medføre komplikationer. 
+	ÆNDRE KODEN SÅLEDES AT SESSIONHANDLER FORETAGER RSTRIP OG SÅ VIDERE 
 	
+	Figur \ref{list:sessionfile} er et eksempel på præference-fil med korrekt format (Værdierne variablenames og variablevalues er trunkeret for formateringens skyld). 
+\begin{figure}
+\caption{Eksempel på præference-fil}
+\label{list:sessionfile}
 \begin{lstlisting}
 SESSIONPATH C:/RealTimeEyeTracking
 USINGCAM True
@@ -42,6 +48,7 @@ RAWDATAPATH None
 VARIABLENAMES['e_center', 'last_eyes', ...
 VARIABLEVALUES['[0,0]', '[]', 'True', '20', '1500', ...
 \end{lstlisting}
+\end{figure}
 		
 	\subsubsection{LogHandler}
 	At nævne: StartTracking kører igennem her. Holder værdi om hvorvidt algoritmen kører. Bliver brugt som dataklasse. 
@@ -59,8 +66,33 @@ VARIABLEVALUES['[0,0]', '[]', 'True', '20', '1500', ...
 	Andre funktioner er en del af klassen. Klassen oprettes med et video-input, og mulighed for kalibreringsdataet, samt ti frie variabler. Kalibreringsdataet og de ti frie variabler benyttes ikke til andet end at videresende til ETAlgorithm sammen med gyldig frame. 
 	At passe kalibreringsdataet og de frie variabler igennem VideoCapture er ikke optimalt, men spiller ingen rolle i det samlede arbejdslæs. Det kan forestilles at man i stedet ville sende to pointers til hvor disse data ville være lageret. Argumentet for at passe disse data igennem VideoCapture er, at VideoCapture så vil kalde ETAlgorithm's Track() med den fundne frame samt disse data, i stedet for at returnere den fundne frame til EyeTrackingHandler og derefter kalde Track(). 
 		
+	\subsection{ETAlgorithm}
+	Koden i figur \ref{list:emptyalg} er en tom udgave af klassen ETAlgorithm med de nødvendige input-argumenter og funktionskald til EyeTrackingHandler er implementeret:
 
+\begin{figure}
+	\caption{Tom udgave af klassen ETAlgorithm}
+	\label{list:emptyalg}
+\begin{lstlisting}
+import numpy as np
+import EyeTracking as et
+
+#Her tilfoejes diverse python-biblioteker
+
+def Track(frame, calibration_data, variables):
+
+#Egen kode her 
+
+et.PackWithTimestamp(screen_point, trigger_value)
+et.LastRunInfo(variables)
+return
+\end{lstlisting}
+\end{figure}
+
+	
+	
+	Afsnit \ref{StarburstImpl} beskriver implementering af Starburst-algoritmen i ETAlgorithm.
 	\subsection{Starburst-algoritmen}
+	\label{StarburstImpl}
 	\subsection{Optimering}
 	
 	\subsubsection{Fremtidige optimeringsmuligheder}
