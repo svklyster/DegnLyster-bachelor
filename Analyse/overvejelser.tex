@@ -1,28 +1,50 @@
 \documentclass[analyse.tex]{subfiles}
 \begin{document}
 \section{Overvejelser angående systemkrav}
+I analyseforløbet er der desuden blevet fremstillet en række krav, i samarbejde med projekt
+udbyder. Formålet med disse krav er at få stillet konkrete krav til systemet, som der så vil
+blive lavet analyse på, og derefter vil der blive designet omkring dem i designfasen.
 De krav der er blevet nået frem til i kravspecifikationen vil blive forklaret i det følgende:
 	
 \subsection{Funktionelle krav}
 
 
 \subsubsection{Real-time eye-tracking}
-
+Dette krav er stillet af udbyderen af projektet, og kan
+betragtes som det fundamentale krav i projektet. Projektet udspringer fra et tidligere
+projekt, hvor billedbehandlingen af kameradata foregik offline. Det skal optimeres i
+en tilstrækkelig grad til at kunne køre i realtime i stedet for, med en framerate på
+100 billeder per sekund.
 
 
 \subsubsection{Kalibrering}
-
+For at systemet skal fungere korrekt skal der først foretages en kalibrering.
+Man vil godt kunne få data fra systemet, men uden en indledende kalibrering vil man ikke
+kunne oversætte de data til et sæt skærmpkoordinater. Denne kalibrering er derfor
+et essentielt krav til systemet.
 
 
 \subsubsection{Output}
-
+resultater af måling skal ende i en log-fil tilgængelig til brugeren. Dette krav
+stammer fra et ønske fra udbyder om at have adgang til data efter behandling. Der vil i
+design fasen af projektet blive fremsat en protokol, der beskriver hvordan data skal
+gemmes i log-filen. 
 
 
 \subsubsection{Brugertilgang}
+Brugergrænsefladen behøver ikke nødvendigvis at være ret optimeret (Den er også lavet i python),
+men skal derimod opfylde nogle funktionelle krav, hvilket kan betragtes som en
+anden form for optimering, brugeroplevelsesoptimering. Den optimering er beregnet til at
+sørge for at applikationen bliver designet og implementeret på en måde som medfører en
+bedre oplevelse for brugeren, i form af en simpel brugergrænseflade, tilstrækkelig
+funktionalitet til at dække formodede behov, samt et design der gør det let at udvide
+applikationen på et senere tidspunkt.
 
+De resterende funktionelle krav er blevet uddybet ved hjælp af Use Cases.
 
 
 \subsection{Ikke-funktionelle krav}
+
 
 
 
@@ -35,7 +57,11 @@ De krav der er blevet nået frem til i kravspecifikationen vil blive forklaret i
 
 
 \subsection{Overvejelser angående kodesprog}
-
+Det er blevet aftalt med projektudbyder at prototypen skal udarbejdes med en C++ backend og Python frontend.
+C++ er valgt som backend fordi det er et relativt hurtigt kodesprog, og fordi gruppen har tidligere erfaring
+med C++. Python blev foreslået til gruppen af projektvejleder, og idet Python har en udvidelse der tillader
+en let måde at have Python frontend samt C++ backend var det en oplagt mulighed at anvende Python til front
+end delen af prototypen.
 
 
 \end{document}
