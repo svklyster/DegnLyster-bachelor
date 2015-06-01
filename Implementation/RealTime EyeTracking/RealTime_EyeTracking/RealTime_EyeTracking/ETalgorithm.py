@@ -464,8 +464,8 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
 
         #print(perimeter_pixel)
         havg = sumd/idx
-        havg = 0
-        cv2.circle(imagePntr, (crx1,cry1), int(crr1+3), int(havg), -1)
+
+        cv2.circle(imagePntr, (crx1,cry1), int(crr1), int(havg), -1)
         
         perimeter_pixel = []
         sumd = 0
@@ -492,12 +492,13 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             
         #print(perimeter_pixel)
         havg = sumd/idx
-        havg = 0
+        
      
 
-        cv2.circle(imagePntr, (crx2,cry2), int(crr2+3), int(havg), -1)
-        cv2.imshow('cornremoved', imagePntr)
-        cv2.waitKey(0)
+        cv2.circle(imagePntr, (crx2,cry2), int(crr2), int(havg), -1)
+        #cv2.imshow('cornremoved', imagePntr)
+        #cv2.waitKey(0)
+        
         #for r in range(crr):
         #    r2 = crr-r+1
         #    for i in range(angles):
@@ -573,17 +574,17 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             #print(edge_point)
             for i in range(0, first_ep_num):
                 edge = [int(epx[i]),int(epy[i])]
-                cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
+                #cv2.circle(circleimage, (edge[0], edge[1]), 2, (255,255,255), -1)
                 angle_normal = np.arctan2(cy-epy[i], cx-epx[i])
                 new_angle_step = angle_step*(edge_thresh*1.0/epd[i])
                 tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh, ccen, crar)
                 epx = np.hstack([epx, tepx])
                 epy = np.hstack([epy, tepy])
-            cv2.imshow('firstround',circleimage)
-            cv2.waitKey(0)
+            #cv2.imshow('firstround',circleimage)
+            #cv2.waitKey(0)
             for i in range(0, len(epx)):
                 edge = [int(epx[i]),int(epy[i])]
-                cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
+                #cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
             #cv2.imshow('secondround',circleimage)
             #cv2.waitKey(0)
 
@@ -961,7 +962,7 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         #    ecx[x] = ec[x][0]
         #    ecy[x] = ec[x][1]
         ellipse, inliers, ransac_iter = fit_ellipse_ransac(epx, epy, 1000, 10, 1.5)
-        if len(ellipse) is 0 or ransac_iter >= 10000:
+        if len(ellipse) is 0 or ransac_iter >= 1000:
             if calData is not None:
                 et.ReturnError("Maximum ransac iterations exceeded")
             return
@@ -986,6 +987,9 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                 #cv2.imshow('Ellipse', roi_gray)
                 #cv2.waitKey(0)
                 gaze_vector = [(new_e_center[0][0]-crx).real[0], (new_e_center[0][1]-cry).real[0]]
+                #cv2.line(roi_gray, new_e_center[0], (crx, cry), (255,255,255))
+                #cv2.imshow('gaze', roi_gray)
+                #cv2.waitKey(0)
                 if calData is None:
                     calExt.calData(gaze_vector, False)
                 #continue
@@ -995,6 +999,9 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                 #cv2.imshow('Ellipse', roi_gray)
                 #cv2.waitKey(0)
                 gaze_vector = [(new_e_center[1][0]-crx).real[0], (new_e_center[1][1]-cry).real[0]]
+                #cv2.line(roi_gray, new_e_center[1], (crx, cry), (255,255,255))
+                #cv2.imshow('gaze', roi_gray)
+                #cv2.waitKey(0)
                 if calData is None:
                     calExt.calData(gaze_vector, True)
                 #continue
