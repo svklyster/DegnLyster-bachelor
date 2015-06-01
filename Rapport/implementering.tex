@@ -33,7 +33,8 @@
 	\subsubsection{SessionHandler}
 	SessionHandlers opgave er at stille et data-format til rådighed for kommunikation af sessions-indstillinger de forskellige klasser imellem. Klassens vigtigste opgave er derfor at opretholde et korrekt format. Ved oprettelse eller opdatering af præference-fil, kreerer SessionHandler en streng med henholdsvis navn på variabeltype, variable værdi konverteret til streng (hvis variablen er tom, skrives strengen "None"), efterfulgt af et linebreak. Når strengen er oprettet for alle variabler, skrives strengen til en præference-fil med suffiks .pref. \\
 	Når en præference-fil indlæses, verificeres den først af SessionHandler ved at lede efter alle variablenavne i den læste fil. Herefter kan hver variabel udtrækkes fra filen. Det er nødvendigt at lave tjek på hver variabel, da konvertering fra python- og numpy-værdi til streng kan medføre komplikationer. 
-	ÆNDRE KODEN SÅLEDES AT SESSIONHANDLER FORETAGER RSTRIP OG SÅ VIDERE 
+	
+	Instanser af SessionHandler brugt som data-format bliver oftest omtalt som SessionData.\\
 	
 	Figur \ref{list:sessionfile} er et eksempel på præference-fil med korrekt format (Værdierne variablenames og variablevalues er trunkeret for formateringens skyld). 
 \begin{figure}
@@ -58,24 +59,50 @@ VARIABLEVALUES['[0,0]'$  '[]'$ 'True'$ '20'$ '1500'$ ...
 \end{figure}
 		
 	\subsubsection{LogHandler}
-	At nævne: StartTracking kører igennem her. Holder værdi om hvorvidt algoritmen kører. Bliver brugt som dataklasse. 
-	Modtager en log-streng fra EyeTrackingHandler og gemmer den som angivet i SessionData dataklassen. 
-	Vis eksempel på log-fil
+	For hver eye-tracking måling der igangsættes bliver der oprettet en instans af LogHandler klassen med argumentet SessionData, som er en instans af klassen SessionHandler. LogHandler-klassen består af tre simple funktioner: StartNewTracking, StopTracking og LogData. StartNewTracking er en del af kommunikationsvejen fra UserInterface til EyeTrackingHandler, og har til formål at pege på sig selv, således at EyeTrackingHandler kan kalde LogData i den rette instans af klassen. 
+	Ligeledes StartNewTracking er StopTracking en del af kommunikationsvejen, men har kun til formål at sætte klassens variabel Tracking til False. Funktionen LogData bliver kaldt fra EyeTrackingHandler med en streng som argument, og har til formål at skrive denne streng - efterfulgt af et linebreak - til en log-fil peget på af SessionData.  
+	
+	Figur \ref{list:logfile} er et eksempel på en log-fil med korrekt format (Timestamp, X, Y, Triggerniveau, Fejlmeddelelse). 
+\begin{figure}
+	\caption{Eksempel på log-fil}
+	\label{list:logfile}
+	\begin{lstlisting}	
+16:28:46.483000, 89, 69, 0, None
+16:28:46.662000, 89, 69, 0, None
+16:28:46.731000, 90, 70, 0, None
+16:28:46.782000, 90, 71, 0, None
+16:28:46.951000, 92, 74, 0, None
+16:28:47.093000, 89, 68, 0, None
+16:28:47.244000, 89, 51, 1, None
+16:28:47.322000, 89, 52, 1, None
+16:28:47.360000, 91, 52, 1, None
+16:28:47.395000, 89, 51, 1, None
+16:28:47.598000, 0, 0, 0, Maximum ransac iterations exceeded
+16:28:47.651000, 89, 51, 1, None
+\end{lstlisting}
+\end{figure}	
 	
 	\subsubsection{CalibrationHandler}
 	Vis eksempel på kalibrerings-fil
 	
 	\subsubsection{EyeTrackingHandler}
+	Ved implementering af denne klasse har det været vigtigt at gøre en række overvejelser angående modulariseringen af koden, da det er denne klasse der indirekte står for afviklingen af algoritmen. Funktionen StartVideoCapture bliver kaldt med data-formatet SessionData og en pointer til den relevante instans af LogHandler-klassen. Funktionen opretter en instans af klassen VideoCapture med de korrekte argumenter taget fra SessionData.
+	Funktionen StopVideoCapture kalder blot funktionen StopTracking fra klassen VideoCapture, og sætter variablen running til returværdien derfra.\\
+	 
+	For at sørge for at algoritmen kan afvikles uden forstyrrelser ved opdateringen af det grafiske bruger-interface, indeholder EyeTrackingHandler en EyeTrackingThread-klasse implementeret som en tråd. Når EyeTrackingHandlers funktion StartVideoCapture bliver kaldt, vil en ny process med tråden blive oprettet. Denne tråd vil kalde funktionen updateVideo fra klassen VideoCapture med de valgte argumenter, vente tiden 1/opdateringshastighed, og køre sig selv fra starten så længe at variablen running=True.
 	
+	Til at modtage data fra algoritmen er de tre funktioner PackWithTimestamp, ReturnError og LastRunInfo. PackWithTimestamp bliver kaldt med argumenterne XY-koordinat og triggerniveau, hvorefter den opretter en streng med den nuværende tid, x-koordinatet, y-koordinatet, triggerniveauet og værdien 'None'. Denne streng sendes derefter som argument til den relevante instans af LogHandler-klassen ved funktionen LogData. ReturnError kan bruges af algoritmen til at returnere fejlmeddelelser. Funktionen modtager fejlmeddelelsen som en streng og opretter en ny streng i samme facon som PackWithTimestamp, blot med koordinaterne (0,0), triggerniveau 0, og fejlmeddelelse. Derefter sendes denne streng også til LogHandler-klassens LogData. LastRunInfo giver algoritmen mulighed for at ændre i de ti frie variabler. Variablerne modtages af algoritmen som argument til funktionen LastRunInfo, der derefter opdatere variablerne i SessionData, således at de bliver benyttet næste gang updateVideo kører. Herved er der fri mulighed for at sende værdier så som fejlmeddelelser, sidste kendte koordinater og så videre tilbage til algoritmen. 
 	
 	\subsubsection{VideoCapture}
-	Indeholder puplic funktion GetCameraInputs. 
-	Andre funktioner er en del af klassen. Klassen oprettes med et video-input, og mulighed for kalibreringsdataet, samt ti frie variabler. Kalibreringsdataet og de ti frie variabler benyttes ikke til andet end at videresende til ETAlgorithm sammen med gyldig frame. 
+	Indeholder puplic funktion GetCameraInputs, som kan tilgås uden instantiering af klassen. GetCameraInputs detekterer antal kameraer tilsluttet computeren ved at iterere igennem en liste af kamera-inputs givet af operativsystemet. Når et indeks på listen returnere en fejl, returnerer funktionen antal kameraer fundet inden fejlen.\\
+	
+	De andre funktioner kan først tilgås når klassen er instantieret. Klassen instantieres med et video-input, og mulighed for kalibreringsdataet, samt ti frie variabler. Kalibreringsdataet og de ti frie variabler benyttes ikke til andet end at videresende til ETAlgorithm sammen med gyldig frame. 
 	At passe kalibreringsdataet og de frie variabler igennem VideoCapture er ikke optimalt, men spiller ingen rolle i det samlede arbejdslæs. Det kan forestilles at man i stedet ville sende to pointers til hvor disse data ville være lageret. Argumentet for at passe disse data igennem VideoCapture er, at VideoCapture så vil kalde ETAlgorithm's Track() med den fundne frame samt disse data, i stedet for at returnere den fundne frame til EyeTrackingHandler og derefter kalde Track(). VideoCapture håndterer al kommunikation med video-kameraer, og har tilsvarende ansvaret for at terminere forbindelsen med disse når en måling er overstået. 
 		
 	\subsubsection{Kommunikation imellem applikationens klasser}	
 	
-	Overordnet kan programmet befinde sig i tre stadier: NotRunning, Calibrating og Running. 	
+	Overordnet kan programmet befinde sig i tre stadier: NotRunning, Calibrating og Running.
+	Næsten alle klasser har en variabel der fortæller hvor vidt algoritmen kører eller ej. Herved kan det sikres at systemet ikke forsøger at instantiere klasser, åbne video-inputs, eller overskrive filer der, allerede er i brug.
 	
 	\subsection{ETAlgorithm}
 	Koden i figur \ref{list:emptyalg} er en tom udgave af klassen ETAlgorithm med de nødvendige input-argumenter og funktionskald til EyeTrackingHandler er implementeret:
@@ -93,9 +120,9 @@ def Track(frame, calibration_data, variables):
 
 #Egen kode her 
 
-et.PackWithTimestamp(screen_point, trigger_value)
-et.LastRunInfo(variables)
-return
+	et.PackWithTimestamp(screen_point, trigger_value)
+	et.LastRunInfo(variables)
+	return
 \end{lstlisting}
 \end{figure}
 
