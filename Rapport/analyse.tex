@@ -94,100 +94,113 @@ rænseflade, tilstrækkelig
 	Algoritmen kan opdeles i følgende generelle punkter "ref starburst":
 	
 	Input: Billede.
-	Output: blik koordinater
+	Output: Blik koordinater
 	Procedure:
-	Detekterer hornhinde reflektioner.
-	Lokaliserer hornhinde reflektioner.
-	Fjerner hornhinde reflektioner
+	Detekter hornhinde reflektioner.
+	Lokaliser hornhinde reflektioner.
+	Fjern hornhinde reflektioner
 	Iterativ detektion af pupil kantpunkter.
-	RANSAC "Random Sample Consensus" til at finde en ellipse der passer til punkterne.
-	"Kalibrering anvendes til at bruge homografisk mapning"
+	RANSAC "Random Sample Consensus" for at finde en passende ellipse.
+	Anvend kalibrering til at omsætte vektoren imellem midten af hornhinde reflektionerne og midten af pupillen, til skærmkoordinater i pixels.
+	
+	----------------------
 	
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.4\linewidth]{Billeder/Initial Image.png}
+	\includegraphics[width=0.4\linewidth]{Billeder/InitialImage.png}
 	\caption{Enkelt billede fra video optagelse}
 	\label{fig:InitialImage}
 	\end{figure}
 	
+	Gennemgangen tager udgangspunkt i det ovenstående billede, som er det første billede i videoen "Derp". Det første der bliver gjort er at få indsnævret billedet til det der er relevant for algoritmen, altså øjnene. Der findes flere forskellige metoder til dette, eksempelvist kunne man manuelt markere et område som algoritmen skal fokusere på.
+	
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.4\linewidth]{Billeder/Cropped Eye.png}
-	\caption{}
+	\includegraphics[width=0.4\linewidth]{Billeder/CroppedEye.png}
+	\caption{Udsnit af øje}
 	\label{fig:CroppedEye}
 	\end{figure}
 	
+	Når det relevante område af billedet er fundet, kan Starburst algoritmen anvendes. Man kan dog med fordel forsøge at øge kontrasten i billedet, således at differensen imellem pupil og iris øges. Dette gør algoritmen mere robust, da der vil være en mere klar adskillelse af overgangen fra pupil til iris.
+	
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.4\linewidth]{Billeder/Cropped Eye, Post Brightness.png}
-	\caption{}
+	\includegraphics[width=0.4\linewidth]{Billeder/CroppedEye,PostBrightness.png}
+	\caption{Efter øgning af kontrast og lysstyrke}
 	\label{fig:CroppedEye,PostBrightness}
 	\end{figure}
 	
+	Efterfølgende skal reflektionerne i øjet lokaliseres og fjernes. Alternativt kan man også blot gemme områderne for reflektionerne, og tage højde for dem i sin algoritme i stedet.
+	
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.4\linewidth]{Billeder/Cropped Eye, Reflection removed.png}
-	\caption{}
+	\includegraphics[width=0.4\linewidth]{Billeder/CroppedEye,Reflectionremoved.png}
+	\caption{Reflektioner fjernet}
 	\label{fig:CroppedEye,Reflectionremoved}
 	\end{figure}
 	
+	Efter fjernelsen af reflektionerne, er det tid til den del af algoritmen som den har fået sit navn fra. Fra et estimeret midtpunkt af pupillen bliver en række "stråler" sendt ud imod kanten af billedet, og når de rammer en tilpas ændring i intensitet stopper de, og det antages at de har ramt overgangen fra pupil til iris.
 		
 	\begin{figure}
 	\centering
 	\includegraphics[width=0.4\linewidth]{Billeder/PupilThresholding}
-	\caption{}
+	\caption{Estimering af pupilmidtpunkt}
 	\label{fig:PupilThresholding}
 	\end{figure}
 		
 		
 		
 	\begin{figure}
-	\centering
-	\includegraphics[width=0.4\linewidth]{Billeder/Starburst, First single.png}
-	\caption{}
+	\raggedright
+	\includegraphics[width=0.4\linewidth]{Billeder/Starburst,Firstsingle.png}
+	\caption{Starburst, første iteration (Enkelt stråle)}
 	\label{fig:Starburst,Firstsingle}
-	\end{figure}
-		
+	\end{figure}	
 		
 	\begin{figure}
-	\centering
-	\includegraphics[width=0.4\linewidth]{Billeder/Starburst, First.png}
-	\caption{}
+	\raggedleft
+	\includegraphics[width=0.4\linewidth]{Billeder/Starburst,First.png}
+	\caption{Starburst, første iteration (Resterende stråler)}
 	\label{fig:Starburst,First}
 	\end{figure}
 	
+	Resultatet af dette er en række punkter som, ifølge hensigten, ligger på kanten af pupillen. Idet der er en risiko for at algoritmen finder punkter som ikke ligger på pupilkanten, gentages Starburst, med hvert fundet punkt som et nyt midtpunkt. Derudover tilpasses vinklerne som strålerne kan sendes ud i, sådan at de søger ind imod det oprindelige startpunkt, + / - et forskelligt antal grader. Dermed får man en række stråler som igen rammer pupilkanten.
 	
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.4\linewidth]{Billeder/Starburst, Second single.png}
-	\caption{}
+	\includegraphics[width=0.4\linewidth]{Billeder/Starburst,Secondsingle.png}
+	\caption{Starburst, anden iteration (Et startpunkt)}
 	\label{fig:Starburst,Secondsingle}
 	\end{figure}
 	
 	
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.4\linewidth]{Billeder/Starburst, Second.png}
-	\caption{}
+	\includegraphics[width=0.4\linewidth]{Billeder/Starburst,Second.png}
+	\caption{Starburst, anden iteration (Alle Punkter)}
 	\label{fig:Starburst,Second}
 	\end{figure}
 		
+	Ovenstående billede til venstre illustrerer hvordan strålerne sendes ud fra et tidligere punkt, og billedet til højre viser det endelige resultat af Starburst algoritmen. Ud fra disse punkter kan en ellipse så tilpasses, ved hjælp af RANSAC (Random Sample Consensus). RANSAC fungerer ved at udvælge en vis mængde af de fundne punkter (I vores tilfælde fem), og derefter undersøge hvor godt punkterne passer ind i en model (En model for en ellipse i denne algoritme).
 		
 		
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.4\linewidth]{Billeder/Starburst, Ellipse.png}
-	\caption{}
+	\includegraphics[width=0.4\linewidth]{Billeder/Starburst,Ellipse.png}
+	\caption{Resulterende ellipse}
 	\label{fig:Starburst,Ellipse}
 	\end{figure}
 	
+	Efter RANSAC har kørt, ender man med et sæt punkter som kan danne en ellipse. Midten af denne ellipse skulle så gerne passe med at være midten af pupillen, og med det punkt, samt midtpunktet imellem de to reflektioner, kan man finde blik vektoren.
 	
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.4\linewidth]{Billeder/Starburst, Gaze.png}
-	\caption{}
+	\includegraphics[width=0.4\linewidth]{Billeder/Starburst,Gaze.png}
+	\caption{Resulterende blikvektor}
 	\label{fig:Starburst,Gaze}
 	\end{figure}
+	
+	Denne blikvektor kan dog i sig selv ikke fortælle nøjagtigt hvor en person ser hen. Dertil skal man have kalibreret systemet først, ved at gennemgå kalibreringsrutinen som nævnt i "ref". Udfra dette kan man så lave en homografisk mapning ved hjælp af interpolering, som i sidste ende kan bruges til at omsætte blikvektoren til et sæt skærmkoordinater.
 	
 	
 	Bemærk at procestiden er opgivet som procentdel af samlet procestid, og at værdierne kun omfatter processen selv, og ikke medregner den tid der bruges på metoder der kaldes undervejs. Procestiden for disse metodekald står ud for de enkelte metoder i stedet.
