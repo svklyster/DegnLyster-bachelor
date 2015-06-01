@@ -464,9 +464,9 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
 
         #print(perimeter_pixel)
         havg = sumd/idx
-
-        cv2.circle(imagePntr, (crx1,cry1), int(crr1), int(havg), -1)
-
+        havg = 0
+        cv2.circle(imagePntr, (crx1,cry1), int(crr1+3), int(havg), -1)
+        
         perimeter_pixel = []
         sumd = 0
         havg = 0
@@ -492,11 +492,12 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             
         #print(perimeter_pixel)
         havg = sumd/idx
-
+        havg = 0
      
 
-        cv2.circle(imagePntr, (crx2,cry2), int(crr2), int(havg), -1)
-
+        cv2.circle(imagePntr, (crx2,cry2), int(crr2+3), int(havg), -1)
+        cv2.imshow('cornremoved', imagePntr)
+        cv2.waitKey(0)
         #for r in range(crr):
         #    r2 = crr-r+1
         #    for i in range(angles):
@@ -578,8 +579,8 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                 tepx, tepy, tepd = locate_edge_points(pupil_image, width, height, cx, cy, dis, new_angle_step, angle_normal, angle_spread, edge_thresh, ccen, crar)
                 epx = np.hstack([epx, tepx])
                 epy = np.hstack([epy, tepy])
-            #cv2.imshow('firstround',circleimage)
-            #cv2.waitKey(0)
+            cv2.imshow('firstround',circleimage)
+            cv2.waitKey(0)
             for i in range(0, len(epx)):
                 edge = [int(epx[i]),int(epy[i])]
                 cv2.circle(circleimage, (edge[0], edge[1]), 1, (255,255,255), -1)
