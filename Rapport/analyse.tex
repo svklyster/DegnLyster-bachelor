@@ -3,7 +3,8 @@
 \begin{document}
 \section{Analyse}
 	\subsection{Indledning}
-	Formålet med analysedelen af projektet var at få en indledende indsigt i emnet. Det indebar at få skabt et overblik over hvad der skullealaves, hvorfor det skulleal les, og hvilke krav der er til de ting som skulle lavesal lavdover er det også vigtigt at nævne at det der bliver diskuteret overvejende er koncepter eller teori, med enkelte eksempler som kan øge forståelsen for meningen. Konkret design og implementering vil blive gennemgået senere, i design og implementeringsdelene af rapporten.
+	Formålet med analysedelen af projektet var at få en indledende indsigt i emnet. Det indebar at få skabt et overblik over hvad der skulle laves, hvorfor det skulle laves, og hvilke krav der er til de ting som skulle laves. Størstedelen af tiden i denne fase af projektet blev brugt på at forstå den udleverede kode. En væsentlig del af tiden blev også brugt på at undersøge hvordan ændringer kunne påvirke resultater og performance, samt hvilke steder disse ændringer bedst kunne foretages. Det er også vigtigt at nævne at det der bliver gennemgået i dette afsnit overvejende er koncepter eller teori, med tilhørende eksempler rettet mod at fremme forståelsen. Konkret design og implementering vil blive gennemgået senere, i design og implementeringsdelene af rapporten.
+	
 	\subsection{Systemoversigt}
 	
 	Blokdiagram: Userskærm, testskærm, IR-LED, kamera.
@@ -14,9 +15,11 @@
 	
 	
 	
-	Dette er opstillingen som projektet tager udgangspunkt i. Argumentationen for	valget af denne opstilling kan ses i indledningen til projektet (Ref indledning).
+	Dette er opstillingen som projektet tager udgangspunkt i. Argumentationen for valget af denne opstilling kan ses i indledningen til projektet (Ref indledning).
 	
 	\subsection{Funktionalitetskrav}
+	
+		I løbet af analysen blev der løbende fremstillet en kravspecifikation, i samarbejde med projektudbyderen. En del af denne kravspecifikation bestod af Use Cases, en række situationer man kunne forestille sig ville opstå, når man anvender systemet. Formålet med dem er at dække en række situationer der kunne opstå, hvad enten systemet gør som tiltænkt eller hvis det af forskellige årsager fejler. Dette gør det lettere at designe et konkret system, idet man har en lang række hændelser som systemet skal kunne håndtere. I rapporten er der valgt kun at vise en enkelt Use Case, de resterende Use Cases kan ses i dokumentationen"Ref". 
 	
 		\subsubsection{Use case eksempel - Start måling}
 		I figur \ref{fig:UC3} ses et eksempel på en use case for systemet. 
@@ -47,24 +50,16 @@
 	\subsection{Overvejelser, Funktionelle krav}	
 	
 	\subsubsection{Real-time eye-tracking}
-	Dette krav er stillet af udbyderen af projektet, og kan
-	betragtes som et af de mest fundamentale krav i projektet. Projektet udspringer fra et tidligere projekt, hvor billedbehandlingen af kameradata foregik offline. Det skal optimeres i en tilstrækkelig grad til at kunne køre i realtime i stedet for, med en framerate på 100 billeder per sekund.
-	
+	Dette krav er stillet af udbyderen af projektet, og kan betragtes som et af de mest fundamentale krav i projektet. Projektet udspringer fra et tidligere projekt, hvor billedbehandlingen af kameradata foregik offline. Det skal optimeres i en tilstrækkelig grad til at kunne køre i realtime i stedet for, med en framerate på 100 billeder per sekund.
 	
 	\subsubsection{Kalibrering}
-	For at systemet skal fungere korrekt skal der først foretages en kalibrering.
-	Målinger kan foretages uden kalibrering, men det vil ikke være muligt at oversætte de resulterende data til et sæt skærmkoordinater. Denne kalibrering er derfor essentiel for systemet.
-	
+	For at systemet kan fungere korrekt skal der først foretages en kalibrering. Målinger kan foretages uden kalibrering, men det vil ikke være muligt at oversætte de resulterende data til et sæt skærmkoordinater. Denne kalibrering er derfor essentiel for systemet.
 	
 	\subsubsection{Output}
 	Resultater fra målinger skal gemmes i en log-fil tilgængelig til brugeren. Dette krav stammer fra et ønske fra udbyder om at have adgang til data efter behandling. I
 	design-delen af rapporten kan ses en protokol, der beskriver hvordan data skal gemmes i log-filen. 
 	
-	\subsubsection{Modularisering}
- essentielt for projektet. Programmet skal skrives som en API (Application Programming Interface), altså et software-interface til anden software. Denne API skal designes således at bruger-interfacet, håndteringen af diverse filer, logning af data, kommunikation med hardware og så videre, kan implementeres som sit eget stykke software. Denne software kan så være basis for algoritmer der overholder API'ens regler. 
-rænseflade, tilstrækkelig
-	funktionalitet til at dække formodede behov, samt et design der gør det let at udvide
-	applikationen på et senere tidspunkt.
+	
 	
 	De resterende funktionelle krav er blevet uddybet ved hjælp af Use Cases -REF-.
 	
@@ -79,15 +74,20 @@ rænseflade, tilstrækkelig
 	
 	
 	
+	\subsubsection{Modularisering}
+	essentielt for projektet. Programmet skal skrives som en API (Application Programming Interface), altså et software-interface til anden software. Denne API skal designes således at bruger-interfacet, håndteringen af diverse filer, logning af data, kommunikation med hardware og så videre, kan implementeres som sit eget stykke software. Denne software kan så være basis for algoritmer der overholder API'ens regler. 
+	rænseflade, tilstrækkelig
+	funktionalitet til at dække formodede behov, samt et design der gør det let at udvide
+	applikationen på et senere tidspunkt.
+	
 	\subsubsection{Kodesprog}
-	Det er blevet aftalt med projektudbyder at prototypen skal udarbejdes med en C++ backend "Algoritmer" og Python frontend "Grafisk bruger interface".
+	Det er blevet aftalt med projektudbyder at prototypen skal udarbejdes med en C++ backend "Algoritmer" og Python frontend "Bruger interface".
 	C++ er valgt som backend fordi det er et relativt hurtigt kodesprog, og fordi gruppen har tidligere erfaring
 	med C++. Python blev foreslået til gruppen af projektvejleder, og idet Python har udvidelser der er opbygget
 	i C/C++ "OpenCV og Numpy" var det en oplagt mulighed at anvende Python til front end delen af prototypen.
 	                           
 	\subsection{Starburst-algoritmen}
-	I det følgende vil algoritmen som projektet tager udgangspunkt i blive gennemgået. En sammenligning af gruppens prototype og denne algoritme vil
-	senere blive vist i implementeringsdelen af rapporten.
+	I det følgende vil algoritmen som projektet tager udgangspunkt i blive gennemgået.
 	
 	Bemærk at der udelukkende beskrives hvad Starburst-algoritmen gør, og at der IKKE bliver beskrevet andre problematikker i følgende afsnit "Eksempelvist lokalisering af øjne, lokalisering af pupilmidtpunkt".
 	
@@ -191,17 +191,20 @@ rænseflade, tilstrækkelig
 	\label{fig:Starburst,Ellipse}
 	\end{figure}
 	
-	Efter RANSAC har kørt, ender man med et sæt punkter som kan danne en ellipse. Midten af denne ellipse skulle så gerne passe med at være midten af pupillen, og med det punkt, samt midtpunktet imellem de to reflektioner, kan man finde blik vektoren.
+	Efter RANSAC har kørt, ender man med et sæt punkter som kan danne en ellipse. Midten af denne ellipse skulle så gerne være midten af pupillen, og med det punkt, samt midtpunktet imellem de to reflektioner, kan man finde gaze  vektoren.
 	
 	\begin{figure}
 	\centering
 	\includegraphics[width=0.4\linewidth]{Billeder/Starburst,Gaze.png}
-	\caption{Resulterende blikvektor}
+	\caption{Resulterende gaze vektor}
 	\label{fig:Starburst,Gaze}
 	\end{figure}
 	
-	Denne blikvektor kan dog i sig selv ikke fortælle nøjagtigt hvor en person ser hen. Dertil skal man have kalibreret systemet først, ved at gennemgå kalibreringsrutinen som nævnt i "ref". Udfra dette kan man så lave en homografisk mapning ved hjælp af interpolering, som i sidste ende kan bruges til at omsætte blikvektoren til et sæt skærmkoordinater.
+	Bemærk at gaze vektoren i sig selv ikke kan fortælle nøjagtigt hvor en person ser hen. Dertil skal man have kalibreret systemet først, ved at gennemgå kalibreringsrutinen som nævnt i "ref". Udfra dette kan man så lave en homografisk mapning ved hjælp af interpolering, som i sidste ende kan bruges til at omsætte gaze vektoren til et sæt skærmkoordinater.
 	
+	
+	
+	----------OLD
 	
 	Bemærk at procestiden er opgivet som procentdel af samlet procestid, og at værdierne kun omfatter processen selv, og ikke medregner den tid der bruges på metoder der kaldes undervejs. Procestiden for disse metodekald står ud for de enkelte metoder i stedet.
 	
@@ -212,6 +215,8 @@ rænseflade, tilstrækkelig
 		\caption[Systemdiagram]{Systemdiagram for Real-time eye-tracking}
 		\label{fig:Systemdiagram}
 	\end{figure}
+	
+	Det meste af tiden i løbet af analysefasen i projektet blev brugt 
 	
 	\subsubsection{Calculate pupil and gaze}
 	
@@ -248,8 +253,7 @@ rænseflade, tilstrækkelig
 	\subsubsection{Kamera Input}
 	En sidste ting der med fordel kan fokuseres på at forbedre er indlæsning af data fra kameraet. Idet der ikke sker meget kompression bør det meste af arbejdet bestå af overførsler i harddisken, men hvis det viser sig at være for tungt kan vi forsøge at gøre noget.
 	\subsection{OpenEyes og Siboska}
-	Tidligt i projektforløbet blev der udleveret kildekode til gruppen, kildekode som prototypen overvejende er inspireret af "Siboskas kode". Derudover er der også kildekoden som Siboska implementeringen har taget sit
-	udspring i. Væsentlige forskelle og egenskaber vil kort blive gennemgået, og en mere grundig gennemgang kan findes i analysedelen af dokumentationen "Ref".
+	Tidligt i projektforløbet blev der udleveret kildekode til gruppen, kildekode som prototypen overvejende er inspireret af "Siboskas kode". Derudover er der også kildekoden som Siboska implementeringen har taget sit udspring i. Et eksempel på væsentlige forskelle og egenskaber vil kort blive gennemgået, og resterende eksempler kan findes i analyseafsnittet i dokumentationen "Ref". En sammenligning af gruppens implementering og disse implementeringer vil blive lavet i implementeringsdelen af rapporten.
 	
 	 hvilket også indebærer processeringstid for de enkelte subrutiner. I forlængelse af dette vil begrundelserne for krav der har med algoritmen at gøre også blive givet i en relevant kontekst.
 	I det følgende vil simuleringer i forbindelse med starburst algoritmen blive gennemgået. Disse simuleringer er blevet udført i et forsøg på at danne en bedre indsigt i sammenhængen imellem performance og resultater. Idet en overgang til en anden platform end MATlab formentligt ikke forøger performance tilstrækkeligt, skal der i stedet undersøges hvorvidt det er muligt at tilpasse forskellige variabler til at opnå en kortere processeringstid, alt imens resultaterne forbliver gode.
