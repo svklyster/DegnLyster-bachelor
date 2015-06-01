@@ -7,9 +7,19 @@
 	Deltestene har til formål at teste hver enkelte klasses funktionalitet. 
 	Da de forskellige klasser er skrevet i hver sin python-fil, og da python-filer uden problemer kan inkluderes i python-programmer, har hver klasse været mulig at teste ved at skrive kalde funktionaliteter med specifikke inputs og derefter læse returværdierne/observere hændelserne. \\
 	
-	Ved at skrive en test-bench (her et python-program) har det været muligt at teste hver klasses funktionaliteter. Alle test-cases er udført i værktøjet Visual Studio, hvilket giver fri mulighed for at aflæse de forskellige variabler i runtime. \textit{Følgende er fremgangsmåde og resultat af de forskellige test-cases:}
+	Ved at skrive en test-bench (her et python-program) har det været muligt at teste hver klasses funktionaliteter. Alle test-cases er udført i værktøjet Visual Studio, hvilket giver fri mulighed for at aflæse de forskellige variabler i runtime. Følgende er kort beskrivelse af deltest og resultater for hver klasse:
+	\begin{itemize}
+		\item \textbf{UserInterface}: Klassen er testet ved at køre programmet og observere at: Bruger-interfacet indeholder de samme knapper og tekstfelter som angivet i softwarearkitekturen, knapperne forsøger at kalde de rigtige funktioner når der trykkes på dem, man kan aflæse korrekte værdier i tekstfelterne, og at både program og bruger kan skrive værdier i tekstfelterne. 
+		\item \textbf{SessionHandler}: Her er testet at en oprettet instans af klassen kan: Gemme egen data i en fil, læse og sætte egen data fra en fil, og verificere korrekt - eller afvise ugyldigt - filformat.
+		\item \textbf{LogHandler}: Her er testet at en oprettet instans af klassen kan: Oprette log-fil ud fra givet filsti og navn og tilføje strenge med korrekt format til den angivne log-fil.
+		\item \textbf{EyeTrackingHandler}: Denne klasse er først testet for de funktionskald der skal komme fra ETAlgorithm. Her er testet at den kan: Modtage resultater og tilføje et korrekt timestamp til dem, modtage en fejlmeddelelse og tilføje et korrekt timestamp, formatere en streng i outputformatet givet i kravspecifikationen, og modtage et array på ti variabler. Herefter er det testet at klassen kan oprette en process hvori en tråd gentager sig selv med en hastighed på 1/opdateringshastighed sekunder.
+		\item \textbf{VideoCapture}: Her er der testet at klassen kan benytte OpenCV til at detektere og benytte video-hardware, læse videofiler, samt læse opdateringshastigheden fra video-hardware og videofiler, eller sætte en standard hastighed hvis ingen kunne læses (noget video-hardware kan ikke aflæses). \\
+	\end{itemize}
+	Hvis nogle punkter ikke har kunne godkendes når denne test har været kørt, har det været muligt at gå tilbage og ændre i implementeringen.
 	\subsection{Integrationstest}
-	Integrationstesten har til formål at teste kommunikationen klasser imellem. 
+	Integrationstesten har til formål at teste kommunikationen klasser imellem.  Ligesom i deltesten har denne test kunne udføres ved hjælp af en test-bench, dog med to klasser benyttet af gangen. Hver kommunikationsvej (som set på figur \ref{fig:klasseinteraktion}) er her testet. Funktionskald og de dertilhørende argumenter er i denne test blevet verificeret. 
+	Denne test har ikke medført nogle problemer, da der i softwarearkitekturen har været defineret en klar kommunikation klasserne imellem, og da Python benytter sig af et høj-niveau data-typer.
+	
 	\subsection{Accepttest}
 	Accepttesten er formuleret efter de opstillede krav i afsnit \ref{sec:kravspec}. Formålet ved accepttesten er at teste det samlede produkt op imod de stillede krav. Testen afsluttes når alle specificerede test cases er gennemført og godkendt. I tilfælde hvor et krav ikke har kunne fuldføres, er der udfærdiget en problemrapport årsagen til underkendelsen. 
 	
