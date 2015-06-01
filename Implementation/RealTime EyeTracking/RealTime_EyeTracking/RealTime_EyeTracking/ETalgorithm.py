@@ -928,6 +928,14 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
                 et.ReturnError("Error with corneal reflections")
             return
 
+        f = open( 'FirstFrame.txt', 'w' )
+        for k in range(np.size(roi_gray, 0)):
+            for i in range(np.size(roi_gray, 1)):
+                f.write(repr(roi_gray[k][i]))
+                f.write(' ')
+            f.write(';\n')
+        f.close()
+
         pcx, pcy = pupil_center_approx(roi_gray, roi_gray_thresh)
 
         #cv2.imshow('newImage0',roi_gray)
@@ -949,6 +957,8 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
         #cv2.line(roi_gray, (crx, cry-5), (crx, cry+5), (255,255,255), 1)
         #cv2.imshow('image', roi_gray)
         #cv2.waitKey(0)
+
+        
   
         epx, epy = starburst_pupil_contour_detection (roi_gray, imW, imH, pcx, pcy, 30, 6, 6, ccen, crar)
         if epx is None:
