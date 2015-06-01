@@ -34,31 +34,31 @@
 \contentsline {subsection}{\numberline {5.2}Systemoversigt}{15}
 \contentsline {subsection}{\numberline {5.3}Funktionalitetskrav}{15}
 \contentsline {subsubsection}{\numberline {5.3.1}Use case eksempel - Start m\IeC {\r a}ling}{15}
-\contentsline {subsection}{\numberline {5.4}Overvejelser, Funktionelle krav}{15}
-\contentsline {subsubsection}{\numberline {5.4.1}Real-time eye-tracking}{15}
-\contentsline {subsubsection}{\numberline {5.4.2}Kalibrering}{15}
+\contentsline {subsection}{\numberline {5.4}Overvejelser, Funktionelle krav}{17}
+\contentsline {subsubsection}{\numberline {5.4.1}Real-time eye-tracking}{17}
+\contentsline {subsubsection}{\numberline {5.4.2}Kalibrering}{17}
 \contentsline {subsubsection}{\numberline {5.4.3}Output}{17}
-\contentsline {subsubsection}{\numberline {5.4.4}Modularisering}{17}
 \contentsline {subsection}{\numberline {5.5}Overvejelser, Ikke-funktionelle krav}{17}
 \contentsline {subsubsection}{\numberline {5.5.1}Fejlmargin}{17}
 \contentsline {subsubsection}{\numberline {5.5.2}Real-time}{17}
-\contentsline {subsubsection}{\numberline {5.5.3}Kodesprog}{17}
-\contentsline {subsection}{\numberline {5.6}Starburst-algoritmen}{17}
+\contentsline {subsubsection}{\numberline {5.5.3}Modularisering}{17}
+\contentsline {subsubsection}{\numberline {5.5.4}Kodesprog}{18}
+\contentsline {subsection}{\numberline {5.6}Starburst-algoritmen}{18}
 \contentsline {subsection}{\numberline {5.7}Algoritme Oversigt}{23}
 \contentsline {subsubsection}{\numberline {5.7.1}Calculate pupil and gaze}{23}
 \contentsline {subsubsection}{\numberline {5.7.2}Locate corneal reflection}{23}
 \contentsline {subsubsection}{\numberline {5.7.3}Starburst pupil contour detection}{23}
-\contentsline {subsubsection}{\numberline {5.7.4}Locate Edge Points}{23}
+\contentsline {subsubsection}{\numberline {5.7.4}Locate Edge Points}{24}
 \contentsline {subsubsection}{\numberline {5.7.5}Fit ellipse ransac}{24}
 \contentsline {subsection}{\numberline {5.8}Fokuspunkter}{24}
 \contentsline {subsubsection}{\numberline {5.8.1}Kantdetektion}{24}
-\contentsline {subsubsection}{\numberline {5.8.2}Ellipse Tilpasning}{24}
-\contentsline {subsubsection}{\numberline {5.8.3}Kegleparametre til Ellipseparametre}{24}
+\contentsline {subsubsection}{\numberline {5.8.2}Ellipse Tilpasning}{25}
+\contentsline {subsubsection}{\numberline {5.8.3}Kegleparametre til Ellipseparametre}{25}
 \contentsline {subsubsection}{\numberline {5.8.4}Kamera Input}{25}
 \contentsline {subsection}{\numberline {5.9}OpenEyes og Siboska}{25}
-\contentsline {subsection}{\numberline {5.10}Simulering}{25}
-\contentsline {subsubsection}{\numberline {5.10.1}Extract gaze vector from video}{25}
-\contentsline {subsubsection}{\numberline {5.10.2}Variabel \IeC {\AE }ndringer}{25}
+\contentsline {subsection}{\numberline {5.10}Simulering}{26}
+\contentsline {subsubsection}{\numberline {5.10.1}Extract gaze vector from video}{26}
+\contentsline {subsubsection}{\numberline {5.10.2}Variabel \IeC {\AE }ndringer}{26}
 \contentsline {subsubsection}{\numberline {5.10.3}Resultater}{26}
 \contentsline {subsection}{\numberline {5.11}Diskussion}{26}
 \contentsline {section}{\numberline {6}Design}{27}
@@ -91,9 +91,9 @@
 \contentsline {section}{\numberline {8}Test}{40}
 \contentsline {subsection}{\numberline {8.1}Indledning}{40}
 \contentsline {subsection}{\numberline {8.2}Deltest}{40}
-\contentsline {subsection}{\numberline {8.3}Integrationstest}{40}
-\contentsline {subsection}{\numberline {8.4}Accepttest}{40}
-\contentsline {subsection}{\numberline {8.5}Performance-evaluering}{40}
-\contentsline {subsection}{\numberline {8.6}Diskussion af testresultater}{40}
-\contentsline {section}{\numberline {9}Konklusion}{41}
-\contentsline {section}{\numberline {A}Appendiks}{42}
+\contentsline {subsection}{\numberline {8.3}Integrationstest}{41}
+\contentsline {subsection}{\numberline {8.4}Accepttest}{41}
+\contentsline {subsection}{\numberline {8.5}Performance-evaluering}{41}
+\contentsline {subsection}{\numberline {8.6}Diskussion af testresultater}{41}
+\contentsline {section}{\numberline {9}Konklusion}{42}
+\contentsline {section}{\numberline {A}Appendiks}{43}
