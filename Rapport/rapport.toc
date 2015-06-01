@@ -15,81 +15,83 @@
 \contentsline {subsection}{\numberline {3.1}Udviklingsmilj\IeC {\o }}{9}
 \contentsline {subsection}{\numberline {3.2}OpenCV}{9}
 \contentsline {subsection}{\numberline {3.3}Python}{9}
-\contentsline {subsection}{\numberline {3.4}Diskussion}{9}
-\contentsline {section}{\numberline {4}Kravspecifikation}{10}
-\contentsline {subsection}{\numberline {4.1}Problemstillinger}{10}
-\contentsline {subsection}{\numberline {4.2}Funktionelle krav}{10}
-\contentsline {subsubsection}{\numberline {4.2.1}Kalibrering}{11}
-\contentsline {subsubsection}{\numberline {4.2.2}Output}{11}
-\contentsline {subsubsection}{\numberline {4.2.3}Use-cases}{12}
-\contentsline {subsection}{\numberline {4.3}Ikke funktionelle krav}{12}
-\contentsline {subsection}{\numberline {4.4}Performance-evaluering}{13}
-\contentsline {subsection}{\numberline {4.5}Diskussion}{13}
-\contentsline {section}{\numberline {5}Analyse}{14}
-\contentsline {subsection}{\numberline {5.1}Indledning}{14}
-\contentsline {subsection}{\numberline {5.2}Systemoversigt}{14}
+\contentsline {subsubsection}{\numberline {3.3.1}Python vs. Java og C++}{9}
+\contentsline {subsubsection}{\numberline {3.3.2}Relevante programbiblioteker}{10}
+\contentsline {subsection}{\numberline {3.4}Diskussion}{10}
+\contentsline {section}{\numberline {4}Kravspecifikation}{11}
+\contentsline {subsection}{\numberline {4.1}Problemstillinger}{11}
+\contentsline {subsection}{\numberline {4.2}Funktionelle krav}{11}
+\contentsline {subsubsection}{\numberline {4.2.1}Kalibrering}{12}
+\contentsline {subsubsection}{\numberline {4.2.2}Output}{12}
+\contentsline {subsubsection}{\numberline {4.2.3}Use-cases}{13}
+\contentsline {subsection}{\numberline {4.3}Ikke funktionelle krav}{13}
+\contentsline {subsection}{\numberline {4.4}Performance-evaluering}{14}
+\contentsline {subsection}{\numberline {4.5}Diskussion}{14}
+\contentsline {section}{\numberline {5}Analyse}{15}
+\contentsline {subsection}{\numberline {5.1}Indledning}{15}
+\contentsline {subsection}{\numberline {5.2}Systemoversigt}{15}
 \contentsline {subsection}{\numberline {5.3}Funktionalitetskrav}{15}
 \contentsline {subsubsection}{\numberline {5.3.1}Use case eksempel - Start m\IeC {\r a}ling}{15}
 \contentsline {subsection}{\numberline {5.4}Overvejelser, Funktionelle krav}{15}
 \contentsline {subsubsection}{\numberline {5.4.1}Real-time eye-tracking}{15}
 \contentsline {subsubsection}{\numberline {5.4.2}Kalibrering}{15}
-\contentsline {subsubsection}{\numberline {5.4.3}Output}{16}
-\contentsline {subsubsection}{\numberline {5.4.4}Brugertilgang}{16}
-\contentsline {subsection}{\numberline {5.5}Overvejelser, Ikke-funktionelle krav}{16}
-\contentsline {subsubsection}{\numberline {5.5.1}Fejlmargin}{16}
-\contentsline {subsubsection}{\numberline {5.5.2}Real-time}{16}
-\contentsline {subsubsection}{\numberline {5.5.3}Kodesprog}{16}
-\contentsline {subsection}{\numberline {5.6}Starburst-algoritmen}{16}
-\contentsline {subsection}{\numberline {5.7}Algoritme Oversigt}{17}
-\contentsline {subsubsection}{\numberline {5.7.1}Calculate pupil and gaze}{17}
-\contentsline {subsubsection}{\numberline {5.7.2}Locate corneal reflection}{17}
-\contentsline {subsubsection}{\numberline {5.7.3}Starburst pupil contour detection}{18}
-\contentsline {subsubsection}{\numberline {5.7.4}Locate Edge Points}{18}
-\contentsline {subsubsection}{\numberline {5.7.5}Fit ellipse ransac}{18}
-\contentsline {subsection}{\numberline {5.8}Fokuspunkter}{18}
-\contentsline {subsubsection}{\numberline {5.8.1}Kantdetektion}{18}
-\contentsline {subsubsection}{\numberline {5.8.2}Ellipse Tilpasning}{18}
-\contentsline {subsubsection}{\numberline {5.8.3}Kegleparametre til Ellipseparametre}{19}
-\contentsline {subsubsection}{\numberline {5.8.4}Kamera Input}{19}
-\contentsline {subsection}{\numberline {5.9}OpenEyes og Siboska}{19}
-\contentsline {subsection}{\numberline {5.10}Simulering}{19}
-\contentsline {subsubsection}{\numberline {5.10.1}Extract gaze vector from video}{19}
-\contentsline {subsubsection}{\numberline {5.10.2}Variabel \IeC {\AE }ndringer}{19}
-\contentsline {subsubsection}{\numberline {5.10.3}Resultater}{20}
-\contentsline {subsection}{\numberline {5.11}Diskussion}{20}
-\contentsline {section}{\numberline {6}Design}{21}
-\contentsline {subsection}{\numberline {6.1}Indledning}{21}
-\contentsline {subsection}{\numberline {6.2}Modularisering}{21}
-\contentsline {subsection}{\numberline {6.3}Applikationsarkitektur}{21}
-\contentsline {subsubsection}{\numberline {6.3.1}UserInterface}{21}
-\contentsline {subsubsection}{\numberline {6.3.2}SessionHandler}{23}
-\contentsline {subsubsection}{\numberline {6.3.3}LogHandler}{23}
-\contentsline {subsubsection}{\numberline {6.3.4}VideoCapture}{23}
-\contentsline {subsubsection}{\numberline {6.3.5}EyeTrackingHandler}{23}
-\contentsline {subsubsection}{\numberline {6.3.6}Interaktion mellem klasser}{23}
-\contentsline {subsection}{\numberline {6.4}Algoritme-arkitektur}{23}
-\contentsline {subsection}{\numberline {6.5}Bruger-interface}{24}
-\contentsline {subsection}{\numberline {6.6}Diskussion}{25}
-\contentsline {section}{\numberline {7}Implementering}{27}
-\contentsline {subsection}{\numberline {7.1}Indledning}{27}
-\contentsline {subsection}{\numberline {7.2}Bruger-interface og applikation}{27}
-\contentsline {subsubsection}{\numberline {7.2.1}UserInterface}{27}
-\contentsline {subsubsection}{\numberline {7.2.2}SessionHandler}{28}
-\contentsline {subsubsection}{\numberline {7.2.3}LogHandler}{29}
-\contentsline {subsubsection}{\numberline {7.2.4}CalibrationHandler}{29}
-\contentsline {subsubsection}{\numberline {7.2.5}EyeTrackingHandler}{29}
-\contentsline {subsubsection}{\numberline {7.2.6}VideoCapture}{29}
-\contentsline {subsection}{\numberline {7.3}ETAlgorithm}{30}
-\contentsline {subsection}{\numberline {7.4}Starburst-algoritmen}{30}
-\contentsline {subsection}{\numberline {7.5}Optimering}{30}
-\contentsline {subsubsection}{\numberline {7.5.1}Fremtidige optimeringsmuligheder}{30}
-\contentsline {subsection}{\numberline {7.6}Diskussion}{30}
-\contentsline {section}{\numberline {8}Test}{31}
-\contentsline {subsection}{\numberline {8.1}Indledning}{31}
-\contentsline {subsection}{\numberline {8.2}Deltest}{31}
-\contentsline {subsection}{\numberline {8.3}Integrationstest}{31}
-\contentsline {subsection}{\numberline {8.4}Accepttest}{31}
-\contentsline {subsection}{\numberline {8.5}Performance-evaluering}{31}
-\contentsline {subsection}{\numberline {8.6}Diskussion af testresultater}{31}
-\contentsline {section}{\numberline {9}Konklusion}{32}
-\contentsline {section}{\numberline {A}Appendiks}{33}
+\contentsline {subsubsection}{\numberline {5.4.3}Output}{17}
+\contentsline {subsubsection}{\numberline {5.4.4}Brugertilgang}{17}
+\contentsline {subsection}{\numberline {5.5}Overvejelser, Ikke-funktionelle krav}{17}
+\contentsline {subsubsection}{\numberline {5.5.1}Fejlmargin}{17}
+\contentsline {subsubsection}{\numberline {5.5.2}Real-time}{17}
+\contentsline {subsubsection}{\numberline {5.5.3}Kodesprog}{17}
+\contentsline {subsection}{\numberline {5.6}Starburst-algoritmen}{17}
+\contentsline {subsection}{\numberline {5.7}Algoritme Oversigt}{18}
+\contentsline {subsubsection}{\numberline {5.7.1}Calculate pupil and gaze}{18}
+\contentsline {subsubsection}{\numberline {5.7.2}Locate corneal reflection}{18}
+\contentsline {subsubsection}{\numberline {5.7.3}Starburst pupil contour detection}{19}
+\contentsline {subsubsection}{\numberline {5.7.4}Locate Edge Points}{19}
+\contentsline {subsubsection}{\numberline {5.7.5}Fit ellipse ransac}{19}
+\contentsline {subsection}{\numberline {5.8}Fokuspunkter}{19}
+\contentsline {subsubsection}{\numberline {5.8.1}Kantdetektion}{19}
+\contentsline {subsubsection}{\numberline {5.8.2}Ellipse Tilpasning}{19}
+\contentsline {subsubsection}{\numberline {5.8.3}Kegleparametre til Ellipseparametre}{20}
+\contentsline {subsubsection}{\numberline {5.8.4}Kamera Input}{20}
+\contentsline {subsection}{\numberline {5.9}OpenEyes og Siboska}{20}
+\contentsline {subsection}{\numberline {5.10}Simulering}{20}
+\contentsline {subsubsection}{\numberline {5.10.1}Extract gaze vector from video}{20}
+\contentsline {subsubsection}{\numberline {5.10.2}Variabel \IeC {\AE }ndringer}{20}
+\contentsline {subsubsection}{\numberline {5.10.3}Resultater}{21}
+\contentsline {subsection}{\numberline {5.11}Diskussion}{21}
+\contentsline {section}{\numberline {6}Design}{22}
+\contentsline {subsection}{\numberline {6.1}Indledning}{22}
+\contentsline {subsection}{\numberline {6.2}Modularisering}{22}
+\contentsline {subsection}{\numberline {6.3}Applikationsarkitektur}{22}
+\contentsline {subsubsection}{\numberline {6.3.1}UserInterface}{22}
+\contentsline {subsubsection}{\numberline {6.3.2}SessionHandler}{22}
+\contentsline {subsubsection}{\numberline {6.3.3}LogHandler}{24}
+\contentsline {subsubsection}{\numberline {6.3.4}VideoCapture}{24}
+\contentsline {subsubsection}{\numberline {6.3.5}EyeTrackingHandler}{24}
+\contentsline {subsubsection}{\numberline {6.3.6}Interaktion mellem klasser}{24}
+\contentsline {subsection}{\numberline {6.4}Algoritme-arkitektur}{24}
+\contentsline {subsection}{\numberline {6.5}Bruger-interface}{25}
+\contentsline {subsection}{\numberline {6.6}Diskussion}{26}
+\contentsline {section}{\numberline {7}Implementering}{28}
+\contentsline {subsection}{\numberline {7.1}Indledning}{28}
+\contentsline {subsection}{\numberline {7.2}Bruger-interface og applikation}{28}
+\contentsline {subsubsection}{\numberline {7.2.1}UserInterface}{28}
+\contentsline {subsubsection}{\numberline {7.2.2}SessionHandler}{29}
+\contentsline {subsubsection}{\numberline {7.2.3}LogHandler}{30}
+\contentsline {subsubsection}{\numberline {7.2.4}CalibrationHandler}{30}
+\contentsline {subsubsection}{\numberline {7.2.5}EyeTrackingHandler}{30}
+\contentsline {subsubsection}{\numberline {7.2.6}VideoCapture}{30}
+\contentsline {subsection}{\numberline {7.3}ETAlgorithm}{31}
+\contentsline {subsection}{\numberline {7.4}Starburst-algoritmen}{31}
+\contentsline {subsection}{\numberline {7.5}Optimering}{31}
+\contentsline {subsubsection}{\numberline {7.5.1}Fremtidige optimeringsmuligheder}{31}
+\contentsline {subsection}{\numberline {7.6}Diskussion}{31}
+\contentsline {section}{\numberline {8}Test}{32}
+\contentsline {subsection}{\numberline {8.1}Indledning}{32}
+\contentsline {subsection}{\numberline {8.2}Deltest}{32}
+\contentsline {subsection}{\numberline {8.3}Integrationstest}{32}
+\contentsline {subsection}{\numberline {8.4}Accepttest}{32}
+\contentsline {subsection}{\numberline {8.5}Performance-evaluering}{32}
+\contentsline {subsection}{\numberline {8.6}Diskussion af testresultater}{32}
+\contentsline {section}{\numberline {9}Konklusion}{33}
+\contentsline {section}{\numberline {A}Appendiks}{34}

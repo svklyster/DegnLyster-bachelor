@@ -2,22 +2,26 @@
 
 \begin{document}
 	\section{Design}
+		\subsection{Indledning}
 	For at oprette en software arkitektur der overholder de krav stillet i kravspecifikationen, er der gjort brug af UML (Unified Modelling Language) \cite{UML}. UML tillader en tilnærmelsesvis direkte omskrivning af krav opstillet som use cases, til UML-diagrammer der skitserer en software arkitektur. 
 	Da der i kravspecifikationen er gjort brug af UML til udarbejdelse af de forskellige use cases, har det derfor været muligt af skrive sekvensdiagrammer ud fra hver enkelte use case. 
 	
 	Sideløbende med udviklingen af sekvensdiagrammerne er de forskellige klasser blevet forfattet. Følgende afsnit beskriver grundlæggende tanker og argumentation for valget af klasser.
-	\subsection{Indledning}
-	Kort om hvad dette afsnit indeholder, og hvorfor det er relevant. 	
+
+	
 	\subsection{Modularisering}
 	Programmet er ønsket opbygget, så der af en udestående person, er mulighed for fremtidig ændringer i algoritmen. Programmet er derfor struktureret op omkring at have et fastlagt interface med konsistente input/outputs med en selvstændig algoritme-klasse. 
 	\subsection{Applikationsarkitektur}
-	Forklaring af overgangen fra use case til software arkitektur. Eksempel med uc3
+	Ved at benytte UML-tilgangen har de fastlagte use cases kunne omksrives til sekvensdiagrammer. 
+	Følgende eksempel beskriver omskrivningen fra \textit{use case 3 - Start måling} (se figur\ref{fig:UC3}) til \textit{sekvensdiagram 3 - Start måling} (se figur \ref{fig:UCseq3}).
+	
+	
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=1\linewidth]{UC3}
 		\caption[Sekvensdiagram - UC3]{Sekvensdiagram for use case 3 - Start måling}
-		\label{fig:UC3}
+		\label{fig:UCseq3}
 	\end{figure}
 	
 	Overvejelser om opdelingen af klasser. Hver klasse varetager en opgave med henblik på en af systemets grænseflader. GUI er varetaget af en klasse. De tre genererede filer log, session, og kalibrering er håndteret af tre klasser. Kommunikation med eksternt kamera er håndteret af sin egen klasse. Kommunikation med algoritmen har sin egen klasse. 

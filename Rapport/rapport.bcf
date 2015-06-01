@@ -2215,9 +2215,12 @@
     <bcf:citekey order="1">Vmodel</bcf:citekey>
     <bcf:citekey order="2">UML</bcf:citekey>
     <bcf:citekey order="3">opencv</bcf:citekey>
-    <bcf:citekey order="4">FairchildInSiboska</bcf:citekey>
-    <bcf:citekey order="5">Siboska</bcf:citekey>
-    <bcf:citekey order="6">UML</bcf:citekey>
+    <bcf:citekey order="4">PythonComp</bcf:citekey>
+    <bcf:citekey order="5">Numpy</bcf:citekey>
+    <bcf:citekey order="6">Tkinter</bcf:citekey>
+    <bcf:citekey order="7">FairchildInSiboska</bcf:citekey>
+    <bcf:citekey order="8">Siboska</bcf:citekey>
+    <bcf:citekey order="9">UML</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="none" type="entry" sortscheme="none">
   <bcf:sorting>
