@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  1 JUN 2015 14:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  1 JUN 2015 16:19
 entering extended mode
 **rapport.tex
 
@@ -3137,7 +3137,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [16]
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 94.
+Package pdftex.def Info: ASE_logo.png used on input line 92.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -3148,7 +3148,28 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [17]
 
-LaTeX Warning: File `../Algoritmediagram.png' not found on input line 102.
+LaTeX Warning: File `Billeder/InitialImage.png' not found on input line 108.
+
+
+! Package pdftex.def Error: File `Billeder/InitialImage.png' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.108 ...0.7\linewidth]{Billeder/InitialImage.png}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 108.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+
+LaTeX Warning: File `../Algoritmediagram.png' not found on input line 120.
 
 
 ! Package pdftex.def Error: File `../Algoritmediagram.png' not found.
@@ -3157,21 +3178,18 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.102 ...h=0.7\linewidth]{../Algoritmediagram.png}
+l.120 ...h=0.7\linewidth]{../Algoritmediagram.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 102.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 File: ASE_logo.png Graphic file (type png)
-
 <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 111.
+Package pdftex.def Info: ASE_logo.png used on input line 129.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -3183,7 +3201,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [18]
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 135.
+Package pdftex.def Info: ASE_logo.png used on input line 147.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -3195,7 +3213,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [19]
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 152.
+Package pdftex.def Info: ASE_logo.png used on input line 162.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -3389,6 +3407,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [29]
+Underfull \hbox (badness 10000) in paragraph at lines 89--91
+
+ []
+
+File: ASE_logo.png Graphic file (type png)
+<use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 91.
+(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 19.85004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[30]
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
 Package pdftex.def Info: ASE_logo.png used on input line 95.
@@ -3400,16 +3434,20 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[30]
+[31]
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
+
+ []
+
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 110.
+(Font)              <10> on input line 117.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 110.
+(Font)              <7> on input line 117.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 110.
+(Font)              <5> on input line 117.
 File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 125.
+<use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 127.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -3418,7 +3456,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[31])
+[32])
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
 Package pdftex.def Info: ASE_logo.png used on input line 90.
@@ -3430,7 +3468,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[32]
+[33]
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Rapport\test.tex"
 
 Underfull \hbox (badness 10000) in paragraph at lines 7--9
@@ -3449,7 +3487,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[33
+[34
 
 
 ]
@@ -3466,7 +3504,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[34
+[35
 
 
 ]
@@ -3483,7 +3521,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[35
+[36
 
 
 ]
@@ -3507,7 +3545,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[36
+[37
 
 ]
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Rapport\rapport.a
@@ -3541,10 +3579,10 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Package logreq Info: Writing requests to 'rapport.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
- 24045 strings out of 493921
- 461051 string characters out of 3144852
- 853739 words of memory out of 3000000
- 26866 multiletter control sequences out of 15000+200000
+ 24062 strings out of 493921
+ 461289 string characters out of 3144852
+ 852750 words of memory out of 3000000
+ 26881 multiletter control sequences out of 15000+200000
  103361 words of font info for 89 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  76i,17n,106p,10395b,1768s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -3559,9 +3597,9 @@ rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files
 X 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 /type1/public/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmtt12.pfb>
-Output written on rapport.pdf (37 pages, 519806 bytes).
+Output written on rapport.pdf (38 pages, 523551 bytes).
 PDF statistics:
- 178 PDF objects out of 1000 (max. 8388607)
+ 181 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

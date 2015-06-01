@@ -39,25 +39,24 @@
 \contentsline {subsubsection}{\numberline {5.4.2}Kalibrering}{15}
 \contentsline {subsubsection}{\numberline {5.4.3}Output}{17}
 \contentsline {subsubsection}{\numberline {5.4.4}Modularisering}{17}
-\contentsline {subsubsection}{\numberline {5.4.5}Brugertilgang}{17}
 \contentsline {subsection}{\numberline {5.5}Overvejelser, Ikke-funktionelle krav}{17}
 \contentsline {subsubsection}{\numberline {5.5.1}Fejlmargin}{17}
 \contentsline {subsubsection}{\numberline {5.5.2}Real-time}{17}
 \contentsline {subsubsection}{\numberline {5.5.3}Kodesprog}{17}
-\contentsline {subsection}{\numberline {5.6}Starburst-algoritmen}{18}
-\contentsline {subsection}{\numberline {5.7}Algoritme Oversigt}{18}
+\contentsline {subsection}{\numberline {5.6}Starburst-algoritmen}{17}
+\contentsline {subsection}{\numberline {5.7}Algoritme Oversigt}{19}
 \contentsline {subsubsection}{\numberline {5.7.1}Calculate pupil and gaze}{19}
 \contentsline {subsubsection}{\numberline {5.7.2}Locate corneal reflection}{19}
 \contentsline {subsubsection}{\numberline {5.7.3}Starburst pupil contour detection}{19}
 \contentsline {subsubsection}{\numberline {5.7.4}Locate Edge Points}{19}
 \contentsline {subsubsection}{\numberline {5.7.5}Fit ellipse ransac}{19}
-\contentsline {subsection}{\numberline {5.8}Fokuspunkter}{19}
-\contentsline {subsubsection}{\numberline {5.8.1}Kantdetektion}{19}
+\contentsline {subsection}{\numberline {5.8}Fokuspunkter}{20}
+\contentsline {subsubsection}{\numberline {5.8.1}Kantdetektion}{20}
 \contentsline {subsubsection}{\numberline {5.8.2}Ellipse Tilpasning}{20}
 \contentsline {subsubsection}{\numberline {5.8.3}Kegleparametre til Ellipseparametre}{20}
 \contentsline {subsubsection}{\numberline {5.8.4}Kamera Input}{20}
-\contentsline {subsection}{\numberline {5.9}OpenEyes og Siboska}{20}
-\contentsline {subsection}{\numberline {5.10}Simulering}{20}
+\contentsline {subsection}{\numberline {5.9}OpenEyes og Siboska}{21}
+\contentsline {subsection}{\numberline {5.10}Simulering}{21}
 \contentsline {subsubsection}{\numberline {5.10.1}Extract gaze vector from video}{21}
 \contentsline {subsubsection}{\numberline {5.10.2}Variabel \IeC {\AE }ndringer}{21}
 \contentsline {subsubsection}{\numberline {5.10.3}Resultater}{21}
@@ -83,19 +82,19 @@
 \contentsline {subsubsection}{\numberline {7.2.3}LogHandler}{30}
 \contentsline {subsubsection}{\numberline {7.2.4}CalibrationHandler}{30}
 \contentsline {subsubsection}{\numberline {7.2.5}EyeTrackingHandler}{31}
-\contentsline {subsubsection}{\numberline {7.2.6}VideoCapture}{31}
-\contentsline {subsubsection}{\numberline {7.2.7}Kommunikation imellem applikationens klasser}{31}
-\contentsline {subsection}{\numberline {7.3}ETAlgorithm}{31}
-\contentsline {subsection}{\numberline {7.4}Starburst-algoritmen}{32}
-\contentsline {subsection}{\numberline {7.5}Optimering}{32}
-\contentsline {subsubsection}{\numberline {7.5.1}Fremtidige optimeringsmuligheder}{32}
-\contentsline {subsection}{\numberline {7.6}Diskussion}{32}
-\contentsline {section}{\numberline {8}Test}{33}
-\contentsline {subsection}{\numberline {8.1}Indledning}{33}
-\contentsline {subsection}{\numberline {8.2}Deltest}{33}
-\contentsline {subsection}{\numberline {8.3}Integrationstest}{33}
-\contentsline {subsection}{\numberline {8.4}Accepttest}{33}
-\contentsline {subsection}{\numberline {8.5}Performance-evaluering}{33}
-\contentsline {subsection}{\numberline {8.6}Diskussion af testresultater}{33}
-\contentsline {section}{\numberline {9}Konklusion}{34}
-\contentsline {section}{\numberline {A}Appendiks}{35}
+\contentsline {subsubsection}{\numberline {7.2.6}VideoCapture}{32}
+\contentsline {subsubsection}{\numberline {7.2.7}Kommunikation imellem applikationens klasser}{32}
+\contentsline {subsection}{\numberline {7.3}ETAlgorithm}{33}
+\contentsline {subsection}{\numberline {7.4}Starburst-algoritmen}{33}
+\contentsline {subsection}{\numberline {7.5}Optimering}{33}
+\contentsline {subsubsection}{\numberline {7.5.1}Fremtidige optimeringsmuligheder}{33}
+\contentsline {subsection}{\numberline {7.6}Diskussion}{33}
+\contentsline {section}{\numberline {8}Test}{34}
+\contentsline {subsection}{\numberline {8.1}Indledning}{34}
+\contentsline {subsection}{\numberline {8.2}Deltest}{34}
+\contentsline {subsection}{\numberline {8.3}Integrationstest}{34}
+\contentsline {subsection}{\numberline {8.4}Accepttest}{34}
+\contentsline {subsection}{\numberline {8.5}Performance-evaluering}{34}
+\contentsline {subsection}{\numberline {8.6}Diskussion af testresultater}{34}
+\contentsline {section}{\numberline {9}Konklusion}{35}
+\contentsline {section}{\numberline {A}Appendiks}{36}
