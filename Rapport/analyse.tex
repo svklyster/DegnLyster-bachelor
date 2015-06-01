@@ -60,6 +60,8 @@
 	Resultater fra målinger skal gemmes i en log-fil tilgængelig til brugeren. Dette krav stammer fra et ønske fra udbyder om at have adgang til data efter behandling. Der vil i
 	design fasen af projektet blive fremsat en protokol, der beskriver hvordan data skal gemmes i log-filen. 
 	
+	\subsubsection{Modularisering}
+	Modularisering af systemet er essentielt for projektet. Programmet skal skrives som en API (Application Programming Interface), altså et software-interface til anden software. Denne API skal designes således at bruger-interfacet, håndteringen af diverse filer, logning af data, kommunikation med hardware og så videre, kan implementeres som sit eget stykke software. Denne software kan så være basis for algoritmer der overholder API'ens regler. 
 	
 	\subsubsection{Brugertilgang}
 	Brugergrænsefladen behøver ikke nødvendigvis at være ret optimeret (Den er også lavet i python),

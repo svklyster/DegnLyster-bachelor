@@ -5,9 +5,10 @@
 	\subsection{Indledning}
 	\subsection{Bruger-interface og applikation}
 	I følgende afsnit vil implementeringen af bruger-interfacet og applikationen blive beskrevet. 
-	\subsubsection{UserInterface}
-	Biblioteker værd at nævne: Tkinter, Tkfiledialog\\
 	
+
+	\subsubsection{UserInterface}
+
 	\begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth]{GUIkommentare}
@@ -15,7 +16,7 @@
 	\label{fig:GUIkommentare}
 	\end{figure}
 	
-	Tkinter objekter er benyttet til at opbygge det grafisk brugerinterface som givet i design. 
+	Tkinter objekter (se afsnit \ref{sec:relBib}) er benyttet til at opbygge det grafisk brugerinterface som givet i design. 
 	Hver knap er blevet oprettet med et tilknyttet funktionskald der udfører den ønskede funktion, som givet af de forskellige use cases. 
 	Brugeren ser kun Tkinter objekter. 
 	Knapperne til venstre i interfacet er sat i rækkefølge efter naturlig opsætning og eksekvering af real-time eye-tracking. Ikke tilgængelige funktioner har deaktiverede knapper således at man ikke kan foretage ulovlige handlinger. \\
@@ -25,6 +26,8 @@
 	I bunden af bruger-interfacet er to farvede bokse. Disse bokse bruges til at give visuelt feedback bestemt af klassen EyeTrackingHandler. Farven blå indikerer at der ikke kører nogen eye-tracking. Grøn indikerer at eye-tracking kører. Igennem EyeTrackingHandler er det muligt at sætte farven på de to bokse til rød, hvilket kan bruges til at indikere eventuelle fejl. I denne implementering med Starburst-algoritmen er hver boks sat til at repræsentere et øje, således at rød farve indikerer at algoritmen ikke kan finde det tilsvarende øje. 
 	Interaktion med andre klasser:
 	For hver tilgang til præference-filen bliver der oprettet en ny instans af dataklassen SessionData fra klassen SessionHandler. Ved at aflæse indholdet/værdien af de forskellige Tkiner-objekter og skrive dette data til den instansen af SessionData, der senere bliver skrevet til præference-filen af klassen SessionHandler, vil der altid være konsistens mellem værdierne skrevet i brugerinterfacet, værdierne i præference-filen, og værdierne brugt i eye-tracking-algoritmen. 
+	
+	Programbibliotekerne tkFileDialog og tkMessageBox giver værktøjer til at kommunikere med brugeren. tkFileDialog håndterer arbejdet med valg af filer, og giver brugeren mulighed for at bevæge sig rundt i mapper på computeren. tkMessageBox bruges til pop-up-vinduer, hvilket benyttes til at tvinge brugeren til at gennemføre valg for at fortsætte, samt til at prompte brugeren om fejl og ulovlige handlinger. 
 	
 	
 	\subsubsection{SessionHandler}
@@ -50,7 +53,7 @@ LOADEDCALDATA None
 RECORDVIDEO False
 RAWDATAPATH None
 VARIABLENAMES['e_center', 'last_eyes', ...
-VARIABLEVALUES['[0,0]', '[]', 'True', '20', '1500', ...
+VARIABLEVALUES['[0,0]'$  '[]'$ 'True'$ '20'$ '1500'$ ...
 \end{lstlisting}
 \end{figure}
 		
@@ -68,8 +71,12 @@ VARIABLEVALUES['[0,0]', '[]', 'True', '20', '1500', ...
 	\subsubsection{VideoCapture}
 	Indeholder puplic funktion GetCameraInputs. 
 	Andre funktioner er en del af klassen. Klassen oprettes med et video-input, og mulighed for kalibreringsdataet, samt ti frie variabler. Kalibreringsdataet og de ti frie variabler benyttes ikke til andet end at videresende til ETAlgorithm sammen med gyldig frame. 
-	At passe kalibreringsdataet og de frie variabler igennem VideoCapture er ikke optimalt, men spiller ingen rolle i det samlede arbejdslæs. Det kan forestilles at man i stedet ville sende to pointers til hvor disse data ville være lageret. Argumentet for at passe disse data igennem VideoCapture er, at VideoCapture så vil kalde ETAlgorithm's Track() med den fundne frame samt disse data, i stedet for at returnere den fundne frame til EyeTrackingHandler og derefter kalde Track(). 
+	At passe kalibreringsdataet og de frie variabler igennem VideoCapture er ikke optimalt, men spiller ingen rolle i det samlede arbejdslæs. Det kan forestilles at man i stedet ville sende to pointers til hvor disse data ville være lageret. Argumentet for at passe disse data igennem VideoCapture er, at VideoCapture så vil kalde ETAlgorithm's Track() med den fundne frame samt disse data, i stedet for at returnere den fundne frame til EyeTrackingHandler og derefter kalde Track(). VideoCapture håndterer al kommunikation med video-kameraer, og har tilsvarende ansvaret for at terminere forbindelsen med disse når en måling er overstået. 
 		
+	\subsubsection{Kommunikation imellem applikationens klasser}	
+	
+	Overordnet kan programmet befinde sig i tre stadier: NotRunning, Calibrating og Running. 	
+	
 	\subsection{ETAlgorithm}
 	Koden i figur \ref{list:emptyalg} er en tom udgave af klassen ETAlgorithm med de nødvendige input-argumenter og funktionskald til EyeTrackingHandler er implementeret:
 

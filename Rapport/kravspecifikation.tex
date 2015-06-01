@@ -41,11 +41,15 @@
 		\item
 		\textbf{Output}: Resultater af måling skal ende i en log-fil tilgængelig til brugeren.
 		\item
+		\textbf{Modularisering}: Det skal være muligt for bruger at ændre/erstatte algoritmen.
+		\item
 		\textbf{Brugertilgang}: Ved hjælp af use case teknikken vil en yderlige række krav blive stillet. Disse vil lægge grundlag for bruger-program-interaktioner. Use-case-kravene er opstillet i afsnit \ref{usec}.  
 	\end{enumerate}
 	
+	\subsubsection{Real-time eye-tracking}
+	Systemet skal kunne foretage real-time eye-tracking ved hjælp af en implementeret udgave af Starburst-algoritmen som givet af Siboska og OpenEyes.
 	\subsubsection{Kalibrering}
-	Kalibrering: Specifikke ukendte variabler skal kunne kalibreres ved hjælp af interpolation. Herved skal programmet kunne tilpasses testpersonens fysiske forhold til kameraet. 
+	Specifikke ukendte variabler skal kunne kalibreres ved hjælp af interpolation. Herved skal programmet kunne tilpasses testpersonens fysiske forhold til kameraet. 
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=0.7\linewidth]{../Kamera-testperson}
@@ -72,6 +76,10 @@
 		\item 	Kommasepareret målingsdata med følgende format: \\
 		\textit{X-koordinat, Y-koordinat, Samplenummer, Trigger-niveau (0 for lav, 1 for høj)} 
 	\end{itemize}
+	
+	\subsubsection{Modularisering}
+	Systemet skal være modulariseret, således at bruger kan foretage ændringer i algoritmen, eller tilføje en hel ny algoritme. Det er derfor nødvendigt med en opdeling af programmet, samt klare regler for input-argumenter og output-værdier i forhold til algoritme-delen. 
+	Dette system skal implementeres med Starburst-algoritmen som udgangspunkt.
 	
 	\subsubsection{Use-cases}	
 	\label{usec}
@@ -101,7 +109,15 @@
 	
 	Typen af kamera og afstand til testperson kommer fra tidligere forsøg \cite{Siboska}.
 	\subsection{Performance-evaluering}
+	Systemet kan efter implementering og test evalueres efter performance. Følgende punkter ønskes evalueret:
+	\begin{itemize}
+		\item \textbf{Miljø}: Algoritmens evne til at til at tilpasse sig forskellige afstande til forsøgspersonen, forsøgspersonens bevægelser, samt forskellige lysstyrker. 
+		\item \textbf{Robusthed}: Systemets evne til at håndtere fejl under måling. 
+		\item \textbf{Brugervenlighed}: Systemets evne til at håndtere fejl i det grafiske bruger-interface. Simplicitet af det grafiske bruger-interface.  
+	\end{itemize}
+	
 	\subsection{Diskussion}
+	De formulerede krav medfører en afgrænsning af projektet, og ligger basis for arbejdet med v-modellen. 
 	
 		
 \end{document}
