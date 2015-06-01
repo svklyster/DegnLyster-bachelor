@@ -33,7 +33,8 @@
 	\subsubsection{SessionHandler}
 	SessionHandlers opgave er at stille et data-format til rådighed for kommunikation af sessions-indstillinger de forskellige klasser imellem. Klassens vigtigste opgave er derfor at opretholde et korrekt format. Ved oprettelse eller opdatering af præference-fil, kreerer SessionHandler en streng med henholdsvis navn på variabeltype, variable værdi konverteret til streng (hvis variablen er tom, skrives strengen "None"), efterfulgt af et linebreak. Når strengen er oprettet for alle variabler, skrives strengen til en præference-fil med suffiks .pref. \\
 	Når en præference-fil indlæses, verificeres den først af SessionHandler ved at lede efter alle variablenavne i den læste fil. Herefter kan hver variabel udtrækkes fra filen. Det er nødvendigt at lave tjek på hver variabel, da konvertering fra python- og numpy-værdi til streng kan medføre komplikationer. 
-	ÆNDRE KODEN SÅLEDES AT SESSIONHANDLER FORETAGER RSTRIP OG SÅ VIDERE 
+	
+	Instanser af SessionHandler brugt som data-format bliver oftest omtalt som SessionData.\\
 	
 	Figur \ref{list:sessionfile} er et eksempel på præference-fil med korrekt format (Værdierne variablenames og variablevalues er trunkeret for formateringens skyld). 
 \begin{figure}
@@ -58,9 +59,28 @@ VARIABLEVALUES['[0,0]'$  '[]'$ 'True'$ '20'$ '1500'$ ...
 \end{figure}
 		
 	\subsubsection{LogHandler}
-	At nævne: StartTracking kører igennem her. Holder værdi om hvorvidt algoritmen kører. Bliver brugt som dataklasse. 
-	Modtager en log-streng fra EyeTrackingHandler og gemmer den som angivet i SessionData dataklassen. 
-	Vis eksempel på log-fil
+	For hver eye-tracking måling der igangsættes bliver der oprettet en instans af LogHandler klassen med argumentet SessionData, som er en instans af klassen SessionHandler. LogHandler-klassen består af tre simple funktioner: StartNewTracking, StopTracking og LogData. StartNewTracking er en del af kommunikationsvejen fra UserInterface til EyeTrackingHandler, og har til formål at pege på sig selv, således at EyeTrackingHandler kan kalde LogData i den rette instans af klassen. 
+	Ligeledes StartNewTracking er StopTracking en del af kommunikationsvejen, men har kun til formål at sætte klassens variabel Tracking til False. Funktionen LogData bliver kaldt fra EyeTrackingHandler med en streng som argument, og har til formål at skrive denne streng - efterfulgt af et linebreak - til en log-fil peget på af SessionData.  
+	
+	Figur \ref{list:logfile} er et eksempel på en log-fil med korrekt format (Timestamp, X, Y, Triggerniveau, Fejlmeddelelse). 
+\begin{figure}
+	\caption{Eksempel på log-fil}
+	\label{list:logfile}
+	\begin{lstlisting}	
+16:28:46.483000, 89, 69, 0, None
+16:28:46.662000, 89, 69, 0, None
+16:28:46.731000, 90, 70, 0, None
+16:28:46.782000, 90, 71, 0, None
+16:28:46.951000, 92, 74, 0, None
+16:28:47.093000, 89, 68, 0, None
+16:28:47.244000, 89, 51, 1, None
+16:28:47.322000, 89, 52, 1, None
+16:28:47.360000, 91, 52, 1, None
+16:28:47.395000, 89, 51, 1, None
+16:28:47.598000, 0, 0, 0, Maximum ransac iterations exceeded
+16:28:47.651000, 89, 51, 1, None
+\end{lstlisting}
+\end{figure}	
 	
 	\subsubsection{CalibrationHandler}
 	Vis eksempel på kalibrerings-fil
