@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  24 MAY 2015 17:14
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  1 JUN 2015 18:02
 entering extended mode
 **softwarearkitektur.tex
 
@@ -2460,7 +2460,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 ("C:\Users\SÃ¸ren Lyster\Documents\GitHub\DegnLyster-bachelor\Design\klasser.te
 x"
-Overfull \hbox (6.76163pt too wide) in paragraph at lines 8--9
+Overfull \hbox (6.76163pt too wide) in paragraph at lines 9--10
 \T1/lmr/m/n/12 Denne klas-se hånd-te-rer eye-tracking-programmets log-fil. Da-t
 a fra eye-tracking
  []

@@ -82,8 +82,8 @@ VARIABLEVALUES['[0,0]'$  '[]'$ 'True'$ '20'$ '1500'$ ...
 \end{lstlisting}
 \end{figure}	
 	
-	\subsubsection{CalibrationHandler}
-	Vis eksempel på kalibrerings-fil
+	%\subsubsection{CalibrationHandler}
+	%Vis eksempel på kalibrerings-fil
 	
 	\subsubsection{EyeTrackingHandler}
 	Ved implementering af denne klasse har det været vigtigt at gøre en række overvejelser angående modulariseringen af koden, da det er denne klasse der indirekte står for afviklingen af algoritmen. Funktionen StartVideoCapture bliver kaldt med data-formatet SessionData og en pointer til den relevante instans af LogHandler-klassen. Funktionen opretter en instans af klassen VideoCapture med de korrekte argumenter taget fra SessionData.

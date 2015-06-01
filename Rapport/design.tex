@@ -4,7 +4,7 @@
 	\section{Design}
 		\subsection{Indledning}
 	For at oprette en software arkitektur der overholder de krav stillet i kravspecifikationen, er der gjort brug af UML (Unified Modelling Language) \cite{UML}. UML tillader en tilnærmelsesvis direkte omskrivning af krav opstillet som use cases, til UML-diagrammer der skitserer en software arkitektur. 
-	Da der i kravspecifikationen er gjort brug af UML til udarbejdelse af de forskellige use cases, har det derfor været muligt af skrive sekvensdiagrammer ud fra hver enkelte use case. 
+	Da der i kravspecifikationen er gjort brug af UML til udarbejdelse af de forskellige use cases, har det derfor været muligt af skrive sekvensdiagrammer ud fra hver enkelte use case. Sekvensdiagrammerne giver et klart billede af hvilke funktioner der skal implementeres for at overholde de stillede krav.  
 	
 	Sideløbende med udviklingen af sekvensdiagrammerne er de forskellige klasser blevet forfattet. Følgende afsnit beskriver grundlæggende tanker og argumentation for valget af klasser.
 
@@ -13,10 +13,9 @@
 	Programmet er ønsket opbygget, så der af en udestående person, er mulighed for fremtidig ændringer i algoritmen. Programmet er derfor struktureret op omkring at have et fastlagt interface med konsistente input/outputs med en selvstændig algoritme-klasse. 
 	\subsection{Applikationsarkitektur}
 	Ved at benytte UML-tilgangen har de fastlagte use cases kunne omksrives til sekvensdiagrammer. 
-	Følgende eksempel beskriver omskrivningen fra \textit{use case 3 - Start måling} (se figur\ref{fig:UC3}) til \textit{sekvensdiagram 3 - Start måling} (se figur \ref{fig:UCseq3}).
-	
-	
-	
+	De forskellige klasser er blevet forfattet med henblik på håndtering af de forskellige opgaver (bruger-interface, fil-håndtering, hardware-kommunikation, håndtering af algoritmen, og selve algoritmen), således at der opstår en klar struktur, hvor der ikke er tvivl om hvilken klasse der tilgår hvilken resource/opgave.
+	Følgende eksempel beskriver omskrivningen fra \textit{use case 3 - Start måling} (se figur \ref{fig:UC3}) til \textit{sekvensdiagram 3 - Start måling} (se figur \ref{fig:UCseq3}).
+
 	\begin{figure}
 		\centering
 		\includegraphics[width=1\linewidth]{UC3}
@@ -24,21 +23,43 @@
 		\label{fig:UCseq3}
 	\end{figure}
 	
-	Overvejelser om opdelingen af klasser. Hver klasse varetager en opgave med henblik på en af systemets grænseflader. GUI er varetaget af en klasse. De tre genererede filer log, session, og kalibrering er håndteret af tre klasser. Kommunikation med eksternt kamera er håndteret af sin egen klasse. Kommunikation med algoritmen har sin egen klasse. 
+	
+	
+	Som tidligere nævnt varetager hver klasse en opgave med henblik på en af systemets grænseflader. GUI er varetaget af en klasse. De tre genererede filer log, session, og kalibrering er håndteret af tre klasser. Kommunikation med eksternt kamera er håndteret af sin egen klasse. Kommunikation med algoritmen har sin egen klasse. Følgende specificere hver klasses opgave, og hvilke krav disse kunne have til implementeringen. 
 		\subsubsection{UserInterface}
-		Denne klasse foretager al kommunikation med aktøren \textit{bruger} igennem et grafisk bruger-interface (GUI). For at have en konstant opdatering af interfacet, forventes denne klasse at blive afviklet i egen tråd. 
+		Denne klasse foretager al kommunikation med aktøren \textit{bruger} igennem et grafisk bruger-interface (GUI). For at have en konstant opdatering af interfacet, forventes denne klasse at blive afviklet i egen tråd. Denne klasses funktionalitet gives direkte ud fra de forskellige use cases. 
 	
 		
 		\subsubsection{SessionHandler}
-		Her håndteres al data tilknyttet opsætning af eye-tracking-session. 
+		Her håndteres alle præferencer tilknyttet til en oprettet session. Denne klasse skal kunne instantieres og benyttes som en datapakke, for hver gang der skal sendes data imellem klasser. Herved kan alle indstillinger foretaget af bruger (enten igennem opsætning af session, eller igennem det grafiske bruger-interface) holdes i et samlet konsistent data-format.
+		Følgende værdier er tilstede i SessionHandler klassen: 
+		\begin{itemize}
+			\item Notes: Noter til bruger af systemet. Disse har ingen funktion for programmet.
+			\item Screen 2 resolution: Angiver opløsningen på skærmen brugt i opstillingen (se figur \ref{???}). Opløsningen angives som bredde og højde adskilt af 'x'.
+			\item Log filename: Alternativt navn for log-filen. Er feltet tomt bliver der auto-genereret et navn af formatet YYMMDD-HHMM (år måned dato - time minut). 
+			\item Session path: Peger på fil-stien hvor sessionsfilerne (præferencer, log og kalibrering) bliver oprettet. Bliver selv skrevet ind af programmet når  man opretter en ny session. 
+			\item Using camera source?: Angiver hvorvidt der bliver brugt kamera eller video-fil som input til algoritmen. 
+			\item Source: Hvis der er valgt kamera, peget denne værdi på kamera-kilden. Hvis der er valgt video-fil, fortæller denne filstien. 
+			\item Recording video?: Angiver hvorvidt det brugte input skal gemmes som en ny video-fil. 
+			\item Filepath for recorded data: Angiver hvor den generede video-fil skal gemmes. Hvis intet er angivet gemmes filen i session path. 
+			\item Calibration type: Beskriver hvilken type kalibrering der skal benyttes. Man kan således have flere forskellige kalibreringstyper. 
+			\item Load calibration file: Giver mulighed for at vælge en allerede oprette kalibreringsfil. Når en ny kalibrering er fuldført, vil denne værdi pege på den nye fil.
+			\item New calibration log filename: Angiver navnet på den oprettede kalibreringsfil. Hvis intet er angivet gemmes filen i session path med navnet calibration.clog. 
+			\item V1 til V10: Angiver ti frie variabler til brug i algoritmen. Felterne name bliver ikke benyttet af systemet, og er blot til brugerens nytte. Felterne value kan indeholde alt der opfylder korrekt syntaks for Python og Numpy-biblioteket. 
+		\end{itemize}
+		
 		\subsubsection{LogHandler}
-		Denne klasse håndterer eye-tracking-programmets log-fil. Data fra eye-tracking bliver her pakket og gemt i en log-fil. Kommunikation af målings-relevant data til UserInterface-klassen foretages af denne klasse.
+		Denne klasse håndterer eye-tracking-programmets log-filer (log-fil fra måling samt kalibrerings-log-fil). Data fra eye-tracking bliver her pakket og gemt i en log-fil. Kommunikation af målings-relevant data til UserInterface-klassen forventes foretages af denne klasse.
 		\subsubsection{VideoCapture}
-		Håndtering af data fra kamera eller video-kilde foregår ved hjælp af OpenCV i denne klasse. 
+		Håndtering af data fra kamera eller video-kilde foregår i denne klasse. Ved hjælp af OpenCV-biblioteket kan der nemt indlæses video-filer, skrives video-filer, samt åbne og lukke for kamera-input. Klassen er også ansvarlig for at læse værdier fra video-kilder såsom opdateringshastighed. 
 		\subsubsection{EyeTrackingHandler}
-	 
+		EyeTrackingHandler håndterer hvornår algoritmen skal køre, og hvilke værdier der skal sendes til algoritmen. For at sikre prioritet til algoritmen, skal denne klasse implementeres med mulighed for trådning (og potentielt multitrådning). Klassen står også for at modtage resultater fra algoritmen, og behandling af disse. 
 		
 		\subsubsection{Interaktion mellem klasser}
+		Man kan beskrive software-arkitekturen som bestående af tre lag. Det øverste lag består af det grafiske bruger-interface med den tilknyttede klasse UserInterface. Denne blok kan ses som en main-funktion hvorfra programmet bliver afviklet. Derved har brugeren mest mulig kontrol over systemet. Andet lag består af de forskellige 'handler'-klasser: SessionHandler, LogHandler, EyeTrackingHandler og VideoCapture. Sidste lag er eye-tracking-algoritmen i klassen ETAlgorithm. Når brugeren sætter ny måling igang opretter UserInterface en ny instans af SessionHandler-klassen og sender denne data til LogHandler. LogHandler opretter så en log-fil i filstien angivet i SessionHandler, og sender SessionHandler videre til EyeTrackingHandler. EyeTrackingHandler instantierer VideoCapture med korrekt data fra SessionHandler, og opretter derefter en tråd til afvikling af algoritmen i ETAlgorithm. Data til ETAlgorithm bliver pillet ud af SessionData og sendt igennem VideoCapture, hvor der bliver tilføjet et video-frame. \\
+		Ved hvert trin kæden igennem bliver der sat en variabel der fortæller de forskellige klasser at en måling kører. 
+		
+		Et diagram over interaktionen ses på figur \ref{fig:klasseinteraktion}.
 		
 		\begin{figure}
 		\centering
@@ -60,20 +81,8 @@
 	
 	Figur \ref{fig:FrameworkUdkastSimpel} beskriver det forventede grafiske bruger interface. Interfaces er designet ud fra use case diagrammerne beskrevet i kravspecifikationen.
 	De fire faner til højre i interfacet - notes, video, calibration, algorithm - tillader brugeren at læse og inputte ønskede præferencer. Følgende værdier er tilstede:
-	\begin{itemize}
-		\item Notes: Noter til bruger af systemet. Disse har ingen funktion for programmet.
-		\item Screen 2 resolution: Angiver opløsningen på skærmen brugt i opstillingen (se figur \ref{???}). Opløsningen angives som bredde og højde adskilt af 'x'.
-		\item Log filename: Alternativt navn for log-filen. Er feltet tomt bliver der auto-genereret et navn af formatet YYMMDD-HHMM (år måned dato - time minut). 
-		\item Session path: Peger på fil-stien hvor sessionsfilerne (præferencer, log og kalibrering) bliver oprettet. Bliver selv skrevet ind af programmet når  man opretter en ny session. 
-		\item Using camera source?: Angiver hvorvidt der bliver brugt kamera eller video-fil som input til algoritmen. 
-		\item Source: Hvis der er valgt kamera, peget denne værdi på kamera-kilden. Hvis der er valgt video-fil, fortæller denne filstien. 
-		\item Recording video?: Angiver hvorvidt det brugte input skal gemmes som en ny video-fil. 
-		\item Filepath for recorded data: Angiver hvor den generede video-fil skal gemmes. Hvis intet er angivet gemmes filen i session path. 
-		\item Calibration type: Beskriver hvilken type kalibrering der skal benyttes. Man kan således have flere forskellige kalibreringstyper. 
-		\item Load calibration file: Giver mulighed for at vælge en allerede oprette kalibreringsfil. Når en ny kalibrering er fuldført, vil denne værdi pege på den nye fil.
-		\item New calibration log filename: Angiver navnet på den oprettede kalibreringsfil. Hvis intet er angivet gemmes filen i session path med navnet calibration.clog. 
-		\item V1 til V10: Angiver ti frie variabler til brug i algoritmen. Felterne name bliver ikke benyttet af systemet, og er blot til brugerens nytte. Felterne value kan indeholde alt der opfylder korrekt syntaks for Python og Numpy-biblioteket. 
-	\end{itemize}		
+	
+	
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.9\linewidth]{FrameworkUdkastSimpel}
@@ -81,7 +90,7 @@
 		\label{fig:FrameworkUdkastSimpel}
 	\end{figure}
 	
-	
-	
 	\subsection{Diskussion}
+	Designfasen har udledt i et softwarearkitektur-dokument, som har vist sig at være et rigtig godt fundament for implementering af systemet. Den tilnærmelsesvis direkte omskrivning fra use case til sekvensdiagram har medført at al funktionalitet kunne implementeres korrekt fra starten. 
+	
 \end{document}
