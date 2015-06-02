@@ -4,6 +4,8 @@
 
 \section{Prolog}
 	\subsection{Indledning}
+	Denne rapport er udarbejdet som afslutningen på 7. semester bachelorprojekt i Elektro på Ingeniørhøjskolen Aarhus Universitet. Projektet er udbudt af Preben Kidmose ved Ingeniørhøjskolen Aarhus Universitet. I et EEG-system (Elektroencephalografi) ønskes der detekteret hvor på en skærm en testpersons øjne er fokuseret (gaze vector). Ved at observere dette kan EEG-målinger sammenholdes med visuel stimuli. Dette projekt omhandler implementeringen af en software-løsning der tillader realtids-målinger af en testpersons gaze vector. Software-løsningen skal fungere som et application programming interface (API) for en eye-tracking algoritme, således at projektudbyder m.fl. kan implementere egen algoritme, uden at skulle kende til resten af softwarens struktur.  Forud for projektet er der givet en hardware-løsning der designes ud fra. For at teste og benytte API'en er der også implementeret en udgave af eye-tracking-algoritmen kendt som Starburst-algoritmen. To eksemplarer af Starburst-algoritmen er givet på forhånd: Daniel Siboska's MATLAB-implementering og OpenEyes C-implementering. 
+	
 	\subsection{Krav til bachelorprojekt}
 	Aarhus Universitets kursuskatalog beskriver følgende krav til bachelorprojekt på Ingeniørhøjskolen:\\
 	
@@ -39,7 +41,7 @@
 	\\
 	
 	\subsection{OpenEyes og Siboska}
-	Kort beskrivelse af de to algoritme-implementeringer projektet har taget udgangspunkt i.	
+	Den implementerede udgave af Starburst-algoritmen har taget udgangspunkt i de to løsninger givet af Daniel Siboska \cite{Siboska} og OpenEyes open source eye-tracking kode \cite{openEyes}.  
 	
 		
 \end{document}
