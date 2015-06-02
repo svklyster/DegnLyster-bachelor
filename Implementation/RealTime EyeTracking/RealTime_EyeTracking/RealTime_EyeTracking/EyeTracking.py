@@ -6,13 +6,13 @@ import datetime
 import threading
 import LogHandler as lh
 import Calibration as cb
-
+import numpy as np
 
 running = False
 capture = None
 last_center = None
 logHandler = None
-calData = None
+calData = np.zeros((4,6))
 eyesFoundCount = [0,0]
 vjCount = 0
 last_eyes = None
@@ -58,6 +58,13 @@ class EyeTrackingThread(threading.Thread):
             self.run()
         
         
+def applyCalibration(calLeftX, calLeftY, calRightX, calRightY):
+    global calData
+    for k in range(len(calLeftX)):
+        calData[0][k] = calLeftX[k]
+        calData[1][k] = calLeftY[k]
+        calData[2][k] = calRightX[k]
+        calData[3][k] = calRightY[k]
 
 def StartVideoCapture(sessionData, log_handler):
     global running, capture, logHandler

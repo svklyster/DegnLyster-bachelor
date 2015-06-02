@@ -6,6 +6,7 @@ import sys
 import EyeTracking as et
 import cv2.cv as cv
 import CalExtract as calExt
+import Calibration as testCal
 
 def Track(frame, e_center, last_eyes, calData, runVJ):
 
@@ -1023,14 +1024,16 @@ def Track(frame, e_center, last_eyes, calData, runVJ):
             #####CALIBRATION#####
             if calData is not None:
 
-                coef_vector = (np.square(gaze_vector[1]), np.square(gaze_vector[0]))
-                screen_pos = (coef_vector*calData.x, coef_vector*calData.y)+calData.offset
-            
-            
-            
-            #et.LastRunInfo(e_center, eyes)
-            #et.EyesFound(e_found)
-            #et.PackWithTimestamp(e_center, gaze_vector, ("NoTrigger"), True)
+                coef_vector = [np.square(gaze_vector[0]), np.square(gaze_vector[1]), gaze_vector[0]*gaze_vector[1], gaze_vector[0], gaze_vector[1], 1]
+                if e_orientation is "Right":
+                    screen_pos = (np.dot(coef_vector,calData[2]), np.dot(coef_vector, calData[3])) #+calData.offset
+                else:
+                    screen_pos = (np.dot(coef_vector,calData[0]), np.dot(coef_vector, calData[1])) #+calData.offset
+                print(screen_pos)
+                testCal.motion(screen_pos)
+                #et.LastRunInfo(e_center, eyes)
+                #et.EyesFound(e_found)
+                #et.PackWithTimestamp(e_center, gaze_vector, ("NoTrigger"), True)
 
     if calData is None:
         calExt.lastData(new_e_center, eyes, True)

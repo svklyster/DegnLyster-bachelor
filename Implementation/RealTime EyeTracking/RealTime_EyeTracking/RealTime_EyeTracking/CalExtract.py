@@ -12,6 +12,7 @@ import re
 import numpy as np
 from cv2 import cv as cv
 import ETalgorithm as ET
+import EyeTracking as main
 
 def median(mylist):
     sorts = sorted(mylist)
@@ -46,16 +47,17 @@ areas = []
 def runCalib(sessionData):
     global capture, video_writer, retVectorsL, retVectorsR, e_center, last_eyes, runVJ, posList, posValuesL, posValuesR, posNoL, posNoR, idx, calNum, calNumCount, calTotal, calTotalCount, done
     #Save video:
-
-    capture = cv2.VideoCapture(sessionData.camnr)
     
+    capture = cv2.VideoCapture(sessionData.camnr)
+    #Temp, test calibration:
+    capture = cv2.VideoCapture('output.avi')
     ret, frame = capture.read()
     if ret:
         width = np.size(frame,1)
         height = np.size(frame,0)
     
     fourcc = cv2.cv.CV_FOURCC(*'XVID')
-    video_writer = cv2.VideoWriter('output.avi', -1, 40, (width, height))
+    video_writer = cv2.VideoWriter('newoutput.avi', -1, 40, (width, height))
     #Temp hardcoded values
     calNum = 40
     calNumCount = 0
@@ -83,8 +85,8 @@ def snapFrames():
             calTotalCount += 1
             break
         #Temp fix, mangler stadig 1 frame :S
-        #if (calTotalCount == 8 and calNumCount == 39):
-        #    calNumCount += 1
+        if (calTotalCount == 8 and calNumCount == 39):
+            calNumCount += 1
     
     if (calTotalCount >= calTotal):
         done = True
@@ -101,6 +103,7 @@ def snapFrames():
         #Get positions FIX IT NAOW - or not
         #posList = [[9, 9], [992, 9], [9, 592], [992, 592], [500, 9], [500, 592], [9, 300], [992, 300], [500, 300]]
         posList = areas
+        print(areas)
         posValuesL = []
         posValuesR = []
         idx = 0
@@ -158,7 +161,7 @@ def snapFrames():
         calVectL = []
         calVectR = []
 
-        for i in range(0,idx+1):
+        for i in range(0,idx):
             del positionsL[:]
             del positionsR[:]
             del tempmedLeftX[:]
@@ -249,6 +252,27 @@ def snapFrames():
         b2 = b2[0:6]
         calLeftY = np.dot(va,(np.divide(b2,sa)))
 
+        ua, sa, va = np.linalg.svd(A_right)
+        va = va.T
+        #print(np.shape(ua))
+        #print(np.shape(posValuesR))
+
+
+        b1 = np.dot(np.transpose(ua), np.transpose(posValuesR)[:][0])
+        b1 = b1[0:6]
+
+        #print(b1)
+        #print(np.size(va))
+        #print(np.size(sa))
+        #print(va)
+        #print(sa)
+        calRightX = np.dot(va,(np.divide(b1,sa)))
+        print(calRightX)
+
+        b2 = np.dot(np.transpose(ua), np.transpose(posValuesR)[:][1])
+        b2 = b2[0:6]
+        calRightY = np.dot(va,(np.divide(b2,sa)))
+
         resultX = []
         resultY = []
 
@@ -258,17 +282,18 @@ def snapFrames():
     
     
         #result = [A_left[:][0] * calLeftX, A_left[:][1] * calLeftY] 
-        print(resultX)
-        print(resultY)
+        #print(resultX)
+        #print(resultY)
         errorX = []
         errorY = []
         for k in range(0,len(resultX)):
             errorX.append(np.subtract(posValuesL[k][0], resultX[k]))
             errorY.append(np.subtract(posValuesL[k][1], resultY[k]))
         
-        print(errorX)
-        print(errorY)
-    
+        #print(errorX)
+        #print(errorY)
+
+        main.applyCalibration(calLeftX, calLeftY, calRightX, calRightY)
 
              
     #print(sortedDistX)

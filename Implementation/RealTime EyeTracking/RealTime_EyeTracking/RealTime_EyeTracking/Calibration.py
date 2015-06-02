@@ -35,17 +35,17 @@ class Calibration:
     
 
 
-#def motion(event):
-#    #global xinterval, yinterval
-#    #x, y = event.x, event.y
-#    #a = [x, y]
-#    #if(a[0]%xinterval <= 0.6*xinterval and a[0]%xinterval >= 0.4*xinterval and a[1]%yinterval <= 0.6*yinterval and a[1]%yinterval >= 0.4*yinterval):
-#    #    widget.itemconfig(lineindexX[(a[0]/xinterval+(a[1]/yinterval*3))], fill="green")
-#    #    widget.itemconfig(lineindexY[((a[1]/yinterval*3)+a[0]/xinterval)], fill="green")
-#    #else:
-#    #    for i in range(len(lineindexX)):
-#    #        widget.itemconfig(lineindexX[i], fill="red")
-#    #        widget.itemconfig(lineindexY[i], fill="red")
+def motion(event):
+    global xinterval, yinterval, widget, lineindexX, lineindexY
+    x, y = event[0], event[1]
+    a = [int(x), int(y)]
+    if(a[0]%xinterval <= 0.6*xinterval and a[0]%xinterval >= 0.4*xinterval and a[1]%yinterval <= 0.6*yinterval and a[1]%yinterval >= 0.4*yinterval):
+        widget.itemconfig(lineindexX[(a[0]/xinterval+(a[1]/yinterval*3))], fill="green")
+        widget.itemconfig(lineindexY[((a[1]/yinterval*3)+a[0]/xinterval)], fill="green")
+    else:
+        for i in range(len(lineindexX)):
+            widget.itemconfig(lineindexX[i], fill="red")
+            widget.itemconfig(lineindexY[i], fill="red")
 
 def parsegeometry(geometry):
     m = re.match("(\d+)x(\d+)([-+]\d+)([-+]\d+)", geometry)
@@ -57,6 +57,7 @@ def callback():
     return
 
 def calScreen():
+    global xinterval, yinterval, widget, lineindexX, lineindexY
     l = False
     p = True
 
