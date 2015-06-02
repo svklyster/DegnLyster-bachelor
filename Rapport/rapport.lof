@@ -1,27 +1,27 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
 \select@language {danish}
-\contentsline {figure}{\numberline {1}{\ignorespaces V-modellen}}{7}
-\contentsline {figure}{\numberline {2}{\ignorespaces Tidsplan for projektet}}{8}
-\contentsline {figure}{\numberline {3}{\ignorespaces Kameraets position i forhold til testperson\relax }}{12}
-\contentsline {figure}{\numberline {4}{\ignorespaces Eksempel p\IeC {\r a} t\IeC {\ae }rskelv\IeC {\ae }rdier for trigger-signalet\relax }}{12}
-\contentsline {figure}{\numberline {5}{\ignorespaces Use case 3\relax }}{16}
-\contentsline {figure}{\numberline {6}{\ignorespaces Enkelt billede fra video optagelse\relax }}{18}
-\contentsline {figure}{\numberline {7}{\ignorespaces Udsnit af \IeC {\o }je\relax }}{19}
-\contentsline {figure}{\numberline {8}{\ignorespaces Efter \IeC {\o }gning af kontrast og lysstyrke\relax }}{19}
-\contentsline {figure}{\numberline {9}{\ignorespaces Reflektioner fjernet\relax }}{20}
-\contentsline {figure}{\numberline {10}{\ignorespaces Estimering af pupilmidtpunkt\relax }}{20}
-\contentsline {figure}{\numberline {11}{\ignorespaces Starburst, f\IeC {\o }rste iteration (Enkelt str\IeC {\r a}le)\relax }}{20}
-\contentsline {figure}{\numberline {12}{\ignorespaces Starburst, f\IeC {\o }rste iteration (Resterende str\IeC {\r a}ler)\relax }}{21}
-\contentsline {figure}{\numberline {13}{\ignorespaces Starburst, anden iteration (Et startpunkt)\relax }}{21}
-\contentsline {figure}{\numberline {14}{\ignorespaces Starburst, anden iteration (Alle Punkter)\relax }}{22}
-\contentsline {figure}{\numberline {15}{\ignorespaces Resulterende ellipse\relax }}{22}
-\contentsline {figure}{\numberline {16}{\ignorespaces Resulterende gaze vektor\relax }}{23}
-\contentsline {figure}{\numberline {17}{\ignorespaces Systemdiagram}}{24}
-\contentsline {figure}{\numberline {18}{\ignorespaces Sekvensdiagram - UC3}}{28}
-\contentsline {figure}{\numberline {19}{\ignorespaces Klasseinteraktioner\relax }}{31}
-\contentsline {figure}{\numberline {20}{\ignorespaces Udkast til GUI}}{33}
-\contentsline {figure}{\numberline {21}{\ignorespaces Implementering af GUI}}{34}
-\contentsline {figure}{\numberline {22}{\ignorespaces Eksempel p\IeC {\r a} pr\IeC {\ae }ference-fil\relax }}{36}
-\contentsline {figure}{\numberline {23}{\ignorespaces Eksempel p\IeC {\r a} log-fil\relax }}{37}
-\contentsline {figure}{\numberline {24}{\ignorespaces Tom udgave af klassen ETAlgorithm\relax }}{39}
+\contentsline {figure}{\numberline {1}{\ignorespaces V-modellen}}{9}
+\contentsline {figure}{\numberline {2}{\ignorespaces Tidsplan for projektet}}{10}
+\contentsline {figure}{\numberline {3}{\ignorespaces Kameraets position i forhold til testperson\relax }}{14}
+\contentsline {figure}{\numberline {4}{\ignorespaces Eksempel p\IeC {\r a} t\IeC {\ae }rskelv\IeC {\ae }rdier for trigger-signalet\relax }}{14}
+\contentsline {figure}{\numberline {5}{\ignorespaces Use case 3\relax }}{18}
+\contentsline {figure}{\numberline {6}{\ignorespaces Enkelt billede fra video optagelse\relax }}{20}
+\contentsline {figure}{\numberline {7}{\ignorespaces Udsnit af \IeC {\o }je\relax }}{21}
+\contentsline {figure}{\numberline {8}{\ignorespaces Efter \IeC {\o }gning af kontrast og lysstyrke\relax }}{21}
+\contentsline {figure}{\numberline {9}{\ignorespaces Reflektioner fjernet\relax }}{22}
+\contentsline {figure}{\numberline {10}{\ignorespaces Starburst, f\IeC {\o }rste iteration (Enkelt str\IeC {\r a}le)\relax }}{22}
+\contentsline {figure}{\numberline {11}{\ignorespaces Starburst, f\IeC {\o }rste iteration (Resterende str\IeC {\r a}ler)\relax }}{23}
+\contentsline {figure}{\numberline {12}{\ignorespaces Starburst, anden iteration (Et startpunkt)\relax }}{23}
+\contentsline {figure}{\numberline {13}{\ignorespaces Starburst, anden iteration (Alle Punkter)\relax }}{24}
+\contentsline {figure}{\numberline {14}{\ignorespaces Resulterende ellipse\relax }}{24}
+\contentsline {figure}{\numberline {15}{\ignorespaces Resulterende gaze vektor\relax }}{24}
+\contentsline {figure}{\numberline {16}{\ignorespaces Systemdiagram}}{26}
+\contentsline {figure}{\numberline {17}{\ignorespaces Sekvensdiagram - UC3}}{30}
+\contentsline {figure}{\numberline {18}{\ignorespaces Klasseinteraktioner\relax }}{33}
+\contentsline {figure}{\numberline {19}{\ignorespaces Udkast til GUI}}{35}
+\contentsline {figure}{\numberline {20}{\ignorespaces Implementering af GUI}}{36}
+\contentsline {figure}{\numberline {21}{\ignorespaces Eksempel p\IeC {\r a} pr\IeC {\ae }ference-fil\relax }}{38}
+\contentsline {figure}{\numberline {22}{\ignorespaces Eksempel p\IeC {\r a} log-fil\relax }}{39}
+\contentsline {figure}{\numberline {23}{\ignorespaces Eksempel p\IeC {\r a} kalibrerings-log-fil\relax }}{39}
+\contentsline {figure}{\numberline {24}{\ignorespaces Tom udgave af klassen ETAlgorithm\relax }}{41}

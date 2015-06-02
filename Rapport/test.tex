@@ -22,8 +22,48 @@
 	
 	\subsection{Accepttest}
 	Accepttesten er formuleret efter de opstillede krav i afsnit \ref{sec:kravspec}. Formålet ved accepttesten er at teste det samlede produkt op imod de stillede krav. Testen afsluttes når alle specificerede test cases er gennemført og godkendt. I tilfælde hvor et krav ikke har kunne fuldføres, er der udfærdiget en problemrapport årsagen til underkendelsen. 
-	
+	Følgende er kort beskrivelse af de forskellige test cases og deres resultater: 
+	\begin{enumerate}
+		\setcounter{enumi}{1}
+		\item \textbf{Funktionelle krav}
+		\begin{enumerate}
+			\item \textbf{Real-time eye-tracking}:
+			\item \textbf{Kalibrering}:
+			\item \textbf{Output}: Her foretages en måling. Når en måling igangsættes oprettes der en log-fil. Efter få sekunders måling er målingen standset. Den oprettede log-fil er derefter åbnet, og det er verificeret at den stemmer overens med protokollen for log-fil angivet i afsnit \ref{sec:output} og figur \ref{list:logfile}. Efter verificering er denne test case accepteret.
+			\item \textbf{Brugertilgang}
+			\begin{enumerate}
+				\item \textbf{Use case 1: Opret session}:
+				Der er testet om rutinen for opretning af session opfylder use case 1, ved at gennemgå normalforløb og undtagelsesforløb. Test casen er accepteret. 
+				\item \textbf{Use case 2: Kalibrering}:
+				-.-.-.-.- SKRIV NOGET HER MARTIN -.-.-.-.-
+				\item \textbf{Use case 3: Start måling}:
+				Der er testet om programmet kan starte en ny måling. Resultatet af denne test kan aflæses i de to farvede bokse i det grafiske bruger-interface. Normalforløbet er blevet testet efter fremgangen i use case 3. Undtagelsesforløbet er foretaget uden gyldig kalibreringsfil. Test casen er acceptteret. 
+				\item \textbf{Use case 4: Stop måling}:
+				Her er også testet ved at udføre normalforløbet fra den tilsvarende use case. Der observeres hvorledes at de farvede bokse i det grafiske bruger-interface skifter farve til blå. Yderligere har der kunne observeres at der ikke længere kører en eye-tracking-proces. Test casen er acceptteret. 
+				\item \textbf{Use case 5: Gem indstillinger}:
+				Efter oprettelse af session er der skrevet en række værdier ind i det grafiske bruger-interface. Normalforløbet er blevet gennemgået, og det har kunne observeres at en fil med korrekt format (se figur \ref{list:sessionfile}) er oprettet. Undtagelsesforløbet af denne use case er testet ved at forsøge at gemme en fil i en fil-sti med begrænset adgang. Test casen er acceptteret. 
+				\item \textbf{Use case 6: Indlæs indstillinger}:
+				Der er testet om programmet kan udtrække de korrekte værdier fra en præference-fil, og derefter skrive værdierne til de korrekte bokse. En præference-fil med korrekt format og kendt indhold er skrevet og forsøgt læst ind. Undtagelsesforløbet er testet ved at have en præference-fil med forkert format. Dette forløb er til for at teste verificeringsdelen af klassen SessionHandler. Denne test case er acceptteret.
+				\item \textbf{Use case 7: Indlæs rå data}:
+				Denne test case er ikke længere relevant og derfor ikke testet. Se afsnit \ref{probrapport}.
+			\end{enumerate}
+		\end{enumerate}
+		\item \textbf{Ikke funktionelle krav}
+		\begin{enumerate}
+			\item \textbf{Fejlmargin}
+			\item \textbf{Real-time}
+			\item \textbf{Kamera}
+		\end{enumerate}
+	\end{enumerate}
+	\subsection{Problemrapporter}
+	\label{probrapport}
 	\subsection{Performance-evaluering}
+	Følgende performance-evaluering skal betragtes som en observering af systemets opførsel, og ikke nødvendigvis funktionalitet. Her er ikke tale om en test, men en evaluering, da der fra projektskrivernes synspunkt ikke kan tages nogle konkrete objektive observeringer. 
+	\begin{itemize}
+		\item \textbf{Miljø}: I denne implementering, hvor Starburst-algoritmen er benyttet, kan algoritmen tilpasse sig miljøet ved hjælp af flere optimering-funktioner. Algoritmen har evnen til at tilpasse sig lysstyrke og kontrast, og brugen af objektgenkendelse gør det muligt at detektere øjne så længe at de befinder sig i billedet. 
+		\item \textbf{Robusthed}: EyeTrackingHandler-klassen indeholder funktionen ReturnError, som skriver fejlmeddelelser til log-filen med korrekt formatering. Herved kan enhver fejl der opstår i algoritmen føres til log. I implementeringen af Starburst-algoritmen er der forsøgt at fange alle eventuelle fejl der kan opstå, og sende en fejlmeddelelse ved opstået fejl. Derved vil algoritmen og selve eye-tracking ikke blive afbrudt ved fejl. 
+		\item \textbf{Brugervenlighed}: Det grafiske bruger-interface er blevet designet ud fra minimale krav stillet. Dette medfører simplicitet. Ved at deaktivere knapper til funktioner der ikke skal være tilgængelige på et givent tidspunkt i programmet, er der skabt en intuitiv fremgang.
+	\end{itemize}
 	\subsection{Diskussion af testresultater}
 		
 \end{document}
