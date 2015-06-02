@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  2 JUN 2015 09:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  2 JUN 2015 09:31
 entering extended mode
 **rapport.tex
 
@@ -3849,9 +3849,6 @@ n.aux")
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                rapport
 (biblatex)                and rerun LaTeX afterwards.
@@ -3861,7 +3858,7 @@ Package logreq Info: Writing requests to 'rapport.run.xml'.
 Here is how much of TeX's memory you used:
  24130 strings out of 493921
  463319 string characters out of 3144852
- 854865 words of memory out of 3000000
+ 854866 words of memory out of 3000000
  26939 multiletter control sequences out of 15000+200000
  109346 words of font info for 91 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -3878,7 +3875,7 @@ X 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 /type1/public/lm/lmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
 ic/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtt12
 .pfb>
-Output written on rapport.pdf (51 pages, 877653 bytes).
+Output written on rapport.pdf (51 pages, 877718 bytes).
 PDF statistics:
  242 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
