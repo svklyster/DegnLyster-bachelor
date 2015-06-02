@@ -39,6 +39,8 @@ def motion(event):
     global xinterval, yinterval, widget, lineindexX, lineindexY
     x, y = event[0], event[1]
     a = [int(x), int(y)]
+    widget.create_line(a[0]-5, a[1], a[0]+5, a[1], fill="blue")
+    widget.create_line(a[0], a[1]-5, a[0], a[1]+5, fill="blue")
     if(a[0]%xinterval <= 0.6*xinterval and a[0]%xinterval >= 0.4*xinterval and a[1]%yinterval <= 0.6*yinterval and a[1]%yinterval >= 0.4*yinterval):
         widget.itemconfig(lineindexX[(a[0]/xinterval+(a[1]/yinterval*3))], fill="green")
         widget.itemconfig(lineindexY[((a[1]/yinterval*3)+a[0]/xinterval)], fill="green")
