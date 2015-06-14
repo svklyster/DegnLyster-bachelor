@@ -1,0 +1,69 @@
+\documentclass[rapport.tex]{subfiles}
+
+\begin{document}
+\section{Test}
+	\subsection{Indledning}
+	\subsection{Deltest}
+	Deltestene har til formål at teste hver enkelte klasses funktionalitet. 
+	Da de forskellige klasser er skrevet i hver sin python-fil, og da python-filer uden problemer kan inkluderes i python-programmer, har hver klasse været mulig at teste ved at skrive kalde funktionaliteter med specifikke inputs og derefter læse returværdierne/observere hændelserne. \\
+	
+	Ved at skrive en test-bench (her et python-program) har det været muligt at teste hver klasses funktionaliteter. Alle test-cases er udført i værktøjet Visual Studio, hvilket giver fri mulighed for at aflæse de forskellige variabler i runtime. Følgende er kort beskrivelse af deltest og resultater for hver klasse:
+	\begin{itemize}
+		\item \textbf{UserInterface}: Klassen er testet ved at køre programmet og observere at: Bruger-interfacet indeholder de samme knapper og tekstfelter som angivet i softwarearkitekturen, knapperne forsøger at kalde de rigtige funktioner når der trykkes på dem, man kan aflæse korrekte værdier i tekstfelterne, og at både program og bruger kan skrive værdier i tekstfelterne. 
+		\item \textbf{SessionHandler}: Her er testet at en oprettet instans af klassen kan: Gemme egen data i en fil, læse og sætte egen data fra en fil, og verificere korrekt - eller afvise ugyldigt - filformat.
+		\item \textbf{LogHandler}: Her er testet at en oprettet instans af klassen kan: Oprette log-fil ud fra givet filsti og navn og tilføje strenge med korrekt format til den angivne log-fil.
+		\item \textbf{EyeTrackingHandler}: Denne klasse er først testet for de funktionskald der skal komme fra ETAlgorithm. Her er testet at den kan: Modtage resultater og tilføje et korrekt timestamp til dem, modtage en fejlmeddelelse og tilføje et korrekt timestamp, formatere en streng i outputformatet givet i kravspecifikationen, og modtage et array på ti variabler. Herefter er det testet at klassen kan oprette en process hvori en tråd gentager sig selv med en hastighed på 1/opdateringshastighed sekunder.
+		\item \textbf{VideoCapture}: Her er der testet at klassen kan benytte OpenCV til at detektere og benytte video-hardware, læse videofiler, samt læse opdateringshastigheden fra video-hardware og videofiler, eller sætte en standard hastighed hvis ingen kunne læses (noget video-hardware kan ikke aflæses). \\
+	\end{itemize}
+	Hvis nogle punkter ikke har kunne godkendes når denne test har været kørt, har det været muligt at gå tilbage og ændre i implementeringen.
+	\subsection{Integrationstest}
+	Integrationstesten har til formål at teste kommunikationen klasser imellem.  Ligesom i deltesten har denne test kunne udføres ved hjælp af en test-bench, dog med to klasser benyttet af gangen. Hver kommunikationsvej (som set på figur \ref{fig:klasseinteraktion}) er her testet. Funktionskald og de dertilhørende argumenter er i denne test blevet verificeret. 
+	Denne test har ikke medført nogle problemer, da der i softwarearkitekturen har været defineret en klar kommunikation klasserne imellem, og da Python benytter sig af et høj-niveau data-typer.
+	
+	\subsection{Accepttest}
+	Accepttesten er formuleret efter de opstillede krav i afsnit \ref{sec:kravspec}. Formålet ved accepttesten er at teste det samlede produkt op imod de stillede krav. Testen afsluttes når alle specificerede test cases er gennemført og godkendt. I tilfælde hvor et krav ikke har kunne fuldføres, er der udfærdiget en problemrapport årsagen til underkendelsen. 
+	Følgende er kort beskrivelse af de forskellige test cases og deres resultater: 
+	\begin{enumerate}
+		\setcounter{enumi}{1}
+		\item \textbf{Funktionelle krav}
+		\begin{enumerate}
+			\item \textbf{Real-time eye-tracking}:
+			\item \textbf{Kalibrering}:
+			\item \textbf{Output}: Her foretages en måling. Når en måling igangsættes oprettes der en log-fil. Efter få sekunders måling er målingen standset. Den oprettede log-fil er derefter åbnet, og det er verificeret at den stemmer overens med protokollen for log-fil angivet i afsnit \ref{sec:output} og figur \ref{list:logfile}. Efter verificering er denne test case accepteret.
+			\item \textbf{Brugertilgang}
+			\begin{enumerate}
+				\item \textbf{Use case 1: Opret session}:
+				Der er testet om rutinen for opretning af session opfylder use case 1, ved at gennemgå normalforløb og undtagelsesforløb. Test casen er accepteret. 
+				\item \textbf{Use case 2: Kalibrering}:
+				-.-.-.-.- SKRIV NOGET HER MARTIN -.-.-.-.-
+				\item \textbf{Use case 3: Start måling}:
+				Der er testet om programmet kan starte en ny måling. Resultatet af denne test kan aflæses i de to farvede bokse i det grafiske bruger-interface. Normalforløbet er blevet testet efter fremgangen i use case 3. Undtagelsesforløbet er foretaget uden gyldig kalibreringsfil. Test casen er acceptteret. 
+				\item \textbf{Use case 4: Stop måling}:
+				Her er også testet ved at udføre normalforløbet fra den tilsvarende use case. Der observeres hvorledes at de farvede bokse i det grafiske bruger-interface skifter farve til blå. Yderligere har der kunne observeres at der ikke længere kører en eye-tracking-proces. Test casen er acceptteret. 
+				\item \textbf{Use case 5: Gem indstillinger}:
+				Efter oprettelse af session er der skrevet en række værdier ind i det grafiske bruger-interface. Normalforløbet er blevet gennemgået, og det har kunne observeres at en fil med korrekt format (se figur \ref{list:sessionfile}) er oprettet. Undtagelsesforløbet af denne use case er testet ved at forsøge at gemme en fil i en fil-sti med begrænset adgang. Test casen er acceptteret. 
+				\item \textbf{Use case 6: Indlæs indstillinger}:
+				Der er testet om programmet kan udtrække de korrekte værdier fra en præference-fil, og derefter skrive værdierne til de korrekte bokse. En præference-fil med korrekt format og kendt indhold er skrevet og forsøgt læst ind. Undtagelsesforløbet er testet ved at have en præference-fil med forkert format. Dette forløb er til for at teste verificeringsdelen af klassen SessionHandler. Denne test case er acceptteret.
+				\item \textbf{Use case 7: Indlæs rå data}:
+				Denne test case er ikke længere relevant og derfor ikke testet. Se afsnit \ref{probrapport}.
+			\end{enumerate}
+		\end{enumerate}
+		\item \textbf{Ikke funktionelle krav}
+		\begin{enumerate}
+			\item \textbf{Fejlmargin}
+			\item \textbf{Real-time}
+			\item \textbf{Kamera}: Det er muligt at benytte kameratypen angivet i kravspecifikationen. Derudover er det ligeledes muligt at benytte en række andre kameraer.
+		\end{enumerate}
+	\end{enumerate}
+	\subsection{Problemrapporter}
+	\label{probrapport}
+	\subsection{Performance-evaluering}
+	Følgende performance-evaluering skal betragtes som en observering af systemets opførsel, og ikke nødvendigvis funktionalitet. Her er ikke tale om en test, men en evaluering, da der fra projektskrivernes synspunkt ikke kan tages nogle konkrete objektive observeringer. 
+	\begin{itemize}
+		\item \textbf{Miljø}: I denne implementering, hvor Starburst-algoritmen er benyttet, kan algoritmen tilpasse sig miljøet ved hjælp af flere optimering-funktioner. Algoritmen har evnen til at tilpasse sig lysstyrke og kontrast, og brugen af objektgenkendelse gør det muligt at detektere øjne så længe at de befinder sig i billedet. 
+		\item \textbf{Robusthed}: EyeTrackingHandler-klassen indeholder funktionen ReturnError, som skriver fejlmeddelelser til log-filen med korrekt formatering. Herved kan enhver fejl der opstår i algoritmen føres til log. I implementeringen af Starburst-algoritmen er der forsøgt at fange alle eventuelle fejl der kan opstå, og sende en fejlmeddelelse ved opstået fejl. Derved vil algoritmen og selve eye-tracking ikke blive afbrudt ved fejl. 
+		\item \textbf{Brugervenlighed}: Det grafiske bruger-interface er blevet designet ud fra minimale krav stillet. Dette medfører simplicitet. Ved at deaktivere knapper til funktioner der ikke skal være tilgængelige på et givent tidspunkt i programmet, er der skabt en intuitiv fremgang.
+	\end{itemize}
+	\subsection{Diskussion af testresultater}
+		
+\end{document}

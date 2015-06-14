@@ -1,0 +1,34 @@
+\documentclass[rapport.tex]{subfiles}
+
+\begin{document}
+\section{Værktøjer}
+\label{sec:vaerktoejer}
+	\subsection{Udviklingsmiljø}
+	Eye-tracking programmet er blevet udviklet delvist i Pythons IDE Idle, og delvist i Microsofts Visual Studio. Al kode er versionsstyret ved hjælp af versionsstyringssystemet Git. Arbejde med UML, samt design af diverse diagrammer og figurer, er udført i Microsofts Visio. 
+	\subsection{OpenCV}
+	OpenCV er et programbibliotek frit tilgængeligt under BSD licensen. Programbiblioteket tilbyder optimerede funktioner designet med henblik på hurtige udregninger med fokus på realtids-programmering. Desuden giver OpenCV en række funktioner for kommunikation med video-hardware, samt behandling af videofiler. OpenCV's funktioner er implementeret i kodesproget C++, men understøtter implementering igennem både Python, Java og Matlab, og kører på Windows, Linux, OS X, Android m.m. \cite{opencv}.
+	\subsection{Python}
+	Python er et høj-niveau kodesprog der understøtter objekt-orienteret programmering, miksede høj-niveau datatyper, automatisk memory management, og et ekstensivt programbibliotek. 
+	Python understøtter derfor hurtig implementering i forhold til både Java og C++. Desuden understøtter Python også wrapping med C/C++. Dette er basis for arbejde med OpenCV.  
+	\subsubsection{Python vs. Java og C++} 
+	
+	Fordele \cite{PythonComp}: \begin{itemize}
+		\item 3-5 gange kortere end Java og 5-10 gange kortere end C++. 
+		\item Automatisk garbage collector. Ingen fokus på frigørelse af resourcer. 
+		\item Miksede høj-niveau datatyper.
+	\end{itemize}
+	Ulemper: \begin{itemize}
+		\item Langsommere end bade Java og C++, da datatyper skal ikke nødvendigvis er defineret før runtime. 
+	\end{itemize}
+	
+	\subsubsection{Relevante programbiblioteker}
+	\label{sec:relBib}
+	Nogle af Python's benyttede programbiblioteker har haft stor indflydelse på projektet, og er derfor relevante at nævne: \\\\	
+	\textbf{Numpy} er et højt optimeret programbibliotek til arbjede med numeriske operationer og tilbyder derfor en god understøttelse af array- og matrice-matematik, samt en ekstensiv række høj-niveau matematiske funktioner \cite{Numpy}. Numpy er derfor anvendt af OpenCV i Python. \\\\
+	\textbf{Tkinter} er en Python-binding til GUI-værktøjet Tk. Dette interface giver mulighed for en nem implementering af det grafiske bruger-interface, og er frit tilgængeligt under en Python-licens \cite{Tkinter}.
+
+	\subsection{Diskussion}
+	Det valgte udviklingsmiljø har givet et sæt stærke værktøjer til design, implementering, debugging og profiling. Versionsstyring har været de naturlige valg når det kommer til programmering. 
+	Brugen af Numpy har lagt grund for en nem omskrivning af Siboskas MATLAB-kode, da de fleste matematiske funktioner også findes i Numpy. 
+		
+\end{document}

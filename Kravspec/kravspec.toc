@@ -1,0 +1,19 @@
+\select@language {danish}
+\contentsline {section}{\numberline {1}Indledning}{2}
+\contentsline {subsection}{\numberline {1.1}Ordforklaring}{2}
+\contentsline {section}{\numberline {2}Generel beskrivelse}{3}
+\contentsline {subsection}{\numberline {2.1}Systembeskrivelse}{3}
+\contentsline {subsection}{\numberline {2.2}Akt\IeC {\o }rer}{4}
+\contentsline {subsection}{\numberline {2.3}Systemets begr\IeC {\ae }nsninger}{4}
+\contentsline {section}{\numberline {3}Funktionelle krav}{6}
+\contentsline {subsection}{\numberline {3.1}Kalibrering}{6}
+\contentsline {subsection}{\numberline {3.2}Output}{7}
+\contentsline {subsection}{\numberline {3.3}Use-cases}{7}
+\contentsline {subsubsection}{\numberline {3.3.1}Use case 1: Opret session}{8}
+\contentsline {subsubsection}{\numberline {3.3.2}Use case 2: Kalibrering}{9}
+\contentsline {subsubsection}{\numberline {3.3.3}Use case 3: Start m\IeC {\r a}ling}{10}
+\contentsline {subsubsection}{\numberline {3.3.4}Use case 4: Stop m\IeC {\r a}ling}{11}
+\contentsline {subsubsection}{\numberline {3.3.5}Use case 5: Gem indstillinger}{11}
+\contentsline {subsubsection}{\numberline {3.3.6}Use case 6: Indl\IeC {\ae }s indstillinger}{12}
+\contentsline {subsubsection}{\numberline {3.3.7}Use case 7: Indl\IeC {\ae }s r\IeC {\r a} data}{13}
+\contentsline {section}{\numberline {4}Ikke funktionelle krav}{14}

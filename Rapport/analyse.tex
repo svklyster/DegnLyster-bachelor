@@ -1,6 +1,65 @@
-\documentclass[rapport.tex]{subfiles}
+\documentclass[a4paper,oneside,12pt]{article}
+
+\usepackage{standalone}
+
+\usepackage{vhistory}
+\usepackage{setspace}
+\usepackage[numbers]{natbib}
+\usepackage{url}
+\usepackage[utf8]{inputenc} 
+\usepackage[english,danish]{babel} 
+\usepackage{lmodern} % Modern LaTeX font
+\renewcommand{\danishhyphenmins}{22} 
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{gensymb}
+\usepackage[load-configurations=version-1]{siunitx}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage[font=footnotesize]{caption}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{array}
+\pagestyle{fancy}
+
 
 \begin{document}
+	\begin{titlepage}
+		\centering
+		\vfill
+		{\LARGE Analyse}\\
+		\vfill
+		{\bfseries\large
+			Bachelorprojekt: \\
+			Real-time eye-tracking\\
+			Projektnummer: 15017\\
+		}
+		\vfill
+		\includegraphics{ASE_logo.png}
+		\vfill
+		{\bfseries\large
+			Version 1.1\
+			20/04/2015\\
+			Studerende: Søren Vøgg Krabbe Lyster (SVL) 10920,\\
+			Martin Degn Kristensen (MDK) 10441\\ 
+			Studieretning: Elektro \\
+			Vejleder: Preben Kidmose \\
+			\vfill	
+			\rule{6cm}{1pt}
+		}
+
+	\end{titlepage}
+	\lhead{\includegraphics[scale=0.2]{ASE_logo.png}}
+	\chead{Real-time eye-tracking}
+	\rhead{\scriptsize 20/04/15 \\
+		S. V. K. Lyster, M. D. Kristensen}
+	\begin{versionhistory}
+		\vhEntry{1.0}{20.04.15}{SVL,MDK}{Oprettet}
+	\end{versionhistory}
+
+
 \section{Analyse}
 	\subsection{Indledning}
 	Formålet med analysedelen af projektet var at få en indledende indsigt i emnet. Det indebar at få skabt et overblik over hvad der skulle laves, hvorfor det skulle laves, og hvilke krav der er til de ting som skulle laves. Størstedelen af tiden i denne fase af projektet blev brugt på at forstå den udleverede kode. En væsentlig del af tiden blev også brugt på at undersøge hvordan ændringer kunne påvirke resultater og performance, samt hvilke steder disse ændringer bedst kunne foretages. Det er også vigtigt at nævne at det der bliver gennemgået i dette afsnit overvejende er koncepter eller teori, med tilhørende eksempler rettet mod at fremme forståelsen. Konkret design og implementering vil blive gennemgået senere, i design og implementeringsdelene af rapporten.
@@ -201,12 +260,12 @@
 	Matlabprofiler - procentvis brug af hver del af algoritmen.
 	Bemærk at procestiden er opgivet som procentdel af samlet procestid, og at værdierne kun omfatter processen selv, og ikke medregner den tid der bruges på metoder der kaldes undervejs. Procestiden for disse metodekald står ud for de enkelte metoder i stedet.
 	
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.7\linewidth]{../Algoritmediagram.png}
-		\caption[Systemdiagram]{Systemdiagram for Real-time eye-tracking}
-		\label{fig:Systemdiagram}
-	\end{figure}
+%	\begin{figure}[h]
+%		\centering
+%		\includegraphics[width=0.7\linewidth]{../Algoritmediagram.png}
+%		\caption[Systemdiagram]{Systemdiagram for Real-time eye-tracking}
+%		\label{fig:Systemdiagram}
+%	\end{figure}
 	
 	Samlet tid, antal frames, indsæt profiler udsnit, forklar.
 	Forklar nedenstående.

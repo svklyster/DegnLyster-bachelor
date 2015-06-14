@@ -415,13 +415,9 @@ tNotePathname.pack(side=tk.TOP)
 
 #Video
 nFrameVideo = tk.Frame(notePref)
-#lVideo1 = tk.Label(nFrameVideo, text ="Using camera")
-#lVideo1.grid(row=0, column=0)
-#   - Checkbutton with variable
-#varVid = tk.BooleanVar(nFrameVideo)
+
 lVideo1 = tk.Label(nFrameVideo,  text = "Using camera source?")
 lVideo1.pack(side=tk.TOP)
-#cbVideo = tk.Checkbutton(nFrameVideo, variable = varVid, onvalue = True, offvalue = False)
 eVideo1 = tk.Entry(nFrameVideo, width = 5)
 eVideo1.pack(side = tk.TOP)
 vVideo2 = tk.StringVar()
@@ -467,8 +463,7 @@ tCalfn = tk.Text(nFrameCal, width = 40, height = 1)
 tCalfn.pack(side=tk.TOP)
 
 nAlgorithm = tk.Frame(notePref)
-#lHeader = tk.Label(nAlgorithm, text = "Custom variables")
-##lHeader.pack(side = tk.TOP)
+
 lVname = tk.Label(nAlgorithm, text = "Name")
 lVvalue = tk.Label(nAlgorithm, text = "Value")
 lVname.grid(row = 0, column = 1)

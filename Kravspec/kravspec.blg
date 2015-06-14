@@ -1,11 +1,5 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: kravspec.aux
-A level-1 auxiliary file: indledning.aux
-A level-1 auxiliary file: systembeskrivelse.aux
-A level-1 auxiliary file: funktkrav.aux
-A level-1 auxiliary file: usecase.aux
-A level-1 auxiliary file: ikkefunktkrav.aux
-The style file: ieeetr.bst
-Database file #1: biblio.bib
-Warning--empty publisher in FairchildInSiboska
-Warning--empty year in FairchildInSiboska
-(There were 2 warnings)
+[0] Config.pm:318> INFO - This is Biber 1.8
+[0] Config.pm:321> INFO - Logfile is 'kravspec.blg'
+[82] biber-MSWIN:272> INFO - === %a %b %e, %Y, %H:%M:%S
+[187] Utils.pm:185> ERROR - Cannot find control file 'kravspec.bcf'! - did you pass the "backend=biber" option to BibLaTeX?
+[187] Biber.pm:109> INFO - ERRORS: 1

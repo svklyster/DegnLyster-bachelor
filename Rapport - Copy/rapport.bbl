@@ -1,0 +1,327 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{entry}{}
+    \entry{Vmodel}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{Wikipedia}{W\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{Wikipedia}{W\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \field{sortinit}{0}
+      \field{labeltitle}{V-Model (software development) --- {W}ikipedia{,} The Free Encyclopedia}
+      \field{title}{V-Model (software development) --- {W}ikipedia{,} The Free Encyclopedia}
+      \field{urlday}{28}
+      \field{urlmonth}{05}
+      \field{urlyear}{2015}
+      \field{year}{2015}
+      \verb{url}
+      \verb http://en.wikipedia.org/wiki/V-Model_(software_development)
+      \endverb
+    \endentry
+    \entry{UML}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=2dcc97fa7146486665c56852f800f1dd}{Group}{G\bibinitperiod}{Object\bibnamedelima Management}{O\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=2dcc97fa7146486665c56852f800f1dd}{Group}{G\bibinitperiod}{Object\bibnamedelima Management}{O\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{2dcc97fa7146486665c56852f800f1dd}
+      \strng{fullhash}{2dcc97fa7146486665c56852f800f1dd}
+      \field{sortinit}{0}
+      \field{labeltitle}{Unified Modelling Language}
+      \field{title}{Unified Modelling Language}
+      \field{urlday}{28}
+      \field{urlmonth}{05}
+      \field{urlyear}{2015}
+      \field{year}{2015}
+      \verb{url}
+      \verb http://www.uml.org/
+      \endverb
+    \endentry
+    \entry{opencv}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=9df083c94429647164640b76c66eb181}{Itseez}{I\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=9df083c94429647164640b76c66eb181}{Itseez}{I\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{9df083c94429647164640b76c66eb181}
+      \strng{fullhash}{9df083c94429647164640b76c66eb181}
+      \field{sortinit}{0}
+      \field{labeltitle}{OpenCV}
+      \field{title}{OpenCV}
+      \field{urlday}{28}
+      \field{urlmonth}{05}
+      \field{urlyear}{2015}
+      \field{year}{2015}
+      \verb{url}
+      \verb http://opencv.org/
+      \endverb
+    \endentry
+    \entry{PythonComp}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=e916da348163d73c23a44e14dd07cb27}{Foundation}{F\bibinitperiod}{Python\bibnamedelima Software}{P\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=e916da348163d73c23a44e14dd07cb27}{Foundation}{F\bibinitperiod}{Python\bibnamedelima Software}{P\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{e916da348163d73c23a44e14dd07cb27}
+      \strng{fullhash}{e916da348163d73c23a44e14dd07cb27}
+      \field{sortinit}{0}
+      \field{labeltitle}{Comparing Python to other languages | Python.org}
+      \field{title}{Comparing Python to other languages | Python.org}
+      \field{urlday}{01}
+      \field{urlmonth}{06}
+      \field{urlyear}{2015}
+      \field{year}{2015}
+      \verb{url}
+      \verb https://www.python.org/doc/essays/comparisons/
+      \endverb
+    \endentry
+    \entry{Numpy}{article}{}
+      \name{labelname}{3}{}{%
+        {{hash=3671196a0e34ab39c600b8b04cf45c66}{Walt}{W\bibinitperiod}{S.}{S\bibinitperiod}{van\bibnamedelima der}{v\bibinitperiod\bibinitdelim d\bibinitperiod}{}{}}%
+        {{hash=8b733ed762b2d25e8fd29b1739ddc078}{Cobert}{C\bibinitperiod}{S.C.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=90a0a2720bfe73efd4029f8a456cdcc3}{Varoquaux}{V\bibinitperiod}{G.}{G\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=3671196a0e34ab39c600b8b04cf45c66}{Walt}{W\bibinitperiod}{S.}{S\bibinitperiod}{van\bibnamedelima der}{v\bibinitperiod\bibinitdelim d\bibinitperiod}{}{}}%
+        {{hash=8b733ed762b2d25e8fd29b1739ddc078}{Cobert}{C\bibinitperiod}{S.C.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=90a0a2720bfe73efd4029f8a456cdcc3}{Varoquaux}{V\bibinitperiod}{G.}{G\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{2d15486de78c3d60711cf789157761a8}
+      \strng{fullhash}{2d15486de78c3d60711cf789157761a8}
+      \field{sortinit}{0}
+      \field{labeltitle}{The NumPy Array: A Structure for Efficient Numerical Computation}
+      \field{day}{07}
+      \field{journaltitle}{Computing in Science Engineering}
+      \field{month}{03}
+      \field{title}{The NumPy Array: A Structure for Efficient Numerical Computation}
+      \field{year}{2011}
+    \endentry
+    \entry{Tkinter}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=61f4d516e2ba8f1322630b91fd643a89}{Hughes}{H\bibinitperiod}{Phil}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=61f4d516e2ba8f1322630b91fd643a89}{Hughes}{H\bibinitperiod}{Phil}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{61f4d516e2ba8f1322630b91fd643a89}
+      \strng{fullhash}{61f4d516e2ba8f1322630b91fd643a89}
+      \field{sortinit}{0}
+      \field{labeltitle}{Python and Tkinter Programming}
+      \field{day}{01}
+      \field{journaltitle}{Linux J.}
+      \field{month}{09}
+      \field{title}{Python and Tkinter Programming}
+      \field{year}{2000}
+    \endentry
+    \entry{FairchildInSiboska}{book}{}
+      \name{labelname}{1}{}{%
+        {{hash=040bf4ce7d02dd1ec8e4c14692c911a3}{Fairchild}{F\bibinitperiod}{M}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=040bf4ce7d02dd1ec8e4c14692c911a3}{Fairchild}{F\bibinitperiod}{M}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{040bf4ce7d02dd1ec8e4c14692c911a3}
+      \strng{fullhash}{040bf4ce7d02dd1ec8e4c14692c911a3}
+      \field{sortinit}{0}
+      \field{labeltitle}{Color Appearance Models}
+      \field{note}{citeret i D. Siboska, H. Karstoft og H. Pedersen, p.5}
+      \field{title}{Color Appearance Models}
+      \field{year}{1998}
+    \endentry
+    \entry{Siboska}{misc}{}
+      \name{labelname}{3}{}{%
+        {{hash=79505147617b250dfddee84db9fd43b7}{Siboska}{S\bibinitperiod}{D}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=23a3ce156729f4fd785ae1be7a99cd95}{Karstoft}{K\bibinitperiod}{H}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=334bdcbe4766c51fb81c8b8d9193257e}{Pedersen}{P\bibinitperiod}{H}{H\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=79505147617b250dfddee84db9fd43b7}{Siboska}{S\bibinitperiod}{D}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=23a3ce156729f4fd785ae1be7a99cd95}{Karstoft}{K\bibinitperiod}{H}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=334bdcbe4766c51fb81c8b8d9193257e}{Pedersen}{P\bibinitperiod}{H}{H\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{084123c328fba1638951a7fad1b4f677}
+      \strng{fullhash}{084123c328fba1638951a7fad1b4f677}
+      \field{sortinit}{0}
+      \field{labeltitle}{Synchronization of Electroencephalography and Eye Tracking using Global Illumination Changes}
+      \field{title}{Synchronization of Electroencephalography and Eye Tracking using Global Illumination Changes}
+    \endentry
+  \endsortlist
+  \sortlist{entry}{none}
+    \entry{Vmodel}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{Wikipedia}{W\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{Wikipedia}{W\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \field{sortinit}{0}
+      \field{labeltitle}{V-Model (software development) --- {W}ikipedia{,} The Free Encyclopedia}
+      \field{title}{V-Model (software development) --- {W}ikipedia{,} The Free Encyclopedia}
+      \field{urlday}{28}
+      \field{urlmonth}{05}
+      \field{urlyear}{2015}
+      \field{year}{2015}
+      \verb{url}
+      \verb http://en.wikipedia.org/wiki/V-Model_(software_development)
+      \endverb
+    \endentry
+    \entry{UML}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=2dcc97fa7146486665c56852f800f1dd}{Group}{G\bibinitperiod}{Object\bibnamedelima Management}{O\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=2dcc97fa7146486665c56852f800f1dd}{Group}{G\bibinitperiod}{Object\bibnamedelima Management}{O\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{2dcc97fa7146486665c56852f800f1dd}
+      \strng{fullhash}{2dcc97fa7146486665c56852f800f1dd}
+      \field{sortinit}{0}
+      \field{labeltitle}{Unified Modelling Language}
+      \field{title}{Unified Modelling Language}
+      \field{urlday}{28}
+      \field{urlmonth}{05}
+      \field{urlyear}{2015}
+      \field{year}{2015}
+      \verb{url}
+      \verb http://www.uml.org/
+      \endverb
+    \endentry
+    \entry{opencv}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=9df083c94429647164640b76c66eb181}{Itseez}{I\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=9df083c94429647164640b76c66eb181}{Itseez}{I\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{9df083c94429647164640b76c66eb181}
+      \strng{fullhash}{9df083c94429647164640b76c66eb181}
+      \field{sortinit}{0}
+      \field{labeltitle}{OpenCV}
+      \field{title}{OpenCV}
+      \field{urlday}{28}
+      \field{urlmonth}{05}
+      \field{urlyear}{2015}
+      \field{year}{2015}
+      \verb{url}
+      \verb http://opencv.org/
+      \endverb
+    \endentry
+    \entry{PythonComp}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=e916da348163d73c23a44e14dd07cb27}{Foundation}{F\bibinitperiod}{Python\bibnamedelima Software}{P\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=e916da348163d73c23a44e14dd07cb27}{Foundation}{F\bibinitperiod}{Python\bibnamedelima Software}{P\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{e916da348163d73c23a44e14dd07cb27}
+      \strng{fullhash}{e916da348163d73c23a44e14dd07cb27}
+      \field{sortinit}{0}
+      \field{labeltitle}{Comparing Python to other languages | Python.org}
+      \field{title}{Comparing Python to other languages | Python.org}
+      \field{urlday}{01}
+      \field{urlmonth}{06}
+      \field{urlyear}{2015}
+      \field{year}{2015}
+      \verb{url}
+      \verb https://www.python.org/doc/essays/comparisons/
+      \endverb
+    \endentry
+    \entry{Numpy}{article}{}
+      \name{labelname}{3}{}{%
+        {{hash=3671196a0e34ab39c600b8b04cf45c66}{Walt}{W\bibinitperiod}{S.}{S\bibinitperiod}{van\bibnamedelima der}{v\bibinitperiod\bibinitdelim d\bibinitperiod}{}{}}%
+        {{hash=8b733ed762b2d25e8fd29b1739ddc078}{Cobert}{C\bibinitperiod}{S.C.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=90a0a2720bfe73efd4029f8a456cdcc3}{Varoquaux}{V\bibinitperiod}{G.}{G\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=3671196a0e34ab39c600b8b04cf45c66}{Walt}{W\bibinitperiod}{S.}{S\bibinitperiod}{van\bibnamedelima der}{v\bibinitperiod\bibinitdelim d\bibinitperiod}{}{}}%
+        {{hash=8b733ed762b2d25e8fd29b1739ddc078}{Cobert}{C\bibinitperiod}{S.C.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=90a0a2720bfe73efd4029f8a456cdcc3}{Varoquaux}{V\bibinitperiod}{G.}{G\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{2d15486de78c3d60711cf789157761a8}
+      \strng{fullhash}{2d15486de78c3d60711cf789157761a8}
+      \field{sortinit}{0}
+      \field{labeltitle}{The NumPy Array: A Structure for Efficient Numerical Computation}
+      \field{day}{07}
+      \field{journaltitle}{Computing in Science Engineering}
+      \field{month}{03}
+      \field{title}{The NumPy Array: A Structure for Efficient Numerical Computation}
+      \field{year}{2011}
+    \endentry
+    \entry{Tkinter}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=61f4d516e2ba8f1322630b91fd643a89}{Hughes}{H\bibinitperiod}{Phil}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=61f4d516e2ba8f1322630b91fd643a89}{Hughes}{H\bibinitperiod}{Phil}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{61f4d516e2ba8f1322630b91fd643a89}
+      \strng{fullhash}{61f4d516e2ba8f1322630b91fd643a89}
+      \field{sortinit}{0}
+      \field{labeltitle}{Python and Tkinter Programming}
+      \field{day}{01}
+      \field{journaltitle}{Linux J.}
+      \field{month}{09}
+      \field{title}{Python and Tkinter Programming}
+      \field{year}{2000}
+    \endentry
+    \entry{FairchildInSiboska}{book}{}
+      \name{labelname}{1}{}{%
+        {{hash=040bf4ce7d02dd1ec8e4c14692c911a3}{Fairchild}{F\bibinitperiod}{M}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=040bf4ce7d02dd1ec8e4c14692c911a3}{Fairchild}{F\bibinitperiod}{M}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{040bf4ce7d02dd1ec8e4c14692c911a3}
+      \strng{fullhash}{040bf4ce7d02dd1ec8e4c14692c911a3}
+      \field{sortinit}{0}
+      \field{labeltitle}{Color Appearance Models}
+      \field{note}{citeret i D. Siboska, H. Karstoft og H. Pedersen, p.5}
+      \field{title}{Color Appearance Models}
+      \field{year}{1998}
+    \endentry
+    \entry{Siboska}{misc}{}
+      \name{labelname}{3}{}{%
+        {{hash=79505147617b250dfddee84db9fd43b7}{Siboska}{S\bibinitperiod}{D}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=23a3ce156729f4fd785ae1be7a99cd95}{Karstoft}{K\bibinitperiod}{H}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=334bdcbe4766c51fb81c8b8d9193257e}{Pedersen}{P\bibinitperiod}{H}{H\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=79505147617b250dfddee84db9fd43b7}{Siboska}{S\bibinitperiod}{D}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=23a3ce156729f4fd785ae1be7a99cd95}{Karstoft}{K\bibinitperiod}{H}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=334bdcbe4766c51fb81c8b8d9193257e}{Pedersen}{P\bibinitperiod}{H}{H\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{084123c328fba1638951a7fad1b4f677}
+      \strng{fullhash}{084123c328fba1638951a7fad1b4f677}
+      \field{sortinit}{0}
+      \field{labeltitle}{Synchronization of Electroencephalography and Eye Tracking using Global Illumination Changes}
+      \field{title}{Synchronization of Electroencephalography and Eye Tracking using Global Illumination Changes}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

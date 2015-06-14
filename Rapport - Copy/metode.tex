@@ -1,0 +1,58 @@
+\documentclass[rapport.tex]{subfiles}
+
+\begin{document}
+\section{Metode}
+	\subsection{Metoder}
+	Til dette projekt er der blevet benyttet V-modellen som udviklingmetode \cite{Vmodel}, og UML (Unified Modelling Language) \cite{UML} til design af softwarearkitekturen. V-modellen tilbyder en overskuelig tilgang til softwareudvikling i et projekt hvor en række krav er fastsat som udgangspunkt for udviklingen. Ved hjælp af UML er de forskellige krav omskrevet til use cases, og derfra er der udviklet design-diagrammer for softwarearkitekturen. 
+	
+	V-modellen følger i dette projekt følgende stadier fra analyse til implementering:
+	\begin{itemize}
+		\item Opstilling af krav
+		\subitem Ud fra projektoplægget og samtaler med projektudbyderen kan der formuleres en række konkrete krav til systemet. Disse krav kan deles op i funktionelle og ikke funktionelle krav. De funktionelle krav er direkte tilknyttet systems funktionalitet, hvor de ikke funktionelle krav i dette projekt omhandler ting som for eksempel præcision og opdateringshastighed. Dette stadie ender ud i færdiggørelsen af en kravspecifikation. 
+		\item Analyse
+		\subitem Analyseafsnittet arbejder med uddybelse af de opstillede krav. Her indhentes den viden der antages at være nyttig for udførsel af projektet. I dette projekt har analysen hovedsageligt fokuseret på valg af kodesprog og udviklingsmiljø, undersøgelse af eye-tracking-metoder og teori, og omskrivning af de opstillede krav ved hjælp af UML. Dette stadie har til formål at give et overblik over nødvendighederne for projektets udførsel og ender ud i færdiggørelsen af et analysedokument.  
+		\item Design
+		\subitem Ud fra de opstillede use cases kan der udvikles designdiagrammer til systemet. Disse diagrammer er udarbejdet udfra UML, og indeholder derfor en tydelig overgang fra use case. Sekvensdiagrammer er designet for hver use case, og resulterer i en række ønskede klasser. Klasserne defineres mere specifikt i klassediagrammer. Programmets flow-struktur designes således at der er en fornuftig kommunikationsvej fra det grafiske bruger-interface, til selve eye-tracking algoritmen. Et udkast til det grafiske bruger-interface bliver skitseret således at al funktionalitet fra de opstillede krav kan opfyldes. Et flow-diagram for Starburst algoritmen designes. Dette stadie ender ud i et softwarearkitektur-dokument. 
+		\item Implementering
+		\subitem I dette stadie beskæftiges der med selve programmeringen af API og algoritme. På baggrund af sekvens-, klasse- og flow-diagrammer kan koden implementeres. Dette stadie er bunden af v-modellen, og arbejder tæt med både deltest og integrationstest. Stadiet ender ud i den færdige kode. 
+	\end{itemize}	
+	Efter implementering af koden følger modellen en række test-stadier:
+	\begin{itemize}
+		\item Deltest
+		\subitem Deltest tester den individuelle klasses funktionalitet op imod softwarearkitekturen. Herved kan eventuelle fejl og mangler fanges tidligt. 
+		\item Integrationstest
+		\subitem Her testes de forskellige klassers interaktion med hinanden. Der undersøges om klasserne sender de rigtige data, og om der bliver gjort de rigtige funktionskald. 
+		\item Accepttest
+		\subitem Accepttesten er den endelige test af systemet. Her undersøges om systemet i sin helhed lever op til de forskellige krav formuleret i kravspecifikationen. \\
+		
+	\end{itemize}
+	
+	
+	V-modellens fleksibilitet tillader at man ved hvert teststadie kan gå tilbage og tilpasse analyse, design og implementering. 
+	V-modellen giver derfor mulighed for at opstille en række krav, omskrive dem til softwarearkitektur, implementere arkitekturen, foretage tests på den implementerede kode, og derefter gå tilbage rette hvad der kunne være nødvendigt. 
+	I et projekt af denne størrelse, hvor det forventes at der skal tilegnes ny viden, giver denne model derfor god mulighed for tidligt at støde på eventuelle problemer ved implementeringen, og derefter søge ny viden der kan benyttes til at opnå de opstillede krav. 
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\linewidth]{Vmodel}
+		\caption[V-modellen]{V-modellen}
+		\label{fig:Vmodel}
+	\end{figure}
+	
+	\subsection{Planlægning}
+	Bacheloropgaven er sat til 20 ECTS point, hvilket ifølge Aarhus Universitet svarer til 560 timer. Bachelorprojektets forløb strækker sig fra januar til slut maj, og er anslået til at vare 20 uger. Derudover har der været et forprojekt i december 2014. Der er derfor bestemt et gennemsnitligt arbejdspres på 30 timer om ugen for hele forløbet. I samarbejde med vejleder er der aftalt en times møde hver mandag. Desuden har det været bestræbt at mødes i projektgruppen hver hverdag, med forbehold for sygdom og således. Internt i projektgruppen har det været aftalt af føre personlig logbog, hvori overvejelser og noter kunne føres. \\
+	\\
+	Tidsplan for projektet (se figur \ref{fig:Tidsplan}) er blevet udført i løbet af forprojektet med henblik på projektstruktur som angivet af v-modellen. Denne tidsplan er blevet revideret og opdateret til vejledermødet hver mandag. 
+	
+	\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{Tidsplan}
+	\caption[Tidsplan for projektet]{Tidsplan for projektet. Mørkeblå farve viser den konkrete tidsplan. lyseblå farve viser perioder hvor det forventedes at de forskellige stadier ville overlappe hinanden.}
+	\label{fig:Tidsplan}
+	\end{figure}
+	
+	\subsection{Diskussion}
+	Den valgte metode og den overordnede planlægning af projektforløbet har resulteret i klart overblik om hvordan projektet skulle udføres. Grundet omfang og tidsbegrænsning af projektet har v-modellen været et fornuftigt valg. Herved har det været muligt at bevæge sig til implementeringsstadiet forholdsvis hurtigt, samtidig med at der er skabt et fornuftigt overhead til behandling af opståede problemer, med plads til at indhendte ny viden. 
+	
+		
+\end{document}

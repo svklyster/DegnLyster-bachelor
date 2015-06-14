@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  25 MAY 2015 12:30
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.2.10)  2 JUN 2015 10:13
 entering extended mode
 **analyse.tex
 
@@ -15,29 +15,6 @@ german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
 ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
 an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
 ishmax, welsh, loaded.
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 <
-     <<<<<< HEAD
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-Missing character: There is no < in font nullfont!
-Missing character: There is no < in font nullfont!
-Missing character: There is no < in font nullfont!
-Missing character: There is no < in font nullfont!
-Missing character: There is no < in font nullfont!
-Missing character: There is no < in font nullfont!
-Missing character: There is no < in font nullfont!
-Missing character: There is no H in font nullfont!
-Missing character: There is no E in font nullfont!
-Missing character: There is no A in font nullfont!
-Missing character: There is no D in font nullfont!
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size12.clo"
@@ -49,17 +26,12 @@ File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \c@subsubsection=\count82
 \c@paragraph=\count83
 \c@subparagraph=\count84
-
-Overfull \hbox (20.0pt too wide) in paragraph at lines 1--284
-[]
- []
-
 \c@figure=\count85
 \c@table=\count86
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-[1{C:/Users/Søren Lyster/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}])
+)
 ("C:\Users\Søren Lyster\AppData\Roaming\MiKTeX\2.9\tex\latex\standalone\standa
 lone.sty"
 Package: standalone 2012/09/15 v1.1b Package to include TeX sub-files with prea
@@ -1092,19 +1064,6 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 )
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\analyse.a
 ux"
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 <
-     <<<<<< HEAD
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\formaal.a
 ux")
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\systemove
@@ -1116,21 +1075,7 @@ LaTeX Warning: Label `fig:Systemdiagram' multiply defined.
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\starburst
 analyse.aux")
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\overvejel
-ser.aux")
-("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\formaal.a
-ux")
-("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\systemove
-rsigt.aux"
-
-LaTeX Warning: Label `fig:Systemdiagram' multiply defined.
-
-
-LaTeX Warning: Label `fig:Systemdiagram' multiply defined.
-
-
-LaTeX Warning: Label `fig:Actors' multiply defined.
-
-))
+ser.aux"))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
 LaTeX Font Info:    ... okay on input line 27.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
@@ -2470,21 +2415,15 @@ LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 27.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd"
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[2
-
-] <ASE_logo.png, id=11, 143.5764pt x 72.7518pt>
+<ASE_logo.png, id=1, 143.5764pt x 72.7518pt>
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
 Package pdftex.def Info: ASE_logo.png used on input line 39.
 (pdftex.def)             Requested size: 143.57603pt x 72.7516pt.
- [1 <C:/Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Analyse/ASE_lo
-go.png>]
+ [1
+
+{C:/Users/Søren Lyster/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/
+Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Analyse/ASE_logo.png>]
 \vh@hstfile=\write4
 
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\analyse.v
@@ -2494,67 +2433,7 @@ er")
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\analyse.v
 er")
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\analyse.t
-oc"
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3 ...ection}{\numberline {1}Form\IeC {\r a}l}{2}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3 ...ection}{\numberline {1}Form\IeC {\r a}l}{2}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.33 ...ction}{\numberline {1}Form\IeC {\r a}l}{2}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.33 ...ction}{\numberline {1}Form\IeC {\r a}l}{2}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-File: ASE_logo.png Graphic file (type png)
-<use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 36.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[1])
+oc")
 \tf@toc=\write5
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
@@ -2567,7 +2446,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2]
+[1]
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\formaal.t
 ex"
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -2594,7 +2473,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[3
+[2
 
 ])
 File: ASE_logo.png Graphic file (type png)
@@ -2608,48 +2487,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4]
+[3]
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\systemove
 rsigt.tex"
-
-LaTeX Warning: File `../Algoritmediagram.png' not found on input line 12.
-
-
-! Package pdftex.def Error: File `../Algoritmediagram.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.12 ...th=0.7\linewidth]{../Algoritmediagram.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 12.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-File: ASE_logo.png Graphic file (type png)
-
-<use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 25.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[5
-
-
-]
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 48.
+Package pdftex.def Info: ASE_logo.png used on input line 42.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2658,7 +2501,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6] <../Systemdiagram.png, id=43, 548.80031pt x 353.06906pt>
+[4
+
+
+] <../Systemdiagram.png, id=27, 548.80031pt x 353.06906pt>
 File: ../Systemdiagram.png Graphic file (type png)
 
 <use ../Systemdiagram.png>
@@ -2666,7 +2512,7 @@ Package pdftex.def Info: ../Systemdiagram.png used on input line 61.
 (pdftex.def)             Requested size: 272.99881pt x 175.6344pt.
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 89.
+Package pdftex.def Info: ASE_logo.png used on input line 64.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2675,8 +2521,20 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[7 <C:/Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Systemdiagram.p
-ng>] <../Actors.png, id=48, 318.9516pt x 206.9331pt>
+[5]
+File: ASE_logo.png Graphic file (type png)
+ <use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 91.
+(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 19.85004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[6 <C:/Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Systemdiagram.p
+ng>] <../Actors.png, id=36, 318.9516pt x 206.9331pt>
 File: ../Actors.png Graphic file (type png)
  <use ../Actors.png>
 Package pdftex.def Info: ../Actors.png used on input line 94.
@@ -2686,9 +2544,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 99--114
 
  []
 
+)
 File: ASE_logo.png Graphic file (type png)
-<use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 114.
+ <use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 65.
 (pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
 
 
@@ -2697,7 +2556,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8 <C:/Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Actors.png>])
+[7 <C:/Users/Søren Lyster/Documents/GitHub/DegnLyster-bachelor/Actors.png>]
 File: ASE_logo.png Graphic file (type png)
 
 <use ASE_logo.png>
@@ -2710,7 +2569,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9]
+[8]
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\starburst
 analyse.tex")
 File: ASE_logo.png Graphic file (type png)
@@ -2724,12 +2583,27 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10
+[9
 
 
 ]
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\overvejel
-ser.tex")
+ser.tex"
+File: ASE_logo.png Graphic file (type png)
+ <use ASE_logo.png>
+Package pdftex.def Info: ASE_logo.png used on input line 46.
+(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 19.85004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10
+
+
+])
 File: ASE_logo.png Graphic file (type png)
  <use ASE_logo.png>
 Package pdftex.def Info: ASE_logo.png used on input line 67.
@@ -2741,180 +2615,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11
-
-
-]
-("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\analyse.b
-bl"
-
-Package natbib Warning: Empty `thebibliography' environment on input line 3.
-
-)
-File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 97.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[12
-
-]
-File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 108.
-(pdftex.def)             Requested size: 143.57603pt x 72.7516pt.
- [1]
-\vh@hstfile=\write6
-
-("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\analyse.v
-er")
-("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\analyse.v
-er")
-("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\analyse.v
-er")
-("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\analyse.t
-oc")
-\tf@toc=\write7
-File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 133.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[1]
-("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\formaal.t
-ex"
-File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 22.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[2
-
-])
-File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 133.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[3]
-("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\systemove
-rsigt.tex"
-
-LaTeX Warning: File `../Algoritmediagram.png' not found on input line 12.
-
-
-! Package pdftex.def Error: File `../Algoritmediagram.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.12 ...th=0.7\linewidth]{../Algoritmediagram.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-File: ASE_logo.png Graphic file (type png)
-<use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 25.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[4
-
-
-]
-File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 48.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[5]
-File: ../Systemdiagram.png Graphic file (type png)
- <use ../Systemdiagram.png>
-Package pdftex.def Info: ../Systemdiagram.png used on input line 61.
-(pdftex.def)             Requested size: 272.99881pt x 175.6344pt.
-File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 89.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[6]
-File: ../Actors.png Graphic file (type png)
- <use ../Actors.png>
-Package pdftex.def Info: ../Actors.png used on input line 94.
-(pdftex.def)             Requested size: 272.99881pt x 177.1254pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 99--114
-
- []
-
-File: ASE_logo.png Graphic file (type png)
-<use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 114.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[7])
-File: ASE_logo.png Graphic file (type png)
- <use ASE_logo.png>
-Package pdftex.def Info: ASE_logo.png used on input line 134.
-(pdftex.def)             Requested size: 28.71477pt x 14.5501pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 19.85004pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[8]
+[11]
 ("C:\Users\Søren Lyster\Documents\GitHub\DegnLyster-bachelor\Analyse\analyse.b
 bl"
 
@@ -2928,11 +2629,11 @@ Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
  
 Here is how much of TeX's memory you used:
- 17135 strings out of 493921
- 341530 string characters out of 3144852
- 386727 words of memory out of 3000000
- 20061 multiletter control sequences out of 15000+200000
- 106395 words of font info for 90 fonts, out of 3000000 for 9000
+ 17078 strings out of 493921
+ 339475 string characters out of 3144852
+ 384737 words of memory out of 3000000
+ 20028 multiletter control sequences out of 15000+200000
+ 103047 words of font info for 88 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 76i,17n,106p,10395b,914s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 76i,16n,106p,10395b,788s stack positions out of 5000i,500n,10000p,200000b,50000s
 !  ==> Fatal error occurred, no output PDF file produced!

@@ -1,0 +1,102 @@
+\documentclass[a4paper,oneside,12pt]{article}
+
+\usepackage{standalone}
+
+\usepackage{vhistory}
+\usepackage{setspace}
+
+\usepackage{url}
+\usepackage[utf8]{inputenc} 
+\usepackage[english,danish]{babel} 
+\usepackage{lmodern} % Modern LaTeX font
+\renewcommand{\danishhyphenmins}{22} 
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{gensymb}
+\usepackage[load-configurations=version-1]{siunitx}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage[font=footnotesize]{caption}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{commentgreen}{rgb}{0,0.6,0}
+\definecolor{linegray}{rgb}{0.5,0.5,0.5}
+\definecolor{stringcolor}{rgb}{0.58,0.0,82}
+\lstset{ %
+	basicstyle = \footnotesize,
+	breakatwhitespace = false,
+	commentstyle = \color{commentgreen},
+	frame = single,
+	keepspaces = true,
+	keywordstyle=\color{blue},
+	language=Python,
+	numbers = left,
+	numbersep = 5pt,
+	numberstyle = \tiny\color{linegray},
+	rulecolor = \color{black},
+	stepnumber = 1,
+	stringstyle = \color{stringcolor}
+	}
+	
+\usepackage[style=ieee]{biblatex}
+\addbibresource{biblio.bib}
+
+\pagestyle{fancy}
+
+
+\begin{document}
+\begin{titlepage}
+\centering
+\vfill
+{\LARGE Rapport}\\
+\vfill
+{\bfseries\large
+	Bachelorprojektet: \\
+	Real-time eye-tracking\\
+	Projektnummer: 15017\\
+}
+\vfill
+\includegraphics{ASE_logo.png}
+\vfill
+{\bfseries\large
+	29/05/2015\\
+	Studerende: Søren Vøgg Krabbe Lyster (SVL) 10920,\\
+	Martin Degn Kristensen (MDK) 10441\\ 
+	Studieretning: Elektro \\
+	Vejleder: Preben Kidmose \\
+	\vfill	
+	\rule{6cm}{1pt}
+}
+
+
+
+
+\end{titlepage}
+\lhead{\includegraphics[scale=0.2]{ASE_logo.png}}
+\chead{Real-time eye-tracking}
+\rhead{\scriptsize 29/05/15 \\
+S. V. K. Lyster, M. D. Kristensen}
+\begin{abstract}
+Real-time eye-tracking.
+When working with EEG using visual stimulus, the gaze vector of a test person can yield important information. This paper explains the work of implementing a application programming interface for a specific hardware setup, that allows the user to perform real-time eye-tracking on a test subject, and changing the algorithms used for this.  
+Using the v-model method this bachelors project has moved from requirements stated by the project provider, to test and verification of a functioning eye-tracking interface with an implementation of the open source Starburst-algorithm.
+\end{abstract}
+\newpage
+\tableofcontents
+\include{prolog}
+\include{metode}
+\include{vaerktoejer}
+\include{kravspecifikation}
+\include{analyse}
+\include{design}
+\include{implementering}
+\include{test}
+\include{konklusion}
+\include{appendiks}
+\listoffigures
+\printbibliography
+
+\end{document}
